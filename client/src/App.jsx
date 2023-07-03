@@ -4,7 +4,7 @@ import Counter from './features/counter/Counter'
 function App () {
   return (
     <>
-      <h1>web</h1>
+      <h1>web truekiando</h1>
       <Counter />
     </>
   )

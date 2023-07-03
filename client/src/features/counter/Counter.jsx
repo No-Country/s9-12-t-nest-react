@@ -9,19 +9,9 @@ const Counter = () => {
   return (
     <div>
       <div>
-        <button
-          aria-label='Increment value'
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </button>
+        <button aria-label='Decrement value' onClick={() => dispatch(decrement())}> Decrement </button>
         <span>{count}</span>
-        <button
-          aria-label='Decrement value'
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </button>
+        <button aria-label='Increment value' onClick={() => dispatch(increment())}> Increment </button>
       </div>
     </div>
   )
