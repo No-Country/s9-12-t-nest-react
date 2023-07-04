@@ -1,11 +1,10 @@
 import React from 'react'
-import Counter from '../features/counter/Counter'
+import CardProduct from '../components/CardProduct'
 
 function Home () {
   return (
     <>
-      <div>Home</div>
-      <Counter />
+      <CardProduct />
     </>
   )
 }
