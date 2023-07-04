@@ -15,6 +15,7 @@ export default function card (products) {
                 height='200'
                 image={producto.imagen}
               />
+
               <CardContent>
                 <Typography variant='h6' component='div'>
                   {producto.titulo}
