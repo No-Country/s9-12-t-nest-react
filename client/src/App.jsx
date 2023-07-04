@@ -1,13 +1,12 @@
 import './App.css'
-import Counter from './features/counter/Counter'
+import AppRouter from './routes/AppRouter'
 
 function App () {
   return (
     <>
-      <h1>web truekiando</h1>
-      <Counter />
+      <AppRouter />
     </>
   )
 }
 
-export default App
+export default App;
