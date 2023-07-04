@@ -1,5 +1,6 @@
 import React from 'react'
-import CardProduct from '../components/CardProduct'
+import { useParams } from 'react-router-dom'
+import { Typography, Card, CardContent } from '@mui/material'
 
 const products = {
   productos: [
@@ -86,12 +87,30 @@ const products = {
   ]
 }
 
-function Home () {
-  return (
-    <>
-      <CardProduct props={products} />
-    </>
-  )
-}
+export default function Detail () {
+  const { id } = useParams()
 
-export default Home
+  const product = products.productos.find((product) => product.id === id)
+  if (!product) {
+    return <Typography variant='h6'>Product no encontrado</Typography>
+  }
+
+  return (
+    <Card>
+      <CardContent>
+        <Typography variant='h5' component='div'>
+          {product.titulo}
+        </Typography>
+        <Typography variant='body2' color='text.secondary'>
+          {product.descripcion}
+        </Typography>
+        <Typography variant='caption' color='text.secondary'>
+          Categoría: {product.categoria}
+        </Typography>
+        <Typography variant='caption' color='text.secondary'>
+          Estado: {product.estado}
+        </Typography>
+      </CardContent>
+    </Card>
+  )
+};
