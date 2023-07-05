@@ -44,6 +44,7 @@ const CategoryTest = () => {
         console.log('ERROR ->', error)
       })
   }, [categori])
+
   return (
     <>
       <h2>Categorias</h2>
