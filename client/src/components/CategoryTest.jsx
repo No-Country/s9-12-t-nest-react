@@ -32,6 +32,9 @@ const CategoryTest = () => {
       })
   }, [dispatch])
 
+  useEffect(() => {
+    console.log('categoria Selecionada -> ', categori)
+  })
   return (
     <>
       <h2>Categorias</h2>
