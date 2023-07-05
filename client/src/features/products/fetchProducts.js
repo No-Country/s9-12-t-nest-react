@@ -25,7 +25,8 @@ export const getProducts = createAsyncThunk('/products/getProducts', async () =>
 }
 )
 
-export const fetchProductsCategories = createAsyncThunk('products/fetchProductsCategories', async (_, thunkAPI) => {
+// trae todos los productos
+export const fetchCategories = createAsyncThunk('products/fetchProductsCategories', async (_, thunkAPI) => {
   try {
     const response = await fetch(`${API_URL}/products/categories`, {
       method: 'GET',
@@ -45,10 +46,33 @@ export const fetchProductsCategories = createAsyncThunk('products/fetchProductsC
   }
 })
 
+// filtro por categorias
+export const fetchProductsByCategory = createAsyncThunk('products/fetchProductsByCategory', async (categoryName, thunkAPI) => {
+  try {
+    const response = await fetch(`${API_URL}/products/category/${categoryName}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    if (!response.ok) {
+      const error = await response.text()
+      return thunkAPI.rejectWithValue(error)
+      // throw new Error('Algo salio mal')
+    }
+    const data = await response.json()
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message)
+  }
+}
+)
+
 const productsSlice = createSlice({
   name: 'products',
   initialState: {
     products: [],
+    productsByCategory: [],
     category: [],
     status: 'idle',
     loading: false,
@@ -73,16 +97,29 @@ const productsSlice = createSlice({
         state.status = 'failed'
         state.error = action.error
       })
-      .addCase(fetchProductsCategories.pending, (state) => {
+      .addCase(fetchCategories.pending, (state) => {
         state.status = 'loading'
         state.loading = true
       })
-      .addCase(fetchProductsCategories.fulfilled, (state, action) => {
+      .addCase(fetchCategories.fulfilled, (state, action) => {
         state.state = 'succeeded'
         state.loading = false
         state.category = action.payload
       })
-      .addCase(fetchProductsCategories.rejected, (state, action) => {
+      .addCase(fetchCategories.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error
+      })
+      .addCase(fetchProductsByCategory.pending, (state) => {
+        state.status = 'loading'
+        state.loading = true
+      })
+      .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
+        state.state = 'succeeded'
+        state.loading = false
+        state.productsByCategory = action.payload
+      })
+      .addCase(fetchProductsByCategory.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error
       })
