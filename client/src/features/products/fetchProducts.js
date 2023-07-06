@@ -65,14 +65,57 @@ export const fetchProductsByCategory = createAsyncThunk('products/fetchProductsB
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message)
   }
-}
-)
+})
+
+// filtro por id
+export const fetchProductById = createAsyncThunk('products/fetchProductById', async (id, thunkAPI) => {
+  try {
+    const response = await fetch(`${API_URL}/products/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    if (!response.ok) {
+      const error = await response.text()
+      return thunkAPI.rejectWithValue(error)
+      // throw new Error('Algo salio mal')
+    }
+    const data = await response.json()
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message)
+  }
+})
+
+// filtro por palabra clave
+export const fetchProductByKeyword = createAsyncThunk('products/fetchProductsByKeyword', async (keyword, thunkAPI) => {
+  try {
+    const response = await fetch(`${API_URL}/products?title=${encodeURIComponent(keyword)}`, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    if (!response.ok) {
+      const error = await response.text()
+      return thunkAPI.rejectWithValue(error)
+      // throw new Error('Algo salio mal')
+    }
+    const data = await response.json()
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message)
+  }
+})
 
 const productsSlice = createSlice({
   name: 'products',
   initialState: {
     products: [],
     productsByCategory: [],
+    productById: [],
+    productsByKeyword: [],
     category: [],
     status: 'idle',
     loading: false,
@@ -120,6 +163,32 @@ const productsSlice = createSlice({
         state.productsByCategory = action.payload
       })
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error
+      })
+      .addCase(fetchProductById.pending, (state) => {
+        state.status = 'loading'
+        state.loading = true
+      })
+      .addCase(fetchProductById.fulfilled, (state, action) => {
+        state.state = 'succeeded'
+        state.loading = false
+        state.productById = action.payload
+      })
+      .addCase(fetchProductById.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error
+      })
+      .addCase(fetchProductByKeyword.pending, (state) => {
+        state.status = 'loading'
+        state.loading = true
+      })
+      .addCase(fetchProductByKeyword.fulfilled, (state, action) => {
+        state.state = 'succeeded'
+        state.loading = false
+        state.productsByKeyword = action.payload
+      })
+      .addCase(fetchProductByKeyword.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error
       })
