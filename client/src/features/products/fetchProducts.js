@@ -91,7 +91,7 @@ export const fetchProductById = createAsyncThunk('products/fetchProductById', as
 // filtro por palabra clave
 export const fetchProductByKeyword = createAsyncThunk('products/fetchProductsByKeyword', async (keyword, thunkAPI) => {
   try {
-    const response = await fetch(`${API_URL}/products?title=${keyword}`, {
+    const response = await fetch(`${API_URL}/products?title=${encodeURIComponent(keyword)}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json'
