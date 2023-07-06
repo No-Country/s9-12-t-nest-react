@@ -146,6 +146,10 @@ const productsSlice = createSlice({
     addToSearchResults: (state, action) => {
       state.searchResults = []
       state.searchResults = action.payload
+    },
+    addToproductsByKeyword: (state, action) => {
+      state.productsByKeyword = []
+      state.productsByKeyword = action.payload
     }
   },
   extraReducers: (builder) => {
@@ -219,6 +223,7 @@ const productsSlice = createSlice({
   }
 })
 
+export const { addToSearchResults, addToproductsByKeyword } = productsSlice.actions
 export const selectProducts = (state) => state.products.products
 // export const selectStatus = (state) => state.products.status
 // export const selectLoading = (state) => state.products.loading

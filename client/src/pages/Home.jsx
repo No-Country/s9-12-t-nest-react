@@ -92,6 +92,9 @@ import { getProducts } from '../features/products/fetchProducts'
 function Home () {
   const products = useSelector((state) => state?.products?.products)
   const loading = useSelector((state) => state?.products?.loading)
+  const filtradosCategory = useSelector((state) => state?.products?.productsByCategory)
+  const filtradosPalabraClave = useSelector((state) => state?.products?.productsByKeyword)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -100,10 +103,25 @@ function Home () {
 
   return (
     <>
-      {
-      loading ? <Loading /> : <CardProduct props={products} />
-    }
-
+      {loading
+        ? (
+          <Loading />
+          )
+        : (
+          <>
+            {filtradosCategory.length > 0
+              ? (
+                <CardProduct props={filtradosCategory} />
+                )
+              : filtradosPalabraClave.length > 0
+                ? (
+                  <CardProduct props={filtradosPalabraClave} />
+                  )
+                : (
+                  <CardProduct props={products} />
+                  )}
+          </>
+          )}
     </>
   )
 }

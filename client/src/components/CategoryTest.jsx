@@ -8,13 +8,13 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import Loading from './Loading'
-import ProductsCard from './ListProduct/ProductsCard'
-import { Grid } from '@mui/material'
+// import ProductsCard from './ListProduct/ProductsCard'
+// import { Grid } from '@mui/material'
 
 const CategoryTest = () => {
   const categories = useSelector((state) => state?.products?.category)
   const loading = useSelector((state) => state?.products?.loading)
-  const filtrados = useSelector((state) => state?.products?.productsByCategory)
+  // const filtrados = useSelector((state) => state?.products?.productsByCategory)
 
   const dispatch = useDispatch()
 
@@ -37,15 +37,16 @@ const CategoryTest = () => {
   useEffect(() => {
     console.log('categoria Selecionada -> ', categori)
     dispatch(fetchProductsByCategory(categori))
-      .then((response) => {
-        console.log('Respuesta Categories ->', response.payload)
-      })
-      .catch((error) => {
-        console.log('ERROR ->', error)
-      })
+    // .then((response) => {
+    //   console.log('Respuesta Categories ->', response.payload)
+    // })
+    // .catch((error) => {
+    //   console.log('ERROR ->', error)
+    // })
   }, [categori])
 
-  console.log(filtrados)
+  // console.log(filtrados)
+
   return (
     <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column', gap: '20px' }}>
       {/* <h2>Categorias</h2> */}
@@ -55,10 +56,9 @@ const CategoryTest = () => {
             loading
               ? <Loading />
               : (
-                <FormControl fullWidth >
-                  <InputLabel id='demo-simple-select-label' style={{color: "white"}}>Categorias</InputLabel>
+                <FormControl fullWidth>
+                  <InputLabel id='demo-simple-select-label' style={{ color: 'white' }}>Categorias</InputLabel>
                   <Select
-                    
                     labelId='demo-simple-select-label'
                     id='demo-simple-select'
                     value={categori}
@@ -72,7 +72,7 @@ const CategoryTest = () => {
                     }
                   </Select>
                 </FormControl>
-              )
+                )
           }
         </Box>
 
