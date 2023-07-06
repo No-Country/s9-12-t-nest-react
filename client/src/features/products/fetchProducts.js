@@ -4,110 +4,130 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 const API_URL = 'https://fakestoreapi.com'
 
-export const getProducts = createAsyncThunk('/products/getProducts', async () => {
-  try {
-    const response = await fetch(`${API_URL}/products`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json'
+export const getProducts = createAsyncThunk(
+  '/products/getProducts',
+  async () => {
+    try {
+      const response = await fetch(`${API_URL}/products`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.message)
+        // throw new Error('Algo salio mal')
       }
-    })
-    if (!response.ok) {
-      const error = await response.json()
-      throw new Error(error.message)
-      // throw new Error('Algo salio mal')
+      const data = await response.json()
+      return data
+    } catch (error) {
+      return error.message
     }
-    const data = await response.json()
-    return data
-  } catch (error) {
-    return error.message
   }
-}
 )
 
 // trae todos los productos
-export const fetchCategories = createAsyncThunk('products/fetchProductsCategories', async (_, thunkAPI) => {
-  try {
-    const response = await fetch(`${API_URL}/products/categories`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json'
+export const fetchCategories = createAsyncThunk(
+  'products/fetchProductsCategories',
+  async (_, thunkAPI) => {
+    try {
+      const response = await fetch(`${API_URL}/products/categories`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+      if (!response.ok) {
+        const error = await response.text()
+        return thunkAPI.rejectWithValue(error)
+        // throw new Error('Algo salio mal')
       }
-    })
-    if (!response.ok) {
-      const error = await response.text()
+      const data = await response.json()
+      return data
+    } catch (error) {
       return thunkAPI.rejectWithValue(error)
-      // throw new Error('Algo salio mal')
     }
-    const data = await response.json()
-    return data
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error)
   }
-})
+)
 
 // filtro por categorias
-export const fetchProductsByCategory = createAsyncThunk('products/fetchProductsByCategory', async (categoryName, thunkAPI) => {
-  try {
-    const response = await fetch(`${API_URL}/products/category/${categoryName}`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json'
+export const fetchProductsByCategory = createAsyncThunk(
+  'products/fetchProductsByCategory',
+  async (categoryName, thunkAPI) => {
+    try {
+      const response = await fetch(
+        `${API_URL}/products/category/${categoryName}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json'
+          }
+        }
+      )
+      if (!response.ok) {
+        const error = await response.text()
+        return thunkAPI.rejectWithValue(error)
+        // throw new Error('Algo salio mal')
       }
-    })
-    if (!response.ok) {
-      const error = await response.text()
-      return thunkAPI.rejectWithValue(error)
-      // throw new Error('Algo salio mal')
+      const data = await response.json()
+      return data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message)
     }
-    const data = await response.json()
-    return data
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message)
   }
-})
+)
 
 // filtro por id
-export const fetchProductById = createAsyncThunk('products/fetchProductById', async (id, thunkAPI) => {
-  try {
-    const response = await fetch(`${API_URL}/products/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json'
+export const fetchProductById = createAsyncThunk(
+  'products/fetchProductById',
+  async (id, thunkAPI) => {
+    try {
+      const response = await fetch(`${API_URL}/products/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+      if (!response.ok) {
+        const error = await response.text()
+        return thunkAPI.rejectWithValue(error)
+        // throw new Error('Algo salio mal')
       }
-    })
-    if (!response.ok) {
-      const error = await response.text()
-      return thunkAPI.rejectWithValue(error)
-      // throw new Error('Algo salio mal')
+      const data = await response.json()
+      return data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message)
     }
-    const data = await response.json()
-    return data
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message)
   }
-})
+)
 
 // filtro por palabra clave
-export const fetchProductByKeyword = createAsyncThunk('products/fetchProductsByKeyword', async (keyword, thunkAPI) => {
-  try {
-    const response = await fetch(`${API_URL}/products?title=${encodeURIComponent(keyword)}`, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json'
+export const fetchProductByKeyword = createAsyncThunk(
+  'products/fetchProductsByKeyword',
+  async (keyword, thunkAPI) => {
+    try {
+      const response = await fetch(
+        `${API_URL}/products?title=${encodeURIComponent(keyword)}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-type': 'application/json'
+          }
+        }
+      )
+      if (!response.ok) {
+        const error = await response.text()
+        return thunkAPI.rejectWithValue(error)
+        // throw new Error('Algo salio mal')
       }
-    })
-    if (!response.ok) {
-      const error = await response.text()
-      return thunkAPI.rejectWithValue(error)
-      // throw new Error('Algo salio mal')
+      const data = await response.json()
+      return data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message)
     }
-    const data = await response.json()
-    return data
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message)
   }
-})
+)
 
 const productsSlice = createSlice({
   name: 'products',
@@ -116,13 +136,17 @@ const productsSlice = createSlice({
     productsByCategory: [],
     productById: [],
     productsByKeyword: [],
+    searchResults: '',
     category: [],
     status: 'idle',
     loading: false,
     error: null
   },
   reducers: {
-
+    addToSearchResults: (state, action) => {
+      state.searchResults = []
+      state.searchResults = action.payload
+    }
   },
   extraReducers: (builder) => {
     // manejo acciones asincronas
@@ -193,7 +217,6 @@ const productsSlice = createSlice({
         state.error = action.error
       })
   }
-
 })
 
 export const selectProducts = (state) => state.products.products
