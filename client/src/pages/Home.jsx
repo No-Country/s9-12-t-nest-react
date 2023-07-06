@@ -98,9 +98,9 @@ function Home () {
     dispatch(getProducts())
   }, [dispatch])
 
-  console.log(products)
   return (
-    <>{
+    <>
+      {
       loading ? <Loading /> : <CardProduct props={products} />
     }
 
