@@ -48,35 +48,37 @@ const CategoryTest = () => {
   console.log(filtrados)
   return (
     <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <h2>Categorias</h2>
+      {/* <h2>Categorias</h2> */}
       <div sx={{ flexDirection: 'row', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Box sx={{ minWidth: 120, maxWidth: 160 }}>
           {
-          loading
-            ? <Loading />
-            : (
-              <FormControl fullWidth>
-                <InputLabel id='demo-simple-select-label'>Opcion</InputLabel>
-                <Select
-                  labelId='demo-simple-select-label'
-                  id='demo-simple-select'
-                  value={categori}
-                  label='Opcion'
-                  onChange={handleChange}
-                >{
-                categories.map((obj) =>
-                  <MenuItem key={uuidv4()} value={obj}>{obj}</MenuItem>
-                )
-          }
-                </Select>
-              </FormControl>
+            loading
+              ? <Loading />
+              : (
+                <FormControl fullWidth >
+                  <InputLabel id='demo-simple-select-label' style={{color: "white"}}>Categorias</InputLabel>
+                  <Select
+                    
+                    labelId='demo-simple-select-label'
+                    id='demo-simple-select'
+                    value={categori}
+                    label='Opcion'
+                    onChange={handleChange}
+
+                  >{
+                      categories.map((obj) =>
+                        <MenuItem key={uuidv4()} value={obj}>{obj}</MenuItem>
+                      )
+                    }
+                  </Select>
+                </FormControl>
               )
-        }
+          }
         </Box>
 
       </div>
 
-      <div>
+      {/* <div>
         <h2>productos filtrados por categoria</h2>
         <Grid container spacing={2}>
           {filtrados.length > 0
@@ -92,7 +94,7 @@ const CategoryTest = () => {
             : <p>No selecciono ninguna categoria</p>}
         </Grid>
 
-      </div>
+      </div> */}
     </div>
   )
 }

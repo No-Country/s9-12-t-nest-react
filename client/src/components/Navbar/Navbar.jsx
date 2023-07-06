@@ -6,25 +6,29 @@ import MenuIcon from "@mui/icons-material/Menu";
 //import StarIcon from './star.svg';
 import InboxIcon from "@mui/icons-material/Inbox"
 import DraftsIcon from "@mui/icons-material/Drafts"
+import CategoryTest from "../CategoryTest";
+import SearchBar from "../SearchBar";
+import "./Navbar.css";
+import Search from "../Search/Search";
 
 const navLinks = [
   {
-   icono: <InboxIcon />, title: "Home" , path:"#"
+    icono: <InboxIcon />, title: "Home", path: "#"
   },
   {
-    icono: <DraftsIcon />, title: "Perfil" , path:"#perfil"
+    icono: <DraftsIcon />, title: "Perfil", path: "#perfil"
   },
   {
-    icono: <DraftsIcon />, title: "Chat" , path:"#chat"
+    icono: <DraftsIcon />, title: "Chat", path: "#chat"
   },
   {
-    icono: <DraftsIcon />, title: "Configuración" , path:"#configuracion"
+    icono: <DraftsIcon />, title: "Configuración", path: "#configuracion"
   },
   {
-    icono: <DraftsIcon />, title: "Ayuda" , path:"#ayuda"
+    icono: <DraftsIcon />, title: "Ayuda", path: "#ayuda"
   },
   {
-    icono: <DraftsIcon />, title: "Cerrar Sesión" , path:"#cerrarsesion"
+    icono: <DraftsIcon />, title: "Cerrar Sesión", path: "#cerrarsesion"
   }
 
 ]
@@ -38,22 +42,52 @@ export default function NavBar() {
 
       <AppBar position="static">
         <Toolbar>
-          <IconButton color="inherit" size="large" onClick={() => setOpen(true)} sx={{display: {xs:"flex",sm:"none"}}}>
+          <IconButton color="inherit" size="large" onClick={() => setOpen(true)} sx={{ display: { xs: "flex", sm: "none" } }}>
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" sx={{flexGrow:1}}>Trueka</Typography>
-          <Box sx={{display: {xs:"none",sm:"block"}}}>
-          {
-            navLinks.map(item => (<Button color="inherit" key={item.title} component="a" href={item.path}>{item.title}</Button>))
-          }
+
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            {/* <CategoryTest /> */}
+            {/* <SearchBar/> */}
+            {
+              // navLinks.map(item => (<Button color="inherit" key={item.title} component="a" href={item.path}>{item.title}</Button>))
+              <div className="publicar">
+                <img src="/images/Group 19.png" alt="" className="logo"/>
+                <div className="categoria-publicar">
+                  <CategoryTest />
+
+                </div>
+              </div>
+            }
           </Box>
-         
+          <Search />
+          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            {
+
+
+              <p>Publicar</p>
+
+            }
+          </Box>
+          <div className="boton-perfil">
+            <Button color="inherit" key="perfil" component="a" href="#perfil"><img src="/images/account_circle_filled_24px.png" alt="" className="perfil" /></Button>
+            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              {
+
+
+                <p>Usuario</p>
+
+              }
+            </Box>
+
+          </div>
+
         </Toolbar>
       </AppBar>
 
       {/* <Button variant="contained" onClick={() => setOpen(true)}>Open Drawer</Button> */}
 
-      <Drawer open={open} anchor="left" onClose={()=>setOpen(false)} sx={{display: {xs:"flex",sm:"none"}}}>
+      <Drawer open={open} anchor="left" onClose={() => setOpen(false)} sx={{ display: { xs: "flex", sm: "none" } }}>
         <NavListDrawer navLinks={navLinks} />
       </Drawer>
 
