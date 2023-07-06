@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Card, CardContent, CardMedia, Typography, Grid } from '@mui/material'
 
 export default function card (products) {
-  console.log('producto cardProduct ->', products)
   return (
     <Grid container spacing={2}>
       {products.props.map((producto) => (
