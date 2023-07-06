@@ -3,11 +3,15 @@ import Home from '../pages/Home'
 import Detail from '../pages/Detail'
 import CategoryTest from '../components/CategoryTest'
 import Search from '../components/Search/Search'
+import Register from '../pages/Register'
+import Login from '../pages/Login'
 
 function AppRouter () {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
         <Route path='/' element={<Home />} />
         <Route path='/detalle/:id' element={<Detail />} />
         <Route path='/categories' element={<CategoryTest />} />
