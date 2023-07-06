@@ -7,8 +7,12 @@ import SearchIcon from '@mui/icons-material/Search'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../../features/products/fetchProducts'
 import Loading from '../Loading'
+
+import "./search.css";
+
 import ProductsCard from '../ListProduct/ProductsCard'
 import { Grid } from '@mui/material'
+
 
 const Search = () => {
   const loading = useSelector((state) => state?.products?.loading)
@@ -31,7 +35,11 @@ const Search = () => {
   }
 
   return (
-    <div style={{ height: '100vh', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', marginTop: '1rem' }}>
+
+    <div className='buscador'>
+
+    
+
       {
         loading
           ? <Loading />
@@ -43,7 +51,7 @@ const Search = () => {
               >
                 <InputBase
                   sx={{ ml: 1, flex: 1 }}
-                  placeholder='Buscar Por Palabra'
+                  placeholder='Buscar en Trueka'
                   inputProps={{ 'aria-label': 'Buscar Por Palabra' }}
                   value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}

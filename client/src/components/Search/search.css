@@ -1,0 +1,15 @@
+/* style={{ height: '70px', width: '50vw', display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '5px' } */
+.buscador{
+    height: 70px;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+@media (min-width: 768px) {
+    .buscador{
+        width: 20vw;
+    }
+}

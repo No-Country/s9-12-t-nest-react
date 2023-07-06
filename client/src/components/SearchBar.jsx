@@ -15,13 +15,18 @@ function SearchBar ({ data, onSearch }) {
 
   return (
     <>
-      <form onSubmit={handleSearch}>
+      <form onSubmit={handleSearch} >
         <input
+          placeholder='Buscar en Trueka' img="/images/container.png" 
+          
           type='text'
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
         />
-        <button type='submit'>Search</button>
+        <input type="image" src="/images/container.png" class="image_buscar"></input>
+
+        {searchTerm === "" ? "" : handleSearch}
+        {/* <button type='submit'>Search</button> */}
       </form>
     </>
   )
