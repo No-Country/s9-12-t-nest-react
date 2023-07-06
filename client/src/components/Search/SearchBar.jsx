@@ -19,6 +19,10 @@ function SearchBar ({ onSearch }) {
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     )
     dispatch({ type: 'products/addToSearchResults', payload: filteredData })
+
+    if (filteredData.length === 0 || searchTerm === '') {
+      dispatch({ type: 'products/addToSearchResults', payload: false })
+    }
   }
 
   useEffect(() => {
@@ -27,15 +31,6 @@ function SearchBar ({ onSearch }) {
 
   return (
     <>
-      {/* <form onSubmit={handleSearch}>
-        <input
-          type='text'
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-        />
-        <button type='submit'>Search</button>
-      </form> */}
-
       <Paper
         component='form'
         sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
