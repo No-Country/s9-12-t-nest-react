@@ -136,7 +136,7 @@ const productsSlice = createSlice({
     productsByCategory: [],
     productById: [],
     productsByKeyword: [],
-    searchResults: [],
+    searchResults: '',
     category: [],
     status: 'idle',
     loading: false,
@@ -145,7 +145,7 @@ const productsSlice = createSlice({
   reducers: {
     addToSearchResults: (state, action) => {
       state.searchResults = []
-      state.searchResults.push(action.payload)
+      state.searchResults = action.payload
     }
   },
   extraReducers: (builder) => {
