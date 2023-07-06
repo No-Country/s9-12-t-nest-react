@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import {
-  ApiConflictResponse,
+  ApiBadRequestResponse,
   ApiCreatedResponse,
   ApiOkResponse,
   ApiResponse,
@@ -26,7 +26,7 @@ export class UsersController {
   @ApiCreatedResponse({
     description: 'User has been successfully created.',
   })
-  @ApiConflictResponse({
+  @ApiBadRequestResponse({
     description: 'Bad request (user already exists).',
   })
   @Post()
