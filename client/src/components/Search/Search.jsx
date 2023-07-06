@@ -4,53 +4,54 @@ import InputBase from '@mui/material/InputBase'
 import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProductByKeyword } from '../../features/products/fetchProducts'
+import { getProducts } from '../../features/products/fetchProducts'
+import Loading from '../Loading'
 
 const Search = () => {
   const loading = useSelector((state) => state?.products?.loading)
-  const palabraClave = useSelector((state) => state?.products?.productsByKeyword)
+  const products = useSelector((state) => state?.products?.products)
   const [searchTerm, setSearchTerm] = useState('')
+  const [filters, setFilters] = useState([])
   const dispatch = useDispatch()
 
-  console.log('tiped ->', searchTerm)
+  console.log('tiped ->', products)
 
-  // useEffect(() => {
-  //   dispatch(fetchProductByKeyword())
-  //     .then((response) => {
-  //       console.log('RESPUESTA ->', response)
-  //     })
-  //     .catch((error) => {
-  //       console.log('ERROR ->', error)
-  //     })
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [dispatch])
+
   const handleClickSearch = () => {
-    dispatch(fetchProductByKeyword(searchTerm))
-      .then((response) => {
-        console.log('RESPUESTA ->', response)
-      })
-      .catch((error) => {
-        console.log('ERROR ->', error)
-      })
+    setFilters(products.filter((item) =>
+      item.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    )
+    console.log('Prods Filtrados ->', filters)
   }
 
-  console.log(palabraClave)
   return (
     <div style={{ height: '100vh', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'start', marginTop: '1rem' }}>
-      <Paper
-        component='form'
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
-      >
-        <InputBase
-          sx={{ ml: 1, flex: 1 }}
-          placeholder='Buscar Por Palabra'
-          inputProps={{ 'aria-label': 'Buscar Por Palabra' }}
-          value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
-        />
-        <IconButton onClick={handleClickSearch} type='button' sx={{ p: '10px' }} aria-label='search'>
-          <SearchIcon />
-        </IconButton>
-      </Paper>
+      {
+        loading
+          ? <Loading />
+          : (
+            <>
+              <Paper
+                component='form'
+                sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
+              >
+                <InputBase
+                  sx={{ ml: 1, flex: 1 }}
+                  placeholder='Buscar Por Palabra'
+                  inputProps={{ 'aria-label': 'Buscar Por Palabra' }}
+                  value={searchTerm}
+                  onChange={(event) => setSearchTerm(event.target.value)}
+                />
+                <IconButton onClick={handleClickSearch} type='button' sx={{ p: '10px' }} aria-label='search'>
+                  <SearchIcon />
+                </IconButton>
+              </Paper>
+            </>
+            )
+      }
     </div>
   )
 }
