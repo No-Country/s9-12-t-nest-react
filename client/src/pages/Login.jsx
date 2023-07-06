@@ -29,7 +29,6 @@ function Login() {
                         id="email"
                         label="Correo Electrónico"
                         variant="outlined"
-                        value={state.email}
                         onChange={handleChange}
                     />
 
@@ -39,7 +38,6 @@ function Login() {
                         label="Contraseña"
                         type="password"
                         variant="outlined"
-                        value={state.password}
                         onChange={handleChange}
                     />
 

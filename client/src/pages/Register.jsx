@@ -32,7 +32,6 @@ function Register() {
                         id="name"
                         label="Nombre de usuario"
                         variant="outlined"
-                        value={state.name}
                         onChange={handleChange}
                     />
                     <TextField
@@ -40,7 +39,6 @@ function Register() {
                         id="email"
                         label="Correo Electrónico"
                         variant="outlined"
-                        value={state.email}
                         onChange={handleChange}
                     />
                     <TextField
@@ -49,7 +47,6 @@ function Register() {
                         label="Contraseña"
                         type="password"
                         variant="outlined"
-                        value={state.password}
                         onChange={handleChange}
                     />
                     <TextField
@@ -58,7 +55,6 @@ function Register() {
                         label="Repetir Contraseña"
                         type="password"
                         variant="outlined"
-                        value={state.password2}
                         onChange={handleChange}
                     />
 
