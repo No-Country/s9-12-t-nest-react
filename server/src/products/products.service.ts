@@ -24,6 +24,10 @@ export class ProductsService {
         productData.category.toString(),
       );
 
+      (await newProduct).owner = new mongoose.Types.ObjectId(
+        productData.owner.toString(),
+      );
+
       (await newProduct).subcategories = productData.subcategories.map(
         (subcategory) => {
           return new mongoose.Types.ObjectId(subcategory.toString());
