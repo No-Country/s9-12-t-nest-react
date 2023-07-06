@@ -84,12 +84,6 @@ const CategoryTest = () => {
               <ProductsCard key={uuidv4()} producto={obj} />
               ))
             : <p>No selecciono ningunacategoria</p>}
-
-          {filtrados
-            ? (filtrados.map((obj) =>
-              <ProductsCard key={uuidv4()} producto={obj} />
-              ))
-            : <p>No selecciono ninguna categoria</p>}
         </Grid>
 
       </div>

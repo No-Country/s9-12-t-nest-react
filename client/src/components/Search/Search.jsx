@@ -31,7 +31,7 @@ const Search = () => {
   }
 
   return (
-    <div style={{ height: '100vh', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'start', marginTop: '1rem' }}>
+    <div style={{ height: '100vh', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'start', alignItems: 'center', marginTop: '1rem' }}>
       {
         loading
           ? <Loading />
@@ -54,19 +54,13 @@ const Search = () => {
               </Paper>
 
               <div>
-                  <h2>productos Buscados</h2>
+                <h2>productos Buscados</h2>
                 <Grid container spacing={2}>
                   {filters.length > 0
                     ? (filters.map((obj) =>
                       <ProductsCard key={uuidv4()} producto={obj} />
                       ))
                     : <p>No selecciono ningunacategoria</p>}
-
-                  {filtrados
-                    ? (filters.map((obj) =>
-                      <ProductsCard key={uuidv4()} producto={obj} />
-                      ))
-                    : <p>No selecciono ninguna categoria</p>}
                 </Grid>
 
               </div>
