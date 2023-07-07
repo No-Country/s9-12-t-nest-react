@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import CardProduct from '../components/CardProduct'
 import Loading from '../components/Loading'
 import { getProducts } from '../features/products/fetchProducts'
+import '../pages/styles/Home.css'
 
 function Home () {
   const products = useSelector((state) => state?.products?.products)
@@ -19,7 +20,10 @@ function Home () {
     <>
       {loading
         ? (
-          <Loading />
+          <div className='loading-container'>
+            <Loading />
+          </div>
+
           )
         : (
             !results ? <CardProduct props={products} /> : (results !== 'none' ? <CardProduct props={results} /> : 'No se encontraron resultados')
