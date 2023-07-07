@@ -6,6 +6,8 @@ import SearchIcon from '@mui/icons-material/Search'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import './search.css'
+
 function SearchBar ({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -28,14 +30,15 @@ function SearchBar ({ onSearch }) {
     <>
       <Paper
         component='form'
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
+        className='search'
         onSubmit={handleSearch}
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder='Buscar Por Palabra'
-          inputProps={{ 'aria-label': 'Buscar Por Palabra' }}
+          placeholder='Buscar'
+          inputProps={{ 'aria-label': 'Buscar' }}
           onChange={(event) => setSearchTerm(event.target.value)}
+          
         />
         <IconButton type='submit' sx={{ p: '10px' }} aria-label='search'>
           <SearchIcon />
