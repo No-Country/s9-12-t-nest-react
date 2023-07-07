@@ -136,7 +136,7 @@ const productsSlice = createSlice({
     productsByCategory: [],
     productById: [],
     productsByKeyword: [],
-    searchResults: '',
+    searchResults: false,
     category: [],
     status: 'idle',
     loading: false,
@@ -144,8 +144,12 @@ const productsSlice = createSlice({
   },
   reducers: {
     addToSearchResults: (state, action) => {
-      state.searchResults = []
+      state.searchResults = true
       state.searchResults = action.payload
+    },
+    addToproductsByKeyword: (state, action) => {
+      state.productsByKeyword = []
+      state.productsByKeyword = action.payload
     }
   },
   extraReducers: (builder) => {
@@ -184,7 +188,7 @@ const productsSlice = createSlice({
       .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
         state.state = 'succeeded'
         state.loading = false
-        state.productsByCategory = action.payload
+        state.searchResults = action.payload
       })
       .addCase(fetchProductsByCategory.rejected, (state, action) => {
         state.status = 'failed'
@@ -219,6 +223,7 @@ const productsSlice = createSlice({
   }
 })
 
+export const { addToSearchResults, addToproductsByKeyword } = productsSlice.actions
 export const selectProducts = (state) => state.products.products
 // export const selectStatus = (state) => state.products.status
 // export const selectLoading = (state) => state.products.loading
