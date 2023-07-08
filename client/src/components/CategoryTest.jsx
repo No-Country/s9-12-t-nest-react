@@ -34,10 +34,10 @@ const CategoryTest = () => {
   }, [categori])
 
   return (
-    <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column', gap: '20px' , border: 'none'}}>
+    <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex', flexDirection: 'column', gap: '20px', border: 'none' }}>
       {/* <h2>Categorias</h2> */}
       <div sx={{ flexDirection: 'row', display: 'flex', justifyContent: 'center', alignItems: 'center', border: 'none' }}>
-        <Box sx={{ minWidth: 120, maxWidth: 160 , border: 'none'}}>
+        <Box sx={{ minWidth: 120, maxWidth: 160, border: 'none' }}>
 
           <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label' style={{ color: 'white' }}>Categorias</InputLabel>
