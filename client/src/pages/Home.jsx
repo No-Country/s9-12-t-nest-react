@@ -17,7 +17,7 @@ function Home () {
   }, [dispatch])
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+    <>
       {loading
         ? (
           <div className='loading-container'>
@@ -33,7 +33,7 @@ function Home () {
                 </>)
               : (results !== 'none' ? <CardProduct props={results} /> : 'No se encontraron resultados')
           )}
-    </div>
+    </>
   )
 }
 
