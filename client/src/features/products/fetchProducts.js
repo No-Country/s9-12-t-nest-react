@@ -151,6 +151,7 @@ const productsSlice = createSlice({
       state.productsByKeyword = []
       state.productsByKeyword = action.payload
     }
+    // aca se puede añadir un reducer para limpiar , dejar null cualuqera de las siguientes inicial state: productsByCategory, productById, productsByKeyword, searchResults. despues a la hora de filtrar por categorias se ponen null los otros y cuando se filtra por una palabra clave se ponen null los demas. entonces si alguno tiene lenght > 0 es poruq es el que se esta filtrando..
   },
   extraReducers: (builder) => {
     // manejo acciones asincronas
