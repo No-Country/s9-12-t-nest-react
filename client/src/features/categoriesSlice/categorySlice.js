@@ -201,4 +201,6 @@ const categorySlice = createSlice({
   }
 })
 
+// export const { reducers } = categorySlice.actions
+export const selectCategories = state => state.categories.categories
 export default categorySlice.reducer
