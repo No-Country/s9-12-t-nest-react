@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Paper from '@mui/material/Paper'
 import InputBase from '@mui/material/InputBase'
 import IconButton from '@mui/material/IconButton'
@@ -6,11 +6,12 @@ import SearchIcon from '@mui/icons-material/Search'
 
 import { useDispatch, useSelector } from 'react-redux'
 
+import './search.css'
+
 function SearchBar ({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('')
 
   const products = useSelector((state) => state?.products?.products)
-  const results = useSelector((state) => state?.products?.searchResults)
   const dispatch = useDispatch()
 
   const handleSearch = (e) => {
@@ -21,26 +22,23 @@ function SearchBar ({ onSearch }) {
     dispatch({ type: 'products/addToSearchResults', payload: filteredData })
 
     if (filteredData.length === 0 || searchTerm === '') {
-      dispatch({ type: 'products/addToSearchResults', payload: false })
+      dispatch({ type: 'products/addToSearchResults', payload: 'none' })
     }
   }
-
-  useEffect(() => {
-    console.log(results)
-  }, [results])
 
   return (
     <>
       <Paper
         component='form'
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 300 }}
+        className='search'
         onSubmit={handleSearch}
       >
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder='Buscar Por Palabra'
-          inputProps={{ 'aria-label': 'Buscar Por Palabra' }}
+          placeholder='Buscar'
+          inputProps={{ 'aria-label': 'Buscar' }}
           onChange={(event) => setSearchTerm(event.target.value)}
+          
         />
         <IconButton type='submit' sx={{ p: '10px' }} aria-label='search'>
           <SearchIcon />

@@ -1,5 +1,6 @@
 // import './App.css'
-import NavBar from './components/Navbar/Navbar'
+
+import NavBarBootstrap from './components/Navbar/NavbarBootstrap'
 import AppRouter from './routes/AppRouter'
 
 // import NavBar from "./components/Navbar/Navbar";
@@ -7,7 +8,7 @@ import AppRouter from './routes/AppRouter'
 function App () {
   return (
     <>
-      <NavBar />
+      <NavBarBootstrap />
 
       <AppRouter />
 
