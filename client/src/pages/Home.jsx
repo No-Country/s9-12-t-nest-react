@@ -26,7 +26,12 @@ function Home () {
 
           )
         : (
-            !results ? <CardProduct props={products} /> : (results !== 'none' ? <CardProduct props={results} /> : 'No se encontraron resultados')
+            !results
+              ? (
+                <>
+                  <CardProduct props={products} />
+                </>)
+              : (results !== 'none' ? <CardProduct props={results} /> : 'No se encontraron resultados')
           )}
     </>
   )
