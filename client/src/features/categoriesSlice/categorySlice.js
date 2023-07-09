@@ -63,14 +63,14 @@ export const getCategoriesById = createAsyncThunk('categories/get', async (id, t
   }
 })
 
-export const modifyCategoryById = createAsyncThunk('categories/put', async (categoryId, thunkAPI) => {
+export const modifyCategoryById = createAsyncThunk('categories/modify', async (categoryId, newCategory, thunkAPI) => {
   try {
     const response = await fetch(`${API_URL}/${categoryId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(categoryId)
+      body: JSON.stringify(newCategory)
     })
     if (!response.ok) {
       const error = await response.text()
