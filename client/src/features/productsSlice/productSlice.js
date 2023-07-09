@@ -104,6 +104,33 @@ export const modifyProductById = createAsyncThunk('products/modify',
     }
   })
 
+export const deleteProductById = createAsyncThunk('products/delete',
+  async (productId, thunkAPI) => {
+    try {
+      const response = await fetch(`${API_URL}/${productId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+      if (!response.ok) {
+        if (response.status === 404) {
+          return thunkAPI.rejectWithValue({ status: response.status, message: 'ID de producto no encontrado.' })
+        } else if (response.status === 403) {
+          return thunkAPI.rejectWithValue({ status: response.status, message: 'Prohibido eliminar el producto.' })
+        } else {
+          const error = await response.text()
+          return thunkAPI.rejectWithValue(error)
+          // throw new Error('Algo salio mal')
+        }
+      }
+      const data = await response.json()
+      return data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  })
+
 const productSlice = createSlice({
   name: 'products',
   initialState: {
@@ -196,6 +223,27 @@ const productSlice = createSlice({
           state.error = action.payload.message
         } else {
           state.error = 'Ocurrión un error al modificar el producto.'
+        }
+      })
+      .addCase(deleteProductById.pending, (state) => {
+        state.status = 'loading'
+        state.loading = true
+      })
+      .addCase(deleteProductById.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.loading = false
+        state.products = state.products.filter(product => product.id !== action.payload.id)
+      })
+      .addCase(deleteProductById.rejected, (state, action) => {
+        state.status = 'failed'
+        state.loading = false
+        state.error = action.payload
+        if (action.payload && action.payload.status === 404) {
+          state.error = action.payload.message
+        } else if (action.payload && action.payload.status === 403) {
+          state.error = action.payload.message
+        } else {
+          state.error = 'Ocurrión un error al eliminar el producto.'
         }
       })
   }
