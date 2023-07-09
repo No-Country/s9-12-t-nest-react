@@ -31,6 +31,79 @@ export const createProduct = createAsyncThunk('products/create', async (product,
   }
 })
 
+export const getProducts = createAsyncThunk('products/get', async (_, thunkAPI) => {
+  try {
+    const response = await fetch(`${API_URL}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    if (!response.ok) {
+      const error = await response.text()
+      return thunkAPI.rejectWithValue(error)
+      // throw new Error('Algo salio mal')
+    }
+    const data = await response.json()
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error)
+  }
+})
+
+export const getProductById = createAsyncThunk(
+  'products/getProductById',
+  async (id, thunkAPI) => {
+    try {
+      const response = await fetch(`${API_URL}/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-type': 'application/json'
+        }
+      })
+      if (!response.ok) {
+        if (response.status === 404) {
+          return thunkAPI.rejectWithValue({ status: response.status, message: 'ID de producto no encontrado.' })
+        } else {
+          const error = await response.text()
+          return thunkAPI.rejectWithValue(error)
+          // throw new Error('Algo salio mal')
+        }
+      }
+      const data = await response.json()
+      return data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message)
+    }
+  }
+)
+
+export const modifyProductById = createAsyncThunk('products/modify',
+  async (productId, newProduct, thunkAPI) => {
+    try {
+      const response = await fetch(`${API_URL}/${productId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(newProduct)
+      })
+      if (!response.ok) {
+        if (response.status === 404) {
+          return thunkAPI.rejectWithValue({ status: response.status, message: 'ID de producto no encontrado.' })
+        } else {
+          const error = await response.text()
+          return thunkAPI.rejectWithValue(error)
+          // throw new Error('Algo salio mal')
+        }
+      }
+      const data = await response.json()
+      return data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  })
+
 const productSlice = createSlice({
   name: 'products',
   initialState: {
@@ -53,7 +126,7 @@ const productSlice = createSlice({
       .addCase(createProduct.fulfilled, (state, action) => {
         state.status = 'succeeded'
         state.loading = false
-        state.products.push(action.payload)
+        state.products.push(action.payload) // lo añadimos a la lista de productos
         state.error = null
       })
       .addCase(createProduct.rejected, (state, action) => {
@@ -70,6 +143,59 @@ const productSlice = createSlice({
         } else {
         // Otro caso de error
           state.error = 'Ocurrió un error al crear el producto.'
+        }
+      })
+      .addCase(getProducts.pending, (state) => {
+        state.status = 'loading'
+        state.loading = true
+      })
+      .addCase(getProducts.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.loading = false
+        state.products = action.payload
+        state.error = null
+      })
+      .addCase(getProducts.rejected, (state, action) => {
+        state.status = 'failed'
+        state.loading = false
+        state.error = action.payload
+      })
+      .addCase(getProductById.pending, (state) => {
+        state.status = 'loading'
+        state.loading = true
+      })
+      .addCase(getProductById.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.loading = false
+        state.products = action.payload
+      })
+      .addCase(getProductById.rejected, (state, action) => {
+        state.status = 'failed'
+        state.loading = false
+        state.error = action.payload
+        if (action.payload && action.payload.status === 404) {
+          state.error = action.payload.message
+        } else {
+          state.error = 'Ocurrión un error al obtener el producto.'
+        }
+      })
+      .addCase(modifyProductById.pending, (state) => {
+        state.status = 'loading'
+        state.loading = true
+      })
+      .addCase(modifyProductById.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        state.loading = false
+        state.products = state.products.map(product => product.id === action.payload.id ? action.payload : product)
+      })
+      .addCase(modifyProductById.rejected, (state, action) => {
+        state.status = 'failed'
+        state.loading = false
+        state.error = action.payload
+        if (action.payload && action.payload.status === 404) {
+          state.error = action.payload.message
+        } else {
+          state.error = 'Ocurrión un error al modificar el producto.'
         }
       })
   }
