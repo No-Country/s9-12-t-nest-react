@@ -6,6 +6,7 @@
     width: 170px;
     box-shadow: 2.4546139240264893px 2.4546139240264893px 7.363841533660889px 0px rgba(0, 0, 0, 0.25);
     border-radius: 2.455px;
+    box-sizing: border-box;
 }
     
 
@@ -21,8 +22,10 @@
 
 .card-img-top {
     /* aspect-ratio: 2 / 2; */
-    height: 160px;
-    object-fit: contain;}
+    height: 170px;
+    object-fit: contain;
+    padding: 5px;
+}
 
 
 .card-grid {
@@ -30,9 +33,15 @@
     grid-template-rows: 1fr 1fr;
     gap: 5px;
     height: 75px;
-    width: 160px;
+    width: 170px;
     overflow: hidden;
     padding: 5px;
+}
+
+.location-container{
+    display: flex;
+    align-items: center;
+    gap: 3px;
 }
 
 .text-card {

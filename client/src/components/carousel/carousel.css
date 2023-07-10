@@ -20,8 +20,8 @@
 
 .swiper-slide img {
     display: flex;
-    height: 160px;
-    width: 160px;
+    height: 170px;
+    width: 170px;
     overflow: hidden;
     align-items: center;
   }
