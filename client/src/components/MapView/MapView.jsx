@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 function MapView () {
+  const location = useSelector(state => state.location)
+  console.log(location)
   const [state, setState] = useState({
-    currentLocation: { lat: 51.5381321, lng: -0.2252213 }
+    currentLocation: { lat: location.latitude, lng: location.longitude }
   })
 
   return (
