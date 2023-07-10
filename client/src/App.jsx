@@ -1,23 +1,20 @@
-// import './App.css'
-
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setLocation } from './/features/location/location'
 import NavBarBootstrap from './components/Navbar/NavbarBootstrap'
 import AppRouter from './routes/AppRouter'
 
-// import NavBar from "./components/Navbar/Navbar";
-
 function App () {
-  const [state, setState] = useState({
-    longitude: 0,
-    latitude: 0
-  })
+  const dispatch = useDispatch()
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       function (position) {
-        setState({
-          longitude: position.coords.longitude,
-          latitude: position.coords.latitude
-        }
+        dispatch(
+          setLocation({
+            longitude: position.coords.longitude,
+            latitude: position.coords.latitude
+          })
         )
       },
       function (error) {
@@ -27,14 +24,12 @@ function App () {
         enableHighAccuracy: true
       }
     )
-  })
+  }, [dispatch])
 
   return (
     <>
       <NavBarBootstrap />
-
-      <AppRouter state={state} />
-
+      <AppRouter />
     </>
   )
 }
