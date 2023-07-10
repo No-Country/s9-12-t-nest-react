@@ -19,7 +19,6 @@ const PerfilUser = () => {
           <section className='titulos'>
             <h4 className='mb-0'>{objeto.name}</h4>
             <span className='text-muted d-block mb-2'>Los Angles</span>
-
           </section>
           <div className='d-flex justify-content-between align-items-center mt-4 px-4'>
             <div className='stats'>
