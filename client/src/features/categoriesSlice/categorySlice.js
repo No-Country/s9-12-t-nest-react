@@ -93,6 +93,9 @@ export const deleteCategoryById = createAsyncThunk('categories/delete', async (c
       }
     })
     if (!response.ok) {
+      if (response.status === 403) {
+        return thunkAPI.rejectWithValue({ status: response.status, message: 'No tienes permisos para realizar esta accion' })
+      }
       const error = await response.text()
       return thunkAPI.rejectWithValue(error)
       // throw new Error('Algo salio mal')

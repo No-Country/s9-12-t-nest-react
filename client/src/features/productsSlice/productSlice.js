@@ -117,7 +117,7 @@ export const deleteProductById = createAsyncThunk('products/delete',
         if (response.status === 404) {
           return thunkAPI.rejectWithValue({ status: response.status, message: 'ID de producto no encontrado.' })
         } else if (response.status === 403) {
-          return thunkAPI.rejectWithValue({ status: response.status, message: 'Prohibido eliminar el producto.' })
+          return thunkAPI.rejectWithValue({ status: response.status, message: 'No tienes permisos para realizar esta accion.' })
         } else {
           const error = await response.text()
           return thunkAPI.rejectWithValue(error)
