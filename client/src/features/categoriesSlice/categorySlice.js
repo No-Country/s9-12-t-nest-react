@@ -43,7 +43,7 @@ export const getCategories = createAsyncThunk('categories/get', async (_, thunkA
   }
 })
 
-export const getCategoriesById = createAsyncThunk('categories/get', async (id, thunkAPI) => {
+export const getCategoriesById = createAsyncThunk('categories/getByid', async (id, thunkAPI) => {
   try {
     const response = await fetch(`${API_URL}/${id}`, {
       method: 'GET',
@@ -205,5 +205,5 @@ const categorySlice = createSlice({
 })
 
 // export const { reducers } = categorySlice.actions
-export const selectCategories = state => state.categories.categories
+export const selectCategories = (state) => state.categories.categories
 export default categorySlice.reducer
