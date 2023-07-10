@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap');
 
-
+.container-card{
     display: inline-block;
     height: 245px;
     width: 170px;
     box-shadow: 2.4546139240264893px 2.4546139240264893px 7.363841533660889px 0px rgba(0, 0, 0, 0.25);
     border-radius: 2.455px;
+}
+    
 
 
 .img-container {
@@ -14,12 +16,13 @@
     width: 170px;
     overflow: hidden;
     align-items: center;
+}
 
 
 .card-img-top {
     /* aspect-ratio: 2 / 2; */
     height: 160px;
-    object-fit: contain;
+    object-fit: contain;}
 
 
 .card-grid {
