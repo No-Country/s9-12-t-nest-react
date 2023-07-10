@@ -5,6 +5,7 @@ import Loading from '../components/Loading'
 import { getProducts } from '../features/products/fetchProducts'
 import '../pages/styles/Home.css'
 import Carousel from '../components/carousel/Carousel'
+import { Link } from 'react-router-dom'
 
 function Home () {
   const products = useSelector((state) => state?.products?.products)
@@ -37,17 +38,38 @@ function Home () {
                   <div className='home-container'>
                     <div className='carousel-rows-container'>
                       <div className='p-carousel-container'>
-                        <p className='carousel-title'>Últimas publicaciones</p>
+
+                        <div className='title-and-more-container'>
+                          <p className='carousel-title'>Últimas publicaciones</p>
+                          <Link>
+                            <p className='view-more-p'>Ver mas</p>
+                          </Link>
+                        </div>
+
                         <Carousel data={latest} />
                       </div>
 
                       <div className='p-carousel-container'>
-                        <p className='carousel-title'>Publicaciones populares</p>
+
+                        <div className='title-and-more-container'>
+                          <p className='carousel-title'>Publicaciones populares</p>
+                          <Link>
+                            <p className='view-more-p'>Ver mas</p>
+                          </Link>
+                        </div>
+
                         <Carousel data={products} />
                       </div>
 
                       <div className='p-carousel-container'>
-                        <p className='carousel-title'>Publicaciones que seguís</p>
+
+                        <div className='title-and-more-container'>
+                          <p className='carousel-title'>Publicaciones que seguís</p>
+                          <Link>
+                            <p className='view-more-p'>Ver mas</p>
+                          </Link>
+                        </div>
+
                         <Carousel data={products} />
                       </div>
 
@@ -67,7 +89,7 @@ function Home () {
                     </>)
                   : <div className='home-container carousel-title'>
                     No se encontraron resultados
-                  </div>
+                    </div>
 
                 )
           )}
