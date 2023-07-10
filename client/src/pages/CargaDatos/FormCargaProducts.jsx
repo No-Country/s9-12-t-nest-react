@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCategories } from '../../features/categoriesSlice/categorySlice'
@@ -38,7 +38,7 @@ const FormCargaProducts = () => {
   ]
 }
   */
-  console.log(categorias)
+
   return (
     <div className='container'>
       <h1>Formulario de carga de productos</h1>
