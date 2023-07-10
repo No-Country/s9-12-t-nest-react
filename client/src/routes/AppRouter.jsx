@@ -5,6 +5,7 @@ import Detail from '../pages/Detail'
 // import Search from '../components/Search/Search'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
+import PerfilUser from '../pages/PerfilUser'
 
 function AppRouter () {
   return (
@@ -14,6 +15,7 @@ function AppRouter () {
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Home />} />
         <Route path='/detalle/:id' element={<Detail />} />
+        <Route path='/perfil' element={<PerfilUser />} />
         {/* <Route path='/categories' element={<CategoryTest />} />
         <Route path='/search' element={<Search />} /> */}
         <Route path='*' element={<h1>404</h1>} />
