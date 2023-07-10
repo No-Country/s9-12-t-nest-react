@@ -5,7 +5,8 @@ import Detail from '../pages/Detail'
 // import Search from '../components/Search/Search'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
-import PerfilUser from '../pages/PerfilUser'
+import PerfilUser from '../pages/Perfil/PerfilUser'
+import FormCargaProducts from '../pages/CargaDatos/FormCargaProducts'
 
 function AppRouter ({ state }) {
   return (
@@ -16,8 +17,10 @@ function AppRouter ({ state }) {
         <Route path='/' element={<Home />} />
         <Route path='/detalle/:id' element={<Detail />} />
         <Route path='/perfil' element={<PerfilUser />} />
-        {/* <Route path='/categories' element={<CategoryTest />} />
-        <Route path='/search' element={<Search />} /> */}
+
+        {/* pruebas */}
+        <Route path='/cargaProductos' element={<FormCargaProducts />} />
+
         <Route path='*' element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>

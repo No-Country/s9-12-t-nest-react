@@ -67,8 +67,7 @@ function Home () {
                     </>)
                   : <div className='home-container carousel-title'>
                     No se encontraron resultados
-                  </div>
-
+                    </div>
                 )
           )}
     </>
