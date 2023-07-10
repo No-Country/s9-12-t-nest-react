@@ -4,6 +4,7 @@ import authReducer from '../features/authSlice/authSlice'
 import categoriesReducer from '../features/categoriesSlice/categorySlice'
 import productReducer from '../features/productsSlice/productSlice'
 import location from '../features/location/location'
+import subcategoriesReducer from '../features/subCategoriesSlice/subcategoriesSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     authUser: authReducer,
     productsDb: productReducer,
     categories: categoriesReducer,
+    subcategories: subcategoriesReducer,
     location
   }
 })
