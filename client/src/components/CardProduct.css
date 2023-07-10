@@ -1,35 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500&display=swap');
 
-.card-link{
-    text-decoration: none;
-    width: 170px;
-}
 
-.container-card{
     display: inline-block;
     height: 245px;
     width: 170px;
     box-shadow: 2.4546139240264893px 2.4546139240264893px 7.363841533660889px 0px rgba(0, 0, 0, 0.25);
     border-radius: 2.455px;
-}
 
-.img-container{
+
+.img-container {
     display: flex;
     height: 170px;
     width: 170px;
     overflow: hidden;
     align-items: center;
-    border-bottom: 1px solid #F2F2F2;
-    /* padding: 5px; */
-}
 
-.card-img-top{
+
+.card-img-top {
     /* aspect-ratio: 2 / 2; */
     height: 160px;
     object-fit: contain;
-}
 
-.card-grid{
+
+.card-grid {
     display: grid;
     grid-template-rows: 1fr 1fr;
     gap: 5px;
@@ -39,7 +32,7 @@
     padding: 5px;
 }
 
-.text-card{
+.text-card {
     color: #000;
     font-family: Work Sans;
     font-size: 1.125rem;
@@ -51,7 +44,7 @@
     overflow: hidden;
 }
 
-.ubi-text{
+.ubi-text {
     color: #000;
     font-family: Work Sans;
     font-size: 14.728px;

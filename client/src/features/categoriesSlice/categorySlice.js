@@ -43,7 +43,7 @@ export const getCategories = createAsyncThunk('categories/get', async (_, thunkA
   }
 })
 
-export const getCategoriesById = createAsyncThunk('categories/get', async (id, thunkAPI) => {
+export const getCategoriesById = createAsyncThunk('categories/getByid', async (id, thunkAPI) => {
   try {
     const response = await fetch(`${API_URL}/${id}`, {
       method: 'GET',
@@ -63,14 +63,14 @@ export const getCategoriesById = createAsyncThunk('categories/get', async (id, t
   }
 })
 
-export const modifyCategoryById = createAsyncThunk('categories/put', async (categoryId, thunkAPI) => {
+export const modifyCategoryById = createAsyncThunk('categories/modify', async (categoryId, newCategory, thunkAPI) => {
   try {
     const response = await fetch(`${API_URL}/${categoryId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(categoryId)
+      body: JSON.stringify(newCategory)
     })
     if (!response.ok) {
       const error = await response.text()
@@ -93,6 +93,9 @@ export const deleteCategoryById = createAsyncThunk('categories/delete', async (c
       }
     })
     if (!response.ok) {
+      if (response.status === 403) {
+        return thunkAPI.rejectWithValue({ status: response.status, message: 'No tienes permisos para realizar esta accion' })
+      }
       const error = await response.text()
       return thunkAPI.rejectWithValue(error)
       // throw new Error('Algo salio mal')
@@ -202,5 +205,5 @@ const categorySlice = createSlice({
 })
 
 // export const { reducers } = categorySlice.actions
-export const selectCategories = state => state.categories.categories
+export const selectCategories = (state) => state.categories.categories
 export default categorySlice.reducer
