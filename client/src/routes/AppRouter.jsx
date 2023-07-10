@@ -6,7 +6,7 @@ import Detail from '../pages/Detail'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
 
-function AppRouter () {
+function AppRouter ({ state }) {
   return (
     <BrowserRouter>
       <Routes>
