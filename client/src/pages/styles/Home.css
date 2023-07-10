@@ -4,3 +4,39 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.home-container{
+    width: 100vw;
+    padding: 64px
+}
+
+.products-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 0.3fr));
+    grid-gap: 30px 0;
+    justify-content: flex-start;
+    justify-items: center;
+    align-items: center;  
+}
+
+.products-list{
+    margin: 0 10px 30px 0;
+    text-align: center;
+}
+
+.p-carousel-container{
+    margin-bottom: 60px;
+}
+
+.carousel-title{
+    color: #000;
+    font-family: Work Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 110%;
+}
+
+.swiper-wrapper{
+    padding-left: 2px;
+}

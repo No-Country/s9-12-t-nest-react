@@ -7,7 +7,7 @@ import Register from '../pages/Register'
 import Login from '../pages/Login'
 import PerfilUser from '../pages/PerfilUser'
 
-function AppRouter () {
+function AppRouter ({ state }) {
   return (
     <BrowserRouter>
       <Routes>
