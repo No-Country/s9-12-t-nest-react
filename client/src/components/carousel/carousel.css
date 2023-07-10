@@ -1,0 +1,33 @@
+.swiper {
+    /* width: 100%; */
+    /* height: 265px; */
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 265px;
+    width: 170px;
+  }
+
+.img-container{
+    display: flex;
+    justify-content: center;
+    /* padding: 0px; */
+    width: 170px;
+}
+
+.swiper-slide img {
+    display: flex;
+    height: 160px;
+    width: 160px;
+    overflow: hidden;
+    align-items: center;
+  }
+
+.card-grid{
+    /* padding: 5px;
+    width: 160px;
+    height: 65px; */
+}
