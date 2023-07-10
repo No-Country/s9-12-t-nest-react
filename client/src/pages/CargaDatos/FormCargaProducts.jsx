@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
-import Form from 'react-bootstrap/Form'
+import { Form, Button } from 'react-bootstrap/'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCategories } from '../../features/categoriesSlice/categorySlice'
 import { getSubcategories } from '../../features/subCategoriesSlice/subcategoriesSlice'
+import { getUsers } from '../../features/authSlice/authSlice'
 
 const FormCargaProducts = () => {
   const usuarios = useSelector((state) => state?.authUser?.usersList)
@@ -19,9 +20,19 @@ const FormCargaProducts = () => {
 
   useEffect(() => {
     dispatch(getSubcategories())
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
+    // .then(res => console.log(res))
+    // .catch(err => console.log(err))
   }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getUsers())
+    // .then(res => console.log(res))
+    // .catch(err => console.log(err))
+  }, [dispatch])
+
+  console.log(categorias)
+  console.log(usuarios)
+  console.log(subcategorias)
 
   /*
   {
@@ -56,29 +67,38 @@ const FormCargaProducts = () => {
           <Form.Control type='number' placeholder='precio producto' />
         </Form.Group>
 
-        <Form.Group className='mb-3' controlId='formGroupimage'>
-          <Form.Label>nombre</Form.Label>
-          <Form.Control type='text' placeholder='Nombre producto' />
+        <Form.Group controlId='formFile' className='mb-3'>
+          <Form.Label>Suba una imagen</Form.Label>
+          <Form.Control type='file' />
         </Form.Group>
 
-        <Form.Select aria-label='select dueño'>
-          <option>Open this select menu</option>
-          <option value='1'>One</option>
-          <option value='2'>Two</option>
-          <option value='3'>Three</option>
-        </Form.Select>
-        <Form.Select aria-label='select category'>
-          <option>Open this select menu</option>
-          <option value='1'>One</option>
-          <option value='2'>Two</option>
-          <option value='3'>Three</option>
-        </Form.Select>
-        <Form.Select aria-label='select subcategory'>
-          <option>Open this select menu</option>
-          <option value='1'>One</option>
-          <option value='2'>Two</option>
-          <option value='3'>Three</option>
-        </Form.Select>
+        <Form.Group className='mb-3' controlId='formGroupimage'>
+          <Form.Select aria-label='select dueño'>
+            <option>Open this select menu</option>
+            <option value='1'>One</option>
+            <option value='2'>Two</option>
+            <option value='3'>Three</option>
+          </Form.Select>
+        </Form.Group>
+
+        <Form.Group className='mb-3' controlId='formGroupimage'>
+          <Form.Select aria-label='select category'>
+            <option>Open this select menu</option>
+            <option value='1'>One</option>
+            <option value='2'>Two</option>
+            <option value='3'>Three</option>
+          </Form.Select>
+        </Form.Group>
+
+        <Form.Group className='mb-3' controlId='formGroupimage'>
+          <Form.Select aria-label='select subcategory'>
+            <option>Open this select menu</option>
+            <option value='1'>One</option>
+            <option value='2'>Two</option>
+            <option value='3'>Three</option>
+          </Form.Select>
+        </Form.Group>
+        <Button type='submit'>Submit form</Button>
 
       </Form>
     </div>

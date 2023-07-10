@@ -37,7 +37,8 @@ export const getUsers = createAsyncThunk('authUser/getUsers', async (_, thunkAPI
       const error = await response.json()
       return thunkAPI.rejectWithValue(error)
     }
-    const data = await response.json()
+    // const data = await response.json()
+    const data = await response.text()
     return data
   } catch (error) {
     return thunkAPI.rejectWithValue(error)
