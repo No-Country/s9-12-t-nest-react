@@ -60,4 +60,20 @@ export class CreateProductDto {
   @IsArray()
   @IsString()
   subcategories: string[];
+
+  @ApiProperty({
+    description: 'Item longitude',
+    nullable: false,
+  })
+  @IsArray()
+  @IsString()
+  lon: string;
+
+  @ApiProperty({
+    description: 'Item latitude',
+    nullable: false,
+  })
+  @IsArray()
+  @IsString()
+  lat: string;
 }

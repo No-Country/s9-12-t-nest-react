@@ -9,6 +9,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import './NavbarBootstrap.css'
 import SearchBar from '../Search/SearchBar'
 import CategoryTest from '../CategoryTest'
+import { Link, NavLink } from 'react-router-dom'
 
 function NavBarBootstrap () {
   return (
@@ -18,7 +19,7 @@ function NavBarBootstrap () {
           <div className='logo-container'>
             <div className='logo-buscador'>
               <div className='div-logo'>
-                <Navbar.Brand href='#'><img src='/images/Group 23.png' alt='' className='logo' /></Navbar.Brand>
+              <Link to="/"><img src='/images/Group 23.png' alt='' className='logo' /></Link>
               </div>
               <span className='input'><SearchBar /></span>
 
@@ -47,17 +48,18 @@ function NavBarBootstrap () {
               </Navbar.Offcanvas>
             </Container>
             <div className='div-logo2'>
-              <Navbar.Brand href='#'><img src='/images/Group 23.png' alt='' className='logo' /></Navbar.Brand>
+              <Link to="/"><img src='/images/Group 23.png' alt='' className='logo' /></Link>
             </div>
           </div>
-          <div className='perfil'>
-            <img src='/images/account_circle_filled_24px.png' alt='' className='imagen-perfil' />
-            <div className='usuarios'>
-              <Nav.Link href='#action2'>Usuarios</Nav.Link>
+          <Link to="/login"><div className='perfil'>
+          <img src='/images/account_circle_filled_24px.png' alt='' className='imagen-perfil' />
+            <p className='usuarios'>
+              Usuarios
+              {/* <NavLink to='/' className='item-navbar'><span >Inicio</span></NavLink> */}
 
-            </div>
+            </p>
 
-          </div>
+          </div></Link>
         </Navbar>
       ))}
     </>
