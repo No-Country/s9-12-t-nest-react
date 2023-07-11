@@ -24,6 +24,10 @@
     
 }
 
+.lupita{
+    padding: 5px;
+}
+
 @media (min-width: 768px) {
     .search{
         width: 300px;

@@ -6,6 +6,8 @@ import Detail from '../pages/Detail'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
 import NavBarBootstrap from '../components/Navbar/NavbarBootstrap'
+import PerfilUser from '../pages/Perfil/PerfilUser'
+import FormCargaProducts from '../pages/CargaDatos/FormCargaProducts'
 
 function AppRouter({ state }) {
   return (
@@ -16,8 +18,11 @@ function AppRouter({ state }) {
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Home />} />
         <Route path='/detalle/:id' element={<Detail />} />
-        {/* <Route path='/categories' element={<CategoryTest />} />
-        <Route path='/search' element={<Search />} /> */}
+        <Route path='/perfil' element={<PerfilUser />} />
+
+        {/* pruebas */}
+        <Route path='/cargaProductos' element={<FormCargaProducts />} />
+
         <Route path='*' element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>

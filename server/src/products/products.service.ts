@@ -14,10 +14,11 @@ export class ProductsService {
 
   async create(createProductDto: CreateProductDto) {
     try {
-      const { ...productData } = createProductDto;
+      const { lat, lon, ...productData } = createProductDto;
 
       const newProduct = this.productModel.create({
         ...productData,
+        geolocation: { lat, lon },
       });
 
       (await newProduct).category = new mongoose.Types.ObjectId(
@@ -112,7 +113,7 @@ export class ProductsService {
 
   async remove(id: number) {
     throw new HttpException(
-      `#${id}: You can't delete any sub category`,
+      `#${id}: You can't delete any product`,
       HttpStatus.FORBIDDEN,
     );
   }

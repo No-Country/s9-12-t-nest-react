@@ -40,7 +40,7 @@ function SearchBar ({ onSearch }) {
           onChange={(event) => setSearchTerm(event.target.value)}
           
         />
-        <IconButton type='submit' sx={{ ml: 1, flex: 1 }} aria-label='search'>
+        <IconButton type='submit' className='lupita' aria-label='search'>
           <SearchIcon />
         </IconButton>
       </Paper>
