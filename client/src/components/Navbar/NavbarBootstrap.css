@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-   
+
 }
 
 .div-logo2{
@@ -68,19 +68,38 @@
 .usuarios{
     display: none;
     color: white !important;
-   
+    text-decoration: none;
+
+}
+
+.offcanvas-header{
+    background-color: rgb(201, 40, 126);
 }
 
 .offcanvas-body{
     align-items: center;
     justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(201, 40, 126);
 }
 
 @media (min-width: 768px) {
+
+    .offcanvas-body{
+        align-items: center;
+        justify-content: space-around;
+        display: flex;
+        flex-direction: row;
+        background-color: rgb(201, 40, 126);
+    }
+
+
     .usuarios{
         display: contents;
         color: white !important;
-       
+        text-decoration: none;
+
     }
 
     .div-logo{
@@ -137,7 +156,7 @@
         margin-right: 0;
     }
 
-   
+
 
     .div-logo2{
         margin-left: 50px;

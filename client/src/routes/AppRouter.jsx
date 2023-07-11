@@ -5,12 +5,14 @@ import Detail from '../pages/Detail'
 // import Search from '../components/Search/Search'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
+import NavBarBootstrap from '../components/Navbar/NavbarBootstrap'
 import PerfilUser from '../pages/Perfil/PerfilUser'
 import FormCargaProducts from '../pages/CargaDatos/FormCargaProducts'
 
-function AppRouter ({ state }) {
+function AppRouter({ state }) {
   return (
     <BrowserRouter>
+      <NavBarBootstrap />
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
