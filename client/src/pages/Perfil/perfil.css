@@ -1,23 +1,23 @@
-.card {
-  width: 300px;
+.principalPerfil {
+  width: 100%;
   height: 400px;
+  background: tomato;
+}
+
+.card {
   border: none;
   border-radius: 15px;
   padding: 8px;
   background-color: #fff;
   position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 /*   background: #de1252;
  */
 
-.user {
-  position: relative;
+.profile {
+  background: pink;
 }
 
 .profile img {
