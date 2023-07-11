@@ -68,12 +68,14 @@ function Register() {
                         placeholder="Hasta 20 caracteres"
                         onChange={handleChange}
                     />
-                    <button
-                        style={{backgroundColor:"#FF4679",border: "none", borderRadius:"110px", color:"#FFFFFF", marginTop: "10px", padding:"10px", width:"211px"}}
-                        type="submit"
-                    >
-                        Crear cuenta
-                    </button>
+                    <div style={{textAlign:"center"}}>
+                        <button
+                            style={{backgroundColor:"#FF4679",border: "none", borderRadius:"110px", color:"#FFFFFF", marginTop: "10px", padding:"10px", width:"211px"}}
+                            type="submit"
+                        >
+                            Crear cuenta
+                        </button>
+                    </div>
                 </div>
             </form>
         </main>
