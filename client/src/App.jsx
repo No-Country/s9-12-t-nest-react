@@ -28,7 +28,7 @@ function App () {
 
   return (
     <>
-      <NavBarBootstrap />
+      {/* <NavBarBootstrap /> */}
       <AppRouter />
     </>
   )
