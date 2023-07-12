@@ -135,6 +135,7 @@
 
     .navbar{
         height: 65px;
+        overflow-y: hidden;
 
     }
 
