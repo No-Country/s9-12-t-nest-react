@@ -31,7 +31,7 @@ export class LocalUploadMiddleware implements NestMiddleware {
     },
   }).fields([
     { name: 'profilePic', maxCount: 1 },
-    { name: 'images', maxCount: 8 },
+    { name: 'images', maxCount: 10 },
   ]);
 
   use(req: Request, res: Response, next: NextFunction) {
