@@ -31,7 +31,7 @@ const Estrellas = ({ number }) => {
 
   return (
     <>
-      <div className='d-flex flex-row justify-content-start align-items-center align-content-center flex-nowrap gap-2 ' style={{ fontSize: '25.426px' }}>
+      <div className='d-flex flex-row justify-content-start align-items-center align-content-center flex-nowrap gap-2 ' style={{ fontSize: '25.426px', height: '50px' }}>
         {
           array.map((element, i) => {
             return (<ion-icon key={i} name={element} style={{ color: 'var(--background-nav)' }} />)

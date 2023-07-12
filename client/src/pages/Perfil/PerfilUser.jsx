@@ -45,8 +45,8 @@ const PerfilUser = () => {
   }, [])
 
   return (
-    <div className='container principalPerfil p-3 d-flex justify-content-center align-items-center'>
-      <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ width: '100%', height: 'auto' }}>
+    <div className='container principalPerfil p-2 d-flex justify-content-center align-items-center overflow-hidden mt-2' style={{ minWidth: '350px', maxWidth: '600px', height: 'auto' }}>
+      <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ width: '100%', height: 'auto', border: 'none' }}>
         {/* head perfil */}
         <section className='imgName d-flex flex-row justify-content-center align-items-center align-content-center flex-nowrap gap-3 position-relative' style={{ width: '100%', height: '70px' }}>
           {/* img Perfil left */}
@@ -61,7 +61,6 @@ const PerfilUser = () => {
                 <ion-icon name='checkmark-sharp' />
               </span>
             </div>
-
             <div className='d-flex flex-row justify-content-start align-items-center align-content-center flex-nowrap gap-1' style={{ width: '100%', height: 'auto', fontSize: '20px' }}>
               {barrio === undefined
                 ? (
@@ -88,19 +87,22 @@ const PerfilUser = () => {
         <Estrellas number={calculaRep} />
 
         {/* Calificacion Usuario  */}
-        <section className='valoresRep' style={{ width: '100%', height: 'auto' }}>
-          <div className='d-flex justify-content-between align-items-center ' style={{ background: 'var(--yellowContenedor)' }}>
-            <div className='stats'>
-              <span>{calculaRep}</span>
-              <h3 className='mb-0'>Reputacion</h3>
+        <section className='valoresRep mb-5' style={{ width: '100%', height: 'auto' }}>
+          <div className='cajaPAdre d-flex justify-content-center align-items-center rounded-1 p-2  rounded overflow-hidden text-center' style={{ background: 'var(--yellowContenedor)', boxShadow: '2px 2px 4px 0px rgba(222, 18, 82, 0.23)' }}>
+
+            <div className='stats d-flex flex-column justify-content-start align-items-center align-content-start flex-nowrap gap-2' style={{ width: '33%', height: '90px' }}>
+              <span className='fw-normal' style={{ fontSize: '32px', fontFamily: 'var(--titulo)' }}>{reputacionUSer.intercambiosExitosos}</span>
+              <h3 className='fw-normal' style={{ fontSize: '14px', color: 'var(--textColor3)', fontFamily: 'var(--titulo)' }}>Trueques exitosos</h3>
             </div>
-            <div className='stats'>
-              <span>{reputacionUSer.totalPublicaciones}</span>
-              <h3 className='mb-0'>Publicaciones</h3>
+            <div className='' style={{ width: '1px', height: '80px', background: 'var(--lineas)' }} />
+            <div className='stats d-flex flex-column justify-content-start align-items-center align-content-start flex-nowrap gap-2' style={{ width: '33%', height: '90px' }}>
+              <span className='fw-normal' style={{ fontSize: '32px', fontFamily: 'var(--titulo)' }}>{reputacionUSer.totalPublicaciones}</span>
+              <h3 className='fw-normal' style={{ fontSize: '14px', color: 'var(--textColor3)', fontFamily: 'var(--titulo)' }}>Publicaciones</h3>
             </div>
-            <div className='stats'>
-              <span>{reputacionUSer.intercambiosExitosos}</span>
-              <h3 className='mb-0'>Exitosos</h3>
+            <div className='' style={{ width: '1px', height: '80px', background: 'var(--lineas)' }} />
+            <div className='stats d-flex flex-column justify-content-start align-items-center align-content-start flex-nowrap gap-2' style={{ width: '33%', height: '90px' }}>
+              <span className='fw-normal' style={{ fontSize: '32px', fontFamily: 'var(--titulo)' }}>{reputacionUSer.intercambiosFallidos}</span>
+              <h3 className='fw-normal' style={{ fontSize: '14px', color: 'var(--textColor3)', fontFamily: 'var(--titulo)' }}>Trueques cancelados</h3>
             </div>
           </div>
         </section>
