@@ -11,7 +11,7 @@ import { ProductsModule } from './products/products.module';
 import { LoginController } from './login/login.controller';
 import { AuthModule } from './auth/auth.module';
 import { LocalUploadMiddleware } from './middlewares/local-upload.middleware';
-
+import { FirebaseUploadMiddleware } from './middlewares/firebase-upload.middleware';
 
 @Module({
   imports: [
@@ -32,11 +32,15 @@ import { LocalUploadMiddleware } from './middlewares/local-upload.middleware';
     ProductsModule,
   ],
   controllers: [AppController, LoginController],
-  providers: [AppService, LocalUploadMiddleware],
+  providers: [AppService, LocalUploadMiddleware, FirebaseUploadMiddleware],
 })
-//export class AppModule {}
+
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LocalUploadMiddleware).forRoutes('products');
+    consumer
+      .apply(LocalUploadMiddleware)
+      .forRoutes('products')
+      .apply(FirebaseUploadMiddleware)
+      .forRoutes('products');
   }
 }
