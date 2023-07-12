@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -19,6 +21,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('Products')
 @Controller('products')
@@ -35,7 +38,12 @@ export class ProductsController {
     description: 'Bad request in Product data.',
   })
   @Post()
-  create(@Body() createProductDto: CreateProductDto) {
+  @UseInterceptors(FileInterceptor('images'))
+  create(
+    @UploadedFile() files: Array<Express.Multer.File>,
+    @Body() createProductDto: CreateProductDto,
+  ) {
+   console.log(files);
     return this.productsService.create(createProductDto);
   }
 
