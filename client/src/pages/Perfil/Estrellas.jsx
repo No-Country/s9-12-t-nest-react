@@ -2,7 +2,7 @@ import React from 'react'
 
 const Estrellas = ({ number }) => {
   const total = 5
-  const ratingReal = number / 2
+  const ratingReal = (number / 2)
   const starIconLleno = 'star-sharp'
   const starIconMedioLleno = 'star-half-sharp'
   const starIconVacio = 'star-outline'
@@ -11,7 +11,7 @@ const Estrellas = ({ number }) => {
 
   if (ratingReal % 2 === 0) {
     for (let index = 0; index < total; index++) {
-      if (index <= ratingReal) {
+      if (index < ratingReal) {
         array.push(starIconLleno)
       } else {
         array.push(starIconVacio)
