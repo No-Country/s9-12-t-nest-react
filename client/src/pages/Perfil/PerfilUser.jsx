@@ -1,8 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './perfil.css'
 import { calcularReputacion } from './calculaReputacion'
+import { useDispatch, useSelector } from 'react-redux'
+import { getBarrio } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
 
 const PerfilUser = () => {
+  const ubicacion = useSelector(state => state?.location)
+  const barrio = useSelector(state => state?.barrio)
+
+  console.log('BARRIO ->', barrio)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getBarrio(ubicacion))
+      .then((resp) => {
+        // console.log(resp)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        console.log('finally')
+      })
+  }, [dispatch])
+
   const objeto = {
     _id: '64aba27c2415d442b78559c1',
     img: 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1686264426/PERFIL_GENERAL_hbngdm.jpg',
@@ -18,37 +39,55 @@ const PerfilUser = () => {
 
   return (
     <div className='container principalPerfil p-3 d-flex justify-content-center align-items-center'>
-      <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-2' style={{ width: '100%', height: '400px' }}>
-
+      <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-2' style={{ width: '100%', height: 'auto' }}>
+        {/* head perfil */}
         <section className='imgName d-flex flex-row justify-content-center align-items-center align-content-center flex-nowrap gap-3 position-relative' style={{ width: '100%', height: '100px' }}>
-          <div className='profile overflow-hidden position-static' style={{ width: '64.837px', height: '64.837px' }}>
+          {/* img Perfil left */}
+          <div className='profile overflow-hidden position-static rounded-circle overflow-hidden' style={{ width: '64.837px', height: '64.837px' }}>
             <img src={objeto.img} style={{ width: '100%', height: '100%' }} />
           </div>
-          <section className='titulos position-static'>
-            <div className='d-flex flex-row justify-content-center align-items-center align-content-center flex-nowrap gap-2'>
-              <h2 className='' style={{ color: '#333', fontFamily: 'var(--titulo)', fontSize: '20px', fontWeight: '600' }}>{objeto.firstName}</h2>
-              <span className='d-flex flex-row justify-content-center align-items-center align-content-center flex-nowrap' style={{ width: '30.512px', height: '30.512px', borderRadius: '50%', backgroundColor: '#fff', fontSize: '1.5rem', background: '#de1252', color: 'white' }}>
+          {/* info Perfil right  */}
+          <section className='titulos position-static d-flex flex-column justify-content-center align-items-start align-content-center flex-nowrap gap-2'>
+            <div className='d-flex flex-row justify-content-start align-items-center align-content-center flex-nowrap gap-2 ' style={{ fontFamily: 'var(--titulo)' }}>
+              <h2 className='m-0 p-0' style={{ color: '#333', fontFamily: 'var(--titulo)', fontSize: '20px', fontWeight: '600' }}>{objeto.firstName}</h2>
+              <span className='d-flex flex-row justify-content-center align-items-center align-content-center flex-nowrap' style={{ width: '30.512px', height: '30.512px', borderRadius: '50%', fontSize: '1.5rem', backgroundColor: 'var(--background-nav)', color: 'white' }}>
                 <ion-icon name='checkmark-sharp' />
               </span>
             </div>
 
-            <span className='text-muted d-block mb-2'>Los Angles</span>
+            <div className='d-flex flex-row justify-content-start align-items-center align-content-center flex-nowrap gap-1' style={{ width: '100%', height: 'auto', fontSize: '20px' }}>
+              {barrio === undefined
+                ? (
+                  <p>Cargando...</p>
+                  )
+                : (
+                  <>
+                    <ion-icon name='location-sharp' style={{ color: 'var(--background-nav)' }} />
+                    <h3 className='text-muted d-block p-0 m-0' style={{ fontSize: '14px' }}>
+                      {barrio.barrio}
+                    </h3>
+                  </>
+                  )}
+            </div>
           </section>
         </section>
 
+        {/* Estrellas valoracion */}
+        <section className='estrellas d-flex flex-row justify-content-center align-items-center align-content-center flex-nowrap gap-2' />
+        {/* Calificacion Usuario  */}
         <div className=' text-center'>
           <div className='d-flex justify-content-between align-items-center mt-4 px-4'>
             <div className='stats'>
-              <h6 className='mb-0'>Reputacion</h6>
               <span>{calcularReputacion(reputacionUSer)}</span>
+              <h3 className='mb-0'>Reputacion</h3>
             </div>
             <div className='stats'>
-              <h6 className='mb-0'>Publicaciones</h6>
               <span>{reputacionUSer.totalPublicaciones}</span>
+              <h3 className='mb-0'>Publicaciones</h3>
             </div>
             <div className='stats'>
-              <h6 className='mb-0'>Exitosos</h6>
               <span>{reputacionUSer.intercambiosExitosos}</span>
+              <h3 className='mb-0'>Exitosos</h3>
             </div>
           </div>
         </div>

@@ -16,25 +16,10 @@
 /*   background: #de1252;
  */
 
-.profile {
-  background: pink;
-}
 
-.profile img {
-  height: 80px;
-  width: 80px;
-  margin-top: 2px;
-}
 
-.profile {
-  position: absolute;
-  top: -50px;
-  left: 38%;
-  height: 90px;
-  width: 90px;
-  border: 3px solid #fff;
-  border-radius: 50%;
-}
+
+
 
 .follow {
   border-radius: 15px;
