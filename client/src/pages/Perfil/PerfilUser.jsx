@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './perfil.css'
 import { calcularReputacion } from './calculaReputacion'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBarrio } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
+import Estrellas from './Estrellas'
 
 const PerfilUser = () => {
   const ubicacion = useSelector(state => state?.location)
-  const barrio = useSelector(state => state?.barrio)
+  const barrio = useSelector(state => state?.barrio?.barrio)
+
+  const [calculaRep, setCalculaRep] = useState('')
 
   console.log('BARRIO ->', barrio)
   const dispatch = useDispatch()
@@ -37,6 +40,10 @@ const PerfilUser = () => {
 
   const reputacionUSer = { intercambiosExitosos: 15, intercambiosFallidos: 2, totalPublicaciones: 32, valoracionesPositivas: 15, valoracionesNegativas: 2, devoluciones: 1 }
 
+  useEffect(() => {
+    setCalculaRep(calcularReputacion(reputacionUSer))
+  }, [])
+
   return (
     <div className='container principalPerfil p-3 d-flex justify-content-center align-items-center'>
       <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-2' style={{ width: '100%', height: 'auto' }}>
@@ -58,13 +65,18 @@ const PerfilUser = () => {
             <div className='d-flex flex-row justify-content-start align-items-center align-content-center flex-nowrap gap-1' style={{ width: '100%', height: 'auto', fontSize: '20px' }}>
               {barrio === undefined
                 ? (
-                  <p>Cargando...</p>
+                  <>
+                    <ion-icon name='location-sharp' style={{ color: 'var(--background-nav)' }} />
+                    <h3 className='text-muted d-block p-0 m-0' style={{ fontSize: '14px' }}>
+                      Ubicación
+                    </h3>
+                  </>
                   )
                 : (
                   <>
                     <ion-icon name='location-sharp' style={{ color: 'var(--background-nav)' }} />
                     <h3 className='text-muted d-block p-0 m-0' style={{ fontSize: '14px' }}>
-                      {barrio.barrio}
+                      {barrio}
                     </h3>
                   </>
                   )}
@@ -73,12 +85,12 @@ const PerfilUser = () => {
         </section>
 
         {/* Estrellas valoracion */}
-        <section className='estrellas d-flex flex-row justify-content-center align-items-center align-content-center flex-nowrap gap-2' />
+        <Estrellas number={calculaRep} />
         {/* Calificacion Usuario  */}
         <div className=' text-center'>
           <div className='d-flex justify-content-between align-items-center mt-4 px-4'>
             <div className='stats'>
-              <span>{calcularReputacion(reputacionUSer)}</span>
+              <span>{calculaRep}</span>
               <h3 className='mb-0'>Reputacion</h3>
             </div>
             <div className='stats'>
