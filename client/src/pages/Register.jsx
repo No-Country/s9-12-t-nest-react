@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Box, TextField } from '@mui/material';
+import '../pages/styles/UserRegisterLogin.css'
 
 const initialValues = {
     name: "",
@@ -21,53 +21,64 @@ function Register() {
     };
 
     return (
-        <Box sx={{ textAlign:"center"}}>
-            <h1>Registrarse</h1>
+        <main>
+            <h3 style={{ textAlign: "center", margin:"20px"}}>Crear una cuenta</h3>
             <form
+                className='form'
                 onSubmit={handleSubmit}
             >
-                <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-                    <TextField
-                        sx={{marginBottom: "10px", width:"250px"}}
-                        id="name"
-                        label="Nombre de usuario"
-                        variant="outlined"
-                        onChange={handleChange}
-                    />
-                    <TextField
-                        sx={{margin: "10px 0", width:"250px"}}
+                <div className='form-content'>
+                    <label 
+                        htmlFor='email'>Correo Electrónico
+                    </label>
+                    <input
                         id="email"
-                        label="Correo Electrónico"
-                        variant="outlined"
+                        placeholder="Correo Electrónico"
                         onChange={handleChange}
                     />
-                    <TextField
-                        sx={{margin: "10px 0", width:"250px"}}
+                    <label htmlFor='password'>Contraseña</label>
+                    <input
+                        placeholder="Contraseña"
                         id="password"
-                        label="Contraseña"
                         type="password"
-                        variant="outlined"
                         onChange={handleChange}
                     />
-                    <TextField
-                        sx={{margin: "10px 0", width:"250px"}}
+                    <label htmlFor='password2'>Repetir contraseña</label>
+                    <input
                         id="password2"
-                        label="Repetir Contraseña"
+                        placeholder="Repetir Contraseña"
                         type="password"
-                        variant="outlined"
                         onChange={handleChange}
                     />
-
-                    <Button
-                        sx={{marginTop: "10px"}}
-                        type="submit"
-                        variant='contained'
-                    >
-                        Crear cuenta
-                    </Button>
-                </Box>
+                    <label htmlFor='name'>Nombres</label>
+                    <input                     
+                        id="name"
+                        placeholder="Nombres"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor='lastName'>Apellido</label>
+                    <input                   
+                        id="lastName"
+                        placeholder="Apellido"
+                        onChange={handleChange}
+                    />
+                    <label htmlFor='userName'>Nombre de Usuario</label>
+                    <input              
+                        id="userName"
+                        placeholder="Hasta 20 caracteres"
+                        onChange={handleChange}
+                    />
+                    <div style={{textAlign:"center"}}>
+                        <button
+                            className='button'
+                            type="submit"
+                        >
+                            Crear cuenta
+                        </button>
+                    </div>
+                </div>
             </form>
-        </Box>
+        </main>
     )
 }
 
