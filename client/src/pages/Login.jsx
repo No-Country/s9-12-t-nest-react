@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Box, TextField } from '@mui/material';
+import '../pages/styles/UserRegisterLogin.css'
 
 const initialValues = {
     email: "",
@@ -20,42 +20,52 @@ function Login() {
     };
 
     return (
-        <Box sx={{textAlign:"center"}}>
-            <h1>Bienvenido</h1>
-            <form onSubmit={handleSubmit}>
-                <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                    <TextField
-                        sx={{ marginBottom: "10px", width: "250px" }}
+        <main style={{ textAlign: "center", margin:"20px"}}>
+            <img className="logo-img" src="/images/logo-login.svg" alt="Trueka logo image" />
+            <p className='slogan'>Encontrá lo que buscás, <br/>
+                cambialo por lo que ya no necesitás</p>
+            <h5>Iniciar Sesión</h5>
+            <form onSubmit={handleSubmit} className='form'>
+                <div className='form-content'>
+                    <input
                         id="email"
-                        label="Correo Electrónico"
-                        variant="outlined"
+                        placeholder="Correo Electrónico"
                         onChange={handleChange}
                     />
-
-                    <TextField
-                        sx={{ margin: "10px 0", width: "250px" }}
-                        id="password"
-                        label="Contraseña"
-                        type="password"
-                        variant="outlined"
-                        onChange={handleChange}
-                    />
-
-                    <Button variant='contained'>Iniciar Sesión</Button>
-
-                    <p href="#" className="mt-2">
-                        ¿ No tienes un usuario ?
-                    </p>
-
-                    <Link
-                        to="/register"
-                    >
-                        Registrarse
-                    </Link>
-
-                </Box>
+                    <div class="pass-positioning">
+                        <label for="password"></label>
+                        <input
+                            id="password"
+                            placeholder="Contraseña"
+                            type="password"
+                            onChange={handleChange}
+                        />
+                        <img id="eye-img" src="/images/visibility.svg" alt="Eye icon to show or hidden password"/>
+                    </div>
+                    <div className='forgot-pass'>
+                        <Link to="/login" >Olvidé mi contraseña</Link>
+                    </div>
+                    <button
+                        className='button'
+                    >Iniciar Sesión</button>
+                    <div className='new-account'>
+                        <span className="mt-2">
+                        ¿No tenés una cuenta? </span>
+                        <Link
+                            to="/register"
+                        >
+                            Crear cuenta
+                        </Link>
+                    </div>
+                    <hr id="hr" />
+                    <div className='login-alternatives'>
+                        <p>Ingresar con</p>
+                        <img src="/images/google.svg" alt="Google icon" />
+                        <img src="/images/facebook.svg" alt="Facebook icon" />
+                    </div>
+                </div>
             </form>
-        </Box>
+        </main>
     )
 }
 

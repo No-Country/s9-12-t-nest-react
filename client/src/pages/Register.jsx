@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import '../pages/styles/UserRegisterLogin.css'
 
 const initialValues = {
     name: "",
@@ -21,56 +22,55 @@ function Register() {
 
     return (
         <main>
-            <h1 style={{ textAlign: "center", margin:"20px"}}>Crear una cuenta</h1>
+            <h3 style={{ textAlign: "center", margin:"20px"}}>Crear una cuenta</h3>
             <form
-                style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}
+                className='form'
                 onSubmit={handleSubmit}
             >
-                <div style={{maxWidth: "396px"}}>
+                <div className='form-content'>
                     <label 
                         htmlFor='email'>Correo Electrónico
                     </label>
                     <input
-                        style={{marginBottom: "15px", padding: "10px", border: "2px solid #FF4679", borderRadius:"8px",width: "100%"}}
                         id="email"
                         placeholder="Correo Electrónico"
                         onChange={handleChange}
                     />
                     <label htmlFor='password'>Contraseña</label>
                     <input
-                        style={{marginBottom: "15px", padding: "10px", border: "2px solid #FF4679", borderRadius:"8px",width: "100%"}}                        id="password"
                         placeholder="Contraseña"
+                        id="password"
                         type="password"
                         onChange={handleChange}
                     />
                     <label htmlFor='password2'>Repetir contraseña</label>
                     <input
-                        style={{marginBottom: "15px", padding: "10px", border: "2px solid #FF4679", borderRadius:"8px",width: "100%"}}                        id="password2"
+                        id="password2"
                         placeholder="Repetir Contraseña"
                         type="password"
                         onChange={handleChange}
                     />
                     <label htmlFor='name'>Nombres</label>
-                    <input
-                        style={{marginBottom: "15px", padding: "10px", border: "2px solid #FF4679", borderRadius:"8px",width: "100%"}}                        id="name"
+                    <input                     
+                        id="name"
                         placeholder="Nombres"
                         onChange={handleChange}
                     />
                     <label htmlFor='lastName'>Apellido</label>
-                    <input
-                        style={{marginBottom: "15px", padding: "10px", border: "2px solid #FF4679", borderRadius:"8px",width: "100%"}}                        id="lastName"
+                    <input                   
+                        id="lastName"
                         placeholder="Apellido"
                         onChange={handleChange}
                     />
                     <label htmlFor='userName'>Nombre de Usuario</label>
-                    <input
-                        style={{marginBottom: "15px", padding: "10px", border: "2px solid #FF4679", borderRadius:"8px",width: "100%"}}                        id="userName"
+                    <input              
+                        id="userName"
                         placeholder="Hasta 20 caracteres"
                         onChange={handleChange}
                     />
                     <div style={{textAlign:"center"}}>
                         <button
-                            style={{backgroundColor:"#FF4679",border: "none", borderRadius:"110px", color:"#FFFFFF", marginTop: "10px", padding:"10px", width:"211px"}}
+                            className='button'
                             type="submit"
                         >
                             Crear cuenta
