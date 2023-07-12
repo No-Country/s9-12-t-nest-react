@@ -35,7 +35,8 @@
     }
 
     .search:hover{   
-        width: 300px;        
+        width: 300px; 
+        height: 30px;       
     }
 
 
@@ -49,7 +50,8 @@
     }
 
     .search:hover{   
-        width: 400px;        
+        width: 400px;   
+        height: 40px; 
     }
    
 }
@@ -63,6 +65,10 @@
 
     .search:hover{   
         width: 600px;        
+    }
+
+    .navbar{
+        overflow-y: hidden;
     }
    
 }
