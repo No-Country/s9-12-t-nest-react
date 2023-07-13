@@ -6,12 +6,30 @@ const API_URL = 'http://localhost:3000/api/v1/products'
 
 export const createProduct = createAsyncThunk('products/create', async (product, thunkAPI) => {
   try {
+    const formData = new FormData()
+    formData.append('name', product.name)
+    formData.append('description', product.description)
+    formData.append('price', product.price)
+    // formData.append('images', product.images[0])
+    for (let i = 0; i < product.images.length; i++) {
+      formData.append('images', product.images[i])
+    }
+    formData.append('owner', product.owner)
+    // formData.append('category', product.category)
+    for (let i = 0; i < product.subcategories.length; i++) {
+      formData.append('subcategories', product.subcategories[i])
+    }
+    formData.append('subcategories', product.subcategories[0])
+    formData.append('lon', product.lon)
+    formData.append('lat', product.lat)
+
     const response = await fetch(`${API_URL}`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(product)
+      // headers: {
+      //   'Content-Type': 'application/json'
+      // },
+      // body: JSON.stringify(product)
+      body: formData
     })
     if (response.ok || response.status === 201) {
       const data = await response.json()
