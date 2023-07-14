@@ -7,6 +7,7 @@ import Register from '../pages/Register'
 import Login from '../pages/Login'
 import NavBarBootstrap from '../components/Navbar/NavbarBootstrap'
 import PerfilUser from '../pages/Perfil/PerfilUser'
+import Publication from '../components/publication/Publication'
 
 function AppRouter ({ state }) {
   return (
@@ -18,6 +19,7 @@ function AppRouter ({ state }) {
         <Route path='/' element={<Home />} />
         <Route path='/detalle/:id' element={<Detail />} />
         <Route path='/perfil' element={<PerfilUser />} />
+        <Route path='/publicacion' element={<Publication />} />
 
         {/* pruebas */}
         <Route path='*' element={<h1>404</h1>} />
