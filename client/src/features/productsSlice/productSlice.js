@@ -9,9 +9,9 @@ export const createProduct = createAsyncThunk('products/create', async (product,
     const response = await fetch(`${API_URL}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'multipart/form-data'
       },
-      body: JSON.stringify(product)
+      body: FormData
     })
     if (response.ok || response.status === 201) {
       const data = await response.json()

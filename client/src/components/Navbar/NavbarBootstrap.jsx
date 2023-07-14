@@ -43,7 +43,7 @@ function NavBarBootstrap () {
                   <div className='form'>
                     <SearchBar />
                   </div>
-                  <Nav.Link href='#action1' className='publicar'>Publicar</Nav.Link>
+                  <Link to="/cargaProductos" className='publicar'>Publicar</Link>
                 </Offcanvas.Body>
               </Navbar.Offcanvas>
             </Container>
@@ -52,13 +52,9 @@ function NavBarBootstrap () {
             </div>
           </div>
           <Link to="/login"><div className='perfil'>
-          <img src='/images/account_circle_filled_24px.png' alt='' className='imagen-perfil' />
-            <p className='usuarios'>
-              Usuarios
+          <img src='/images/account_circle_filled_24px.png' alt='' className='imagen-perfil' />            
+              <Link to="/login" className='usuarios'>Usuarios</Link>
               {/* <NavLink to='/' className='item-navbar'><span >Inicio</span></NavLink> */}
-
-            </p>
-
           </div></Link>
         </Navbar>
       ))}

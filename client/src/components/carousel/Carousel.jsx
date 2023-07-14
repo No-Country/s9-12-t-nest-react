@@ -18,7 +18,7 @@ function Carousel ({ data }) {
       >
         {data.map((product, i) => (
           <SwiperSlide className='swiper-slide' key={i}>
-            <CardProduct props={[product]} className='swiper-card-product img-container card-grid' />
+            <CardProduct props={[product]} className='swiper-card-product' />
           </SwiperSlide>
         ))}
       </Swiper>

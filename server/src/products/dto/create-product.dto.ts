@@ -23,16 +23,6 @@ export class CreateProductDto {
   description: string;
 
   @ApiProperty({
-    description: 'Item price',
-    nullable: false,
-    minLength: 1,
-    default: 20,
-  })
-  @Transform(({ value }) => parseInt(value))
-  @IsInt()
-  price: number;
-
-  @ApiProperty({
     description: 'Item images',
     nullable: false,
   })
@@ -54,12 +44,11 @@ export class CreateProductDto {
   category: string;
 
   @ApiProperty({
-    description: 'Item category',
+    description: 'Item Subcategory',
     nullable: false,
   })
-  @IsArray()
   @IsString()
-  subcategories: string[];
+  subcategory: string;
 
   @ApiProperty({
     description: 'Item longitude',

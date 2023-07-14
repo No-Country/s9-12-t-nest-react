@@ -16,10 +16,6 @@ export class Product extends Document {
   description: string;
 
   @ApiProperty()
-  @Prop({ default: 20 })
-  price: number;
-
-  @ApiProperty()
   @Prop({ array: true })
   images: string[];
 
@@ -32,8 +28,8 @@ export class Product extends Document {
   category: Types.ObjectId;
 
   @ApiProperty()
-  @Prop({ array: true, ref: 'Subcategory' })
-  subcategories: Types.ObjectId[];
+  @Prop({ ref: 'Subcategory' })
+  subcategory: Types.ObjectId;
 
   @ApiProperty()
   @Prop({ type: Object })
