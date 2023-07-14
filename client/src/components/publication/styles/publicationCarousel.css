@@ -1,9 +1,9 @@
-.swiper-container{
+.publication-swiper .swiper-container{
     min-width: 280px;
     /* min-width: 250px; */
 }
 
-.swiper-slide{
+.publication-swiper .swiper-slide{
     /* width: 140px;  */
     height: 140px;
     width: 140px;
@@ -11,7 +11,7 @@
     z-index: 2;
 } 
 
-.swiper{
+.publication-swiper .swiper{
     display: flex;
     flex-wrap: wrap;
     /* border: 1px solid blue; */
@@ -20,7 +20,7 @@
     /* z-index: 3; */
 }
 
-.swiper-wrapper{
+.publication-swiper .swiper-wrapper{
     /* height: 140px; */
     width: 100%;
     padding: 0;
@@ -29,7 +29,7 @@
     
 }
 
-.carousel-image{
+.publication-swiper .carousel-image{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,7 +40,7 @@
     
 }
 
-.swiper-slide img{
+.publication-swiper .swiper-slide img{
     width: 100%;
     height: 100%;
     object-fit: contain;

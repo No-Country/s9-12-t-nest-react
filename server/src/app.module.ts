@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DotEnvConfig } from './config/env.config';
@@ -39,8 +39,8 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(LocalUploadMiddleware)
-      .forRoutes('products')
+      .forRoutes({ path: 'products', method: RequestMethod.POST })
       .apply(FirebaseUploadMiddleware)
-      .forRoutes('products');
+      .forRoutes({ path: 'products', method: RequestMethod.POST });
   }
 }
