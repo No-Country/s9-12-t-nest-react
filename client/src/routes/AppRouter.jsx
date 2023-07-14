@@ -7,7 +7,7 @@ import Register from '../pages/Register'
 import Login from '../pages/Login'
 import NavBarBootstrap from '../components/Navbar/NavbarBootstrap'
 import PerfilUser from '../pages/Perfil/PerfilUser'
-// import FormCargaProducts from '../pages/CargaDatos/FormCargaProducts'
+import Publication from '../components/publication/Publication'
 
 function AppRouter ({ state }) {
   return (
@@ -21,7 +21,8 @@ function AppRouter ({ state }) {
         <Route path='/perfil' element={<PerfilUser />} />
 
         {/* pruebas */}
-        {/* <Route path='/form' element={<FormCargaProducts />} /> */}
+        <Route path='/cargaProduct' element={<Publication />} />
+
         <Route path='*' element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>
