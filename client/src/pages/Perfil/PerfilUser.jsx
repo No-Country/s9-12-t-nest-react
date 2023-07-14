@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './perfil.css'
 import { calcularReputacion } from './calculaReputacion'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,26 +6,17 @@ import { getBarrio } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
 import Estrellas from './Estrellas'
 
 const PerfilUser = () => {
-  const ubicacion = useSelector(state => state?.location)
+  const ubication = useSelector(state => state?.location)
   const barrio = useSelector(state => state?.barrio?.barrio)
 
   const [calculaRep, setCalculaRep] = useState('')
 
   console.log('BARRIO ->', barrio)
   const dispatch = useDispatch()
+  const lastUbication = useRef(null)
+  console.log('Ubicacion Anterior -->', lastUbication)
 
-  useEffect(() => {
-    dispatch(getBarrio(ubicacion))
-      .then((resp) => {
-        // console.log(resp)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-      .finally(() => {
-        console.log('finally')
-      })
-  }, [dispatch])
+  const reputacionUSer = { intercambiosExitosos: 15, intercambiosFallidos: 2, totalPublicaciones: 32, valoracionesPositivas: 15, valoracionesNegativas: 2, devoluciones: 1 }
 
   const objeto = {
     _id: '64aba27c2415d442b78559c1',
@@ -37,12 +28,16 @@ const PerfilUser = () => {
     contact: '2944396887',
     address: 'argentina, rio negro, ingeniero jcobacci'
   }
-
-  const reputacionUSer = { intercambiosExitosos: 15, intercambiosFallidos: 2, totalPublicaciones: 32, valoracionesPositivas: 15, valoracionesNegativas: 2, devoluciones: 1 }
-
   useEffect(() => {
     setCalculaRep(calcularReputacion(reputacionUSer))
   }, [])
+
+  useEffect(() => {
+    if (ubication && ubication !== lastUbication.current) {
+      lastUbication.current = ubication
+      dispatch(getBarrio(ubication))
+    }
+  }, [ubication, dispatch])
 
   return (
     <div className='container principalPerfil p-2 d-flex justify-content-center align-items-center overflow-hidden mt-2' style={{ minWidth: '350px', maxWidth: '600px', height: 'auto' }}>

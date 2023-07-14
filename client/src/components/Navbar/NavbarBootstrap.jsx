@@ -19,7 +19,7 @@ function NavBarBootstrap () {
           <div className='logo-container'>
             <div className='logo-buscador'>
               <div className='div-logo'>
-              <Link to="/"><img src='/images/Group 23.png' alt='' className='logo' /></Link>
+                <Link to='/'><img src='/images/Group 23.png' alt='' className='logo' /></Link>
               </div>
               <span className='input'><SearchBar /></span>
 
@@ -43,19 +43,20 @@ function NavBarBootstrap () {
                   <div className='form'>
                     <SearchBar />
                   </div>
-                  <Link to="/cargaProductos" className='publicar'>Publicar</Link>
+                  <Link to='/cargaProductos' className='publicar'>Publicar</Link>
                 </Offcanvas.Body>
               </Navbar.Offcanvas>
             </Container>
             <div className='div-logo2'>
-              <Link to="/"><img src='/images/Group 23.png' alt='' className='logo' /></Link>
+              <Link to='/'><img src='/images/Group 23.png' alt='' className='logo' /></Link>
             </div>
           </div>
-          <Link to="/login"><div className='perfil'>
-          <img src='/images/account_circle_filled_24px.png' alt='' className='imagen-perfil' />            
-              <Link to="/login" className='usuarios'>Usuarios</Link>
-              {/* <NavLink to='/' className='item-navbar'><span >Inicio</span></NavLink> */}
-          </div></Link>
+          <Link to='/login'><div className='perfil'>
+            <img src='/images/account_circle_filled_24px.png' alt='' className='imagen-perfil' />
+            <Link to='/login' className='usuarios'>Usuarios</Link>
+            {/* <NavLink to='/' className='item-navbar'><span >Inicio</span></NavLink> */}
+          </div>
+          </Link>
         </Navbar>
       ))}
     </>
