@@ -6,25 +6,27 @@ import './styles/publicationCarousel.css'
 function PublicationCarousel ({ data }) {
   return (
     <>
-      <div className='swiper-container'>
-        <Swiper
-          slidesPerView={'auto'}
-          spaceBetween={8}
-          pagination={{
-            clickable: true
-          }}
-          modules={[Pagination]}
-          className='mySwiper'
-        >
-          {data.map((image, i) => (
-            <SwiperSlide className='swiper-uploaded-image' key={i}>
-              <div className='carousel-image'>
-                <img src={URL.createObjectURL(image)} alt='product-image' />
-              </div>
-            </SwiperSlide>
-          ))}
+      <div className='publication-swiper'>
+        <div className='swiper-container'>
+          <Swiper
+            slidesPerView='auto'
+            spaceBetween={8}
+            pagination={{
+              clickable: true
+            }}
+            modules={[Pagination]}
+            className='mySwiper'
+          >
+            {data.map((image, i) => (
+              <SwiperSlide className='swiper-uploaded-image' key={i}>
+                <div className='carousel-image'>
+                  <img src={URL.createObjectURL(image)} alt='product-image' />
+                </div>
+              </SwiperSlide>
+            ))}
 
-        </Swiper>
+          </Swiper>
+        </div>
       </div>
 
     </>
