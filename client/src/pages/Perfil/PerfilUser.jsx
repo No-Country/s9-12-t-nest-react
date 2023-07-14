@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getBarrio } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
 import Estrellas from './Estrellas'
 import { Link } from 'react-router-dom'
+import RenderCarrusel from './RenderCarrusel'
 // import RenderCarrusel from './RenderCarrusel'
 
 const PerfilUser = () => {
   const ubication = useSelector(state => state?.location)
   const barrio = useSelector(state => state?.barrio?.barrio)
-
   const [calculaRep, setCalculaRep] = useState('')
   const dispatch = useDispatch()
   const lastUbication = useRef(null)
@@ -111,7 +111,7 @@ const PerfilUser = () => {
         </section>
       </div>
 
-      {/* <RenderCarrusel filtroPor={usuarioo.id} titulo={usuarioo.firstName} /> */}
+      <RenderCarrusel filtroPor={objeto.id} titulo={objeto.firstName} />
 
     </div>
   )
