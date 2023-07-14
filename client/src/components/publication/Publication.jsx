@@ -5,16 +5,15 @@ import Input from './Input'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCategories, getCategoriesById } from '../../features/categoriesSlice/categorySlice'
-import { createProduct } from '../../features/productsSlice/productSlice'
+import { createProduct, getProducts } from '../../features/productsSlice/productSlice'
 
 function Publication () {
   const [formData, setFormData] = useState({
     owner: '64aba27c2415d442b78559c1',
     name: '',
     category: '',
-    subcategories: [''],
+    subcategory: '',
     images: [],
-    price: 0,
     location: '',
     description: '',
     lon: '-58.44924',
@@ -36,13 +35,13 @@ function Publication () {
     }))
   }
 
-  const handleSubCategory = (e) => {
-    const value = e.target.value
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      subcategories: [value]
-    }))
-  }
+  // const handleSubCategory = (e) => {
+  //   const value = e.target.value
+  //   setFormData((prevFormData) => ({
+  //     ...prevFormData,
+  //     subcategories: [value]
+  //   }))
+  // }
 
   const hanldeFileChange = (e) => {
     const file = e.target.files
@@ -56,8 +55,8 @@ function Publication () {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // formData.name !== '' && formData.category !== '' && formData.subcategories !== '' && formData.images.length > 0 && formData.images.length <= 10 && formData.description !== '' ? console.log(formData) : console.log('Inputs vacios o excede las 10 imagenes')
-    dispatch(createProduct(formData))
+    formData.name !== '' && formData.category !== '' && formData.subcategories !== '' && formData.images.length > 0 && formData.images.length <= 10 && formData.description !== '' ? dispatch(createProduct(formData)) : console.log('Inputs vacios o excede las 10 imagenes')
+
     console.log(formData)
   }
 
@@ -88,7 +87,7 @@ function Publication () {
         </div>
 
         <div className='custom-container'>
-          <Input type='select' name='subcategories' ids='input-desc' onInputChange={handleSubCategory} categories={subCategory.subcategories}>Seleccioná la subcategoría que corresponde a tu artículo</Input>
+          <Input type='select' name='subcategory' ids='input-desc' onInputChange={handleInputChange} categories={subCategory.subcategories}>Seleccioná la subcategoría que corresponde a tu artículo</Input>
         </div>
 
         {/* Funcion de agregar fotos a la publicacion */}
