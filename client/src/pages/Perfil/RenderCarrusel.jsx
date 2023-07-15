@@ -12,8 +12,9 @@ const RenderCarrusel = ({ filtroPor, titulo }) => {
   useEffect(() => {
     dispatch(getProducts())
       .then((resp) => {
-        // const final = resp.find(producto => producto.id === usuarioo.id)
-        console.log(resp.payload.find(producto => producto.owner === filtroPor))
+        const final = resp.payload.find(producto => producto.owner === filtroPor)
+        console.log('traemos unsando get -> ', resp.payload)
+        console.log('traemos filtrado por usuario -> ', final)
       })
   }, [dispatch])
 
