@@ -38,7 +38,7 @@ function SearchBar ({ onSearch }) {
           placeholder='Buscar'
           inputProps={{ 'aria-label': 'Buscar' }}
           onChange={(event) => setSearchTerm(event.target.value)}
-          
+
         />
         <IconButton type='submit' className='lupita' aria-label='search'>
           <SearchIcon />
