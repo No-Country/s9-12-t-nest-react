@@ -21,7 +21,7 @@ const FormCargaProducts = () => {
       address: 'argentina, rio negro, ingeniero jcobacci'
     }]
   const categorias = useSelector((state) => state?.categories?.categories)
-  const subcategorias = useSelector((state) => state?.subcategories?.subcategories)
+  const subcategoriasList = useSelector((state) => state?.subcategories?.subcategories)
   const dispatch = useDispatch()
 
   const [name, setName] = useState('')
@@ -29,7 +29,7 @@ const FormCargaProducts = () => {
   const [images, setImages] = useState([])
   const [owner, setOwner] = React.useState('')
   const [category, setCategory] = useState('')
-  const [subcategories, setSubcategories] = useState([])
+  const [subcategories, setSubcategories] = useState('')
   const [errors, setErrors] = useState({})
 
   const handleChange = (e) => {
@@ -50,8 +50,7 @@ const FormCargaProducts = () => {
         break
       case 'subcategories':
         // setSubcategories(value)
-        setSubcategories(Array.from(e.target.selectedOptions, (option) => option.value))
-
+        setSubcategories(value)
         break
       default:
         break
@@ -77,7 +76,7 @@ const FormCargaProducts = () => {
     formData.append('description', description)
     formData.append('owner', owner)
     formData.append('category', category)
-    subcategories.forEach((subcategory) => formData.append('subcategories', subcategory))
+    formData.append('subcategory', subcategories)
     images.forEach((image) => formData.append('images', image))
     formData.append('lon', '-69.5439412')
     formData.append('lat', '-69.5439412')
@@ -119,7 +118,7 @@ const FormCargaProducts = () => {
     if (!category) {
       errors.category = 'El campo categoria es requerido'
     }
-    if (!subcategories.length === 0) {
+    if (!subcategories) {
       errors.subcategories = 'El campo subcategorias es requerido'
     }
 
@@ -147,7 +146,7 @@ const FormCargaProducts = () => {
     setName('')
     setDescription('')
     setCategory('')
-    setSubcategories([])
+    setSubcategories('')
     setImages([])
     setOwner('')
   }
@@ -248,16 +247,16 @@ const FormCargaProducts = () => {
             <Form.Group className='mb-3' controlId='formGroupimage'>
               <Form.Select
                 aria-label='select subcategory'
-                value={subcategories.length > 0 ? subcategories[0] : ''}
+                value={subcategories}
                 name='subcategories'
                 onChange={handleChange}
               >
                 <option>Seleccione subcategoria</option>
                 {
-            subcategorias
+            subcategoriasList
               .filter(subcategoria => subcategoria.category === category)
               .map((subcategoria) => (
-                <option value={subcategoria.id} key={subcategoria.id}>
+                <option value={subcategoria._id} key={subcategoria._id}>
                   {subcategoria.name}
                 </option>
               ))
