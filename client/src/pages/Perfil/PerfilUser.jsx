@@ -1,31 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './perfil.css'
 import { calcularReputacion } from './calculaReputacion'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBarrio } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
 import Estrellas from './Estrellas'
+import { Link } from 'react-router-dom'
+import RenderCarrusel from './RenderCarrusel'
+// import RenderCarrusel from './RenderCarrusel'
 
 const PerfilUser = () => {
-  const ubicacion = useSelector(state => state?.location)
+  const ubication = useSelector(state => state?.location)
   const barrio = useSelector(state => state?.barrio?.barrio)
-
   const [calculaRep, setCalculaRep] = useState('')
-
-  console.log('BARRIO ->', barrio)
   const dispatch = useDispatch()
+  const lastUbication = useRef(null)
+  console.log('Ubicacion Anterior -->', lastUbication)
 
-  useEffect(() => {
-    dispatch(getBarrio(ubicacion))
-      .then((resp) => {
-        // console.log(resp)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-      .finally(() => {
-        console.log('finally')
-      })
-  }, [dispatch])
+  const reputacionUSer = { intercambiosExitosos: 15, intercambiosFallidos: 2, totalPublicaciones: 32, valoracionesPositivas: 15, valoracionesNegativas: 2, devoluciones: 1 }
 
   const objeto = {
     _id: '64aba27c2415d442b78559c1',
@@ -37,16 +28,21 @@ const PerfilUser = () => {
     contact: '2944396887',
     address: 'argentina, rio negro, ingeniero jcobacci'
   }
-
-  const reputacionUSer = { intercambiosExitosos: 15, intercambiosFallidos: 2, totalPublicaciones: 32, valoracionesPositivas: 15, valoracionesNegativas: 2, devoluciones: 1 }
-
   useEffect(() => {
     setCalculaRep(calcularReputacion(reputacionUSer))
   }, [])
 
+  useEffect(() => {
+    if (ubication && ubication !== lastUbication.current) {
+      lastUbication.current = ubication
+      dispatch(getBarrio(ubication))
+    }
+  }, [ubication, dispatch])
+
   return (
-    <div className='container principalPerfil p-2 d-flex justify-content-center align-items-center overflow-hidden mt-2' style={{ minWidth: '350px', maxWidth: '600px', height: 'auto' }}>
-      <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ width: '100%', height: 'auto', border: 'none' }}>
+    <div className='container principalPerfil p-2 d-flex flex-column justify-content-center align-items-center overflow-hidden mt-3 gap-5' style={{ minWidth: '350px', height: 'auto' }}>
+
+      <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ minWidth: '350px', width: '450px', maxWidth: '600px', height: 'auto', border: 'none' }}>
         {/* head perfil */}
         <section className='imgName d-flex flex-row justify-content-center align-items-center align-content-center flex-nowrap gap-3 position-relative' style={{ width: '100%', height: '70px' }}>
           {/* img Perfil left */}
@@ -87,7 +83,7 @@ const PerfilUser = () => {
         <Estrellas number={calculaRep} />
 
         {/* Calificacion Usuario  */}
-        <section className='valoresRep mb-5' style={{ width: '100%', height: 'auto' }}>
+        <section className='valoresRep mb-2' style={{ width: '100%', height: 'auto' }}>
           <div className='cajaPAdre d-flex justify-content-center align-items-center rounded-1 p-2  rounded overflow-hidden text-center' style={{ background: 'var(--yellowContenedor)', boxShadow: '2px 2px 4px 0px rgba(222, 18, 82, 0.23)' }}>
 
             <div className='stats d-flex flex-column justify-content-start align-items-center align-content-start flex-nowrap gap-2' style={{ width: '33%', height: '90px' }}>
@@ -106,7 +102,17 @@ const PerfilUser = () => {
             </div>
           </div>
         </section>
+
+        {/* info perfil */}
+        <section>
+          <Link to='/perfil/crudUSer' className='fw-semibold pb-0 border-bottom border-danger' style={{ fontSize: '15.256px', color: 'var(--background-nav)', textDecoration: 'none', paddingBottom: '5px' }}>
+            Ver mas datos de este usuario
+          </Link>
+        </section>
       </div>
+
+      <RenderCarrusel filtroPor={objeto.id} titulo={objeto.firstName} />
+
     </div>
   )
 }

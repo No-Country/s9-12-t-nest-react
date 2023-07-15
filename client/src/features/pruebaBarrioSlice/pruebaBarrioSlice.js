@@ -21,7 +21,7 @@ export const getBarrio = createAsyncThunk(
 const barrioSlice = createSlice({
   name: 'barrio',
   initialState: {
-    barrio: '',
+    barrio: null,
     loading: false,
     error: null
   },

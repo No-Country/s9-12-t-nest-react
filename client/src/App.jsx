@@ -9,6 +9,7 @@ function App () {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    console.log('SE EJECUTA FUNC APP')
     navigator.geolocation.getCurrentPosition(
       function (position) {
         dispatch(

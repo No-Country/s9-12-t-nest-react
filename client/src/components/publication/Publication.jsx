@@ -109,7 +109,13 @@ function Publication () {
                 +Cargar fotos
               </label>
 
-              <input type='file' id='add-image-input' name='images' onChange={hanldeFileChange} />
+              <input
+                type='file'
+                id='add-image-input'
+                multiple
+                name='images'
+                onChange={hanldeFileChange}
+              />
             </div>
           </div>
 
