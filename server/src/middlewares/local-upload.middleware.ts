@@ -1,4 +1,4 @@
-import { Injectable, NestMiddleware } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import * as multer from 'multer';
 import { v4 as uuid } from 'uuid';
@@ -38,6 +38,7 @@ export class LocalUploadMiddleware implements NestMiddleware {
     this.upload(req, res, function (err) {
       if (err) {
         console.log(err);
+        throw new HttpException(err.message, HttpStatus.BAD_REQUEST);
       } else {
         next();
       }
