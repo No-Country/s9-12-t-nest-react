@@ -1,11 +1,12 @@
 import './styles/publication.css'
 import 'swiper/css'
-import PublicationCarousel from './PublicationCarousel'
 import Input from './Input'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCategories, getCategoriesById } from '../../features/categoriesSlice/categorySlice'
 import { createProduct, getProducts } from '../../features/productsSlice/productSlice'
+import Carousel from '../carousel/Carousel'
+import PBCarousel from './PBCarousel'
 
 function Publication () {
   const [formData, setFormData] = useState({
@@ -99,7 +100,8 @@ function Publication () {
             </div>
 
             <div className='carousel-div' style={{ height, opacity }}>
-              <PublicationCarousel data={files} />
+              <PBCarousel data={files} />
+
             </div>
 
             <div className='input-container'>
