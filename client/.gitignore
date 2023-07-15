@@ -9,10 +9,8 @@ lerna-debug.log*
 
 
 node_modules
-CargaDatos
 dist
 dist-ssr
-CargaDatos
 *.local
 
 # Editor directories and files
