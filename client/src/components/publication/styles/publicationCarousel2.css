@@ -1,0 +1,29 @@
+
+.carousel-div-ctnr {
+    width: calc(100vw - 32px);
+}
+
+.carousel-div-ctnr .swiper-slide img {
+    display: flex;
+    height: 140px;
+    width: 140px;
+    overflow: hidden;
+    align-items: center;
+  }
+
+.carousel-div-ctnr .swiper-wrapper{
+    padding: 0px;
+    width: 100vw;
+}
+
+.carousel-div-ctnr   .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 140px;
+    width: 140px;
+  }
+
+.carousel-div-ctnr .mySwiper{
+    width: 100%;
+}
