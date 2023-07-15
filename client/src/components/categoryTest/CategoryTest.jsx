@@ -10,20 +10,10 @@ const CategoryTest = () => {
 
   const dispatch = useDispatch()
 
-  const [isOpen, setIsOpen] = useState(false)
-  const [selectedOption, setSelectedOption] = useState('')
-  // const [categori, setCategori] = useState('')
+  const [categori, setCategori] = useState('')
 
-  // const handleChange = (event) => {
-  //   setCategori(event.target.value)
-  // }
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen)
-  }
-
-  const selectOption = (option) => {
-    setSelectedOption(option)
-    setIsOpen(false)
+  const handleChange = (event) => {
+    setCategori(event.target.value)
   }
 
   useEffect(() => {
@@ -37,30 +27,31 @@ const CategoryTest = () => {
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(fetchProductsByCategory(selectedOption))
-  }, [dispatch, selectedOption])
+    dispatch(fetchProductsByCategory(categori))
+  }, [categori])
 
   return (
     <section className='h-100 d-flex justify-content-center align-items-center' style={{ background: 'tomato' }}>
-      <div className='relative d-flex justify-content-center align-items-center flex-column contiene-categorias' style={{ width: '160px', height: '40px' }}>
+      <div className='contenedorPrincipal d-flex justify-content-center align-items-center flex-column contiene-categorias' style={{ width: '160px', height: '40px', position: 'relative' }}>
         {/* <h2>Categorias</h2> */}
-        <div className='custom-dropdown '>
-          <div className='dropdown-header' onClick={toggleDropdown}>
-            {selectedOption || 'Categorias'}
-          </div>
-          {isOpen && (
-            <div className='dropdown-options'>
-              {categories.map((obj) => (
-                <div
-                  key={uuidv4()}
-                  className={`option ${selectedOption === obj ? 'selected' : ''}`}
-                  onClick={() => selectOption(obj)}
-                >
-                  {obj}
-                </div>
-              ))}
-            </div>
-          )}
+        <Form.Select
+          className='formSelect rounded-0 fw-bold position-relative w-100 h-100 border-0 text-light'
+          style={{
+            fontSize: '16px',
+            background: 'var(--background-naClaro)'
+          }}
+          id='categorySelect'
+          value={categori}
+          onChange={handleChange}
+        >
+
+          <option value='' className='fw-bold'>Categorias</option>
+          {categories.map((obj) => (
+            <option key={uuidv4()} value={obj}>{obj}</option>
+          ))}
+        </Form.Select>
+        <div className='icono '>
+          <ion-icon name='chevron-down-sharp' />
         </div>
       </div>
     </section>

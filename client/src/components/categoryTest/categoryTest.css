@@ -1,0 +1,38 @@
+.formSelect {
+  border: none;
+  border-radius: 0 !important;
+}
+
+.formSelect option {
+  /* Estilos personalizados para las opciones */
+  font-weight: bold;
+}
+
+.icono {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  font-size: 18px;
+  color: aliceblue;
+  background: #007bff;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formSelect option:hover {
+  /* Estilos para la opción en estado de hover */
+  background-color: #ccc;
+  color: #fff;
+}
+
+.formSelect option:selected {
+  /* Estilos para la opción seleccionada */
+  background-color: #007bff;
+  color: #fff;
+  margin-top: 2px;
+}
