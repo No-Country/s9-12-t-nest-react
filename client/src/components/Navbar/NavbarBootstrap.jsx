@@ -8,7 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import './NavbarBootstrap.css'
 import SearchBar from '../Search/SearchBar'
-import CategoryTest from '../CategoryTest'
+import CategoryTest from '../categoryTest/CategoryTest'
 import { Link, NavLink } from 'react-router-dom'
 
 function NavBarBootstrap () {
@@ -55,7 +55,7 @@ function NavBarBootstrap () {
             <img src='/images/account_circle_filled_24px.png' alt='' className='imagen-perfil' />
             <Link to='/login' className='usuarios'>Usuarios</Link>
             {/* <NavLink to='/' className='item-navbar'><span >Inicio</span></NavLink> */}
-          </div>
+                            </div>
           </Link>
         </Navbar>
       ))}
