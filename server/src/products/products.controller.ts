@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  ValidationPipe,
+  UsePipes,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -35,6 +37,9 @@ export class ProductsController {
     description: 'Bad request in Product data.',
   })
   @Post()
+  @UsePipes(new ValidationPipe({
+    whitelist: true, forbidNonWhitelisted: true
+  }))
   create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }

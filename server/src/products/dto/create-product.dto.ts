@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Transform } from 'class-transformer';
-import { IsArray, IsInt } from 'class-validator';
+import { IsArray, IsNotEmpty } from 'class-validator';
 import { IsString, MinLength } from 'class-validator';
 
 export class CreateProductDto {
@@ -9,7 +8,12 @@ export class CreateProductDto {
     nullable: false,
     minLength: 1,
   })
-  @IsString()
+  @IsNotEmpty({
+    message: "Debe proporcionar un nombre de artículo"
+  })
+  @IsString({
+    message: "El nombre del artículo debe ser un string"
+  })
   @MinLength(1)
   name: string;
 
@@ -18,28 +22,42 @@ export class CreateProductDto {
     nullable: false,
     minLength: 1,
   })
-  @IsString()
   @MinLength(1)
+  @IsNotEmpty()
+  @IsString()
   description: string;
 
   @ApiProperty({
     description: 'Item images',
     nullable: false,
   })
-  @IsArray()
+  @IsNotEmpty({
+    message: "Debe proporcionar urls de imágenes"
+  })
+  @IsArray({
+    message: "Debe proporcionar un array de urls de imágenes"
+  })
   images: string[];
 
   @ApiProperty({
     description: 'Item owner',
     nullable: false,
   })
-  @IsString()
+  @MinLength(1)
+  @IsNotEmpty({
+    message: "Debe proporcionar un Owner ID"
+  })
+  @IsString({
+    message: "Owner ID debe ser un string"
+  })
   owner: string;
 
   @ApiProperty({
     description: 'Item category',
     nullable: false,
   })
+  @MinLength(1)
+  @IsNotEmpty()
   @IsString()
   category: string;
 
@@ -47,6 +65,8 @@ export class CreateProductDto {
     description: 'Item Subcategory',
     nullable: false,
   })
+  @MinLength(1)
+  @IsNotEmpty()
   @IsString()
   subcategory: string;
 
@@ -54,7 +74,8 @@ export class CreateProductDto {
     description: 'Item longitude',
     nullable: false,
   })
-  @IsArray()
+  @MinLength(1)
+  @IsNotEmpty()
   @IsString()
   lon: string;
 
@@ -62,7 +83,23 @@ export class CreateProductDto {
     description: 'Item latitude',
     nullable: false,
   })
-  @IsArray()
+  @MinLength(1)
+  @IsNotEmpty()
   @IsString()
   lat: string;
+
+  @ApiProperty({
+    description: 'Item location',
+    nullable: false,
+  })
+  @MinLength(5, {
+    message: "La dirección ('location') debe contener al menos 5 caracteres"
+  })
+  @IsNotEmpty({
+    message: "Debe proporcionar una direccion ('location')"
+  })
+  @IsString({
+    message: "Debe proporcionar una direccion ('location') en formato string"
+  })
+  location: string;
 }
