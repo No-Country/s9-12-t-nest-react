@@ -4,12 +4,11 @@ import Input from './Input'
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCategories, getCategoriesById } from '../../features/categoriesSlice/categorySlice'
-import { createProduct, getProducts } from '../../features/productsSlice/productSlice'
-import Carousel from '../carousel/Carousel'
+import { createProduct } from '../../features/productsSlice/productSlice'
 import PBCarousel from './PBCarousel'
 
 function Publication () {
-  const [formData, setFormData] = useState({
+  const [formState, setformState] = useState({
     owner: '64aba27c2415d442b78559c1',
     name: '',
     category: '',
@@ -23,42 +22,87 @@ function Publication () {
   const [files, setFiles] = useState([])
   const categories = useSelector((state) => state?.categories?.categories)
   const subCategory = useSelector((state) => state?.categories?.category)
-
   const dispatch = useDispatch()
+
   const height = files.length > 0 ? '142px' : '0'
   const opacity = files.length > 0 ? '1' : '0'
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setFormData((prevFormData) => ({
-      ...prevFormData,
+    setformState((prevformState) => ({
+      ...prevformState,
       [name]: value
     }))
   }
-
-  // const handleSubCategory = (e) => {
-  //   const value = e.target.value
-  //   setFormData((prevFormData) => ({
-  //     ...prevFormData,
-  //     subcategories: [value]
-  //   }))
-  // }
 
   const hanldeFileChange = (e) => {
     const file = e.target.files
     setFiles([...files, ...file])
     const filesArray = Array.from(file)
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      images: [...prevFormData.images, ...filesArray]
+    setformState((prevformState) => ({
+      ...prevformState,
+      images: [...prevformState.images, ...filesArray]
     }))
+  }
+
+  const resetValues = () => {
+    setformState({
+      owner: '64aba27c2415d442b78559c1',
+      name: '',
+      category: '',
+      subcategory: '',
+      images: [],
+      location: '',
+      description: '',
+      lon: '-58.44924',
+      lat: '-34.57365'
+    })
+
+    setFiles([])
+  }
+
+  const submitForm = (form) => {
+    dispatch(createProduct(form))
+      .then((res) => {
+        console.log('res ->', res)
+      })
+      .catch((err) => {
+        console.log('err ->', err)
+      })
+      .finally(() => {
+        console.log('--- finalizo ---')
+      })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    formData.name !== '' && formData.category !== '' && formData.subcategories !== '' && formData.images.length > 0 && formData.images.length <= 10 && formData.description !== '' ? dispatch(createProduct(formData)) : console.log('Inputs vacios o excede las 10 imagenes')
+    let formData = new FormData()
+    formData.append('owner', formState.owner)
+    formData.append('name', formState.name)
+    formData.append('category', formState.category)
+    formData.append('subcategory', formState.subcategory)
+    files.forEach((image) => formData.append('images', image))
+    formData.append('location', formState.location)
+    formData.append('description', formState.description)
+    formData.append('lon', formState.lon)
+    formData.append('lat', formState.lat)
 
-    console.log(formData)
+    let logged = false
+    formData.forEach((value, key) => {
+      // console.log('FORM DATA -->', key, value)
+      const allFields = { ...formState, images: [...formState.images] }
+      if (!logged) {
+        console.log(allFields)
+        logged = true
+      }
+    })
+
+    formState.name !== '' && formState.category !== '' && formState.subcategories !== '' && formState.images.length > 0 && formState.images.length <= 10 && formState.description !== '' ? submitForm(formData) : console.log('Inputs vacios o excede las 10 imagenes')
+
+    setTimeout(() => {
+      resetValues()
+      formData = new FormData()
+    }, 200)
   }
 
   useEffect(() => {
@@ -66,11 +110,11 @@ function Publication () {
   }, [dispatch])
 
   useEffect(() => {
-    const categoryId = categories.length > 0 ? categories.find((category) => category.name === formData.category)._id : ''
+    const categoryId = categories.length > 0 && formState.category !== '' ? categories.find((category) => category._id === formState.category)._id : ''
     setTimeout(() => {
       dispatch(getCategoriesById(categoryId))
     }, 10)
-  }, [formData.category])
+  }, [formState.category])
 
   return (
     <>
@@ -84,11 +128,11 @@ function Publication () {
         </div>
 
         <div className='custom-container'>
-          <Input type='select' name='category' onInputChange={handleInputChange} categories={categories}>Seleccioná la categoría que corresponde a tu artículo</Input>
+          <Input type='select' name='category' onInputChange={handleInputChange} categories={categories} opcion='categoría'>Seleccioná la categoría que corresponde a tu artículo</Input>
         </div>
 
         <div className='custom-container'>
-          <Input type='select' name='subcategory' ids='input-desc' onInputChange={handleInputChange} categories={subCategory.subcategories}>Seleccioná la subcategoría que corresponde a tu artículo</Input>
+          <Input type='select' name='subcategory' ids='input-desc' onInputChange={handleInputChange} categories={subCategory.subcategories} opcion='subcategoría'>Seleccioná la subcategoría que corresponde a tu artículo</Input>
         </div>
 
         {/* Funcion de agregar fotos a la publicacion */}
