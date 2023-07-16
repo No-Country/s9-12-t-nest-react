@@ -45,7 +45,7 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
 
               ? (
                 <section className='w-100 h-auto'>
-                  <h2 className='text-left' style={{ width: '100%' }}>
+                  <h2 className='text-left' style={{ width: '100%', fontSize: '20px', fontFamily: 'var(--titulo)', color: 'var(--textosColor)' }}>
                     Publicaciónes de {titulo}
                   </h2>
                   <Swiper
