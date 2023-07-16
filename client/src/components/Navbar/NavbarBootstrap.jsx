@@ -8,7 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import './NavbarBootstrap.css'
 import SearchBar from '../Search/SearchBar'
-import CategoryTest from '../CategoryTest'
+import CategoryTest from '../categoryTest/CategoryTest'
 import { Link, NavLink } from 'react-router-dom'
 
 function NavBarBootstrap () {

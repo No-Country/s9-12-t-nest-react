@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCategories, getCategoriesById } from '../../features/categoriesSlice/categorySlice'
 import { createProduct } from '../../features/productsSlice/productSlice'
 import PBCarousel from './PBCarousel'
+import { obtenerCoordenadas } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
 
 function Publication () {
   const [formState, setformState] = useState({
@@ -22,6 +23,8 @@ function Publication () {
   const [files, setFiles] = useState([])
   const categories = useSelector((state) => state?.categories?.categories)
   const subCategory = useSelector((state) => state?.categories?.category)
+  const barrio = useSelector((state) => state?.barrio?.cordenadas)
+
   const dispatch = useDispatch()
 
   const height = files.length > 0 ? '142px' : '0'
@@ -84,8 +87,8 @@ function Publication () {
     files.forEach((image) => formData.append('images', image))
     formData.append('location', formState.location)
     formData.append('description', formState.description)
-    formData.append('lon', formState.lon)
-    formData.append('lat', formState.lat)
+    formData.append('lon', barrio.longitude)
+    formData.append('lat', barrio.latitude)
 
     let logged = false
     formData.forEach((value, key) => {
@@ -115,6 +118,12 @@ function Publication () {
       dispatch(getCategoriesById(categoryId))
     }, 10)
   }, [formState.category])
+
+  useEffect(() => {
+    if (formState.location !== '') {
+      dispatch(obtenerCoordenadas(formState.location))
+    }
+  }, [dispatch, formState.location])
 
   return (
     <>
@@ -166,7 +175,7 @@ function Publication () {
         </div>
 
         <div className='custom-container'>
-          <Input ids='input-bot' placeh='Ej: Colegiales, CABA' type='text' name='location' onInputChange={handleInputChange}>
+          <Input ids='input-bot' placeh='Ej:Pais, Ciudad, Localidad' type='text' name='location' onInputChange={handleInputChange}>
             Indicá dónde se encuentra el artículo que querés publicar
           </Input>
         </div>
