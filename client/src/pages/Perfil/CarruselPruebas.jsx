@@ -14,6 +14,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
+import CardPrueba from './CardPrueba'
 
 const CarrouselPruebas = ({ filtroPor, titulo }) => {
   const loading = useSelector((state) => state?.productsDb?.loading)
@@ -37,7 +38,7 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
       {
       loading
         ? (
-          <div className='d-flex justify-content-center align-items-center' style={{ width: '100%', height: '306px' }}>
+          <div className='d-flex justify-content-center align-items-center' style={{ width: '100%', height: '350px' }}>
             <Loading />
           </div>
           )
@@ -46,8 +47,8 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
 
               ? (
                 <>
-                  <h2 className='text-left' style={{ width: '100%', background: 'tomato' }}>
-                    {titulo}
+                  <h2 className='text-left' style={{ width: '100%' }}>
+                    Publicaciónes de {titulo}
                   </h2>
                   <Swiper
                      // install Swiper modules
@@ -57,18 +58,16 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                     navigation
                     pagination={{ clickable: true }}
                     scrollbar={{ draggable: true }}
-                    autoplay={{ delay: 3000 }}
+                    autoplay={{ delay: 5000 }}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log('slide change')}
-                    style={{ width: '100%', height: '306px', margin: '0 auto' }}
+                    style={{ width: '100%', height: '400px', margin: '0 auto' }}
                   >
                     {
                       userProducts.map((producto, index) => {
                         return (
                           <SwiperSlide key={index}>
-                            <img src={producto.images[0]} alt={producto.name} />
-                            <p>{producto.name}</p>
-                            <p>{producto.description}</p>
+                            <CardPrueba element={producto} />
                           </SwiperSlide>
                         )
                       })
