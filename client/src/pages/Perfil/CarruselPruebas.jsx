@@ -1,7 +1,5 @@
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules'
-
 import { Swiper, SwiperSlide } from 'swiper/react'
-
 // Import Swiper styles
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -14,7 +12,6 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
-
 import './carruselPerfil.css'
 
 const CarrouselPruebas = ({ filtroPor, titulo }) => {
@@ -56,7 +53,6 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                     modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                     // modules={[Navigation, Pagination, Scrollbar, A11y]}
                     spaceBetween={50}
-                    // slidesPerView={3}
                     navigation={{
                       nextEl: '.swiper-button-next',
                       prevEl: '.swiper-button-prev'
@@ -66,7 +62,7 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                     autoplay={{ delay: 5000 }}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log('slide change')}
-                    style={{ width: '100%', height: '400px', margin: '0 auto' }}
+                    style={{ width: '100%', height: '400px', margin: '0 auto', padding: '0 5px' }}
                     slidesPerView={1} // Valor por defecto para pantallas pequeñas
                     breakpoints={{
                       768: {
@@ -89,9 +85,12 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                         )
                       })
                     }
-
-                    <div className='swiper-button-next' />
-                    <div className='swiper-button-prev' />
+                    <div className='swiper-button-next'>
+                      <ion-icon style={{ color: 'var(--background-naClaro)' }} name='chevron-forward-sharp' />
+                    </div>
+                    <div className='swiper-button-prev'>
+                      <ion-icon name='chevron-back-sharp' />
+                    </div>
                   </Swiper>
                 </section>
                 )

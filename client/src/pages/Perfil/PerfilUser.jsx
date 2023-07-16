@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import './perfil.css'
 import { calcularReputacion } from './calculaReputacion'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBarrio } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'

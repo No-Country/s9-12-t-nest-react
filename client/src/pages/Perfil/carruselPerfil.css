@@ -1,5 +1,5 @@
 .swipperSlider {
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -9,12 +9,14 @@
 .swiper-button-next,
 .swiper-button-prev {
   position: absolute;
-  top: 55%;
+  top: 55% !important;
   transform: translateY(-50%);
-  width: 28px;
-  height: 28px;
+  width: 30px !important;
+  height: 30px !important;
   border: solid 2px var(--background-naClaro);
-  background-color: var(--background-naClaro);
+  background-color: #fff;
+  font-size: 1rem;
+  color: var(--background-naClaro);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -23,19 +25,7 @@
   z-index: 10;
 }
 
-.swiper-button-next::after,
-.swiper-button-prev::after {
-  content: '';
-  width: 10px;
-  height: 10px;
-  border-top: 2px solid #ffff;
-  border-right: 2px solid #ffff;
-}
-
+.swiper-button-prev:after,
 .swiper-button-next::after {
-  transform: rotate(45deg);
-}
-
-.swiper-button-prev::after {
-  transform: rotate(224deg);
+  display: none;
 }
