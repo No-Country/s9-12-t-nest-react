@@ -32,7 +32,7 @@ const CategoryTest = () => {
 
   return (
     <section className='h-100 d-flex justify-content-center align-items-center' style={{ background: 'tomato' }}>
-      <div className='contenedorPrincipal d-flex justify-content-center align-items-center flex-column contiene-categorias' style={{ width: '160px', height: '40px', position: 'relative' }}>
+      <div className='contenedorPrincipal d-flex justify-content-center align-items-center flex-column contiene-categorias' style={{ width: '120px', height: '40px', position: 'relative' }}>
         {/* <h2>Categorias</h2> */}
         <Form.Select
           className='formSelect rounded-0 fw-bold position-relative w-100 h-100 border-0 text-light'
@@ -50,7 +50,7 @@ const CategoryTest = () => {
             <option key={uuidv4()} value={obj}>{obj}</option>
           ))}
         </Form.Select>
-        <div className='icono '>
+        <div className='iconoCategory '>
           <ion-icon name='chevron-down-sharp' />
         </div>
       </div>
