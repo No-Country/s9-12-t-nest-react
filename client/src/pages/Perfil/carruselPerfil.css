@@ -29,3 +29,13 @@
 .swiper-button-next::after {
   display: none;
 }
+
+.mySwipper .swiper-pagination-bullet {
+  background-color: var(--background-naClaro);
+  /* Cambia el color de fondo de los puntos de paginación */
+}
+
+.mySwipper .swiper-pagination-bullet-active {
+  background-color: var(--background-naClaro);
+  /* Cambia el color de fondo del punto activo de paginación */
+}

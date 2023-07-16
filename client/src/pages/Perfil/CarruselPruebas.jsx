@@ -49,7 +49,7 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                     Publicaciónes de {titulo}
                   </h2>
                   <Swiper
-                     // install Swiper modules
+                    className='mySwipper'
                     modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                     // modules={[Navigation, Pagination, Scrollbar, A11y]}
                     spaceBetween={50}
@@ -58,8 +58,8 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                       prevEl: '.swiper-button-prev'
                     }}
                     pagination={{ clickable: true }}
-                    scrollbar={{ draggable: true }}
-                    autoplay={{ delay: 5000 }}
+                    // scrollbar={{ draggable: true }}
+                    autoplay={{ delay: 8000 }}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log('slide change')}
                     style={{ width: '100%', height: '400px', margin: '0 auto', padding: '0 5px' }}
