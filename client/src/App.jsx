@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setLocation } from './/features/location/location'
-import NavBarBootstrap from './components/Navbar/NavbarBootstrap'
 import AppRouter from './routes/AppRouter'
 import './index.css'
 

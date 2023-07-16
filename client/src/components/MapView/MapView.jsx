@@ -1,29 +1,55 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
-import './MapView.css'
+import { GoogleMap, Marker, Circle, InfoWindow } from '@react-google-maps/api'
 
-function MapView() {
+function MapView () {
   const location = useSelector(state => state.location)
-  console.log(location)
-  const [state, setState] = useState({
-    currentLocation: { lat: location.latitude, lng: location.longitude }
-  })
+
+  const mapContainerStyle = {
+    width: '100%',
+    height: '400px'
+  }
+
+  const center = {
+    lat: location.latitude,
+    lng: location.longitude
+  }
+
+  const [showInfoWindow, setShowInfoWindow] = React.useState(false)
 
   return (
+    <GoogleMap
+      mapContainerStyle={mapContainerStyle}
+      center={center}
+      zoom={13}
+    >
+      <Marker
+        position={center}
+        onClick={() => setShowInfoWindow(true)}
+      />
 
-
-    
-      <MapContainer center={state.currentLocation} zoom={13} className='mapa'>
-        <TileLayer
-          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-        <Marker position={{ lat: 51.5381321, lng: -0.2252213 }} />
-      </MapContainer>
-    
-
+      <Circle
+        center={center}
+        radius={1000}
+        options={{
+          fillColor: 'blue',
+          fillOpacity: 0.2,
+          strokeColor: 'blue',
+          strokeOpacity: 0.8,
+          strokeWeight: 2
+        }}
+      />
+      {showInfoWindow && (
+        <InfoWindow
+          position={center}
+          onCloseClick={() => setShowInfoWindow(false)}
+        >
+          <div>
+            <p>Tu ubicación actual</p>
+          </div>
+        </InfoWindow>
+      )}
+    </GoogleMap>
   )
 }
 
