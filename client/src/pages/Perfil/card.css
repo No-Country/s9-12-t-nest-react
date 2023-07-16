@@ -63,6 +63,10 @@
   overflow: hidden;
 }
 
+.cardCustomer:hover .customContent {
+  transform: rotateY(180deg);
+}
+
 .back-content .imgCardPrefil {
   width: 100%;
   height: 60%;
@@ -116,9 +120,7 @@
   object-fit: contain;
 }
 
-.card:hover .content {
-  transform: rotateY(180deg);
-}
+
 
 @keyframes rotation_481 {
   0% {

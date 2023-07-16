@@ -1,5 +1,3 @@
-// import Swiper core and required modules
-// import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -9,12 +7,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { addUserProducts, getProducts } from '../../features/productsSlice/productSlice'
 import Loading from '../../components/Loading'
+import CardPrueba from './CardPrueba'
+
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
-import CardPrueba from './CardPrueba'
+
+import './carruselPerfil.css'
 
 const CarrouselPruebas = ({ filtroPor, titulo }) => {
   const loading = useSelector((state) => state?.productsDb?.loading)
@@ -46,35 +47,53 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
             userProducts.length > 0
 
               ? (
-                <>
+                <section className='w-100 h-auto'>
                   <h2 className='text-left' style={{ width: '100%' }}>
                     Publicaciónes de {titulo}
                   </h2>
                   <Swiper
                      // install Swiper modules
                     modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                    // modules={[Navigation, Pagination, Scrollbar, A11y]}
                     spaceBetween={50}
-                    slidesPerView={3}
-                    navigation
+                    // slidesPerView={3}
+                    navigation={{
+                      nextEl: '.swiper-button-next',
+                      prevEl: '.swiper-button-prev'
+                    }}
                     pagination={{ clickable: true }}
                     scrollbar={{ draggable: true }}
                     autoplay={{ delay: 5000 }}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log('slide change')}
                     style={{ width: '100%', height: '400px', margin: '0 auto' }}
+                    slidesPerView={1} // Valor por defecto para pantallas pequeñas
+                    breakpoints={{
+                      768: {
+                        slidesPerView: 2 // Mostrar 2 tarjetas en pantallas con un ancho mínimo de 768px (tabletas)
+                      },
+                      992: {
+                        slidesPerView: 3 // Mostrar 3 tarjetas en pantallas con un ancho mínimo de 992px (pantallas grandes)
+                      },
+                      1200: {
+                        slidesPerView: 4 // Mostrar 4 tarjetas en pantallas con un ancho mínimo de 1200px (pantallas más grandes)
+                      }
+                    }}
                   >
                     {
                       userProducts.map((producto, index) => {
                         return (
-                          <SwiperSlide key={index}>
+                          <SwiperSlide key={index} className='swipperSlider'>
                             <CardPrueba element={producto} />
                           </SwiperSlide>
                         )
                       })
                     }
-                    ...
+
+                    <div className='swiper-button-next' />
+                    <div className='swiper-button-prev' />
                   </Swiper>
-                </>
+                </section>
                 )
               : (
                 <p>No se encontraron productos del usuario.</p>
