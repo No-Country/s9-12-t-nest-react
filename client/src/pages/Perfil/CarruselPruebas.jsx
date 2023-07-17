@@ -2,8 +2,7 @@ import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/module
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
 import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { addUserProducts, deleteProductById, getProducts } from '../../features/productsSlice/productSlice'
+import { deleteProductById } from '../../features/productsSlice/productSlice'
 import Loading from '../../components/Loading'
 import CardPrueba from './CardPrueba'
 
