@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-import './perfil.css'
 import { calcularReputacion } from './calculaReputacion'
 import { useDispatch, useSelector } from 'react-redux'
 import { getBarrio } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
 import Estrellas from './Estrellas'
 import { Link } from 'react-router-dom'
-import RenderCarrusel from './RenderCarrusel'
+import CarrouselPruebas from './CarruselPruebas'
 // import RenderCarrusel from './RenderCarrusel'
 
 const PerfilUser = () => {
@@ -111,7 +110,7 @@ const PerfilUser = () => {
         </section>
       </div>
 
-      <RenderCarrusel filtroPor={objeto.id} titulo={objeto.firstName} />
+      <CarrouselPruebas filtroPor={objeto._id} titulo={objeto.firstName} />
 
     </div>
   )

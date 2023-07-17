@@ -194,11 +194,16 @@ const productSlice = createSlice({
     productsByCategory: [],
     productsBySubcategory: [],
     productsByKeyword: [],
+    userProducts: [],
     status: '',
     loading: false,
     error: null
   },
   reducers: {
+    addUserProducts: (state, action) => {
+      state.userProducts = []
+      state.userProducts = action.payload
+    },
     addToproductsByKeyword: (state, action) => {
       state.productsByKeyword = []
       state.productsByKeyword = action.payload
@@ -367,7 +372,7 @@ const productSlice = createSlice({
   }
 })
 
-export const { addToproductsByKeyword, clearProductById, clearProductsByCategory, clearProductsBySubcategory, clearProductByKeyword, clearAllFilters } = productSlice.actions
+export const { addUserProducts, addToproductsByKeyword, clearProductById, clearProductsByCategory, clearProductsBySubcategory, clearProductByKeyword, clearAllFilters } = productSlice.actions
 export const selectProducts = (state) => state.product.products
 export default productSlice.reducer
 
