@@ -1,9 +1,10 @@
 .swipperSlider {
   display: flex !important;
   justify-content: center;
-  align-items: center;
-  align-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
   position: relative;
+  padding-top: 15px;
 }
 
 .swiper-button-next,
