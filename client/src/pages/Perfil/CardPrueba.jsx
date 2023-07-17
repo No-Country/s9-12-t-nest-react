@@ -1,6 +1,8 @@
 import React from 'react'
 import './card.css'
 import { Link } from 'react-router-dom'
+import BotoneraCard from './BotoneraCard'
+import BotoneraDelete from './BotoneraDelete/BotoneraDelete'
 
 const CardPrueba = ({ element, funcDeletes }) => {
   return (
@@ -31,10 +33,10 @@ const CardPrueba = ({ element, funcDeletes }) => {
 
             <div className='front-content'>
               <small className='badge'>{element._id}</small>
-              <section className='crudCard'>
-                <button className='modifyCard'><ion-icon name='create' /></button>
-                <button className='deleteCard' onClick={(e) => funcDeletes(e, element._id)}><ion-icon name='trash' /></button>
-              </section>
+              {/* heart */}
+              <BotoneraCard element={element._id} />
+
+              <BotoneraDelete id={element._id} func={funcDeletes} />
               <div className='description'>
                 <div className='title'>
                   <p>
