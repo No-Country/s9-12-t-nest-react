@@ -1,5 +1,6 @@
 import React from 'react'
 import './card.css'
+import { Link } from 'react-router-dom'
 
 const CardPrueba = ({ element }) => {
   return (
@@ -30,16 +31,25 @@ const CardPrueba = ({ element }) => {
 
             <div className='front-content'>
               <small className='badge'>{element._id}</small>
+              <section className='crudCard'>
+                <button><ion-icon name='create' /></button>
+                <button><ion-icon name='trash' /></button>
+              </section>
               <div className='description'>
                 <div className='title'>
-                  <p className='title'>
+                  <p>
                     <strong>{element.description}</strong>
                   </p>
                   <ion-icon name='flame' />
                 </div>
-                <p className='card-footer'>
-                  {element.category} &nbsp; &nbsp; {element.subcategory}
-                </p>
+                <div className='card-footer'>
+                  <Link to={`/product/${element._id}`} className='category'>
+                    {element.category}
+                  </Link>
+                  <Link to={`/product/${element._id}`} className='category'>
+                    {element.subcategory}
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
