@@ -7,7 +7,7 @@
 
 .home-container{
     width: 100vw;
-    padding: 64px
+    padding: 64px;
 }
 
 .products-container{
@@ -70,4 +70,15 @@
 
 .swiper-wrapper{
     padding-left: 2px;
+}
+
+@media (max-width: 795px){
+    .home-container{
+        padding: 16px
+    }
+
+    .p-carousel-container{
+        margin-bottom: 35px;
+        gap: 8px;
+    }
 }

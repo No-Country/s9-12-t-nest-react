@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import '../components/CardProduct.css'
 import LocationSVG from './LocationSVG'
+import LocationSVGMobile from './LocationSVGMobile'
 
 export default function card (products) {
   return (
@@ -14,7 +15,13 @@ export default function card (products) {
             <div className='card-grid'>
               <p className='text-card'>{product.title}</p>
               <div className='location-container'>
-                <LocationSVG />
+                <div id='desktop-svg'>
+                  <LocationSVG />
+                </div>
+                <div id='mobile-svg'>
+                  <LocationSVGMobile />
+                </div>
+
                 <p className='ubi-text'>Ubicación</p>
               </div>
 

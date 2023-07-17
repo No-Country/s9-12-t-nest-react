@@ -8,6 +8,7 @@ import MapView from '../components/MapView/MapView'
 import './Detalle.css'
 import Button from 'react-bootstrap/esm/Button'
 import Carousel from '../components/carousel/Carousel'
+import LocationName from '../components/LocationName/LocationName'
 
 export default function Detail () {
   const product = useSelector((state) => state?.products?.productById)
@@ -72,7 +73,7 @@ export default function Detail () {
       <h4 className='ubicacion'>Ubicacion</h4>
 
       <div className='mapa'><MapView /></div>
-
+      <LocationName />
       <div className='boton'>
         <button className='ofertar'>Ofertar</button>
 

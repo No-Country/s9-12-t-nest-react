@@ -19,6 +19,7 @@ function SearchBar ({ onSearch }) {
     const filteredData = products.filter((item) =>
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     )
+    console.log(filteredData)
     dispatch({ type: 'products/addToSearchResults', payload: filteredData })
 
     if (filteredData.length === 0 || searchTerm === '') {

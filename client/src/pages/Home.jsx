@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import CardProduct from '../components/CardProduct'
 import Loading from '../components/Loading'
 import { getProducts } from '../features/products/fetchProducts'
@@ -12,15 +12,46 @@ function Home () {
   const loading = useSelector((state) => state?.products?.loading)
   const results = useSelector((state) => state?.products?.searchResults)
   const latest = [...products].sort((a, b) => b.id - a.id).slice(0, 12)
-
+  const location = useSelector((state) => state?.location)
   const dispatch = useDispatch()
-  // const justifyContent = results.length < 5 ? 'flex-start' : 'center'
+  const [nearbyProducts, setNearbyProducts] = useState([])
+  const [distanceFilter, setDistanceFilter] = useState(10)
+
+  const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    const R = 6371
+    const dLat = (lat2 - lat1) * (Math.PI / 180)
+    const dLon = (lon2 - lon1) * (Math.PI / 180)
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos((lat1 * Math.PI) / 180) *
+        Math.cos((lat2 * Math.PI) / 180) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2)
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+    const distance = R * c
+    return distance
+  }
+
   const gridTemplateColumns = results.length < 6 ? 'repeat(auto-fit, minmax(170px, 200px))' : 'repeat(auto-fit, minmax(190px, 0.4fr))'
-  // console.log(justifyContent)
 
   useEffect(() => {
     dispatch(getProducts())
   }, [dispatch])
+
+  useEffect(() => {
+    if (location.latitude && location.longitude) {
+      const nearbyProducts = products.filter((product) => {
+        const distance = calculateDistance(
+          location.latitude,
+          location.longitude,
+          product.latitude,
+          product.longitude
+        )
+        return distance <= distanceFilter // cambiar luego con filtro por distancia
+      })
+      setNearbyProducts(nearbyProducts)
+    }
+  }, [location, products])
 
   return (
     <>
@@ -75,7 +106,6 @@ function Home () {
 
                     </div>
                   </div>
-
                 </>)
               : (results !== 'none'
                   ? (
