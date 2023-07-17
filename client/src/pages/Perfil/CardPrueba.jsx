@@ -34,6 +34,7 @@ const CardPrueba = ({ element, funcDeletes }) => {
               <section className='crudCard'>
                 <button className='modifyCard'><ion-icon name='create' /></button>
                 <button className='deleteCard' onClick={(e) => funcDeletes(e, element._id)}><ion-icon name='trash' /></button>
+
               </section>
               <div className='description'>
                 <div className='title'>

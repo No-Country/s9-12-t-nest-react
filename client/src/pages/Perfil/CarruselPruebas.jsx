@@ -16,33 +16,32 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import './carruselPerfil.css'
+import ProductFetcher from './ProductFetcher'
 
 const CarrouselPruebas = ({ filtroPor, titulo }) => {
   const loading = useSelector((state) => state?.productsDb?.loading)
   const userProducts = useSelector((state) => state?.productsDb?.userProducts)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getProducts())
-      .then((resp) => {
-        const final = resp.payload.filter(producto => producto.owner === filtroPor)
-        // console.log('traemos unsando get -> ', resp.payload)
-        // console.log('traemos filtrado por usuario -> ', final)
-        dispatch(addUserProducts(final))
-      })
-  }, [dispatch, filtroPor])
-
   console.log('lista de productos desde swipper', userProducts)
 
   const deleteCard = (e, id) => {
     e.preventDefault()
+    console.log('delete', id)
 
     dispatch(deleteProductById(id))
       .then((resp) => {
-        console.log('respuesta de delete -> ', resp)
+        if (resp.payload.status === 403) {
+          toast.warning(resp.payload.message)
+        } else {
+          setTimeout(() => {
+            toast.success('Producto eliminado correctamente')
+          }, 0)
+        }
       })
       .catch((err) => {
         console.log(err)
+        toast.error(err.message)
       })
       .finally(() => {
         console.log('fin')
@@ -51,6 +50,7 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
 
   return (
     <>
+      <ProductFetcher filtroPor={filtroPor} />
       {
       loading
         ? (
@@ -117,7 +117,19 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                 )
           )
     }
-
+      {/* <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
+      <ToastContainer /> */}
     </>
   )
 }
