@@ -117,7 +117,7 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                 )
           )
     }
-      {/* <ToastContainer
+      <ToastContainer
         position='top-right'
         autoClose={5000}
         hideProgressBar={false}
@@ -129,7 +129,7 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
         pauseOnHover
         theme='light'
       />
-      <ToastContainer /> */}
+      <ToastContainer />
     </>
   )
 }
