@@ -72,7 +72,7 @@
     padding-left: 2px;
 }
 
-@media (max-width: 795px){
+@media (max-width: 720px){
     .home-container{
         padding: 16px
     }
@@ -80,5 +80,18 @@
     .p-carousel-container{
         margin-bottom: 35px;
         gap: 8px;
+    }
+}
+
+@media (max-width: 433px){
+    .products-container{
+        /* display: grid; */
+        /* justify-content: center; */
+        /* gap: 30px; */
+        grid-template-columns: repeat(auto-fit, minmax(160px, 0.6fr)) !important
+        /* grid-gap: 30px 0;
+        justify-content: flex-start;
+        justify-items: center;
+        align-items: center;   */
     }
 }
