@@ -112,7 +112,7 @@ function Home () {
                     <>
                       <div className='home-container'>
                         <div className='products-container' style={{ gridTemplateColumns }}>
-                          <CardProduct className='products-list' props={nearbyProducts} />
+                          <CardProduct className='products-list' props={results} />
                         </div>
                       </div>
 
