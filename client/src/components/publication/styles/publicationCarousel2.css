@@ -1,19 +1,21 @@
 
 .carousel-div-ctnr {
     width: calc(100vw - 32px);
+    max-width: 600px;
 }
 
 .carousel-div-ctnr .swiper-slide img {
     display: flex;
     height: 140px;
     width: 140px;
+    object-fit: contain;
+    
     overflow: hidden;
     align-items: center;
   }
 
 .carousel-div-ctnr .swiper-wrapper{
     padding: 0px;
-    width: 100vw;
 }
 
 .carousel-div-ctnr   .swiper-slide {
@@ -25,5 +27,12 @@
   }
 
 .carousel-div-ctnr .mySwiper{
-    width: 100%;
+    /* width: 100%; */
+}
+
+@media (max-width: 765px){
+  .carousel-div-ctnr {
+    width: calc(100vw - 32px);
+    max-width: 395px;
+}
 }
