@@ -3,9 +3,12 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { addUserProducts, getProducts } from '../../features/productsSlice/productSlice'
+import { addUserProducts, deleteProductById, getProducts } from '../../features/productsSlice/productSlice'
 import Loading from '../../components/Loading'
 import CardPrueba from './CardPrueba'
+
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -30,6 +33,21 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
   }, [dispatch, filtroPor])
 
   console.log('lista de productos desde swipper', userProducts)
+
+  const deleteCard = (e, id) => {
+    e.preventDefault()
+
+    dispatch(deleteProductById(id))
+      .then((resp) => {
+        console.log('respuesta de delete -> ', resp)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      .finally(() => {
+        console.log('fin')
+      })
+  }
 
   return (
     <>
@@ -80,7 +98,7 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                       userProducts.map((producto, index) => {
                         return (
                           <SwiperSlide key={index} className='swipperSlider'>
-                            <CardPrueba element={producto} />
+                            <CardPrueba element={producto} funcDeletes={deleteCard} />
                           </SwiperSlide>
                         )
                       })
