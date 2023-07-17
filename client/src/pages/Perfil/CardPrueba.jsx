@@ -29,16 +29,16 @@ const CardPrueba = ({ element }) => {
             </div>
 
             <div className='front-content'>
-              <small className='badge'>Pasta</small>
+              <small className='badge'>{element._id}</small>
               <div className='description'>
                 <div className='title'>
                   <p className='title'>
-                    <strong>Spaguetti Bolognese</strong>
+                    <strong>{element.description}</strong>
                   </p>
                   <ion-icon name='flame' />
                 </div>
                 <p className='card-footer'>
-                  30 Mins &nbsp; | &nbsp; 1 Serving
+                  {element.category} &nbsp; &nbsp; {element.subcategory}
                 </p>
               </div>
             </div>
