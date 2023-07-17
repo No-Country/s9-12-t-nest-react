@@ -2,8 +2,9 @@
     border-radius: 8px;
     border: 2px solid #FF4679;
     z-index: 100;
-    /* max-width: 396px;
-    min-width: 300px; */
+    width: 100%;
+    min-width: 280px;
+    max-width: 600px;
 }
 
 #input-bot:focus{
@@ -29,6 +30,7 @@
     border: 2px solid #FF4679;
     height: 219px;
     min-width: 280px;
+    width: 100vw;
 }
 
 #input-desc:focus{
@@ -40,4 +42,14 @@
     padding: 20px 0 0 0;
     display: flex;
     justify-content: flex-start;
+}
+
+@media (max-width: 765px){
+    #input-bot{
+        width: 100%;
+    }
+
+    #input-desc{
+        width: 100%;
+    }
 }
