@@ -43,7 +43,7 @@ function NavBarBootstrap () {
                   <div className='form'>
                     <SearchBar />
                   </div>
-                  <Link to='/cargaProductos' className='publicar'>Publicar</Link>
+                  <Link to='/publicacion' className='publicar'>Publicar</Link>
                 </Offcanvas.Body>
               </Navbar.Offcanvas>
             </Container>
