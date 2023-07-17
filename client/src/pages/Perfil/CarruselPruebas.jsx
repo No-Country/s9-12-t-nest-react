@@ -62,7 +62,7 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                     autoplay={{ delay: 8000 }}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log('slide change')}
-                    style={{ width: '100%', height: '400px', margin: '0 auto', padding: '0 5px' }}
+                    style={{ width: '100%', height: '370px', margin: '0 auto', padding: '0 5px' }}
                     slidesPerView={1} // Valor por defecto para pantallas pequeñas
                     breakpoints={{
                       768: {
