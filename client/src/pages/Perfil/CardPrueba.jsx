@@ -19,7 +19,7 @@ const CardPrueba = ({ element, funcDeletes }) => {
   return (
     <>
       <div className='cardCustomer' onMouseEnter={handleMoueEnter} onMouseLeave={handleMoueLeave}>
-        <div className={`customContent ${ishover ? '' : 'hovered'}`}>
+        <div className={`customContent activada ${ishover ? '' : 'hovered'}`}>
           <div className='back'>
             <div className='back-content'>
               <section className='imgCardPrefil'>
@@ -34,7 +34,7 @@ const CardPrueba = ({ element, funcDeletes }) => {
               </section>
             </div>
           </div>
-          <BotoneraCard element={element} />
+          <BotoneraCard element={element} claseCustom={ishover ? 'visible' : 'invisible'} />
         </div>
       </div>
     </>

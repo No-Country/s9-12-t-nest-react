@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import './heart.css'
 
-const BotoneraCard = ({ element }) => {
+const BotoneraCard = ({ element, claseCustom }) => {
   const [activaHeart, setActivaHeart] = useState(false)
-  // const [activaCart, setActivaCart] = useState('')
+  const [addProductLike, setAddProductLike] = useState(false)
   // const [valorHeart, setValorHeart] = useState('')
-  const [valorActiveCart, setValorActivoCart] = useState('')
+
+  const onAddMeGusta = () => {
+    setActivaHeart(!activaHeart)
+
+    console.log('añadido')
+  }
 
   useEffect(() => {
     if (activaHeart === true) {
       setTimeout(() => {
-        setValorActivoCart('like')
+        setAddProductLike(true)
       }, 3000)
     } else {
-      setTimeout(() => {
-        setValorActivoCart('')
-      }, 3000)
+      setActivaHeart(false)
+      setAddProductLike(false)
     }
-  }, [])
-
-  const onAddMeGusta = () => {
-    console.log('añadido')
-  }
+  }, [activaHeart])
 
   return (
-    <section className='botoneraCard'>
+    <section className={`botoneraCard ${activaHeart ? 'visible' : claseCustom} `}>
       <div>
-        <a className={`heart ${valorActiveCart}`} onClick={onAddMeGusta}><ion-icon name='heart' /></a>
-        <a className='cart '><ion-icon name='settings' /></a>
+        <a className={`heart ${activaHeart ? 'like' : ''} ${addProductLike ? 'activo' : ''}`} onClick={onAddMeGusta}>
+          <ion-icon name='heart' style={{ color: activaHeart || addProductLike ? 'red' : 'black' }} />
+        </a>
       </div>
     </section>
   )

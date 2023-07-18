@@ -4,7 +4,7 @@
   top: 5px;
   right: 5px;
   width: 35px;
-  height: 74px;
+  height: 35px;
   transition: opacity 0.8s ease;
 }
 
@@ -13,8 +13,12 @@
   transition: opacity 0.8s ease;
 }
 
-.customContent.hovered .botoneraCard {
+.botoneraCard.invisible {
   opacity: 0;
+}
+
+.botoneraCard.visible {
+  opacity: 1;
 }
 
 .botoneraCard {
@@ -64,13 +68,17 @@
   color: red;
 }
 
-.botoneraCard div a.activado {
+.botoneraCard div .like {
   animation: beat 0.7s infinite alternate;
   transform-origin: center;
+  color: red;
 }
 
-.botoneraCard div a.like {
-  color: var(--colors-buton-heart);
+.botoneraCard div .activo {
+  background: #fff;
+  color: red;
+  animation: none;
+  transition: all .5s ease-in;
 }
 
 .botoneraCard div a.sinStock {

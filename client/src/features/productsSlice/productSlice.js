@@ -195,11 +195,16 @@ const productSlice = createSlice({
     productsBySubcategory: [],
     productsByKeyword: [],
     userProducts: [],
+    likeProducts: [],
     status: '',
     loading: false,
     error: null
   },
   reducers: {
+    addLikeProducts: (state, action) => {
+      state.likeProducts = []
+      state.likeProducts = action.payload
+    },
     addUserProducts: (state, action) => {
       state.userProducts = []
       state.userProducts = action.payload
