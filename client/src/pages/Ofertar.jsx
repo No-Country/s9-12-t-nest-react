@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductById, getProducts } from '../features/products/fetchProducts'
+import OfertarCards from './OfertarCards'
+import './Ofertar.css'
 
 const Ofertar = () => {
 
@@ -21,7 +23,7 @@ const Ofertar = () => {
         dispatch(fetchProductById(id))
     }, [dispatch])
 
-
+    console.log(globalProduct)
 
     return (
         <div>
@@ -29,9 +31,23 @@ const Ofertar = () => {
             <div className='imagen-descripcion'>
                 <div className='contenedor-imagen'>
                     <img src={product.image} alt='' className='imagen-producto' />
-
                 </div>
             </div>
+
+            {/* <div className='articulo-ofrecer'>
+                <h3>¿Qué artículo/s querés ofrecer por este?</h3>
+            </div> */}
+
+
+            <div className='acomodar'>
+                {globalProduct.map(prod => <div key={prod.id} >{<OfertarCards prod={prod} />}</div>)}
+            </div>
+            <div className='boton'>
+                <button className='ofertar' product={product}>Confirmar Oferta</button>
+
+
+            </div>
+
         </div>
     )
 }

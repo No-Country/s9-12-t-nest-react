@@ -35,7 +35,7 @@ const CategoryTest = () => {
       <div className='contenedorPrincipal d-flex justify-content-center align-items-center flex-column contiene-categorias' style={{ width: '120px', height: '40px', position: 'relative' }}>
         {/* <h2>Categorias</h2> */}
         <Form.Select
-          className='formSelect rounded-0 fw-bold position-relative w-100 h-100 border-0 text-light'
+          className='formSelect rounded-0 fw-bold position-relative w-110 h-100 border-0 text-ligh'
           style={{
             fontSize: '16px',
             background: 'var(--background-naClaro)'
@@ -45,14 +45,14 @@ const CategoryTest = () => {
           onChange={handleChange}
         >
 
-          <option value='' className='fw-bold'>Categorias</option>
+          <option value=''>Categorias</option>
           {categories.map((obj) => (
             <option key={uuidv4()} value={obj}>{obj}</option>
           ))}
         </Form.Select>
-        <div className='iconoCategory '>
+        {/* <div className='iconoCategory '>
           <ion-icon name='chevron-down-sharp' />
-        </div>
+        </div> */}
       </div>
     </section>
   )

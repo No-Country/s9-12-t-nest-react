@@ -24,7 +24,17 @@
     
 }
 
+.controlar-mapa{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    
+}
 
+.mapa{
+    width: 95vw;
+    
+}
 
 .descripcion{
     margin: 0px 20px;
@@ -72,6 +82,15 @@
     justify-content: center;
 }
 
+
+
+@media (min-width: 768px) {
+    .mapa{
+        width: 70vw;
+        
+    }
+}
+
 @media (min-width: 1024px) {
 
     .imagen-descripcion{
@@ -90,4 +109,10 @@
         justify-content: space-evenly;
     }
 
+}
+
+@media (min-width: 1024px) {
+    .mapa{
+        width: 40vw;
+    }
 }

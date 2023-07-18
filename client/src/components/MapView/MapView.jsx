@@ -7,7 +7,7 @@ function MapView () {
 
   const mapContainerStyle = {
     width: '100%',
-    height: '400px'
+    height: '300px'
   }
 
   const center = {

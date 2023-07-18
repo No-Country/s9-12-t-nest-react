@@ -13,7 +13,7 @@ import Estrellas from './Perfil/Estrellas'
 import PerfilUser from './Perfil/PerfilUser'
 import Ofertar from './Ofertar'
 
-export default function Detail () {
+export default function Detail() {
   const product = useSelector((state) => state?.products?.productById)
   const loading = useSelector((state) => state?.products?.loading)
   const globalProduct = useSelector((state) => state?.products?.products)
@@ -55,10 +55,10 @@ export default function Detail () {
         <div className='usuario-descripcion'>
 
           <h4 className='nombre-usuario'>Nombre del Usuario</h4>
-          
+
           <div className='estrellas'>
-            <Estrellas/>
-            
+            <Estrellas />
+
             {/* <img src='/images/star_rate.png' alt='' />
             <img src='/images/star_rate.png' alt='' />
             <img src='/images/star_rate.png' alt='' />
@@ -78,11 +78,14 @@ export default function Detail () {
 
       <h4 className='ubicacion'>Ubicacion</h4>
 
-      <div className='mapa'><MapView /></div>
+      <div className='controlar-mapa'>
+        <div className='mapa'><MapView /></div>
+
+      </div>
       <LocationName />
       <div className='boton'>
         <Link to={`/ofertar/${product.id}`}><button className='ofertar' product={product}>Ofertar</button></Link>
-      
+
 
       </div>
       <h6 className='ubicacion'>Otras publicaciones de este usuario.</h6>
