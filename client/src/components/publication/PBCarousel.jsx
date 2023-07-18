@@ -1,4 +1,3 @@
-import React, { useRef, useState } from 'react'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -10,7 +9,7 @@ import 'swiper/css/bundle'
 import './styles/publicationCarousel2.css'
 
 // import required modules
-import { Pagination } from 'swiper/modules'
+// import { Pagination } from 'swiper/modules'
 function PBCarousel ({ data }) {
   return (
     <>
@@ -21,7 +20,7 @@ function PBCarousel ({ data }) {
           pagination={{
             clickable: true
           }}
-          modules={Pagination}
+          // modules={Pagination}
           className='mySwiper'
         >
           {data.map((image, i) => (
