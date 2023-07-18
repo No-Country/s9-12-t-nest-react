@@ -23,38 +23,6 @@ const CardPrueba = ({ element, funcDeletes }) => {
               </section>
             </div>
           </div>
-
-          <div className='front'>
-            <div className='img'>
-              <div className='circle' />
-              <div className='circle' id='right' />
-              <div className='circle' id='bottom' />
-            </div>
-
-            <div className='front-content'>
-              <small className='badge'>{element._id}</small>
-              {/* heart */}
-              <BotoneraCard element={element._id} />
-
-              <BotoneraDelete id={element._id} func={funcDeletes} />
-              <div className='description'>
-                <div className='title'>
-                  <p>
-                    <strong>{element.description}</strong>
-                  </p>
-                  <ion-icon name='flame' />
-                </div>
-                <div className='card-footer'>
-                  <Link to={`/product/${element._id}`} className='category'>
-                    {element.category}
-                  </Link>
-                  <Link to={`/product/${element._id}`} className='category'>
-                    {element.subcategory}
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>
