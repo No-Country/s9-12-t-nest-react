@@ -12,16 +12,25 @@ import LocationName from '../components/LocationName/LocationName'
 import Estrellas from './Perfil/Estrellas'
 import PerfilUser from './Perfil/PerfilUser'
 import Ofertar from './Ofertar'
+/*prueba dispach*/
+import { getUserById } from '../features/authSlice/authSlice'
 
 export default function Detail() {
   const product = useSelector((state) => state?.products?.productById)
   const loading = useSelector((state) => state?.products?.loading)
   const globalProduct = useSelector((state) => state?.products?.products)
   const dispatch = useDispatch()
+  /*prueba usuario*/
+  // const usuarioId = useSelector((state)=> state?.authUser?.userById)
+
+
 
   useEffect(() => {
     dispatch(getProducts())
-  }, [dispatch])
+    /*dispach*/
+    // dispatch(getUserById('64aba27c2415d442b78559c1'))
+  }, [dispatch]) 
+
 
   const { id } = useParams()
 

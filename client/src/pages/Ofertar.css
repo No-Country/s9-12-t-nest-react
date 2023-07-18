@@ -28,6 +28,18 @@
 .articulo-ofrecer{
     display: flex;
     margin: 20px;
-    
+    justify-content: center;
 
+}
+
+.ver-todos{
+    display: flex;
+    margin: 20px;
+    justify-content: flex-end;
+}
+
+.publica{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }

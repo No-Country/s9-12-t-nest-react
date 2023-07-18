@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchProductById, getProducts } from '../features/products/fetchProducts'
 import OfertarCards from './OfertarCards'
@@ -34,10 +34,15 @@ const Ofertar = () => {
                 </div>
             </div>
 
-            {/* <div className='articulo-ofrecer'>
-                <h3>¿Qué artículo/s querés ofrecer por este?</h3>
-            </div> */}
+            <hr />
 
+            <div className='articulo-ofrecer'>
+                <h3>¿Qué artículo/s querés ofrecer por este?</h3>
+            </div>
+
+            <div className='ver-todos'>
+                <Link><h6>Ver todos.</h6></Link>
+            </div>
 
             <div className='acomodar'>
                 {globalProduct.map(prod => <div key={prod.id} >{<OfertarCards prod={prod} />}</div>)}
@@ -46,7 +51,13 @@ const Ofertar = () => {
                 <button className='ofertar' product={product}>Confirmar Oferta</button>
 
 
+
             </div>
+            <div className='publica'>
+                <Link to='/publicacion'><p>+ Publicar otro articulo.</p></Link>
+
+            </div>
+
 
         </div>
     )
