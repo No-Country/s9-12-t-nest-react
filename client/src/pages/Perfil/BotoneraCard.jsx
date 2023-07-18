@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './heart.css'
 
+// recibir 1 objeto y una clase custon en formato string ("visible" o "invisible") esta clase controla la visibilidad del componente
 const BotoneraCard = ({ element, claseCustom }) => {
   const [activaHeart, setActivaHeart] = useState(false)
   const [addProductLike, setAddProductLike] = useState(false)
