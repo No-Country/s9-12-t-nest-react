@@ -3,8 +3,8 @@ import './heart.css'
 
 const BotoneraCard = ({ element }) => {
   const [activaHeart, setActivaHeart] = useState(false)
-  const [activaCart, setActivaCart] = useState('')
-  const [valorHeart, setValorHeart] = useState('')
+  // const [activaCart, setActivaCart] = useState('')
+  // const [valorHeart, setValorHeart] = useState('')
   const [valorActiveCart, setValorActivoCart] = useState('')
 
   useEffect(() => {
@@ -26,8 +26,8 @@ const BotoneraCard = ({ element }) => {
   return (
     <section className='botoneraCard'>
       <div>
-        <a className={`heart ${valorHeart}`} onClick={onAddMeGusta}><ion-icon name='heart' /></a>
-        <a className='cart '><ion-icon name='cart' /></a>
+        <a className={`heart ${valorActiveCart}`} onClick={onAddMeGusta}><ion-icon name='heart' /></a>
+        <a className='cart '><ion-icon name='settings' /></a>
       </div>
     </section>
   )

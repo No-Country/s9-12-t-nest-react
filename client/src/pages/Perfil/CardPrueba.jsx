@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './card.css'
 import { Link } from 'react-router-dom'
 import BotoneraCard from './BotoneraCard'
-import BotoneraDelete from './BotoneraDelete/BotoneraDelete'
 
 const CardPrueba = ({ element, funcDeletes }) => {
+  const [ishover, setIshover] = useState(false)
+
+  const handleMoueEnter = () => {
+    console.log('DENTRO de mouse enter')
+    setIshover(true)
+  }
+
+  const handleMoueLeave = () => {
+    console.log('FUERA de mouse leave')
+    setIshover(false)
+  }
+
   return (
     <>
-      <div className='cardCustomer'>
-        <div className='customContent'>
+      <div className='cardCustomer' onMouseEnter={handleMoueEnter} onMouseLeave={handleMoueLeave}>
+        <div className={`customContent ${ishover ? '' : 'hovered'}`}>
           <div className='back'>
             <div className='back-content'>
               <section className='imgCardPrefil'>
@@ -23,6 +34,7 @@ const CardPrueba = ({ element, funcDeletes }) => {
               </section>
             </div>
           </div>
+          <BotoneraCard element={element} />
         </div>
       </div>
     </>

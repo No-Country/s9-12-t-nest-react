@@ -1,23 +1,41 @@
 /* Estilos */
 .botoneraCard {
   position: absolute;
-  top: 30px;
-  left: 5px;
-  width: 40px;
-  height: 80px;
-  background-color: aquamarine;
+  top: 5px;
+  right: 5px;
+  width: 35px;
+  height: 74px;
+  transition: opacity 0.8s ease;
 }
 
+.customContent {
+  /* Estilos existentes */
+  transition: opacity 0.8s ease;
+}
+
+.customContent.hovered .botoneraCard {
+  opacity: 0;
+}
+
+.botoneraCard {
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
+
+/* .botoneraCard.show {
+  opacity: 1;
+} */
 
 .botoneraCard div {
   width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: flex-end;
-  gap: 10px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
 }
 
 .botoneraCard div a {
@@ -28,10 +46,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: center;
   font-size: 1.5rem;
   border: solid 2px transparent;
   border-radius: 50%;
   transition: 0.5s ease-in-out;
+  background-color: #FFF;
+  border-radius: 50%;
 }
 
 .botoneraCard div a ion-icon {

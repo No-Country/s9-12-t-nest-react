@@ -8,6 +8,12 @@
     -5px -5px 10px #fca7d4;
   border: solid .5px rgba(216, 216, 216, 0.541);
   position: relative;
+  transition: opacity .8s ease;
+  /* Añade la transición deseada */
+}
+
+.customContent.hovered {
+  opacity: 0.9;
 }
 
 .customContent {
