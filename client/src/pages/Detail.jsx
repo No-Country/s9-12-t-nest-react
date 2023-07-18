@@ -9,6 +9,9 @@ import './Detalle.css'
 import Button from 'react-bootstrap/esm/Button'
 import Carousel from '../components/carousel/Carousel'
 import LocationName from '../components/LocationName/LocationName'
+import Estrellas from './Perfil/Estrellas'
+import PerfilUser from './Perfil/PerfilUser'
+import Ofertar from './Ofertar'
 
 export default function Detail () {
   const product = useSelector((state) => state?.products?.productById)
@@ -52,12 +55,15 @@ export default function Detail () {
         <div className='usuario-descripcion'>
 
           <h4 className='nombre-usuario'>Nombre del Usuario</h4>
+          
           <div className='estrellas'>
+            <Estrellas/>
+            
+            {/* <img src='/images/star_rate.png' alt='' />
             <img src='/images/star_rate.png' alt='' />
             <img src='/images/star_rate.png' alt='' />
             <img src='/images/star_rate.png' alt='' />
-            <img src='/images/star_rate.png' alt='' />
-            <img src='/images/star_rate.png' alt='' />
+            <img src='/images/star_rate.png' alt='' /> */}
 
           </div>
 
@@ -75,7 +81,8 @@ export default function Detail () {
       <div className='mapa'><MapView /></div>
       <LocationName />
       <div className='boton'>
-        <button className='ofertar'>Ofertar</button>
+        <Link to={`/ofertar/${product.id}`}><button className='ofertar' product={product}>Ofertar</button></Link>
+      
 
       </div>
       <h6 className='ubicacion'>Otras publicaciones de este usuario.</h6>
