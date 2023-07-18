@@ -31,17 +31,28 @@
     height: 219px;
     min-width: 280px;
     width: 100vw;
+    padding: 20px 10px;
+    resize: none;
+    
 }
 
 #input-desc:focus{
     border-color: #FF4679;
     box-shadow: none; 
+    display: flex;
+}
+
+#input-desc::content {
+    position: absolute;
+    top: 0;
 }
 
 #input-desc::placeholder{
-    padding: 20px 0 0 0;
-    display: flex;
-    justify-content: flex-start;
+    padding: 20px 0px;
+    white-space: initial;
+    position: absolute;
+    top: 0;
+
 }
 
 @media (max-width: 765px){
