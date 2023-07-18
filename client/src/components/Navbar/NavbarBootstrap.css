@@ -1,6 +1,9 @@
 *{
-    margin: 0;
-    padding: 0;
+    box-sizing: border-box !important;  
+    margin: 0 ;
+    padding: 0 ;
+    border: 0 ;
+     
 
 }
 
@@ -8,20 +11,28 @@
     display: none;
 }
 
+.publicar{
+    color: white !important;
+}
+
 
 .form{
     display: none;
 }
 
+
+
 .navbar{
-    margin: 0px;
+    margin: 0px !important;
     display: flex;
     align-items: center;
     background-color: rgb(201, 40, 126);
     width: 100vw;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     justify-content: space-around !important;
     flex-wrap: wrap;
+    overflow-y: hidden;
+    box-sizing: border-box !important;
 
 
 }
@@ -60,6 +71,7 @@
     color: white;
 }
 
+
 .perfil{
     display: flex;
     margin-right: 10px;
@@ -68,7 +80,7 @@
 .usuarios{
     display: none;
     color: white !important;
-    text-decoration: none;
+    text-decoration: none !important;
 
 }
 

@@ -9,16 +9,28 @@ import './Detalle.css'
 import Button from 'react-bootstrap/esm/Button'
 import Carousel from '../components/carousel/Carousel'
 import LocationName from '../components/LocationName/LocationName'
+import Estrellas from './Perfil/Estrellas'
+import PerfilUser from './Perfil/PerfilUser'
+import Ofertar from './Ofertar'
+/*prueba dispach*/
+import { getUserById } from '../features/authSlice/authSlice'
 
-export default function Detail () {
+export default function Detail() {
   const product = useSelector((state) => state?.products?.productById)
   const loading = useSelector((state) => state?.products?.loading)
   const globalProduct = useSelector((state) => state?.products?.products)
   const dispatch = useDispatch()
+  /*prueba usuario*/
+  // const usuarioId = useSelector((state)=> state?.authUser?.userById)
+
+
 
   useEffect(() => {
     dispatch(getProducts())
-  }, [dispatch])
+    /*dispach*/
+    // dispatch(getUserById('64aba27c2415d442b78559c1'))
+  }, [dispatch]) 
+
 
   const { id } = useParams()
 
@@ -52,12 +64,15 @@ export default function Detail () {
         <div className='usuario-descripcion'>
 
           <h4 className='nombre-usuario'>Nombre del Usuario</h4>
+
           <div className='estrellas'>
+            <Estrellas />
+
+            {/* <img src='/images/star_rate.png' alt='' />
             <img src='/images/star_rate.png' alt='' />
             <img src='/images/star_rate.png' alt='' />
             <img src='/images/star_rate.png' alt='' />
-            <img src='/images/star_rate.png' alt='' />
-            <img src='/images/star_rate.png' alt='' />
+            <img src='/images/star_rate.png' alt='' /> */}
 
           </div>
 
@@ -72,10 +87,14 @@ export default function Detail () {
 
       <h4 className='ubicacion'>Ubicacion</h4>
 
-      <div className='mapa'><MapView /></div>
+      <div className='controlar-mapa'>
+        <div className='mapa'><MapView /></div>
+
+      </div>
       <LocationName />
       <div className='boton'>
-        <button className='ofertar'>Ofertar</button>
+        <Link to={`/ofertar/${product.id}`}><button className='ofertar' product={product}>Ofertar</button></Link>
+
 
       </div>
       <h6 className='ubicacion'>Otras publicaciones de este usuario.</h6>

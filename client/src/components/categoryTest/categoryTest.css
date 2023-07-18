@@ -2,6 +2,7 @@
   border: none;
   border-radius: 0 !important;
   overflow: hidden;
+  color: white;
 }
 
 .formSelect option {
@@ -38,4 +39,10 @@
   /* Estilos para la opción seleccionada */
   background-color: #007bff;
   color: #fff;
+}
+
+.form-select{
+  color: white !important;
+  padding-right: 0px !important;
+  
 }
