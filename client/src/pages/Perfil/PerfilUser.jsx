@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getBarrio } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
 import Estrellas from './Estrellas'
 import { Link } from 'react-router-dom'
-import CarruselProductsCard from './CarruselProductsCard/CarruselPruebas'
+import CarruselProductsCard from './CarruselPruebas'
 // import RenderCarrusel from './RenderCarrusel'
 
 const PerfilUser = () => {
