@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { Typography, Card, CardContent } from '@mui/material'
+// import { Typography, Card, CardContent } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProductById, getProducts } from '../features/products/fetchProducts'
+// import { fetchProductById, getProducts } from '../features/products/fetchProducts'
 import Loading from '../components/Loading'
 import MapView from '../components/MapView/MapView'
 import './Detalle.css'
@@ -12,25 +12,22 @@ import LocationName from '../components/LocationName/LocationName'
 import Estrellas from './Perfil/Estrellas'
 import PerfilUser from './Perfil/PerfilUser'
 import Ofertar from './Ofertar'
-/*prueba dispach*/
+/* prueba dispach */
 import { getUserById } from '../features/authSlice/authSlice'
 
-export default function Detail() {
+export default function Detail () {
   const product = useSelector((state) => state?.products?.productById)
   const loading = useSelector((state) => state?.products?.loading)
   const globalProduct = useSelector((state) => state?.products?.products)
   const dispatch = useDispatch()
-  /*prueba usuario*/
+  /* prueba usuario */
   // const usuarioId = useSelector((state)=> state?.authUser?.userById)
 
-
-
   useEffect(() => {
-    dispatch(getProducts())
-    /*dispach*/
+    // dispatch(getProducts())
+    /* dispach */
     // dispatch(getUserById('64aba27c2415d442b78559c1'))
-  }, [dispatch]) 
-
+  }, [dispatch])
 
   const { id } = useParams()
 
@@ -40,7 +37,7 @@ export default function Detail() {
   console.log(globalProduct)
 
   useEffect(() => {
-    dispatch(fetchProductById(id))
+    // dispatch(fetchProductById(id))
   }, [dispatch])
 
   // console.log('Producto filtrado -> ', product)
@@ -48,9 +45,9 @@ export default function Detail() {
   // if (!product) {
   //   return <Typography variant='h6'>Product no encontrado</Typography>
   // }
-  if (!product) {
-    return <Typography variant='h6'>Product no encontrado</Typography>
-  }
+  // if (!product) {
+  //   return <Typography variant='h6'>Product no encontrado</Typography>
+  // }
 
   return (
     <div>
@@ -94,7 +91,6 @@ export default function Detail() {
       <LocationName />
       <div className='boton'>
         <Link to={`/ofertar/${product.id}`}><button className='ofertar' product={product}>Ofertar</button></Link>
-
 
       </div>
       <h6 className='ubicacion'>Otras publicaciones de este usuario.</h6>
