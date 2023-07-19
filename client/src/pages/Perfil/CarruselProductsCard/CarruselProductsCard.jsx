@@ -7,7 +7,6 @@ import Loading from '../../../components/Loading'
 import UserProductCard from '../UserProductCard/CardPrueba'
 
 import { ToastContainer, toast } from 'react-toastify'
-//import 'react-toastify/dist/ReactToastify.css'
 
 // Import Swiper styles
 import 'swiper/css'
@@ -54,7 +53,7 @@ const CarruselProductsCard = ({ filtroPor, titulo }) => {
       {
       loading
         ? (
-          <div className='d-flex justify-content-center align-items-center' style={{ width: '100%', height: '350px' }}>
+          <div className='d-flex justify-content-center align-items-center' style={{ width: '100%', height: '370px' }}>
             <Loading />
           </div>
           )
@@ -80,7 +79,7 @@ const CarruselProductsCard = ({ filtroPor, titulo }) => {
                     autoplay={{ delay: 9000 }}
                     // onSwiper={(swiper) => console.log(swiper)}
                     // onSlideChange={() => console.log('slide change')}
-                    style={{ width: '100%', height: '370px', margin: '0 auto', padding: '0 5px' }}
+                    style={{ width: '100%', height: '380px', margin: '0 auto', padding: '0 5px' }}
                     slidesPerView={1} // Valor por defecto para pantallas pequeñas
                     breakpoints={{
                       768: {
@@ -107,7 +106,7 @@ const CarruselProductsCard = ({ filtroPor, titulo }) => {
                       <ion-icon style={{ color: 'var(--background-naClaro)' }} name='chevron-forward-sharp' />
                     </div>
                     <div className='swiper-button-prev'>
-                      <ion-icon name='chevron-back-sharp' />
+                      <ion-icon style={{ color: 'var(--background-naClaro)' }} name='chevron-back-sharp' />
                     </div>
                   </Swiper>
                 </section>
