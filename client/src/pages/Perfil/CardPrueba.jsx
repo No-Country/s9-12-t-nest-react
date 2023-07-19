@@ -7,12 +7,12 @@ const CardPrueba = ({ element, funcDeletes }) => {
   const [ishover, setIshover] = useState(false)
 
   const handleMoueEnter = () => {
-    console.log('DENTRO de mouse enter')
+    // console.log('DENTRO de mouse enter')
     setIshover(true)
   }
 
   const handleMoueLeave = () => {
-    console.log('FUERA de mouse leave')
+    // console.log('FUERA de mouse leave')
     setIshover(false)
   }
 

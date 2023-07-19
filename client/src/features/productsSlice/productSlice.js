@@ -186,6 +186,30 @@ export const getProductsBySubcategoryId = createAsyncThunk('products/getProducts
   }
 })
 
+// export const addLikeProduct = createAsyncThunk(
+//   'products/addLikeProduct',
+//   async (product, thunkAPI) => {
+//     try {
+//       const currentSlice = thunkAPI.getState().productsDb
+
+//       // verifica si  ya esta en la lista el producto
+//       const productoIndex = currentSlice.likeProducts.findIndex((likeProduct) => likeProduct._id === product._id)
+//       console.log('PRODUCTO INDEX ->', productoIndex)
+
+//       if (productoIndex !== -1) {
+//         // si no está en la lista, lo añade
+//         return thunkAPI.fulfilled({ status: 201, message: 'Producto eliminado con exito', payload: product })
+//       } else {
+//         // si está en la lista, lo elimina
+//         return thunkAPI.fulfilled({ status: 200, message: 'Producto añadido', payload: product })
+//       }
+//     } catch (error) {
+//       // Manejar errores generales
+//       return thunkAPI.rejectWithValue({ status: 404, message: 'algo salio mal' })
+//     }
+//   }
+// )
+
 const productSlice = createSlice({
   name: 'products',
   initialState: {
@@ -201,9 +225,17 @@ const productSlice = createSlice({
     error: null
   },
   reducers: {
-    addLikeProducts: (state, action) => {
-      state.likeProducts = []
-      state.likeProducts = action.payload
+    toggleLikeProduct: (state, action) => {
+      const product = action.payload
+      const index = state.likeProducts.findIndex((likeProduct) => likeProduct._id === product._id)
+
+      if (index !== -1) {
+        // Si el producto ya está en la lista, se elimina
+        state.likeProducts.splice(index, 1)
+      } else {
+        // Si el producto no está en la lista, se agrega
+        state.likeProducts.push(product)
+      }
     },
     addUserProducts: (state, action) => {
       state.userProducts = []
@@ -377,7 +409,7 @@ const productSlice = createSlice({
   }
 })
 
-export const { addUserProducts, addToproductsByKeyword, clearProductById, clearProductsByCategory, clearProductsBySubcategory, clearProductByKeyword, clearAllFilters } = productSlice.actions
+export const { toggleLikeProduct, addUserProducts, addToproductsByKeyword, clearProductById, clearProductsByCategory, clearProductsBySubcategory, clearProductByKeyword, clearAllFilters } = productSlice.actions
 export const selectProducts = (state) => state.product.products
 export default productSlice.reducer
 

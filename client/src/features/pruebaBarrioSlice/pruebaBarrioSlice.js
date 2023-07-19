@@ -8,7 +8,7 @@ export const obtenerCoordenadas = createAsyncThunk(
 
       const response = await fetch(url)
       const data = await response.json()
-      console.log('data ubicacion -->', data)
+      // console.log('data ubicacion -->', data)
       if (data.length > 0) {
         const latitude = data[0].lat
         const longitude = data[0].lon
@@ -24,7 +24,7 @@ export const obtenerCoordenadas = createAsyncThunk(
 
 export const getBarrio = createAsyncThunk(
   'barrio/getBarrio', async (ubicacion, thunkAPI) => {
-    console.log('primera ubi', ubicacion)
+    // console.log('primera ubi', ubicacion)
     try {
       const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${ubicacion.latitude}&lon=${ubicacion.longitude}&format=json`, {
         method: 'GET'

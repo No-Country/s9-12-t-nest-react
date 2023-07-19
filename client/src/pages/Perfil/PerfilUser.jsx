@@ -13,7 +13,7 @@ const PerfilUser = () => {
   const [calculaRep, setCalculaRep] = useState('')
   const dispatch = useDispatch()
   const lastUbication = useRef(null)
-  console.log('Ubicacion Anterior -->', lastUbication)
+  // console.log('Ubicacion Anterior -->', lastUbication)
 
   const reputacionUSer = { intercambiosExitosos: 15, intercambiosFallidos: 2, totalPublicaciones: 32, valoracionesPositivas: 15, valoracionesNegativas: 2, devoluciones: 1 }
 

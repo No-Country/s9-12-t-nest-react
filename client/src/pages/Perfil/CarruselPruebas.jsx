@@ -22,11 +22,12 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
   const userProducts = useSelector((state) => state?.productsDb?.userProducts)
   const dispatch = useDispatch()
 
-  console.log('lista de productos desde swipper', userProducts)
+  // console.log('lista de productos desde swipper', userProducts)
 
   const deleteCard = (e, id) => {
     e.preventDefault()
-    console.log('delete', id)
+
+    // console.log('delete', id)
 
     dispatch(deleteProductById(id))
       .then((resp) => {
@@ -77,8 +78,8 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                     pagination={{ clickable: true }}
                     // scrollbar={{ draggable: true }}
                     autoplay={{ delay: 9000 }}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log('slide change')}
+                    // onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log('slide change')}
                     style={{ width: '100%', height: '370px', margin: '0 auto', padding: '0 5px' }}
                     slidesPerView={1} // Valor por defecto para pantallas pequeñas
                     breakpoints={{
