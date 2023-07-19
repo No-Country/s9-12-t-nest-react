@@ -7,7 +7,7 @@ interface iGeo {
   lon: string;
 }
 
-@Schema()
+@Schema({ timestamps: true })
 export class Product extends Document {
   @ApiProperty()
   @Prop()
@@ -41,14 +41,6 @@ export class Product extends Document {
   @Prop()
   location: string;
 
-  @Prop({ default: Date.now })
-  createdAt: Date;
-
-  @Prop({ default: null })
-  updatedAt: Date;
-
-  @Prop({ default: null })
-  deletedAt: Date;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

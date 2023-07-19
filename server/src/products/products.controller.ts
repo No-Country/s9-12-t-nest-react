@@ -81,14 +81,14 @@ export class ProductsController {
   @ApiNotFoundResponse({ description: 'Product id not found' })
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productsService.update(+id, updateProductDto);
+    return this.productsService.update(id, updateProductDto);
   }
 
   @ApiOkResponse({ description: 'Product successfully deleted' })
   @ApiNotFoundResponse({ description: 'Product id not found' })
-  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  //  @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.productsService.remove(+id);
+    return this.productsService.remove(id);
   }
 }

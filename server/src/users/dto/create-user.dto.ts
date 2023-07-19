@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 import {
   IsEmail,
   IsString,
@@ -13,8 +13,8 @@ export class CreateUserDto {
     description: 'User email (unique)',
     nullable: false,
     minLength: 1,
-    default: 'user@email.com',
   })
+  @IsNotEmpty()
   @IsString()
   @IsEmail()
   email: string;
@@ -23,9 +23,9 @@ export class CreateUserDto {
     description: 'User password',
     nullable: false,
     minLength: 8,
-    default: 'Abcd123@',
   })
   @IsString()
+  @IsNotEmpty()
   @MinLength(8)
   @MaxLength(40)
   @Matches(
@@ -41,9 +41,9 @@ export class CreateUserDto {
     description: 'User first name',
     nullable: false,
     minLength: 1,
-    default: 'FirstName',
   })
   @IsString()
+  @IsNotEmpty()
   @MinLength(1)
   firstName: string;
 
@@ -51,27 +51,27 @@ export class CreateUserDto {
     description: 'User last name',
     nullable: false,
     minLength: 1,
-    default: 'LastName',
   })
   @IsString()
+  @IsNotEmpty()
   @MinLength(1)
   lastName: string;
 
   @ApiProperty({
     description: 'User contact',
     nullable: true,
-    default: '+00000000000',
   })
   @IsString()
+  @IsNotEmpty()
   @IsOptional()
-  contact?: string;
+  contact: string;
 
   @ApiProperty({
     description: 'User address',
     nullable: true,
-    default: 'address',
   })
   @IsString()
+  @IsNotEmpty()
   @IsOptional()
-  address?: string;
+  address: string;
 }
