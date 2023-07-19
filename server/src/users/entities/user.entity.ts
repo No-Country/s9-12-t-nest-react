@@ -39,6 +39,10 @@ export class User extends Document {
   @ApiProperty()
   @Prop({ array: true, ref: 'Products' })
   products: Types.ObjectId[];
+
+  @ApiProperty()
+  @Prop({ array: true, ref: 'Offers' })
+  incomingOffers: Types.ObjectId[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
