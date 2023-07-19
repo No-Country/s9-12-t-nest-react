@@ -65,7 +65,7 @@ function Home () {
         : (
             !results
               ? (
-                <>
+                <div className='controlar-home-container'>
                   <div className='home-container'>
                     <div className='carousel-rows-container'>
                       <div className='p-carousel-container'>
@@ -106,7 +106,7 @@ function Home () {
 
                     </div>
                   </div>
-                </>)
+                </div>)
               : (results !== 'none'
                   ? (
                     <>

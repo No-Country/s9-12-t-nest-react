@@ -1,4 +1,4 @@
-import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Model } from 'mongoose';
@@ -23,7 +23,7 @@ export class UsersService {
       (await user).save();
 
       return {
-        id: (await user)._id,
+        user: await this.findOne((await user)._id)
         //token: this.getJwtToken({ id: (await user)._id }),  (¿?)
       };
     } catch (error) {
@@ -32,19 +32,33 @@ export class UsersService {
   }
 
   findAll() {
-    return `This action returns all users`;
+    throw new HttpException(
+      `Only admin can request all users`,
+      HttpStatus.FORBIDDEN,
+    );
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string) {
+    try {
+      const user = await this.userModel.findById(id).select('-password');;
+      if (!user) {
+        throw new Error(`User ${id} not found`);
+      }
+      return user;
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  update(id: string, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(id: string) {
+    throw new HttpException(
+      `Only admin can remove users`,
+      HttpStatus.FORBIDDEN,
+    );
   }
 
   private handleUserError(error: any): never {
