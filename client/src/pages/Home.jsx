@@ -6,6 +6,7 @@ import { getProducts } from '../features/products/fetchProducts'
 import '../pages/styles/Home.css'
 import Carousel from '../components/carousel/Carousel'
 import { Link } from 'react-router-dom'
+import MapWithSearch from '../components/MapWithSearch/MapWithSearch'
 
 function Home () {
   const products = useSelector((state) => state?.products?.products)
@@ -69,6 +70,7 @@ function Home () {
                   <div className='home-container'>
                     <div className='carousel-rows-container'>
                       <div className='p-carousel-container'>
+                        <MapWithSearch />
 
                         <div className='title-and-more-container'>
                           <p className='carousel-title'>Últimas publicaciones</p>
