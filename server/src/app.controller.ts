@@ -30,7 +30,6 @@ async googleCallback(@Req() req, @Res() res: Response) {
   res.set('authorization', jwt.access_token);
   res.status(200);
   return res.json(req.user);
-  // res.redirect('/profile', )
 }
 
 
