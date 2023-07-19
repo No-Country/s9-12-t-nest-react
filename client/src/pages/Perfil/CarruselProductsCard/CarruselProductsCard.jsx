@@ -15,8 +15,9 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import './carruselPerfil.css'
 import ProductFetchByOwner from '../ProductFetchByOwner/ProductFetchByOwner'
+import BotonSettings from '../BotonSettings/BotonSettings'
 
-const CarruselProductsCard = ({ filtroPor, titulo }) => {
+const CarruselProductsCard = ({ filtroPor, titulo, user }) => {
   const loading = useSelector((state) => state?.productsDb?.loading)
   const userProducts = useSelector((state) => state?.productsDb?.userProducts)
   const dispatch = useDispatch()
@@ -53,17 +54,17 @@ const CarruselProductsCard = ({ filtroPor, titulo }) => {
       {
       loading
         ? (
-          <div className='d-flex justify-content-center align-items-center' style={{ width: '100%', height: '370px' }}>
+          <div className='d-flex justify-content-center align-items-center ' style={{ width: '100%', height: '370px' }}>
             <Loading />
           </div>
           )
         : (
             userProducts.length > 0
-
               ? (
                 <section className='w-100 h-auto'>
-                  <h2 className='text-left' style={{ width: '100%', fontSize: '20px', fontFamily: 'var(--titulo)', color: 'var(--textosColor)' }}>
+                  <h2 className='tituoUserProds position-relative d-flex flex-row flex-nowrap align-items-center justify-content-between align-content-center mb-0' style={{ width: '100%', height: '40px', fontSize: '20px', fontFamily: 'var(--titulo)', color: 'var(--textosColor)' }}>
                     Publicaciónes de {titulo}
+                    <BotonSettings user={user} />
                   </h2>
                   <Swiper
                     className='mySwipper'
@@ -79,17 +80,20 @@ const CarruselProductsCard = ({ filtroPor, titulo }) => {
                     autoplay={{ delay: 9000 }}
                     // onSwiper={(swiper) => console.log(swiper)}
                     // onSlideChange={() => console.log('slide change')}
-                    style={{ width: '100%', height: '380px', margin: '0 auto', padding: '0 5px' }}
+                    style={{ width: '100%', height: '340px', margin: '0 auto', padding: '0 35px' }}
                     slidesPerView={1} // Valor por defecto para pantallas pequeñas
                     breakpoints={{
+                      576: {
+                        slidesPerView: 2
+                      },
                       768: {
-                        slidesPerView: 2 // Mostrar 2 tarjetas en pantallas con un ancho mínimo de 768px (tabletas)
+                        slidesPerView: 3 // Mostrar 2 tarjetas en pantallas con un ancho mínimo de 768px (tabletas)
                       },
                       992: {
-                        slidesPerView: 3 // Mostrar 3 tarjetas en pantallas con un ancho mínimo de 992px (pantallas grandes)
+                        slidesPerView: 4 // Mostrar 3 tarjetas en pantallas con un ancho mínimo de 992px (pantallas grandes)
                       },
                       1200: {
-                        slidesPerView: 4 // Mostrar 4 tarjetas en pantallas con un ancho mínimo de 1200px (pantallas más grandes)
+                        slidesPerView: 5 // Mostrar 4 tarjetas en pantallas con un ancho mínimo de 1200px (pantallas más grandes)
                       }
                     }}
                   >
@@ -116,19 +120,7 @@ const CarruselProductsCard = ({ filtroPor, titulo }) => {
                 )
           )
     }
-      <ToastContainer
-        position='top-right'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme='light'
-      />
-      <ToastContainer />
+
     </>
   )
 }

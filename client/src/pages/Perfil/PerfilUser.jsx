@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom'
 import CarruselProductsCard from './CarruselProductsCard/CarruselProductsCard'
 // import RenderCarrusel from './RenderCarrusel'
 
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 const PerfilUser = () => {
   const ubication = useSelector(state => state?.location)
   const barrio = useSelector(state => state?.barrio?.barrio)
@@ -112,8 +115,21 @@ const PerfilUser = () => {
         </section>
       </div>
 
-      <CarruselProductsCard filtroPor={objeto._id} titulo={objeto.firstName} />
+      <CarruselProductsCard filtroPor={objeto._id} titulo={objeto.firstName} user={objeto} />
 
+      <ToastContainer
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
+      <ToastContainer />
     </div>
   )
 }
