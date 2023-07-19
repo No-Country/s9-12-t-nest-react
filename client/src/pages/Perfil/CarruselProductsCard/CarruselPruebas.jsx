@@ -2,9 +2,9 @@ import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/module
 import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteProductById } from '../../features/productsSlice/productSlice'
-import Loading from '../../components/Loading'
-import CardPrueba from './CardPrueba'
+import { deleteProductById } from '../../../features/productsSlice/productSlice'
+import Loading from '../../../components/Loading'
+import UserProductCard from '../UserProductCard/CardPrueba'
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -15,9 +15,9 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import './carruselPerfil.css'
-import ProductFetcher from './ProductFetcher'
+import ProductFetchByOwner from '../ProductFetchByOwner/ProductFetchByOwner'
 
-const CarrouselPruebas = ({ filtroPor, titulo }) => {
+const CarruselProductsCard = ({ filtroPor, titulo }) => {
   const loading = useSelector((state) => state?.productsDb?.loading)
   const userProducts = useSelector((state) => state?.productsDb?.userProducts)
   const dispatch = useDispatch()
@@ -50,7 +50,7 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
 
   return (
     <>
-      <ProductFetcher filtroPor={filtroPor} />
+      <ProductFetchByOwner filtroPor={filtroPor} />
       {
       loading
         ? (
@@ -68,8 +68,8 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                   </h2>
                   <Swiper
                     className='mySwipper'
-                    // modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+                    // modules={[Navigation, Pagination, Scrollbar, A11y]}
                     spaceBetween={50}
                     navigation={{
                       nextEl: '.swiper-button-next',
@@ -98,7 +98,7 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
                       userProducts.map((producto, index) => {
                         return (
                           <SwiperSlide key={index} className='swipperSlider'>
-                            <CardPrueba element={producto} funcDeletes={deleteCard} />
+                            <UserProductCard element={producto} funcDeletes={deleteCard} />
                           </SwiperSlide>
                         )
                       })
@@ -134,4 +134,4 @@ const CarrouselPruebas = ({ filtroPor, titulo }) => {
   )
 }
 
-export default CarrouselPruebas
+export default CarruselProductsCard

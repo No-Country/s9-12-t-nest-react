@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import './heart.css'
 import { useDispatch } from 'react-redux'
-import { toggleLikeProduct } from '../../features/productsSlice/productSlice'
+import { toggleLikeProduct } from '../../../features/productsSlice/productSlice'
 
 // recibir 1 objeto y una clase custon en formato string ("visible" o "invisible") esta clase controla la visibilidad del componente
-const BotoneraCard = ({ element, claseCustom }) => {
+const BotonCardHeart = ({ element, claseCustom }) => {
   const [activaHeart, setActivaHeart] = useState(false)
   const [addProductLike, setAddProductLike] = useState(false)
   // const [valorHeart, setValorHeart] = useState('')
@@ -39,4 +39,4 @@ const BotoneraCard = ({ element, claseCustom }) => {
   )
 }
 
-export default BotoneraCard
+export default BotonCardHeart

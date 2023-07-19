@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import './card.css'
-import { Link } from 'react-router-dom'
-import BotoneraCard from './BotoneraCard'
+// import { Link } from 'react-router-dom'
+import BotonCardHeart from '../BotonCardHeart/BotonCardHeart'
 
-const CardPrueba = ({ element, funcDeletes }) => {
+const UserProductCard = ({ element, funcDeletes }) => {
   const [ishover, setIshover] = useState(false)
 
   const handleMoueEnter = () => {
@@ -34,11 +34,11 @@ const CardPrueba = ({ element, funcDeletes }) => {
               </section>
             </div>
           </div>
-          <BotoneraCard element={element} claseCustom={ishover ? 'visible' : 'invisible'} />
+          <BotonCardHeart element={element} claseCustom={ishover ? 'visible' : 'invisible'} />
         </div>
       </div>
     </>
   )
 }
 
-export default CardPrueba
+export default UserProductCard
