@@ -26,8 +26,8 @@ async googleCallback(@Req() req, @Res() res: Response) {
   // return this.authService.login(req.user);
   // console.log(req.user);
   const jwt = await this.authService.login(req.user);
-  this.jwtToken = jwt;
-  res.set('authorization', jwt.access_token);
+  this.jwtToken = {access_token: jwt.token};
+  res.set('authorization', jwt.token);
   res.status(200);
   return res.json(req.user);
 }
@@ -48,8 +48,8 @@ async getHome(@Req() req, @Res() res: Response) {
 // need more research
 @Get('logout')
 async logout(@Req() req, @Res() res) {
-  const jwt = await this.authService.login('');
-  this.jwtToken = jwt;
+  //const jwt = await this.authService.login('');
+  //this.jwtToken = jwt;
   return 'successfully logout'
 }
 

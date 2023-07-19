@@ -38,7 +38,7 @@ import { User, UserSchema } from '../users/entities/user.entity';
   ],
   controllers: [AuthController],
     providers: [AuthService, LocalStrategy, JwtStrategy, GoogleStrategy],
-    exports: [AuthService]
+    exports: [AuthService, AuthModule]
 })
 export class AuthModule {
 

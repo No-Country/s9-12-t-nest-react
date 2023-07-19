@@ -12,6 +12,7 @@ import { LoginController } from './login/login.controller';
 import { AuthModule } from './auth/auth.module';
 import { LocalUploadMiddleware } from './middlewares/local-upload.middleware';
 import { FirebaseUploadMiddleware } from './middlewares/firebase-upload.middleware';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { FirebaseUploadMiddleware } from './middlewares/firebase-upload.middlewa
     ConfigModule.forRoot({
       load: [DotEnvConfig],
     }),
+    EventEmitterModule.forRoot(),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
