@@ -66,4 +66,10 @@
   --yellowContenedor: #fff5f8;
   --pinkCard: #f2f2f2;
   --lineas: rgba(222, 18, 82, 0.23);
+  
+}
+
+.probando{
+  box-sizing: border-box;
+  overflow-x: hidden;
 }

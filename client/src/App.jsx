@@ -28,10 +28,10 @@ function App () {
   }, [dispatch])
 
   return (
-    <>
+    <div className='probando'>
 
       <AppRouter />
-    </>
+    </div>
   )
 }
 

@@ -6,6 +6,8 @@ import {
   Patch,
   Param,
   Delete,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
@@ -30,6 +32,9 @@ export class UsersController {
     description: 'Bad request (user already exists).',
   })
   @Post()
+  @UsePipes(new ValidationPipe({
+    whitelist: true, forbidNonWhitelisted: true
+  }))
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
@@ -43,7 +48,7 @@ export class UsersController {
   @ApiOkResponse({ description: 'User' })
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+    return this.usersService.findOne(id);
   }
   /*
   @Post('login')
@@ -57,12 +62,12 @@ export class UsersController {
   })
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+    return this.usersService.update(id, updateUserDto);
   }
 
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+    return this.usersService.remove(id);
   }
 }

@@ -141,7 +141,7 @@ function Publication () {
         </div>
 
         <div className='custom-container'>
-          <Input type='select' name='subcategory' ids='input-desc' onInputChange={handleInputChange} categories={subCategory.subcategories} opcion='subcategoría'>Seleccioná la subcategoría que corresponde a tu artículo</Input>
+          <Input type='select' name='subcategory' onInputChange={handleInputChange} categories={subCategory.subcategories} opcion='subcategoría'>Seleccioná la subcategoría que corresponde a tu artículo</Input>
         </div>
 
         {/* Funcion de agregar fotos a la publicacion */}
@@ -181,7 +181,9 @@ function Publication () {
         </div>
 
         <div className='custom-container'>
-          <Input ids='input-desc' type='text' name='description' placeh='Detalla las condiciones en las que se encuentra el producto' onInputChange={handleInputChange}>
+          <Input
+            ids='input-desc' type='text' name='description' placeh='Describí el artículo que estás publicando para intercambiar. Detallá las condiciones en las que se encuentra y si hay cosas que tu contraparte debe saber. Indicá si estás buscando artículos específicos por los que te gustaría intercambiar éste.' onInputChange={handleInputChange}
+          >
             Descripción del artículo
           </Input>
         </div>

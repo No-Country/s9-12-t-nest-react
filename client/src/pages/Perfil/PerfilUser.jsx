@@ -14,6 +14,7 @@ const PerfilUser = () => {
   const dispatch = useDispatch()
   const lastUbication = useRef(null)
   // console.log('Ubicacion Anterior -->', lastUbication)
+  // console.log('Ubicacion Anterior -->', lastUbication)
 
   const reputacionUSer = { intercambiosExitosos: 15, intercambiosFallidos: 2, totalPublicaciones: 32, valoracionesPositivas: 15, valoracionesNegativas: 2, devoluciones: 1 }
 
@@ -42,6 +43,7 @@ const PerfilUser = () => {
     <div className='container principalPerfil p-2 d-flex flex-column justify-content-center align-items-center overflow-hidden mt-3 gap-5' style={{ minWidth: '350px', height: 'auto' }}>
 
       <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ minWidth: '350px', width: '450px', maxWidth: '600px', height: 'auto', border: 'none' }}>
+
         {/* head perfil */}
         <section className='imgName d-flex flex-row justify-content-center align-items-center align-content-center flex-nowrap gap-3 position-relative' style={{ width: '100%', height: '70px' }}>
           {/* img Perfil left */}
@@ -110,6 +112,7 @@ const PerfilUser = () => {
         </section>
       </div>
 
+      <CarruselProductsCard filtroPor={objeto._id} titulo={objeto.firstName} />
       <CarruselProductsCard filtroPor={objeto._id} titulo={objeto.firstName} />
 
     </div>

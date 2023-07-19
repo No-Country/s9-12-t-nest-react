@@ -7,7 +7,7 @@ import Loading from '../../../components/Loading'
 import UserProductCard from '../UserProductCard/CardPrueba'
 
 import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+//import 'react-toastify/dist/ReactToastify.css'
 
 // Import Swiper styles
 import 'swiper/css'
