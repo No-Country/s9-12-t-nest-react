@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-@Schema()
+@Schema({ timestamps: true })
 export class User extends Document {
   @ApiProperty()
   @Prop({ unique: true })
@@ -14,7 +14,7 @@ export class User extends Document {
 
   @ApiProperty()
   @Prop()
-  firstName: string;
+  firstName!: string;
 
   @ApiProperty()
   @Prop()
@@ -22,11 +22,11 @@ export class User extends Document {
 
   @ApiProperty()
   @Prop()
-  contact?: string;
+  contact: string;
 
   @ApiProperty()
   @Prop()
-  address?: string;
+  address: string;
 
   @ApiProperty()
   @Prop({ default: true })

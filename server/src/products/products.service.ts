@@ -103,22 +103,28 @@ export class ProductsService {
     }
   }
 
-  async update(id: number, updateProductDto: UpdateProductDto) {
+  async update(id: string, updateProductDto: UpdateProductDto) {
     const productUpdate = await this.productModel.findByIdAndUpdate(
       id,
       updateProductDto,
       { new: true },
     );
     if (!productUpdate) {
-      throw new Error(`Invoice ${id} not found`);
+      throw new HttpException(`Product ${id} not found`, HttpStatus.BAD_REQUEST,);
     }
     return productUpdate;
   }
 
-  async remove(id: number) {
-    throw new HttpException(
-      `#${id}: You can't delete any product`,
-      HttpStatus.FORBIDDEN,
-    );
+  async remove(id: string) {
+    try {
+      const removed = await this.productModel.findByIdAndDelete(id);
+      if(!removed){throw new Error}
+      return removed;
+    } catch (error) {
+      throw new HttpException(
+        `Can't delete ${id} or product not found`,
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 }
