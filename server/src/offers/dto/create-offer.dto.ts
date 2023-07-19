@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsMongoId, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { IsArray, IsMongoId, IsNotEmpty, IsString, MinLength, Validate } from 'class-validator';
+import { IsMongoIdArrayConstraint } from "src/helpers/customs.validators";
 
 export class CreateOfferDto {
     @ApiProperty({
@@ -51,6 +52,7 @@ export class CreateOfferDto {
       })
       @IsArray({
         message: "Debe proporcionar un array de Items"
-      })
+      })      
+      @Validate(IsMongoIdArrayConstraint)
       offeredItems: string[];
 }

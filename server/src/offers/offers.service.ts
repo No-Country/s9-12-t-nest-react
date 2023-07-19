@@ -33,7 +33,7 @@ export class OffersService {
       (await newOffer).save();
 
       return {
-        newItem: await newOffer,
+        newOffer: await newOffer,
       };
 
     } catch (error) {
