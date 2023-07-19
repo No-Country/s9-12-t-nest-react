@@ -10,17 +10,17 @@
     transform: translate(-50%, -50%);
 }
 
-.controlar-home-container{
+/* .controlar-home-container{
     width: 100vw;
     display: flex;
     justify-content: center;
     box-sizing: border-box !important;
     
-}
+} */
 
 .home-container{
-    width: 90vw;
-    padding: 20px;
+    width: 100vw;
+    padding: 64px 0 64px 64px;
     box-sizing: border-box !important;
     margin: 0;
     
