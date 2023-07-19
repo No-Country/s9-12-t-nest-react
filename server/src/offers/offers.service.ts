@@ -4,12 +4,18 @@ import { UpdateOfferDto } from './dto/update-offer.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Offer } from './entities/offer.entity';
 import mongoose, { Model } from 'mongoose';
+import { User } from 'src/users/entities/user.entity';
+import { Product } from 'src/products/entities/product.entity';
 
 @Injectable()
 export class OffersService {
   constructor(
     @InjectModel(Offer.name)
-    private readonly offerModel: Model<Offer>
+    private readonly offerModel: Model<Offer>,
+    @InjectModel(User.name)
+    private readonly userModel: Model<User>,
+    @InjectModel(Product.name)
+    private readonly productModel: Model<Product>,
   ){}
 
   async create(createOfferDto: CreateOfferDto) {
@@ -30,6 +36,10 @@ export class OffersService {
         },
       );
 
+      const productTarget = await this.productModel.findById(offerData.offerTargetItem);
+      const userTarget = await this.userModel.findById(productTarget.owner).exec();
+      (await userTarget).incomingOffers.push(newOffer._id); 
+      (await userTarget).save();
       (await newOffer).save();
 
       return {
