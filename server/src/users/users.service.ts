@@ -23,7 +23,7 @@ export class UsersService {
       (await user).save();
 
       return {
-        id: (await user)._id,
+        user: await this.findOne((await user)._id)
         //token: this.getJwtToken({ id: (await user)._id }),  (¿?)
       };
     } catch (error) {
