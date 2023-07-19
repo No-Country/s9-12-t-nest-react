@@ -197,9 +197,14 @@ const productSlice = createSlice({
     userProducts: [],
     status: '',
     loading: false,
-    error: null
+    error: null,
+    searchResults: ''
   },
   reducers: {
+    addToSearchResults: (state, action) => {
+      state.searchResults = true
+      state.searchResults = action.payload
+    },
     addUserProducts: (state, action) => {
       state.userProducts = []
       state.userProducts = action.payload
@@ -372,8 +377,12 @@ const productSlice = createSlice({
   }
 })
 
-export const { addUserProducts, addToproductsByKeyword, clearProductById, clearProductsByCategory, clearProductsBySubcategory, clearProductByKeyword, clearAllFilters } = productSlice.actions
-export const selectProducts = (state) => state.product.products
+export const { addToSearchResults, addUserProducts, addToproductsByKeyword, clearProductById, clearProductsByCategory, clearProductsBySubcategory, clearProductByKeyword, clearAllFilters } = productSlice.actions
+export const selectProducts = (state) => state.products.products
+export const selectStatus = (state) => state.products.status
+export const selectLoading = (state) => state.products.loading
+export const selectError = (state) => state.products.error
+export const selectResults = (state) => state.products.searchResults
 export default productSlice.reducer
 
 /*
