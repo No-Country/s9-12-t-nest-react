@@ -19,6 +19,10 @@ function Login () {
     e.preventDefault()
   }
 
+  const handleGoogleLogin = () => {
+    window.location.href = 'http://localhost:3000/api/v1/google'
+  }
+
   return (
     <main style={{ textAlign: 'center', margin: '20px' }}>
       <img className='logo-img' src='/images/logo-login.svg' alt='Trueka logo image' />
@@ -63,7 +67,7 @@ function Login () {
           <hr id='hr' />
           <div className='login-alternatives'>
             <p>Ingresar con</p>
-            <img src='/images/google.svg' alt='Google icon' />
+            <img src='/images/google.svg' alt='Google icon' onClick={handleGoogleLogin} />
             <img src='/images/facebook.svg' alt='Facebook icon' />
           </div>
         </div>
