@@ -10,10 +10,10 @@ export default function card (products) {
         <Link to={`/detalle/${product.id}`} className='card-link' key={i}>
           <div className='container-card'>
             <div className='img-container '>
-              <img src={product.image} className='card-img-top' alt='product-image' />
+              <img src={product.images} className='card-img-top' alt='product-image' />
             </div>
             <div className='card-grid'>
-              <p className='text-card'>{product.title}</p>
+              <p className='text-card'>{product.name}</p>
               <div className='location-container'>
                 <div id='desktop-svg'>
                   <LocationSVG />
@@ -22,7 +22,7 @@ export default function card (products) {
                   <LocationSVGMobile />
                 </div>
 
-                <p className='ubi-text'>Ubicación</p>
+                <p className='ubi-text'>{product.location}</p>
               </div>
 
             </div>
