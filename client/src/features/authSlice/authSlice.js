@@ -130,6 +130,9 @@ const authSlice = createSlice({
       state.isAuthenticated = false
       state.user = null
       state.token = null
+    },
+    clearUserById: (state) => {
+      state.userById = null
     }
   },
   extraReducers: (builder) => {
@@ -208,5 +211,5 @@ const authSlice = createSlice({
       })
   }
 })
-export const { successLogin, logout } = authSlice.actions
+export const { successLogin, logout, clearUserById } = authSlice.actions
 export default authSlice.reducer
