@@ -2,16 +2,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import React, { useEffect, useState } from 'react'
 import CardProduct from '../components/CardProduct'
 import Loading from '../components/Loading'
-import { getProducts } from '../features/products/fetchProducts'
+import { getProducts } from '../features/productsSlice/productSlice'
 import '../pages/styles/Home.css'
 import Carousel from '../components/carousel/Carousel'
 import { Link } from 'react-router-dom'
+import MapWithSearch from '../components/MapWithSearch/MapWithSearch'
 
 function Home () {
-  const products = useSelector((state) => state?.products?.products)
-  const loading = useSelector((state) => state?.products?.loading)
-  const results = useSelector((state) => state?.products?.searchResults)
-  const latest = [...products].sort((a, b) => b.id - a.id).slice(0, 12)
+  const products = useSelector((state) => state?.productsDb?.products)
+  const error = useSelector((state) => state?.productsDb?.error)
+  const loading = useSelector((state) => state?.productsDb?.loading)
+  const results = useSelector((state) => state?.productsDb?.searchResults)
+  const latest = [...products].reverse().slice(0, 12)
   const location = useSelector((state) => state?.location)
   const dispatch = useDispatch()
   const [nearbyProducts, setNearbyProducts] = useState([])
@@ -37,6 +39,11 @@ function Home () {
   useEffect(() => {
     dispatch(getProducts())
   }, [dispatch])
+
+  useEffect(() => {
+    // console.log(products)
+    // console.log(error)
+  }, [products])
 
   useEffect(() => {
     if (location.latitude && location.longitude) {
@@ -65,10 +72,11 @@ function Home () {
         : (
             !results
               ? (
-                <>
+                <div className='controlar-home-container'>
                   <div className='home-container'>
                     <div className='carousel-rows-container'>
                       <div className='p-carousel-container'>
+                        <MapWithSearch />
 
                         <div className='title-and-more-container'>
                           <p className='carousel-title'>Últimas publicaciones</p>
@@ -106,7 +114,7 @@ function Home () {
 
                     </div>
                   </div>
-                </>)
+                </div>)
               : (results !== 'none'
                   ? (
                     <>

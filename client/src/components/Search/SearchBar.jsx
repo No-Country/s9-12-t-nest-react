@@ -11,13 +11,13 @@ import './search.css'
 function SearchBar ({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('')
 
-  const products = useSelector((state) => state?.products?.products)
+  const products = useSelector((state) => state?.productsDb?.products)
   const dispatch = useDispatch()
 
   const handleSearch = (e) => {
     e.preventDefault()
     const filteredData = products.filter((item) =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+      item.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     dispatch({ type: 'products/addToSearchResults', payload: filteredData })
 

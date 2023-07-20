@@ -1,24 +1,31 @@
-import { Box } from '@mui/material'
-import Button from 'react-bootstrap/Button'
+// import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'
+// import Form from 'react-bootstrap/Form'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import NavDropdown from 'react-bootstrap/NavDropdown'
+// import NavDropdown from 'react-bootstrap/NavDropdown'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import './NavbarBootstrap.css'
 import SearchBar from '../Search/SearchBar'
-import CategoryTest from '../categoryTest/CategoryTest'
-import { Link, NavLink } from 'react-router-dom'
+// import CategoryTest from '../categoryTest/CategoryTest'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 function NavBarBootstrap () {
+  const dispatch = useDispatch()
+
+  const handleLogoClick = () => {
+    dispatch({ type: 'products/addToSearchResults', payload: '' })
+  }
+
   return (
     <>
       {['sm'].map((expand) => (
+
         <Navbar key={expand} expand={expand} className='navbar'>
           <div className='logo-container'>
             <div className='logo-buscador'>
-              <div className='div-logo'>
+              <div className='div-logo' onClick={handleLogoClick}>
                 <Link to='/'><img src='/images/Group 23.png' alt='' className='logo' /></Link>
               </div>
               <span className='input'><SearchBar /></span>
@@ -38,7 +45,7 @@ function NavBarBootstrap () {
                 <Offcanvas.Body>
                   <Nav className='justify-content-end  pe-3'>
                     {/* aca va el boton de categorias */}
-                    <Nav.Link href='#action1'><CategoryTest /></Nav.Link>
+                    {/* <Nav.Link href='#action1'><CategoryTest /></Nav.Link> */}
                   </Nav>
                   <div className='form'>
                     <SearchBar />
@@ -55,9 +62,10 @@ function NavBarBootstrap () {
             <img src='/images/account_circle_filled_24px.png' alt='' className='imagen-perfil' />
             <Link to='/login' className='usuarios'>Usuarios</Link>
             {/* <NavLink to='/' className='item-navbar'><span >Inicio</span></NavLink> */}
-          </div>
+                            </div>
           </Link>
         </Navbar>
+
       ))}
     </>
   )

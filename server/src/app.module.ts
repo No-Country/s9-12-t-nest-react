@@ -13,6 +13,7 @@ import { AuthModule } from './auth/auth.module';
 import { LocalUploadMiddleware } from './middlewares/local-upload.middleware';
 import { FirebaseUploadMiddleware } from './middlewares/firebase-upload.middleware';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { OffersModule } from './offers/offers.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
     CategoriesModule,
     SubcategoriesModule,
     ProductsModule,
+    OffersModule,
   ],
   controllers: [AppController, LoginController],
   providers: [AppService, LocalUploadMiddleware, FirebaseUploadMiddleware],

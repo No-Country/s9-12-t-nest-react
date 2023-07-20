@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { addUserProducts, getProducts } from '../../features/productsSlice/productSlice'
+import { addUserProducts, getProducts } from '../../../features/productsSlice/productSlice'
 
-const ProductFetcher = ({ filtroPor }) => {
+const ProductFetchByOwner = ({ filtroPor }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -18,4 +18,4 @@ const ProductFetcher = ({ filtroPor }) => {
   return null
 }
 
-export default ProductFetcher
+export default ProductFetchByOwner
