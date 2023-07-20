@@ -5,14 +5,14 @@ import { Form } from 'react-bootstrap'
 import './categoryTest.css'
 import { getCategories } from '../../features/categoriesSlice/categorySlice'
 import { getProductsByCategoryId } from '../../features/productsSlice/productSlice'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const CategoryTest = () => {
   const categories = useSelector((state) => state?.categories?.categories)
-
   const dispatch = useDispatch()
-  // console.log(categories)
-
-  const [categori, setCategori] = useState('')
+  const navigate = useNavigate()
+  const [categori, setCategori] = useState()
 
   const handleChange = (event) => {
     setCategori(event.target.value)
@@ -20,19 +20,26 @@ const CategoryTest = () => {
 
   useEffect(() => {
     dispatch(getCategories())
-    // .then((response) => {
-    //   console.log('RESPUESTA ->', response)
-    // })
-    // .catch((error) => {
-    //   console.log('ERROR ->', error)
-    // })
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(getProductsByCategoryId(categori))
-    // .then((response) => {
-    //   console.log('productos por categoria', response)
-    // })
+    // console.log(categori)
+    if (categori !== '' && categori !== undefined) {
+      dispatch(getProductsByCategoryId(categori))
+        .then((response) => {
+          // console.log('productos por categoria', response)
+          if (response.payload.length > 0) {
+            toast.success('redirigiendo')
+            setTimeout(() => {
+              navigate('/categoria', { state: { categori } })
+            }, 3000)
+          } else {
+            toast.info('No existen productos con esa categoria !!!')
+          }
+        })
+    } else {
+      // console.log('no hay categoria')
+    }
   }, [categori])
 
   return (
