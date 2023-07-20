@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+import {Socket, io} from 'socket.io-client'
 import { setLocation } from './/features/location/location'
 import AppRouter from './routes/AppRouter'
 import './index.css'
 
-function App () {
+function App() {
+  const [socket, setSocket] = useEffect()
   const dispatch = useDispatch()
 
   useEffect(() => {

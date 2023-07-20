@@ -14,6 +14,7 @@ import { LocalUploadMiddleware } from './middlewares/local-upload.middleware';
 import { FirebaseUploadMiddleware } from './middlewares/firebase-upload.middleware';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { OffersModule } from './offers/offers.module';
+import { CommentsGateway } from './comments/comments.gateway';
 
 @Module({
   imports: [
@@ -36,7 +37,7 @@ import { OffersModule } from './offers/offers.module';
     OffersModule,
   ],
   controllers: [AppController, LoginController],
-  providers: [AppService, LocalUploadMiddleware, FirebaseUploadMiddleware],
+  providers: [AppService, LocalUploadMiddleware, FirebaseUploadMiddleware, CommentsGateway],
 })
 
 export class AppModule implements NestModule {
