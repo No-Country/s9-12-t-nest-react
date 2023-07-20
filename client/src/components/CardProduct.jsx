@@ -26,8 +26,10 @@ export default function card (products) {
                 <div id='mobile-svg'>
                   <LocationSVGMobile />
                 </div>
+                <div className='text-container'>
+                  <p className='ubi-text'>{product.location}</p>
+                </div>
 
-                <p className='ubi-text'>{product.location}</p>
               </div>
 
             </div>
