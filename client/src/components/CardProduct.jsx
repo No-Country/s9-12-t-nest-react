@@ -12,6 +12,7 @@ export default function card (products) {
     <>
       {products.props.map((product, i) => (
         <Link to={`/detalle/${product._id}/${product.owner}`} className='card-link' key={i} onClick={() => handleInfo(product.geolocation)}>
+
           <div className='container-card'>
             <div className='img-container '>
               <img src={product.images} className='card-img-top' alt='product-image' />

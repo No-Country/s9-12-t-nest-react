@@ -16,12 +16,12 @@ export class OffersService {
     private readonly userModel: Model<User>,
     @InjectModel(Product.name)
     private readonly productModel: Model<Product>,
-  ){}
+  ) {}
 
   async create(createOfferDto: CreateOfferDto) {
     try {
       const { ...offerData } = createOfferDto;
-      const newOffer = await this.offerModel.create({...offerData});
+      const newOffer = await this.offerModel.create({ ...offerData });
 
       (await newOffer).offerOwnerId = new mongoose.Types.ObjectId(
         newOffer.offerOwnerId.toString(),
@@ -36,16 +36,19 @@ export class OffersService {
         },
       );
 
-      const productTarget = await this.productModel.findById(offerData.offerTargetItem);
-      const userTarget = await this.userModel.findById(productTarget.owner).exec();
-      (await userTarget).incomingOffers.push(newOffer._id); 
+      const productTarget = await this.productModel.findById(
+        offerData.offerTargetItem,
+      );
+      const userTarget = await this.userModel
+        .findById(productTarget.owner)
+        .exec();
+      (await userTarget).incomingOffers.push(newOffer._id);
       (await userTarget).save();
       (await newOffer).save();
 
       return {
         newOffer: await newOffer,
       };
-
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
@@ -55,15 +58,38 @@ export class OffersService {
     return `This action returns all offers`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} offer`;
+  async findOne(id: string) {
+    try {
+      const offer = await this.offerModel
+        .findById(id)
+        .populate({ path: 'offerOwnerId' })
+        .populate({ path: 'offerTargetItem', select: '_id name images' })
+        .populate({ path: 'offeredItems', select: '_id name images location' })
+        .where({ status: 'pending' })
+        .exec();
+      return offer;
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
-  update(id: number, updateOfferDto: UpdateOfferDto) {
-    return `This action updates a #${id} offer`;
+  async update(id: string, updateOfferDto: UpdateOfferDto) {
+    try {
+      const offerToUpdate = await this.offerModel.findByIdAndUpdate(
+        id,
+        updateOfferDto,
+        { new: true },
+      );
+      if (!offerToUpdate) {
+        throw new Error(`Invoice ${id} not found`);
+      }
+      return offerToUpdate;
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} offer`;
   }
 }

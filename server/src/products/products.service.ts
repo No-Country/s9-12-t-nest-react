@@ -4,12 +4,15 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Product } from './entities/product.entity';
 import mongoose, { Model } from 'mongoose';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class ProductsService {
   constructor(
     @InjectModel(Product.name)
     private readonly productModel: Model<Product>,
+    @InjectModel(User.name)
+    private readonly userModel: Model<User>,
   ) {}
 
   async create(createProductDto: CreateProductDto) {
@@ -32,13 +35,15 @@ export class ProductsService {
       (await newProduct).owner = new mongoose.Types.ObjectId(
         productData.owner.toString(),
       );
-/*
-      (await newProduct).subcategories = productData.subcategories.map(
-        (subcategory) => {
-          return new mongoose.Types.ObjectId(subcategory.toString());
-        },
-      );
-*/
+
+      const owner = await this.userModel
+        .findById((await newProduct).owner)
+        .exec();
+
+      owner.products.push((await newProduct)._id);
+
+      (await owner).save();
+
       (await newProduct).save();
 
       return {
@@ -74,7 +79,8 @@ export class ProductsService {
     try {
       const productList = await this.productModel
         .find()
-        .where({ category: id });
+        .where('category')
+        .equals(new mongoose.Types.ObjectId(id.toString()))
       if (!productList) {
         throw new Error(`Product ${id} not found`);
       }
@@ -86,14 +92,10 @@ export class ProductsService {
 
   async findBySubCategory(id: string) {
     try {
-      /*
-      const productList = await this.productModel
-        .find({ category: { $in: id } })
-        .exec();
-      */
       const productList = await this.productModel
         .find()
-        .where({ subcategory: id });
+        .where('subcategory')
+        .equals(new mongoose.Types.ObjectId(id.toString()))
       if (!productList) {
         throw new Error(`Product ${id} not found`);
       }
@@ -110,7 +112,10 @@ export class ProductsService {
       { new: true },
     );
     if (!productUpdate) {
-      throw new HttpException(`Product ${id} not found`, HttpStatus.BAD_REQUEST,);
+      throw new HttpException(
+        `Product ${id} not found`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     return productUpdate;
   }
@@ -118,8 +123,13 @@ export class ProductsService {
   async remove(id: string) {
     try {
       const removed = await this.productModel.findByIdAndDelete(id);
-      if(!removed){throw new Error}
-      return removed;
+      if (!removed) {
+        throw new Error();
+      }
+      return {
+        message: `Product item #${id} was successfully removed.`,
+        status: HttpStatus.OK,
+      };
     } catch (error) {
       throw new HttpException(
         `Can't delete ${id} or product not found`,

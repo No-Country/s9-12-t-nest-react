@@ -10,6 +10,7 @@ import PerfilUser from '../pages/Perfil/PerfilUser'
 import Publication from '../components/publication/Publication'
 import FormCargaProducts from '../pages/CargaDatos/FormCargaProducts'
 import Ofertar from '../pages/Ofertar'
+import Categorias from '../pages/Categorias/Categorias'
 
 function AppRouter ({ state }) {
   return (
@@ -27,7 +28,7 @@ function AppRouter ({ state }) {
         {/* pruebas */}
         <Route path='/cargaProduct' element={<Publication />} />
         <Route path='/formulario' element={<FormCargaProducts />} />
-
+        <Route path='/categoria' element={<Categorias />} />
         <Route path='*' element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>
