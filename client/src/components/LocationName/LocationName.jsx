@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 const LocationName = () => {
   const location = useSelector((state) => state.location)
   const [locality, setLocality] = useState('')
-  console.log(locality)
+  // console.log(locality)
 
   useEffect(() => {
     const getLocality = async () => {

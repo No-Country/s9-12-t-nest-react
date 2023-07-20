@@ -214,7 +214,7 @@ const productSlice = createSlice({
   name: 'products',
   initialState: {
     products: [],
-    productById: [],
+    productById: false,
     productsByCategory: [],
     productsBySubcategory: [],
     productsByKeyword: [],
@@ -251,7 +251,7 @@ const productSlice = createSlice({
       state.productsByKeyword = action.payload
     },
     clearProductById: (state) => {
-      state.productById = []
+      state.productById = false
     },
     clearProductsByCategory: (state) => {
       state.productsByCategory = []

@@ -20,7 +20,7 @@ function AppRouter ({ state }) {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Home />} />
-        <Route path='/detalle/:id' element={<Detail />} />
+        <Route path='/detalle/:id/:owner' element={<Detail />} />
         <Route path='/perfil' element={<PerfilUser />} />
         <Route path='/publicacion' element={<Publication />} />
         <Route path='/ofertar/:id' element={<Ofertar />} />

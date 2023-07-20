@@ -11,7 +11,7 @@ function App () {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('SE EJECUTA FUNC APP')
+    // console.log('SE EJECUTA FUNC APP')
     navigator.geolocation.getCurrentPosition(
       function (position) {
         dispatch(
@@ -22,7 +22,7 @@ function App () {
         )
       },
       function (error) {
-        console.log(error)
+        // console.log(error)
       },
       {
         enableHighAccuracy: true
