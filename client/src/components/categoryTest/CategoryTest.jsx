@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { fetchCategories, fetchProductsByCategory } from '../../features/products/fetchProducts'
 import { v4 as uuidv4 } from 'uuid'
 import { Form } from 'react-bootstrap'
 import './categoryTest.css'
+import { getCategories } from '../../features/categoriesSlice/categorySlice'
+import { getProductsByCategoryId } from '../../features/productsSlice/productSlice'
 
 const CategoryTest = () => {
   const categories = useSelector((state) => state?.categories?.categories)
 
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
+  console.log(categories)
 
   const [categori, setCategori] = useState('')
 
@@ -16,19 +18,22 @@ const CategoryTest = () => {
     setCategori(event.target.value)
   }
 
-  // useEffect(() => {
-  //   dispatch(fetchCategories())
-  //     .then((response) => {
-  //       // console.log('RESPUESTA ->', response)
-  //     })
-  //     .catch((error) => {
-  //       console.log('ERROR ->', error)
-  //     })
-  // }, [dispatch])
+  useEffect(() => {
+    dispatch(getCategories())
+      .then((response) => {
+        console.log('RESPUESTA ->', response)
+      })
+      .catch((error) => {
+        console.log('ERROR ->', error)
+      })
+  }, [dispatch])
 
-  // useEffect(() => {
-  //   dispatch(fetchProductsByCategory(categori))
-  // }, [categori])
+  useEffect(() => {
+    dispatch(getProductsByCategoryId(categori))
+      .then((response) => {
+        console.log('productos por categoria', response)
+      })
+  }, [categori])
 
   return (
     <section className='h-100 d-flex justify-content-center align-items-center' style={{ background: 'tomato' }}>
@@ -46,9 +51,13 @@ const CategoryTest = () => {
         >
 
           <option value=''>Categorias</option>
-          {categories.map((obj) => (
-            <option key={uuidv4()} value={obj}>{obj}</option>
-          ))}
+          {
+          categories.map((obj) =>
+            (
+              <option key={uuidv4()} value={obj._id}>{obj.name}</option>
+            )
+          )
+          }
         </Form.Select>
         {/* <div className='iconoCategory '>
           <ion-icon name='chevron-down-sharp' />
