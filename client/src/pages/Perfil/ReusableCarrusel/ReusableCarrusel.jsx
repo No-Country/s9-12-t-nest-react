@@ -31,7 +31,7 @@ const ReusableCarrusel = ({ titulo, productos }) => {
                     Publicaciónes de {titulo}
                   </h2>
                   <section className='carruselSinProductos' style={{ width: '100%', height: '270px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <p>No se encontraron productos del usuario.</p>
+                    <p>No se encontraron {titulo}</p>
                   </section>
                 </div>
                 )

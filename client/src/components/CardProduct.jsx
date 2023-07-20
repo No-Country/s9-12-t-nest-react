@@ -7,7 +7,7 @@ export default function card (products) {
   return (
     <>
       {products.props.map((product, i) => (
-        <Link to={`/detalle/${product.id}`} className='card-link' key={i}>
+        <Link to={`/detalle/${product._id}`} className='card-link' key={i}>
           <div className='container-card'>
             <div className='img-container '>
               <img src={product.images} className='card-img-top' alt='product-image' />

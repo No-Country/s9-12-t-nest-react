@@ -10,7 +10,7 @@ const CategoryTest = () => {
   const categories = useSelector((state) => state?.categories?.categories)
 
   const dispatch = useDispatch()
-  console.log(categories)
+  // console.log(categories)
 
   const [categori, setCategori] = useState('')
 
@@ -20,19 +20,19 @@ const CategoryTest = () => {
 
   useEffect(() => {
     dispatch(getCategories())
-      .then((response) => {
-        console.log('RESPUESTA ->', response)
-      })
-      .catch((error) => {
-        console.log('ERROR ->', error)
-      })
+    // .then((response) => {
+    //   console.log('RESPUESTA ->', response)
+    // })
+    // .catch((error) => {
+    //   console.log('ERROR ->', error)
+    // })
   }, [dispatch])
 
   useEffect(() => {
     dispatch(getProductsByCategoryId(categori))
-      .then((response) => {
-        console.log('productos por categoria', response)
-      })
+    // .then((response) => {
+    //   console.log('productos por categoria', response)
+    // })
   }, [categori])
 
   return (
