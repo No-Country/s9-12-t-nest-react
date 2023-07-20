@@ -18,7 +18,6 @@ import {
   ApiCreatedResponse,
   ApiNotFoundResponse,
   ApiOkResponse,
-  ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
 
@@ -37,9 +36,12 @@ export class ProductsController {
     description: 'Bad request in Product data.',
   })
   @Post()
-  @UsePipes(new ValidationPipe({
-    whitelist: true, forbidNonWhitelisted: true
-  }))
+  @UsePipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  )
   create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }
