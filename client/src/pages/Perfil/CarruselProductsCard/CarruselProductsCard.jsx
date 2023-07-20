@@ -6,7 +6,7 @@ import { deleteProductById } from '../../../features/productsSlice/productSlice'
 import Loading from '../../../components/Loading'
 import UserProductCard from '../UserProductCard/CardPrueba'
 
-import { ToastContainer, toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 // Import Swiper styles
 import 'swiper/css'

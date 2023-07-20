@@ -1,6 +1,7 @@
 import React from 'react'
 
-const Estrellas = ({ number }) => {
+// recibe un numero, el "raiting del usuario" y retorna las estrellas que corresponden de acuerdo a ese raiting
+const Stars = ({ number }) => {
   const total = 5
   const ratingReal = (number / 2)
   const starIconLleno = 'star-sharp'
@@ -42,4 +43,4 @@ const Estrellas = ({ number }) => {
   )
 }
 
-export default Estrellas
+export default Stars
