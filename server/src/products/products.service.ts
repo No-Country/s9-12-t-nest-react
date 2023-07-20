@@ -79,7 +79,8 @@ export class ProductsService {
     try {
       const productList = await this.productModel
         .find()
-        .where({ category: id });
+        .where('category')
+        .equals(new mongoose.Types.ObjectId(id.toString()))
       if (!productList) {
         throw new Error(`Product ${id} not found`);
       }
@@ -91,14 +92,10 @@ export class ProductsService {
 
   async findBySubCategory(id: string) {
     try {
-      /*
-      const productList = await this.productModel
-        .find({ category: { $in: id } })
-        .exec();
-      */
       const productList = await this.productModel
         .find()
-        .where({ subcategory: id });
+        .where('subcategory')
+        .equals(new mongoose.Types.ObjectId(id.toString()))
       if (!productList) {
         throw new Error(`Product ${id} not found`);
       }
