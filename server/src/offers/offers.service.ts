@@ -16,12 +16,12 @@ export class OffersService {
     private readonly userModel: Model<User>,
     @InjectModel(Product.name)
     private readonly productModel: Model<Product>,
-  ){}
+  ) {}
 
   async create(createOfferDto: CreateOfferDto) {
     try {
       const { ...offerData } = createOfferDto;
-      const newOffer = await this.offerModel.create({...offerData});
+      const newOffer = await this.offerModel.create({ ...offerData });
 
       (await newOffer).offerOwnerId = new mongoose.Types.ObjectId(
         newOffer.offerOwnerId.toString(),
@@ -36,16 +36,19 @@ export class OffersService {
         },
       );
 
-      const productTarget = await this.productModel.findById(offerData.offerTargetItem);
-      const userTarget = await this.userModel.findById(productTarget.owner).exec();
-      (await userTarget).incomingOffers.push(newOffer._id); 
+      const productTarget = await this.productModel.findById(
+        offerData.offerTargetItem,
+      );
+      const userTarget = await this.userModel
+        .findById(productTarget.owner)
+        .exec();
+      (await userTarget).incomingOffers.push(newOffer._id);
       (await userTarget).save();
       (await newOffer).save();
 
       return {
         newOffer: await newOffer,
       };
-
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }

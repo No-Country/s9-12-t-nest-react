@@ -15,7 +15,7 @@ export class Offer extends Document {
   @ApiProperty()
   @Prop({ ref: 'Products' })
   offerTargetItem: Types.ObjectId;
-  
+
   @ApiProperty()
   @Prop({ array: true, ref: 'Products' })
   offeredItems: Types.ObjectId[];

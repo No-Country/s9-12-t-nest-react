@@ -36,10 +36,12 @@ export class ProductsService {
         productData.owner.toString(),
       );
 
-      const owner = await this.userModel.findById((await newProduct).owner).exec();
+      const owner = await this.userModel
+        .findById((await newProduct).owner)
+        .exec();
 
       owner.products.push((await newProduct)._id);
-      
+
       (await owner).save();
 
       (await newProduct).save();
@@ -113,7 +115,10 @@ export class ProductsService {
       { new: true },
     );
     if (!productUpdate) {
-      throw new HttpException(`Product ${id} not found`, HttpStatus.BAD_REQUEST,);
+      throw new HttpException(
+        `Product ${id} not found`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
     return productUpdate;
   }
@@ -121,7 +126,9 @@ export class ProductsService {
   async remove(id: string) {
     try {
       const removed = await this.productModel.findByIdAndDelete(id);
-      if(!removed){throw new Error}
+      if (!removed) {
+        throw new Error();
+      }
       return {
         message: `Product item #${id} was successfully removed.`,
         status: HttpStatus.OK,
