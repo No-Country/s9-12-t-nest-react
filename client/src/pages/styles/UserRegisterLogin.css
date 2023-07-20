@@ -1,63 +1,115 @@
-.form{
+.form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.form-content{
+
+.form-content {
     max-width: 396px;
 }
-#email, #password, #password2, #name, #lastName, #userName{
+
+#email,
+#password,
+#password2,
+#name,
+#lastName,
+#userName {
     margin-bottom: 15px;
-    padding: 10px ;
-    border: 2px solid #FF4679 ;
+    padding: 10px;
+    border: 2px solid #FF4679;
     border-radius: 15px;
     width: 100%;
 }
-.pass-positioning{
+
+.pass-positioning {
     position: relative;
     width: 396px;
 }
-#eye-img{
+
+#eye-img {
     position: absolute;
     top: 11px;
-    right:  10px;
+    right: 10px;
 }
-.forgot-pass{
+
+.forgot-pass {
     text-align: end;
     margin-bottom: 30px;
 }
-.forgot-pass a{
+
+.forgot-pass a {
     color: #FF4679;
 }
-.button{
+
+.button {
     background-color: #FF4679;
     border: none;
     border-radius: 110px;
-    color:#FFFFFF;
+    color: #FFFFFF;
     margin-top: 10px;
     padding: 10px;
     width: 211px;
 }
-.logo-img{
+
+.logo-img {
     width: 310.75px;
 }
-.slogan{
+
+.slogan {
     color: #DE1252;
     margin-top: 20px;
     margin-bottom: 50px;
 }
-.new-account{
+
+.new-account {
     margin-top: 40px;
 }
-.new-account a{
+
+.new-account a {
     text-decoration: none;
     color: #FF4679;
 }
-#hr{
+
+#hr {
     color: #FF4679;
     border-top: 2px solid;
 }
-.login-alternatives img{
-    margin-inline: 20px;
+
+.login-alternatives {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 1rem;
+}
+
+.login-alternatives p {
+    padding: 0;
+    margin: 0;
+    color: #DE1252;
+    font-size: 16px;
+    font-family: var(--titulo);
+    font-weight: 600;
+}
+
+.loginExternos {
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    transition: all .2s ease-in;
+    border: solid 1px #DE1252;
+    cursor: pointer;
+}
+
+.loginExternos:hover {
+    transform: scale(1.1);
+    color: #DE1252;
+    font-size: 2rem;
+    border-radius: 10px;
 }

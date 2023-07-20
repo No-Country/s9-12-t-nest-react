@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import '../styles/UserRegisterLogin.css'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { loginWithGoogle } from '../../features/AutenticationSlice/AutenticationSlice'
 
 const LoginUser = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const [errors, setErrors] = useState({})
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
     const { value, name } = e.target
@@ -78,7 +81,26 @@ const LoginUser = () => {
       //     navigate('/login')
       //   },4000)
       // })
+      resetStates()
     }
+  }
+
+  const handleLoginGoogle = (e) => {
+    e.preventDefault()
+    // console.log('login google')
+    dispatch(loginWithGoogle())
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((error) => {
+        console.log('Error al iniciar sesión:', error)
+      })
+      .finally(() => {
+        setTimeout(() => {
+          window.location.href = '/'
+        }, 4000)
+      }
+      )
   }
 
   return (
@@ -89,20 +111,27 @@ const LoginUser = () => {
         <h5>Iniciar Sesión</h5>
         <form onSubmit={handleSubmit} className='form'>
           <div className='form-content'>
-            <input
-              id='email'
-              placeholder='Correo Electrónico'
-              onChange={handleChange}
-            />
-            <div class='pass-positioning'>
-              <label for='password' />
-              <input
-                id='password'
-                placeholder='Contraseña'
-                type='password'
-                onChange={handleChange}
-              />
-              <img id='eye-img' src='/images/visibility.svg' alt='Eye icon to show or hidden password' />
+            <div>
+              <section>
+                <input
+                  id='email'
+                  placeholder='Correo Electrónico'
+                  onChange={handleChange}
+                />
+                {errors.email && <p className='error' style={{ padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '400' }}>{errors.email}</p>}
+              </section>
+            </div>
+
+            <div className='pass-positioning'>
+              <section>
+                <input
+                  id='password'
+                  placeholder='Contraseña'
+                  type='password'
+                  onChange={handleChange}
+                />
+                {errors.email && <p className='error' style={{ padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '400' }}>{errors.email}</p>}
+              </section>
             </div>
             <div className='forgot-pass'>
               <Link to='/login'>Olvidé mi contraseña</Link>
@@ -124,11 +153,10 @@ const LoginUser = () => {
             <hr id='hr' />
             <div className='login-alternatives'>
               <p>Ingresar con</p>
-              <div />
-              <div className='loginExternos'>
+              <div className='loginExternos' onClick={handleLoginGoogle}>
                 <ion-icon name='logo-google' />
               </div>
-              <div>
+              <div className='loginExternos'>
                 <ion-icon name='logo-facebook' />
               </div>
             </div>
