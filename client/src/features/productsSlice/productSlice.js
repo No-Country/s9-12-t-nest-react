@@ -222,7 +222,8 @@ const productSlice = createSlice({
     likeProducts: [],
     status: '',
     loading: false,
-    error: null
+    error: null,
+    searchResults: ''
   },
   reducers: {
     toggleLikeProduct: (state, action) => {
@@ -236,6 +237,10 @@ const productSlice = createSlice({
         // Si el producto no está en la lista, se agrega
         state.likeProducts.push(product)
       }
+    },
+    addToSearchResults: (state, action) => {
+      state.searchResults = true
+      state.searchResults = action.payload
     },
     addUserProducts: (state, action) => {
       state.userProducts = []
@@ -409,7 +414,7 @@ const productSlice = createSlice({
   }
 })
 
-export const { toggleLikeProduct, addUserProducts, addToproductsByKeyword, clearProductById, clearProductsByCategory, clearProductsBySubcategory, clearProductByKeyword, clearAllFilters } = productSlice.actions
+export const { toggleLikeProduct, addToSearchResults, addUserProducts, addToproductsByKeyword, clearProductById, clearProductsByCategory, clearProductsBySubcategory, clearProductByKeyword, clearAllFilters } = productSlice.actions
 export const selectProducts = (state) => state.product.products
 export default productSlice.reducer
 

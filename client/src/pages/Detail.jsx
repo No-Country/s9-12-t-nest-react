@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { Typography, Card, CardContent } from '@mui/material'
+// import { Typography, Card, CardContent } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchProductById, getProducts } from '../features/products/fetchProducts'
+// import { fetchProductById, getProducts } from '../features/products/fetchProducts'
 import Loading from '../components/Loading'
 import MapView from '../components/MapView/MapView'
 import './Detalle.css'
@@ -24,7 +24,7 @@ export default function Detail () {
   // const usuarioId = useSelector((state)=> state?.authUser?.userById)
 
   useEffect(() => {
-    dispatch(getProducts())
+    // dispatch(getProducts())
     /* dispach */
     // dispatch(getUserById('64aba27c2415d442b78559c1'))
   }, [dispatch])
@@ -37,7 +37,7 @@ export default function Detail () {
   console.log(globalProduct)
 
   useEffect(() => {
-    dispatch(fetchProductById(id))
+    // dispatch(fetchProductById(id))
   }, [dispatch])
 
   // console.log('Producto filtrado -> ', product)
@@ -45,9 +45,9 @@ export default function Detail () {
   // if (!product) {
   //   return <Typography variant='h6'>Product no encontrado</Typography>
   // }
-  if (!product) {
-    return <Typography variant='h6'>Product no encontrado</Typography>
-  }
+  // if (!product) {
+  //   return <Typography variant='h6'>Product no encontrado</Typography>
+  // }
 
   return (
     <div>
