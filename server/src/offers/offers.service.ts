@@ -71,14 +71,25 @@ export class OffersService {
     } catch (error) {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
-    //return `This action returns a #${id} offer`;
   }
 
-  update(id: number, updateOfferDto: UpdateOfferDto) {
-    return `This action updates a #${id} offer`;
+  async update(id: string, updateOfferDto: UpdateOfferDto) {
+    try {
+      const offerToUpdate = await this.offerModel.findByIdAndUpdate(
+        id,
+        updateOfferDto,
+        { new: true },
+      );
+      if (!offerToUpdate) {
+        throw new Error(`Invoice ${id} not found`);
+      }
+      return offerToUpdate;
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} offer`;
   }
 }
