@@ -13,11 +13,11 @@ export class Offer extends Document {
   offerOwnerId: Types.ObjectId;
 
   @ApiProperty()
-  @Prop({ ref: 'Products' })
+  @Prop({ ref: 'Product' })
   offerTargetItem: Types.ObjectId;
 
   @ApiProperty()
-  @Prop({ array: true, ref: 'Products' })
+  @Prop({ array: true, ref: 'Product' })
   offeredItems: Types.ObjectId[];
 }
 

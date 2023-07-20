@@ -37,7 +37,7 @@ export class OffersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.offersService.findOne(+id);
+    return this.offersService.findOne(id);
   }
 
   @Patch(':id')

@@ -58,8 +58,20 @@ export class OffersService {
     return `This action returns all offers`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} offer`;
+  async findOne(id: string) {
+    try {
+      const offer = await this.offerModel
+        .findById(id)
+        .populate({ path: 'offerOwnerId' })
+        .populate({ path: 'offerTargetItem', select: '_id name images' })
+        .populate({ path: 'offeredItems', select: '_id name images location' })
+        .where({ status: 'pending' })
+        .exec();
+      return offer;
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
+    //return `This action returns a #${id} offer`;
   }
 
   update(id: number, updateOfferDto: UpdateOfferDto) {
