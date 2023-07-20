@@ -9,10 +9,10 @@ export class CreateProductDto {
     minLength: 1,
   })
   @IsNotEmpty({
-    message: "Debe proporcionar un nombre de artículo"
+    message: 'Debe proporcionar un nombre de artículo',
   })
   @IsString({
-    message: "El nombre del artículo debe ser un string"
+    message: 'El nombre del artículo debe ser un string',
   })
   @MinLength(1)
   name: string;
@@ -32,10 +32,10 @@ export class CreateProductDto {
     nullable: false,
   })
   @IsNotEmpty({
-    message: "Debe proporcionar urls de imágenes"
+    message: 'Debe proporcionar urls de imágenes',
   })
   @IsArray({
-    message: "Debe proporcionar un array de urls de imágenes"
+    message: 'Debe proporcionar un array de urls de imágenes',
   })
   images: string[];
 
@@ -45,10 +45,10 @@ export class CreateProductDto {
   })
   @MinLength(1)
   @IsNotEmpty({
-    message: "Debe proporcionar un Owner ID"
+    message: 'Debe proporcionar un Owner ID',
   })
   @IsString({
-    message: "Owner ID debe ser un string"
+    message: 'Owner ID debe ser un string',
   })
   owner: string;
 
@@ -93,13 +93,13 @@ export class CreateProductDto {
     nullable: false,
   })
   @MinLength(5, {
-    message: "La dirección ('location') debe contener al menos 5 caracteres"
+    message: "La dirección ('location') debe contener al menos 5 caracteres",
   })
   @IsNotEmpty({
-    message: "Debe proporcionar una direccion ('location')"
+    message: "Debe proporcionar una direccion ('location')",
   })
   @IsString({
-    message: "Debe proporcionar una direccion ('location') en formato string"
+    message: "Debe proporcionar una direccion ('location') en formato string",
   })
   location: string;
 }

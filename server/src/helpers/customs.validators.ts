@@ -1,5 +1,9 @@
-import { ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
-import { isValidObjectId } from "mongoose";
+import {
+  ValidationArguments,
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
+} from 'class-validator';
+import { isValidObjectId } from 'mongoose';
 
 @ValidatorConstraint({ name: 'IsMongoIdArray', async: false })
 export class IsMongoIdArrayConstraint implements ValidatorConstraintInterface {
