@@ -4,10 +4,14 @@ import LocationSVG from './LocationSVG'
 import LocationSVGMobile from './LocationSVGMobile'
 
 export default function card (products) {
+  const handleInfo = (value) => {
+    localStorage.setItem('geo', JSON.stringify(value))
+  }
+
   return (
     <>
       {products.props.map((product, i) => (
-        <Link to={`/detalle/${product.id}`} className='card-link' key={i}>
+        <Link to={`/detalle/${product._id}/${product.owner}`} className='card-link' key={i} onClick={() => handleInfo(product.geolocation)}>
           <div className='container-card'>
             <div className='img-container '>
               <img src={product.images} className='card-img-top' alt='product-image' />
