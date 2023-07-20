@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/esm/Button'
 import Carousel from '../components/carousel/Carousel'
 import LocationName from '../components/LocationName/LocationName'
 
-import Estrellas from './Perfil/Estrellas'
+// import Estrellas from './Perfil/Estrellas'
 // import PerfilUser from './Perfil/PerfilUser'
 import Ofertar from './Ofertar'
 /* Redux toolkit imports */
@@ -17,7 +17,6 @@ import { getUserById } from '../features/authSlice/authSlice'
 import { getProductById } from '../features/productsSlice/productSlice'
 import { setLocation } from '../features/location/location'
 /* custom Hook Local Storage */
-
 
 export default function Detail () {
   const product = useSelector((state) => state?.productsDb?.productById)
@@ -58,14 +57,12 @@ export default function Detail () {
 
               </div>
 
-
               <div className='usuario-descripcion'>
-
 
                 <h4 className='nombre-usuario'> {userInfo?.firstName} {userInfo?.lastName} </h4>
 
                 <div className='estrellas'>
-                  <Estrellas />
+                  {/* <Estrellas /> */}
                 </div>
 
                 <hr />
@@ -99,7 +96,7 @@ export default function Detail () {
             </div>
 
           </div>
-        </>
+           </>
           ) : <Loading />}
     </>
   )
