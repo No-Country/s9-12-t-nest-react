@@ -12,6 +12,7 @@ import LocationName from '../components/LocationName/LocationName'
 import PerfilUser from './Perfil/PerfilUser'
 import Ofertar from './Ofertar'
 /* prueba dispach */
+/* prueba dispach */
 import { getUserById } from '../features/authSlice/authSlice'
 import Stars from './Perfil/Stars/Stars'
 
@@ -24,7 +25,7 @@ export default function Detail () {
   // const usuarioId = useSelector((state)=> state?.authUser?.userById)
 
   useEffect(() => {
-    // dispatch(getProducts())
+    dispatch(getProducts())
     /* dispach */
     // dispatch(getUserById('64aba27c2415d442b78559c1'))
   }, [dispatch])
