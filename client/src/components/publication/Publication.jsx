@@ -14,7 +14,7 @@ import AlertPublication from './Alert'
 
 function Publication () {
   const [formState, setformState] = useState({
-    owner: '64aba27c2415d442b78559c1',
+    owner: '64a4f81a86fa742e0866f4e0',
     name: '',
     category: '',
     subcategory: '',
@@ -70,7 +70,7 @@ function Publication () {
 
   const resetValues = () => {
     setformState({
-      owner: '64aba27c2415d442b78559c1',
+      owner: '64a4f81a86fa742e0866f4e0',
       name: '',
       category: '',
       subcategory: '',
@@ -87,11 +87,11 @@ function Publication () {
   const submitForm = (form) => {
     dispatch(createProduct(form))
       .then((res) => {
-        console.log('res ->', res)
+        // console.log('res ->', res)
         if (res.type === 'products/create/rejected') {
           setPostState('failed')
         }
-        // setPostState('succesful')
+        if (res.type === 'products/create/fulfilled') { setPostState('successful') }
       })
       .catch((err) => {
         console.log('err ->', err)
