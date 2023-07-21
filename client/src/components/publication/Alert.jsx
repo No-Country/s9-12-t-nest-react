@@ -37,7 +37,7 @@ function Alert ({ handleAlert, status }) {
                   </>)}
                   {status === 'wrongData' &&
                   (<>
-                    <p>Parece haber faltado algun dato importante. Revisa el formulario</p>
+                    <p>Parece haber faltado algun dato importante.</p>
                   </>)}
                 </div>
               </div>
