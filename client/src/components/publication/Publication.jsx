@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import './styles/publication.css'
 import 'swiper/css'
 import Input from './Input'
@@ -7,6 +8,8 @@ import { getCategories, getCategoriesById } from '../../features/categoriesSlice
 import { createProduct } from '../../features/productsSlice/productSlice'
 import PBCarousel from './PBCarousel'
 import { obtenerCoordenadas } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
+import MapWithSearch from '../MapWithSearch/MapWithSearch'
+import AlertPublication from './Alert'
 
 function Publication () {
   const [formState, setformState] = useState({
@@ -17,15 +20,17 @@ function Publication () {
     images: [],
     location: '',
     description: '',
-    lon: '-58.44924',
-    lat: '-34.57365'
+    lon: '',
+    lat: ''
   })
   const [files, setFiles] = useState([])
+  const [postState, setPostState] = useState('')
   const categories = useSelector((state) => state?.categories?.categories)
   const subCategory = useSelector((state) => state?.categories?.category)
-  const barrio = useSelector((state) => state?.barrio?.cordenadas)
+  const lat = useSelector((state) => state?.location?.lat)
 
   const dispatch = useDispatch()
+  let formData = new FormData()
 
   const height = files.length > 0 ? '142px' : '0'
   const opacity = files.length > 0 ? '1' : '0'
@@ -57,8 +62,8 @@ function Publication () {
       images: [],
       location: '',
       description: '',
-      lon: '-58.44924',
-      lat: '-34.57365'
+      lon: '',
+      lat: ''
     })
 
     setFiles([])
@@ -68,9 +73,11 @@ function Publication () {
     dispatch(createProduct(form))
       .then((res) => {
         console.log('res ->', res)
+        setPostState('succesful')
       })
       .catch((err) => {
         console.log('err ->', err)
+        setPostState('failed')
       })
       .finally(() => {
         console.log('--- finalizo ---')
@@ -79,7 +86,7 @@ function Publication () {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    let formData = new FormData()
+
     formData.append('owner', formState.owner)
     formData.append('name', formState.name)
     formData.append('category', formState.category)
@@ -87,8 +94,8 @@ function Publication () {
     files.forEach((image) => formData.append('images', image))
     formData.append('location', formState.location)
     formData.append('description', formState.description)
-    formData.append('lon', barrio.longitude)
-    formData.append('lat', barrio.latitude)
+    formData.append('lon', formState.lon)
+    formData.append('lat', formState.lat)
 
     let logged = false
     formData.forEach((value, key) => {
@@ -100,12 +107,23 @@ function Publication () {
       }
     })
 
-    formState.name !== '' && formState.category !== '' && formState.subcategories !== '' && formState.images.length > 0 && formState.images.length <= 10 && formState.description !== '' ? submitForm(formData) : console.log('Inputs vacios o excede las 10 imagenes')
+    formState.name !== '' &&
+    formState.category !== '' &&
+    formState.subcategories !== '' &&
+    formState.images.length > 0 &&
+    formState.images.length <= 10 &&
+    formState.description !== '' &&
+    formState.lat !== '' &&
+    formState.lon !== ''
+      ? submitForm(formData)
+      : setPostState('wrongData')
 
     setTimeout(() => {
       resetValues()
       formData = new FormData()
-    }, 200)
+      localStorage.removeItem('latitude')
+      localStorage.removeItem('longitude')
+    }, 1000)
   }
 
   useEffect(() => {
@@ -120,10 +138,15 @@ function Publication () {
   }, [formState.category])
 
   useEffect(() => {
-    if (formState.location !== '') {
-      dispatch(obtenerCoordenadas(formState.location))
-    }
-  }, [dispatch, formState.location])
+    const latitude = localStorage.getItem('latitude')
+    const longitude = localStorage.getItem('longitude')
+
+    setformState((prevFormState) => ({
+      ...prevFormState,
+      lon: longitude,
+      lat: latitude
+    }))
+  }, [localStorage.getItem('longitude'), dispatch, lat])
 
   return (
     <>
@@ -175,9 +198,10 @@ function Publication () {
         </div>
 
         <div className='custom-container'>
-          <Input ids='input-bot' placeh='Ej:Pais, Ciudad, Localidad' type='text' name='location' onInputChange={handleInputChange}>
-            Indicá dónde se encuentra el artículo que querés publicar
-          </Input>
+
+          <h6 className='input-title'>Indicá dónde se encuentra el artículo que querés publicar</h6>
+          <MapWithSearch onInputChange={handleInputChange} valueSearch={formState.location} />
+
         </div>
 
         <div className='custom-container'>
@@ -195,6 +219,10 @@ function Publication () {
         </div>
 
       </form>
+
+      {/* <div className='alerts-container'>
+        <AlertPublication status={postState} />
+      </div> */}
 
     </>
   )
