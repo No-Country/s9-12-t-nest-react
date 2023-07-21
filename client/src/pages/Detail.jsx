@@ -27,7 +27,7 @@ export default function Detail () {
   const { id, owner } = useParams()
 
   useEffect(() => {
-    if (product !== false) {
+    if (product !== false && product._id !== id) {
       dispatch({ type: 'products/clearProductById' })
     }
 
