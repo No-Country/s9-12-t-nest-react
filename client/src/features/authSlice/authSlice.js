@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:3000/api/v1/users'
 export const createUser = createAsyncThunk('authUser/register', async (user, thunkAPI) => {
   // const { email, password, firstName,lastName,contact,address } = user
   try {
-    const response = await fetch(`${API_URL}/register`, {
+    const response = await fetch(`${API_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -130,6 +130,9 @@ const authSlice = createSlice({
       state.isAuthenticated = false
       state.user = null
       state.token = null
+    },
+    clearUserById: (state) => {
+      state.userById = null
     }
   },
   extraReducers: (builder) => {
@@ -208,5 +211,5 @@ const authSlice = createSlice({
       })
   }
 })
-export const { successLogin, logout } = authSlice.actions
+export const { successLogin, logout, clearUserById } = authSlice.actions
 export default authSlice.reducer

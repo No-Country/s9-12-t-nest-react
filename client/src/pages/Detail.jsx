@@ -1,109 +1,103 @@
-import React, { useEffect } from 'react'
+/* eslint-disable multiline-ternary */
+import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-// import { Typography, Card, CardContent } from '@mui/material'
-import { useDispatch, useSelector } from 'react-redux'
-// import { fetchProductById, getProducts } from '../features/products/fetchProducts'
 import Loading from '../components/Loading'
 import MapView from '../components/MapView/MapView'
 import './Detalle.css'
 import Button from 'react-bootstrap/esm/Button'
 import Carousel from '../components/carousel/Carousel'
 import LocationName from '../components/LocationName/LocationName'
-import PerfilUser from './Perfil/PerfilUser'
+
+// import Estrellas from './Perfil/Estrellas'
+// import PerfilUser from './Perfil/PerfilUser'
 import Ofertar from './Ofertar'
-/* prueba dispach */
+/* Redux toolkit imports */
+import { useDispatch, useSelector } from 'react-redux'
 import { getUserById } from '../features/authSlice/authSlice'
-import Stars from './Perfil/Stars/Stars'
+import { getProductById } from '../features/productsSlice/productSlice'
+/* custom Hook Local Storage */
 
 export default function Detail () {
-  const product = useSelector((state) => state?.products?.productById)
-  const loading = useSelector((state) => state?.products?.loading)
-  const globalProduct = useSelector((state) => state?.products?.products)
+  const product = useSelector((state) => state?.productsDb?.productById)
+  const userInfo = useSelector((state) => state.authUser?.userById)
+  const geoLocation = JSON.parse(localStorage.getItem('geo'))
+  const lat = parseFloat(geoLocation.lat)
+  const lon = parseFloat(geoLocation.lon)
   const dispatch = useDispatch()
-  /* prueba usuario */
-  // const usuarioId = useSelector((state)=> state?.authUser?.userById)
+  const { id, owner } = useParams()
 
   useEffect(() => {
-    // dispatch(getProducts())
-    /* dispach */
-    // dispatch(getUserById('64aba27c2415d442b78559c1'))
-  }, [dispatch])
+    if (product !== false && product._id !== id) {
+      dispatch({ type: 'products/clearProductById' })
+    }
 
-  const { id } = useParams()
+    if (owner !== '64aba27c2415d442b78559c1' && userInfo === null) {
+      dispatch(getUserById(owner))
+    }
 
-  console.log('lo que viene de product')
-  console.log(product)
-  console.log('viene de global')
-  console.log(globalProduct)
+    dispatch(getProductById(id))
+  }, [])
 
   useEffect(() => {
-    // dispatch(fetchProductById(id))
-  }, [dispatch])
-
-  // console.log('Producto filtrado -> ', product)
-  // const product = products.productos.find((product) => product.id === id)
-  // if (!product) {
-  //   return <Typography variant='h6'>Product no encontrado</Typography>
-  // }
-  // if (!product) {
-  //   return <Typography variant='h6'>Product no encontrado</Typography>
-  // }
+    if (owner !== '64aba27c2415d442b78559c1' && product !== false) {
+      dispatch(getUserById(owner))
+    }
+  }, [product, dispatch])
 
   return (
-    <div>
-      <h3 className='titulo-detalle'>{product.title}</h3>
-      <div className='imagen-descripcion'>
-        <div className='contenedor-imagen'>
-          <img src={product.image} alt='' className='imagen-producto' />
+    <>
+      {product.owner !== undefined
+        ? (<>
+          <div>
+            <h3 className='titulo-detalle'>{product?.name}</h3>
+            <div className='imagen-descripcion'>
+              <div className='contenedor-imagen'>
+                <img src={product?.images} alt='' className='imagen-producto' />
 
-        </div>
+              </div>
 
-        <div className='usuario-descripcion'>
+              <div className='usuario-descripcion'>
 
-          <h4 className='nombre-usuario'>Nombre del Usuario</h4>
+                <h4 className='nombre-usuario'> {userInfo?.firstName} {userInfo?.lastName} </h4>
 
-          <div className='estrellas'>
-            <Stars number={6} />
+                <div className='estrellas'>
+                  {/* <Estrellas /> */}
+                </div>
 
-            {/* <img src='/images/star_rate.png' alt='' />
-            <img src='/images/star_rate.png' alt='' />
-            <img src='/images/star_rate.png' alt='' />
-            <img src='/images/star_rate.png' alt='' />
-            <img src='/images/star_rate.png' alt='' /> */}
+                <hr />
+
+                <p className='descripcion'>{product?.description}</p>
+              </div>
+
+            </div>
+
+            <hr />
+
+            <h4 className='ubicacion'>Ubicacion</h4>
+
+            <div className='controlar-mapa'>
+              <div className='mapa'><MapView longitude={lon} latitude={lat} /></div>
+
+            </div>
+            <LocationName />
+            <div className='boton'>
+              <Link to={`/ofertar/${product?._id}`}><button className='ofertar' product={product}>Ofertar</button></Link>
+
+            </div>
+            <h6 className='ubicacion'>Otras publicaciones de este usuario.</h6>
+
+            <div className='control-carrusel'>
+              <div className='carrusel'>
+                {/* <Carousel data={userInfo?.products} /> */}
+
+              </div>
+
+            </div>
 
           </div>
-
-          <hr />
-
-          <p className='descripcion'>{product.description}</p>
-        </div>
-
-      </div>
-
-      <hr />
-
-      <h4 className='ubicacion'>Ubicacion</h4>
-
-      <div className='controlar-mapa'>
-        <div className='mapa'><MapView /></div>
-
-      </div>
-      <LocationName />
-      <div className='boton'>
-        <Link to={`/ofertar/${product.id}`}><button className='ofertar' product={product}>Ofertar</button></Link>
-
-      </div>
-      <h6 className='ubicacion'>Otras publicaciones de este usuario.</h6>
-
-      <div className='control-carrusel'>
-        <div className='carrusel'>
-          <Carousel data={globalProduct} />
-
-        </div>
-
-      </div>
-
-    </div>
+           </>
+          ) : <Loading />}
+    </>
   )
 };
 

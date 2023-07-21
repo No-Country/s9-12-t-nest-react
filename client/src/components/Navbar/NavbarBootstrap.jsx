@@ -10,6 +10,7 @@ import SearchBar from '../Search/SearchBar'
 // import CategoryTest from '../categoryTest/CategoryTest'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import CategoryTest from '../categoryTest/CategoryTest'
 
 function NavBarBootstrap () {
   const dispatch = useDispatch()
@@ -46,6 +47,7 @@ function NavBarBootstrap () {
                   <Nav className='justify-content-end  pe-3'>
                     {/* aca va el boton de categorias */}
                     {/* <Nav.Link href='#action1'><CategoryTest /></Nav.Link> */}
+                    <CategoryTest />
                   </Nav>
                   <div className='form'>
                     <SearchBar />
