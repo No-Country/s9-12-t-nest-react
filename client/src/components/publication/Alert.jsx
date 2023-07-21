@@ -4,8 +4,8 @@ import OkSVG from './OkSVG'
 import './styles/alert.css'
 import DeniedSVG from './DeniedSVG'
 
-function Alert () {
-  const status = 'failed'
+function Alert ({ handleAlert, status }) {
+  // const status = 'successful'
 
   return (
     <>
@@ -53,13 +53,13 @@ function Alert () {
                   {status === 'wrongData' &&
                   (<>
                     {/* Aca solo agregar la funcion heredada para reiniciar el status a '' */}
-                    <Link to='/perfil' className='link-ok'>
+                    <Link to='/publicacion' className='link-ok' onClick={handleAlert}>
                       <p>Entendido</p>
                     </Link>
                   </>)}
                   {status === 'failed' &&
                   (<>
-                    <Link to='/' className='link-ok'>
+                    <Link to='/' className='link-ok' onClick={handleAlert}>
                       <p>Entendido</p>
                     </Link>
                   </>)}
