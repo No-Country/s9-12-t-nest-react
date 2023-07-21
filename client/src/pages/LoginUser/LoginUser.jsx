@@ -107,17 +107,14 @@ const LoginUser = () => {
 
   return (
 
-    <div className='login w-full h-full bg-fondo pb-36 pt-16 flex flex-col justify-start item-center  gap-15'>
+    <section className='login-container d-flex flex-column justify-content-center align-items-center align-content-center gap-2' style={{ width: '100%', height: 'auto' }}>
       <img className='logo-img' src='/images/logo-login.svg' alt='Trueka logo image' />
-      <p className='slogan'>Encontrá lo que buscás, cambialo por lo que ya no necesitás jamaica </p>
-      <p>patito</p>
+      <p className='slogan'>Encontrá lo que buscás, cambialo por lo que ya no necesitás </p>
       <h5>Iniciar Sesión</h5>
-
-      <div className='controlar-form'>
-        <form className='form' onSubmit={handleSubmit}>
+      <form className='form' onSubmit={handleSubmit}>
+        <div className='form-content'>
           <div>
-            <div>
-              {/* <section> */}
+            <section>
               <input
                 id='email'
                 name='email'
@@ -127,11 +124,11 @@ const LoginUser = () => {
                 onChange={handleChange}
               />
               {errors.email && <p className='error' style={{ padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '400' }}>{errors.email}</p>}
-              {/* </section> */}
-            </div>
+            </section>
+          </div>
 
-            <div>
-              {/* <section> */}
+          <div className='pass-positioning'>
+            <section>
               <input
                 id='password'
                 placeholder='Contraseña'
@@ -141,37 +138,36 @@ const LoginUser = () => {
                 onChange={handleChange}
               />
               {errors.password && <p className='error' style={{ padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '400' }}>{errors.password}</p>}
-              {/* </section> */}
-            </div>
-            <div className=''>
-              <Link to='/login'>Olvidé mi contraseña</Link>
-            </div>
-            <button type='submit' className='button'>Iniciar Sesión </button>
+            </section>
+          </div>
+          <div className='forgot-pass'>
+            <Link to='/login'>Olvidé mi contraseña</Link>
+          </div>
+          <button type='submit' className='button'>Iniciar Sesión </button>
 
-            <div>
-              <span>
-                ¿No tenés una cuenta?
-              </span>
-              <Link
-                to='/register2'
-              >
-                Crear cuenta
-              </Link>
+          <div className='new-account'>
+            <span className='mt-2'>
+              ¿No tenés una cuenta?
+            </span>
+            <Link
+              to='/register2'
+            >
+              Crear cuenta
+            </Link>
+          </div>
+          <hr id='hr' />
+          <div className='login-alternatives'>
+            <p>Ingresar con</p>
+            <div className='loginExternos' onClick={handleLoginGoogle}>
+              <ion-icon name='logo-google' />
             </div>
-            <hr id='hr' />
-            <div>
-              <p>Ingresar con</p>
-              <div onClick={handleLoginGoogle}>
-                <ion-icon name='logo-google' />
-              </div>
-              <div>
-                <ion-icon name='logo-facebook' />
-              </div>
+            <div className='loginExternos'>
+              <ion-icon name='logo-facebook' />
             </div>
           </div>
-        </form>
-      </div>
-    </div>
+        </div>
+      </form>
+    </section>
 
   )
 }
