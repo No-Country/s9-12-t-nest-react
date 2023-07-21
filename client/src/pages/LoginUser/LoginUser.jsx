@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-//import '../styles/UserRegisterLogin.css'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login, loginWithGoogle } from '../../features/AutenticationSlice/AutenticationSlice'
 import { useNavigate } from 'react-router'
-import './LoginUser.css'
+import './LoginUserPruebas.css'
 
 const LoginUser = () => {
   const [email, setEmail] = useState('')
@@ -106,73 +105,69 @@ const LoginUser = () => {
   }
 
   return (
-
-    <div className='login'>
-      <img className='logo-img' src='/images/logo-login.svg' alt='Trueka logo image' />
-      <p className='slogan'>Encontrá lo que buscás, cambialo por lo que ya no necesitás jamaica </p>
-      <p>patito</p>
-      <h5>Iniciar Sesión</h5>
-      
-      <div className='controlar-form'>
-      <form className='form' onSubmit={handleSubmit}>
-        <div>
-          <div>
-            {/* <section> */}
-              <input
-                id='email'
-                name='email'
-                type='email'
-                placeholder='Correo Electrónico'
-                value={email}
-                onChange={handleChange}
-              />
-              {errors.email && <p className='error' style={{ padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '400' }}>{errors.email}</p>}
-            {/* </section> */}
-          </div>
-
-          <div>
-            {/* <section> */}
-              <input
-                id='password'
-                placeholder='Contraseña'
-                type='password'
-                name='password'
-                value={password}
-                onChange={handleChange}
-              />
-              {errors.password && <p className='error' style={{ padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '400' }}>{errors.password}</p>}
-            {/* </section> */}
-          </div>
-          <div className=''>
-            <Link to='/login'>Olvidé mi contraseña</Link>
-          </div>
-          <button type='submit' className='button'>Iniciar Sesión </button>
-
-          <div >
-            <span >
-              ¿No tenés una cuenta?
-            </span>
-            <Link
-              to='/register2'
-            >
-              Crear cuenta
-            </Link>
-          </div>
-          <hr id='hr' />
-          <div >
-            <p>Ingresar con</p>
-            <div  onClick={handleLoginGoogle}>
-              <ion-icon name='logo-google' />
+    <>
+      <section className='login-container d-flex flex-column justify-content-center align-items-center align-content-center gap-2' style={{ width: '100%', height: 'auto' }}>
+        <img className='logo-img' src='/images/logo-login.svg' alt='Trueka logo image' />
+        <p className='slogan'>Encontrá lo que buscás, cambialo por lo que ya no necesitás </p>
+        <h5>Iniciar Sesión</h5>
+        <form className='form' onSubmit={handleSubmit}>
+          <div className='form-content'>
+            <div>
+              <section>
+                <input
+                  id='email'
+                  name='email'
+                  type='email'
+                  placeholder='Correo Electrónico'
+                  value={email}
+                  onChange={handleChange}
+                />
+                {errors.email && <p className='error' style={{ padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '400' }}>{errors.email}</p>}
+              </section>
             </div>
-            <div >
-              <ion-icon name='logo-facebook' />
+
+            <div className='pass-positioning'>
+              <section>
+                <input
+                  id='password'
+                  placeholder='Contraseña'
+                  type='password'
+                  name='password'
+                  value={password}
+                  onChange={handleChange}
+                />
+                {errors.password && <p className='error' style={{ padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '400' }}>{errors.password}</p>}
+              </section>
+            </div>
+            <div className='forgot-pass'>
+              <Link to='/login'>Olvidé mi contraseña</Link>
+            </div>
+            <button type='submit' className='button'>Iniciar Sesión </button>
+
+            <div className='new-account'>
+              <span className='mt-2'>
+                ¿No tenés una cuenta?
+              </span>
+              <Link
+                to='/register2'
+              >
+                Crear cuenta
+              </Link>
+            </div>
+            <hr id='hr' />
+            <div className='login-alternatives'>
+              <p>Ingresar con</p>
+              <div className='loginExternos' onClick={handleLoginGoogle}>
+                <ion-icon name='logo-google' />
+              </div>
+              <div className='loginExternos'>
+                <ion-icon name='logo-facebook' />
+              </div>
             </div>
           </div>
-        </div>
-      </form>
-      </div>
-    </div>
-
+        </form>
+      </section>
+    </>
   )
 }
 
