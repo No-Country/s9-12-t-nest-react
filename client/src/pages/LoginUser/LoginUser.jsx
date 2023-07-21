@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import '../styles/UserRegisterLogin.css'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login, loginWithGoogle } from '../../features/AutenticationSlice/AutenticationSlice'
 import { useNavigate } from 'react-router'
+import './LoginUserPruebas.css'
 
 const LoginUser = () => {
   const [email, setEmail] = useState('')

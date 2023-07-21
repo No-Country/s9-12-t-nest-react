@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import { processGoogleCallback } from './features/AutenticationSlice/AutenticationSlice'
 
 function App () {
+  // const [socket, setSocket] = useEffect()
+
   const dispatch = useDispatch()
   // const [authorizationCode, setAuthorizationCode] = useState('')
 
@@ -34,8 +36,10 @@ function App () {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const code = urlParams.get('code')
+    const scope = urlParams.get('scope')
+    const authuser = urlParams.get('authuser')
     if (code) {
-      dispatch(processGoogleCallback(code))
+      dispatch(processGoogleCallback({ code, scope, authuser }))
         .then(res => {
           console.log('res', res)
         })
