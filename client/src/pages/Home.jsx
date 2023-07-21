@@ -77,6 +77,8 @@ function Home () {
                     <div className='carousel-rows-container'>
                       <div className='p-carousel-container'>
 
+
+
                         <div className='title-and-more-container'>
                           <p className='carousel-title'>Últimas publicaciones</p>
                           <Link>

@@ -25,16 +25,34 @@ const PerfilUser = () => {
 
   const reputacionUSer = { intercambiosExitosos: 15, intercambiosFallidos: 2, totalPublicaciones: 32, valoracionesPositivas: 15, valoracionesNegativas: 2, devoluciones: 1 }
 
+  // const objeto = {
+  //   _id: '64aba27c2415d442b78559c1',
+  //   img: 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1686264426/PERFIL_GENERAL_hbngdm.jpg',
+  //   email: 'guillermoneculqueo@gmail.com',
+  //   password: '@Guille123',
+  //   firstName: 'guillermo agustin',
+  //   lastName: 'neculqueo',
+  //   contact: '2944396887',
+  //   address: 'argentina, rio negro, ingeniero jcobacci'
+  // }
   const objeto = {
-    _id: '64aba27c2415d442b78559c1',
-    img: 'https://res.cloudinary.com/dpiwmbsog/image/upload/v1686264426/PERFIL_GENERAL_hbngdm.jpg',
-    email: 'guillermoneculqueo@gmail.com',
-    password: '@Guille123',
-    firstName: 'guillermo agustin',
-    lastName: 'neculqueo',
-    contact: '2944396887',
-    address: 'argentina, rio negro, ingeniero jcobacci'
+    _id: '64b9bb6d821dd7fe3cb11333',
+    email: 'pescadorabioso1992@gmail.com',
+    firstName: 'pescado',
+    lastName: 'rabioso',
+    contact: '2944123456',
+    address: 'Argentina,rio negro,san carlos de bariloche, ',
+    isActive: true,
+    roles: [
+      'user'
+    ],
+    products: [],
+    incomingOffers: [],
+    createdAt: '2023-07-20T22:55:41.634Z',
+    updatedAt: '2023-07-20T22:55:41.634Z',
+    __v: 0
   }
+
   const productsDestacados = []
 
   useEffect(() => {
