@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:3000/api/v1/users'
 export const createUser = createAsyncThunk('authUser/register', async (user, thunkAPI) => {
   // const { email, password, firstName,lastName,contact,address } = user
   try {
-    const response = await fetch(`${API_URL}/register`, {
+    const response = await fetch(`${API_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

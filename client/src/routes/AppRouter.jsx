@@ -11,6 +11,8 @@ import Publication from '../components/publication/Publication'
 import FormCargaProducts from '../pages/CargaDatos/FormCargaProducts'
 import Ofertar from '../pages/Ofertar'
 import Categorias from '../pages/Categorias/Categorias'
+import LoginUser from '../pages/LoginUser/LoginUser'
+import RegisterUser from '../pages/RegisterUser/RegisterUser'
 
 function AppRouter ({ state }) {
   return (
@@ -29,6 +31,10 @@ function AppRouter ({ state }) {
         <Route path='/cargaProduct' element={<Publication />} />
         <Route path='/formulario' element={<FormCargaProducts />} />
         <Route path='/categoria' element={<Categorias />} />
+
+        {/* validando y probando guille */}
+        <Route path='/login2' element={<LoginUser />} />
+        <Route path='/register2' element={<RegisterUser />} />'
         <Route path='*' element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>
