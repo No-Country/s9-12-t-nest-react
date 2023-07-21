@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { DotEnvConfig } from './config/env.config';
@@ -37,9 +42,13 @@ import { CommentsGateway } from './comments/comments.gateway';
     OffersModule,
   ],
   controllers: [AppController, LoginController],
-  providers: [AppService, LocalUploadMiddleware, FirebaseUploadMiddleware, CommentsGateway],
+  providers: [
+    AppService,
+    LocalUploadMiddleware,
+    FirebaseUploadMiddleware,
+    CommentsGateway,
+  ],
 })
-
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
