@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import {Socket, io} from 'socket.io-client'
 import { setLocation } from './/features/location/location'
 import AppRouter from './routes/AppRouter'
 import './index.css'
@@ -9,6 +10,10 @@ import { login, storeAccessToken } from './features/AutenticationSlice/Autentica
 import Login from './pages/Login'
 
 function App() {
+
+
+  const [socket, setSocket] = useEffect()
+
   const dispatch = useDispatch()
   // const [authorizationCode, setAuthorizationCode] = useState('')
 

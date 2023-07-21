@@ -15,7 +15,6 @@ import Ofertar from './Ofertar'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserById } from '../features/authSlice/authSlice'
 import { getProductById } from '../features/productsSlice/productSlice'
-import { setLocation } from '../features/location/location'
 /* custom Hook Local Storage */
 
 export default function Detail () {
@@ -28,11 +27,11 @@ export default function Detail () {
   const { id, owner } = useParams()
 
   useEffect(() => {
-    if (product !== false) {
+    if (product !== false && product._id !== id) {
       dispatch({ type: 'products/clearProductById' })
     }
 
-    if (owner !== '64aba27c2415d442b78559c1') {
+    if (owner !== '64aba27c2415d442b78559c1' && userInfo === null) {
       dispatch(getUserById(owner))
     }
 

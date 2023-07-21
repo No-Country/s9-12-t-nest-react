@@ -5,13 +5,13 @@ import LocationSVGMobile from './LocationSVGMobile'
 
 export default function card (products) {
   const handleInfo = (value) => {
-    localStorage.setItem('geo', JSON.stringify(value))
+    localStorage.setItem('geo', JSON.stringify(value.geolocation))
   }
 
   return (
     <>
       {products.props.map((product, i) => (
-        <Link to={`/detalle/${product._id}/${product.owner}`} className='card-link' key={i} onClick={() => handleInfo(product.geolocation)}>
+        <Link to={`/detalle/${product._id}/${product.owner}`} className='card-link' key={i} onClick={() => handleInfo(product)}>
 
           <div className='container-card'>
             <div className='img-container '>
