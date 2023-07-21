@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 /* eslint-disable no-undef */
 import './styles/publication.css'
 import 'swiper/css'
@@ -53,6 +54,20 @@ function Publication () {
     }))
   }
 
+  const handleAlert = () => {
+    if (postState === 'successfull' || postState === 'failed') {
+      setPostState('')
+      resetValues()
+      formData = new FormData()
+      localStorage.removeItem('latitude')
+      localStorage.removeItem('longitude')
+    }
+
+    if (postState === 'wrongData') {
+      setPostState('')
+    }
+  }
+
   const resetValues = () => {
     setformState({
       owner: '64aba27c2415d442b78559c1',
@@ -73,11 +88,13 @@ function Publication () {
     dispatch(createProduct(form))
       .then((res) => {
         console.log('res ->', res)
-        setPostState('succesful')
+        if (res.type === 'products/create/rejected') {
+          setPostState('failed')
+        }
+        // setPostState('succesful')
       })
       .catch((err) => {
         console.log('err ->', err)
-        setPostState('failed')
       })
       .finally(() => {
         console.log('--- finalizo ---')
@@ -86,6 +103,7 @@ function Publication () {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log(postState)
 
     formData.append('owner', formState.owner)
     formData.append('name', formState.name)
@@ -114,16 +132,11 @@ function Publication () {
     formState.images.length <= 10 &&
     formState.description !== '' &&
     formState.lat !== '' &&
-    formState.lon !== ''
+    formState.lon !== '' &&
+    formState.lat !== null &&
+    formState.lon !== null
       ? submitForm(formData)
       : setPostState('wrongData')
-
-    setTimeout(() => {
-      resetValues()
-      formData = new FormData()
-      localStorage.removeItem('latitude')
-      localStorage.removeItem('longitude')
-    }, 1000)
   }
 
   useEffect(() => {
@@ -147,6 +160,11 @@ function Publication () {
       lat: latitude
     }))
   }, [localStorage.getItem('longitude'), dispatch, lat])
+
+  useEffect(() => {
+    localStorage.removeItem('latitude')
+    localStorage.removeItem('longitude')
+  }, [])
 
   return (
     <>
@@ -220,9 +238,12 @@ function Publication () {
 
       </form>
 
-      {/* <div className='alerts-container'>
-        <AlertPublication status={postState} />
-      </div> */}
+      {postState === 'successful' || postState === 'wrongData' || postState === 'failed'
+
+        ? (<div className='alerts-container'>
+          <AlertPublication status={postState} handleAlert={handleAlert} />
+           </div>)
+        : ''}
 
     </>
   )
