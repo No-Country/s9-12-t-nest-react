@@ -23,9 +23,6 @@ export class AppController {
   @UseGuards(AuthGuard('google'))
   @Get('auth/google/callback')
   async googleCallback(@Req() req, @Res() res: Response) {
-    // return req.user;
-    // return this.authService.login(req.user);
-    // console.log(req.user);
     const jwt = await this.authService.signIn(req.user);
     this.jwtToken = { access_token: jwt };
     res.set('authorization', jwt);
@@ -34,13 +31,11 @@ export class AppController {
       user: req.user,
       token: jwt,
     });
-    // return res.json(req.user, jwt);
   }
 
   @UseGuards(AuthGuard('google'))
   @Get('home')
   async getHome(@Req() req, @Res() res: Response) {
-    // console.log('token--->>',this.jwtToken.access_token)
     if (this.jwtToken.access_token) {
       res.json({ data: {} });
     } else {
@@ -51,8 +46,6 @@ export class AppController {
   // need more research
   @Get('logout')
   async logout(@Req() req, @Res() res) {
-    //const jwt = await this.authService.login('');
-    //this.jwtToken = jwt;
     return 'successfully logout';
   }
 
