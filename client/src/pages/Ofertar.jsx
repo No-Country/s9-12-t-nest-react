@@ -43,7 +43,7 @@ const Ofertar = () => {
       </div>
 
       <div className='acomodar'>
-        {globalProduct.map(prod => <div key={prod.id}><OfertarCards prod={prod} /></div>)}
+        {/* {globalProduct.map(prod => <div key={prod.id}><OfertarCards prod={prod} /></div>)} */}
       </div>
       <div className='boton'>
         <button className='ofertar' product={product}>Confirmar Oferta</button>

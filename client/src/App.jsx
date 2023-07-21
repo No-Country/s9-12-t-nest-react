@@ -7,9 +7,13 @@ import './index.css'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { login, storeAccessToken } from './features/AutenticationSlice/AutenticationSlice'
+import Login from './pages/Login'
 
 function App() {
+
+
   const [socket, setSocket] = useEffect()
+
   const dispatch = useDispatch()
   // const [authorizationCode, setAuthorizationCode] = useState('')
 
@@ -44,7 +48,8 @@ function App() {
   }, [])
 
   return (
-    <div className='probando'>
+
+    <div className='probando' >
 
       <AppRouter />
       <ToastContainer

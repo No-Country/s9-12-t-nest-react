@@ -79,7 +79,7 @@ export default function Detail () {
               <div className='mapa'><MapView longitude={lon} latitude={lat} /></div>
 
             </div>
-            <LocationName />
+            {/* <LocationName /> */}
             <div className='boton'>
               <Link to={`/ofertar/${product?._id}`}><button className='ofertar' product={product}>Ofertar</button></Link>
 
