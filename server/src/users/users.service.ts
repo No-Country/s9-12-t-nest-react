@@ -1,4 +1,9 @@
-import { BadRequestException, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Model } from 'mongoose';
@@ -23,7 +28,7 @@ export class UsersService {
       (await user).save();
 
       return {
-        user: await this.findOne((await user)._id)
+        user: await this.findOne((await user)._id),
         //token: this.getJwtToken({ id: (await user)._id }),  (¿?)
       };
     } catch (error) {
@@ -40,7 +45,7 @@ export class UsersService {
 
   async findOne(id: string) {
     try {
-      const user = await this.userModel.findById(id).select('-password');;
+      const user = await this.userModel.findById(id).select('-password');
       if (!user) {
         throw new Error(`User ${id} not found`);
       }

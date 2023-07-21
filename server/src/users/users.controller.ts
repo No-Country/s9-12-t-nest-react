@@ -32,9 +32,12 @@ export class UsersController {
     description: 'Bad request (user already exists).',
   })
   @Post()
-  @UsePipes(new ValidationPipe({
-    whitelist: true, forbidNonWhitelisted: true
-  }))
+  @UsePipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  )
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
