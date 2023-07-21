@@ -20,6 +20,7 @@ function AppRouter ({ state }) {
       <NavBarBootstrap />
       <Routes>
         <Route path='/login' element={<Login />} />
+
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Home />} />
         <Route path='/detalle/:id/:owner' element={<Detail />} />
@@ -33,7 +34,7 @@ function AppRouter ({ state }) {
         <Route path='/categoria' element={<Categorias />} />
 
         {/* validando y probando guille */}
-        <Route path='/login2' element={<LoginUser />} />
+        {/* <Route path='/login2' element={<LoginUser />} /> */}
         <Route path='/register2' element={<RegisterUser />} />'
         <Route path='*' element={<h1>404</h1>} />
       </Routes>

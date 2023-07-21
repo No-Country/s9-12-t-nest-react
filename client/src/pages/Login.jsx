@@ -7,7 +7,7 @@ const initialValues = {
   password: ''
 }
 
-function Login () {
+function Login() {
   const [state, setState] = useState(initialValues)
   const [errors, setErrors] = useState({})
 
@@ -24,38 +24,43 @@ function Login () {
   }
 
   return (
-    <main style={{ textAlign: 'center', margin: '20px' }}>
+    <main style={{ textAlign: 'center' }}>
       <img className='logo-img' src='/images/logo-login.svg' alt='Trueka logo image' />
       <p className='slogan'>Encontrá lo que buscás, <br />
         cambialo por lo que ya no necesitás
       </p>
-      <h5>Iniciar Sesión</h5>
-      <form onSubmit={handleSubmit} className='form'>
+      <h5 className='iniciar-sesion'>Iniciar Sesión</h5>
+      <form onSubmit={handleSubmit} className='formulario'>
         <div className='form-content'>
           <input
             id='email'
-            placeholder='Correo Electrónico'
+            placeholder='  Correo Electrónico'
             onChange={handleChange}
+            className='input-email'
           />
           <div class='pass-positioning'>
             <label for='password' />
             <input
               id='password'
-              placeholder='Contraseña'
+              placeholder='  Contraseña'
               type='password'
               onChange={handleChange}
+              className='contraseña'
             />
             <img id='eye-img' src='/images/visibility.svg' alt='Eye icon to show or hidden password' />
           </div>
           <div className='forgot-pass'>
-            <Link to='/login'>Olvidé mi contraseña</Link>
+            <Link to='/login' className='olvide'>Olvidé mi contraseña</Link>
           </div>
           <button
             className='button'
           >Iniciar Sesión
           </button>
+          
+            
+       
           <div className='new-account'>
-            <span className='mt-2'>
+            <span className='mt-2 no-cuenta'>
               ¿No tenés una cuenta?
             </span>
             <Link
@@ -64,11 +69,16 @@ function Login () {
               Crear cuenta
             </Link>
           </div>
-          <hr id='hr' />
+         
+          <hr className='hr' />
           <div className='login-alternatives'>
-            <p>Ingresar con</p>
-            <img src='/images/google.svg' alt='Google icon' onClick={handleGoogleLogin} />
-            <img src='/images/facebook.svg' alt='Facebook icon' />
+            <p className='ingresar-con'>Ingresar con</p>
+            <div className='google-facebook'>
+              <img src='/images/google.svg' alt='Google icon' onClick={handleGoogleLogin} />
+              <img src='/images/facebook.svg' alt='Facebook icon' />
+
+            </div>
+
           </div>
         </div>
       </form>
