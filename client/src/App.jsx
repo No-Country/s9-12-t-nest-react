@@ -1,13 +1,17 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setLocation } from './/features/location/location'
 import AppRouter from './routes/AppRouter'
 import './index.css'
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { processGoogleCallback } from './features/AutenticationSlice/AutenticationSlice'
+import { useNavigate } from 'react-router-dom'
 
 function App () {
+  const token = useSelector(state => state?.autenticacion?.token)
+  const usuario = useSelector(state => state?.autenticacion?.user)
+
   // const [socket, setSocket] = useEffect()
 
   const dispatch = useDispatch()
@@ -38,18 +42,26 @@ function App () {
     const code = urlParams.get('code')
     const scope = urlParams.get('scope')
     const authuser = urlParams.get('authuser')
-    if (code) {
-      dispatch(processGoogleCallback({ code, scope, authuser }))
-        .then(res => {
-          console.log('res', res)
-        })
-        .catch(() => {
-          console.log('error')
-        })
 
-      // dispatch(storeAccessToken(code))
-      // console.log('code de acceso obtenido correctamente', code)
-    }
+    token
+      ? toast.success(`Bienvenido ${usuario.firstName}`)
+      : (
+          code
+            ? (
+                dispatch(processGoogleCallback({ code, scope, authuser }))
+                  .then(res => {
+                    console.log('res', res)
+                  })
+                  .catch(() => {
+                    console.log('error')
+                  })
+              )
+            : console.log('no hay code')
+
+        )
+
+    // dispatch(storeAccessToken(code))
+    // console.log('code de acceso obtenido correctamente', code)
   }, [])
 
   return (
