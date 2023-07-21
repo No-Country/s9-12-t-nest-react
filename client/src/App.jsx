@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import {Socket, io} from 'socket.io-client'
 import { setLocation } from './/features/location/location'
 import AppRouter from './routes/AppRouter'
 import './index.css'
@@ -7,7 +8,8 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { login, storeAccessToken } from './features/AutenticationSlice/AutenticationSlice'
 
-function App () {
+function App() {
+  const [socket, setSocket] = useEffect()
   const dispatch = useDispatch()
   // const [authorizationCode, setAuthorizationCode] = useState('')
 
