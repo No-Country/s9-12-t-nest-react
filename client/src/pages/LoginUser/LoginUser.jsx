@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import '../styles/UserRegisterLogin.css'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { loginWithGoogle, loginWithUsernameAndPassword } from '../../features/AutenticationSlice/AutenticationSlice'
+import { login, loginWithGoogle } from '../../features/AutenticationSlice/AutenticationSlice'
 import { useNavigate } from 'react-router'
 
 const LoginUser = () => {
@@ -70,7 +70,7 @@ const LoginUser = () => {
       setErrors({})
       console.log('correcto ->', user)
 
-      dispatch(loginWithUsernameAndPassword(user))
+      dispatch(login(user))
         .then((response) => {
           console.log(response)
           resetStates()
@@ -99,9 +99,7 @@ const LoginUser = () => {
         console.log('Error al iniciar sesión:', error)
       })
       .finally(() => {
-        setTimeout(() => {
-          window.location.href = '/'
-        }, 4000)
+        console.log('fin')
       }
       )
   }

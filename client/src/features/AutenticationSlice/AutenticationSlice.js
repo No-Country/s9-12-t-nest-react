@@ -5,7 +5,8 @@ const API_URL = 'http://localhost:3000/api/v1'
 export const loginWithGoogle = createAsyncThunk('auth/loginWithGoogle', async (_, thunkAPI) => {
   try {
     // redirigimos a google login
-    window.open(`${API_URL}/google`, '_blank')
+    // window.open(`${API_URL}/google`, '_blank')
+    window.location.href = `${API_URL}/google`
   } catch (error) {
     return thunkAPI.rejectWithValue(error)
   }
@@ -45,16 +46,16 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 })
 
-export const loginWithUsernameAndPassword = createAsyncThunk(
-  'auth/loginWithUsernameAndPassword',
-  async (userData, thunkAPI) => {
+export const login = createAsyncThunk(
+  'auth/login',
+  async (obj, thunkAPI) => {
     try {
       const response = await fetch(`${API_URL}auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(obj)
       })
 
       if (!response.ok) {
@@ -81,7 +82,11 @@ const AutenticationSlice = createSlice({
     isLoggedIn: false,
     isAdmin: false
   },
-  reducers: {},
+  reducers: {
+    storeAccessToken: (state, action) => {
+      state.token = action.payload
+    }
+  },
   extraReducers: (builder) => {
     builder
       // para iniciar sesion
@@ -129,20 +134,21 @@ const AutenticationSlice = createSlice({
         state.error = action.payload
       })
 
-      .addCase(loginWithUsernameAndPassword.pending, (state) => {
+      .addCase(login.pending, (state) => {
         state.loading = true
       })
-      .addCase(loginWithUsernameAndPassword.fulfilled, (state, action) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.loading = false
         state.user = action.payload
         state.isAuthenticated = true
         state.isLoggedIn = true
       })
-      .addCase(loginWithUsernameAndPassword.rejected, (state, action) => {
+      .addCase(login.rejected, (state, action) => {
         state.loading = false
         state.error = action.payload
       })
   }
 })
 
+export const { storeAccessToken } = AutenticationSlice.actions
 export default AutenticationSlice.reducer
