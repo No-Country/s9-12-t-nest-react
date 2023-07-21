@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import '../styles/UserRegisterLogin.css'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { loginWithGoogle } from '../../features/AutenticationSlice/AutenticationSlice'
+import { loginWithGoogle, loginWithUsernameAndPassword } from '../../features/AutenticationSlice/AutenticationSlice'
+import { useNavigate } from 'react-router'
 
 const LoginUser = () => {
   const [email, setEmail] = useState('')
@@ -10,9 +11,10 @@ const LoginUser = () => {
 
   const [errors, setErrors] = useState({})
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
-    const { value, name } = e.target
+    const { name, value } = e.target
 
     switch (name) {
       case 'email':
@@ -31,7 +33,7 @@ const LoginUser = () => {
     setPassword('')
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
 
     const user = {
@@ -62,32 +64,33 @@ const LoginUser = () => {
       validationErrors.password = 'La contraseña debe tener al menos un número'
     }
 
-    if (Object.keys(validationErrors).length) {
+    if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
     } else if (Object.keys(validationErrors).length === 0) {
       setErrors({})
       console.log('correcto ->', user)
 
-      // dispatch(register(userRegister))
-      // .then((response) => {
-      //   console.log(response)
-      //   resetStates()
-      // })
-      // .catch((error) => {
-      //   console.log('Error al registrarse:', error)
-      // })
-      // .finally(() => {
-      //   setTimeout(()=>{
-      //     navigate('/login')
-      //   },4000)
-      // })
+      dispatch(loginWithUsernameAndPassword(user))
+        .then((response) => {
+          console.log(response)
+          resetStates()
+          setTimeout(() => {
+            navigate('/home')
+          }, 4000)
+        })
+        .catch((error) => {
+          console.log('Error al registrarse:', error)
+        })
+        .finally(() => {
+          console.log('fin')
+        })
       resetStates()
     }
   }
 
   const handleLoginGoogle = (e) => {
     e.preventDefault()
-    // console.log('login google')
+    console.log('login google')
     dispatch(loginWithGoogle())
       .then((response) => {
         console.log(response)
@@ -109,13 +112,16 @@ const LoginUser = () => {
         <img className='logo-img' src='/images/logo-login.svg' alt='Trueka logo image' />
         <p className='slogan'>Encontrá lo que buscás, cambialo por lo que ya no necesitás </p>
         <h5>Iniciar Sesión</h5>
-        <form onSubmit={handleSubmit} className='form'>
+        <form className='form' onSubmit={handleSubmit}>
           <div className='form-content'>
             <div>
               <section>
                 <input
                   id='email'
+                  name='email'
+                  type='email'
                   placeholder='Correo Electrónico'
+                  value={email}
                   onChange={handleChange}
                 />
                 {errors.email && <p className='error' style={{ padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '400' }}>{errors.email}</p>}
@@ -128,24 +134,24 @@ const LoginUser = () => {
                   id='password'
                   placeholder='Contraseña'
                   type='password'
+                  name='password'
+                  value={password}
                   onChange={handleChange}
                 />
-                {errors.email && <p className='error' style={{ padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '400' }}>{errors.email}</p>}
+                {errors.password && <p className='error' style={{ padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '400' }}>{errors.password}</p>}
               </section>
             </div>
             <div className='forgot-pass'>
               <Link to='/login'>Olvidé mi contraseña</Link>
             </div>
-            <button
-              className='button'
-            >Iniciar Sesión
-            </button>
+            <button type='submit' className='button'>Iniciar Sesión </button>
+
             <div className='new-account'>
               <span className='mt-2'>
                 ¿No tenés una cuenta?
               </span>
               <Link
-                to='/register'
+                to='/register2'
               >
                 Crear cuenta
               </Link>

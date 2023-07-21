@@ -31,7 +31,7 @@ export const processGoogleCallback = createAsyncThunk('auth/processGoogleCallbac
 // cerrar sesion
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    const response = await fetch(`${API_URL}/logout`, {
+    const response = await fetch(`${API_URL}/auth/logout`, {
       method: 'GET'
     })
     if (!response.ok) {
@@ -44,6 +44,31 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error)
   }
 })
+
+export const loginWithUsernameAndPassword = createAsyncThunk(
+  'auth/loginWithUsernameAndPassword',
+  async (userData, thunkAPI) => {
+    try {
+      const response = await fetch(`${API_URL}auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        return thunkAPI.rejectWithValue(error)
+      }
+
+      const data = await response.json()
+      return data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error)
+    }
+  }
+)
 
 const AutenticationSlice = createSlice({
   name: 'authentication',
@@ -100,6 +125,20 @@ const AutenticationSlice = createSlice({
         state.isLoggedIn = false
       })
       .addCase(logout.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload
+      })
+
+      .addCase(loginWithUsernameAndPassword.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(loginWithUsernameAndPassword.fulfilled, (state, action) => {
+        state.loading = false
+        state.user = action.payload
+        state.isAuthenticated = true
+        state.isLoggedIn = true
+      })
+      .addCase(loginWithUsernameAndPassword.rejected, (state, action) => {
         state.loading = false
         state.error = action.payload
       })
