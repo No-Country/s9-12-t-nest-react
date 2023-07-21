@@ -36,14 +36,7 @@ function App () {
     const code = urlParams.get('code')
     if (code) {
       dispatch(storeAccessToken(code))
-      // dispatch(processGoogleCallback(code))
-      //   .then(() => {
-      //     // Aquí puedes redirigir a la página de inicio o hacer cualquier acción necesaria después de obtener el token de acceso
-      //     console.log('Token de acceso obtenido correctamente')
-      //   })
-      //   .catch((error) => {
-      //     console.log('Error al obtener el token de acceso:', error)
-      //   })
+
       console.log('Token de acceso obtenido correctamente', code)
     }
   }, [])
