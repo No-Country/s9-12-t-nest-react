@@ -10,7 +10,7 @@ public jwtToken = {access_token: ''};
 @UseGuards(AuthGuard('local'))
 @Post('auth/login')
 async login (@Req() req) {
-    return this.authService.login(req.user);
+    return this.authService.signIn(req.user);
 }
 
 
@@ -25,11 +25,15 @@ async googleCallback(@Req() req, @Res() res: Response) {
   // return req.user;
   // return this.authService.login(req.user);
   // console.log(req.user);
-  const jwt = await this.authService.login(req.user);
-  this.jwtToken = {access_token: jwt.token};
-  res.set('authorization', jwt.token);
+  const jwt = await this.authService.signIn(req.user);
+  this.jwtToken = {access_token: jwt};
+  res.set('authorization', jwt);
   res.status(200);
-  return res.json(req.user);
+  return res.json({
+        user: req.user,
+        token: jwt
+      });
+  // return res.json(req.user, jwt);
 }
 
 
