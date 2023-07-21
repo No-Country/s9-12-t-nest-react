@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login, loginWithGoogle } from '../../features/AutenticationSlice/AutenticationSlice'
 import { useNavigate } from 'react-router'
-import './LoginUser.css'
+import './loginUserPrueba.css'
 
 const LoginUser = () => {
   const [email, setEmail] = useState('')
@@ -107,7 +107,7 @@ const LoginUser = () => {
 
   return (
 
-    <div className='login'>
+    <div className='login w-full h-full bg-fondo pb-36 pt-16 flex flex-col justify-start item-center  gap-15'>
       <img className='logo-img' src='/images/logo-login.svg' alt='Trueka logo image' />
       <p className='slogan'>Encontrá lo que buscás, cambialo por lo que ya no necesitás jamaica </p>
       <p>patito</p>

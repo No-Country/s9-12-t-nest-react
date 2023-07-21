@@ -3,7 +3,7 @@ import { createUser } from '../../features/authSlice/authSlice'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { toast } from 'react-toastify'
-import '../styles/UserRegisterLogin.css'
+import './registe.css'
 import Loading from '../../components/Loading'
 
 const RegisterUser = () => {
@@ -169,7 +169,7 @@ const RegisterUser = () => {
       <section className='d-flex flex-column justify-content-center align-items-center align-content-center gap-2' style={{ width: '100%', height: 'auto' }}>
         <h3 style={{ textAlign: 'center', margin: '20px' }}>Crear una cuenta</h3>
         <form
-          className='form d-flex flex-column justify-content-center align-items-center align-content-center gap-2'
+          className='formRegister d-flex flex-column justify-content-center align-items-center align-content-center gap-2'
           onSubmit={handleSubmit}
         >
           <div className='form-content'>
