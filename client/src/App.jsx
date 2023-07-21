@@ -5,7 +5,7 @@ import AppRouter from './routes/AppRouter'
 import './index.css'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { login, storeAccessToken } from './features/AutenticationSlice/AutenticationSlice'
+import { login, processGoogleCallback, storeAccessToken } from './features/AutenticationSlice/AutenticationSlice'
 
 function App () {
   const dispatch = useDispatch()
@@ -35,9 +35,16 @@ function App () {
     const urlParams = new URLSearchParams(window.location.search)
     const code = urlParams.get('code')
     if (code) {
-      dispatch(storeAccessToken(code))
+      dispatch(processGoogleCallback(code))
+        .then(res => {
+          console.log('res', res)
+        })
+        .catch(() => {
+          console.log('error')
+        })
 
-      console.log('Token de acceso obtenido correctamente', code)
+      // dispatch(storeAccessToken(code))
+      // console.log('code de acceso obtenido correctamente', code)
     }
   }, [])
 

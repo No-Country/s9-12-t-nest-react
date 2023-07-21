@@ -14,7 +14,7 @@ import AlertPublication from './Alert'
 
 function Publication () {
   const [formState, setformState] = useState({
-    owner: '64a4f81a86fa742e0866f4e0',
+    owner: '64b9bb6d821dd7fe3cb11333',
     name: '',
     category: '',
     subcategory: '',
@@ -24,6 +24,17 @@ function Publication () {
     lon: '',
     lat: ''
   })
+  // const [formState, setformState] = useState({
+  //   owner: '64a4f81a86fa742e0866f4e0',
+  //   name: '',
+  //   category: '',
+  //   subcategory: '',
+  //   images: [],
+  //   location: '',
+  //   description: '',
+  //   lon: '',
+  //   lat: ''
+  // })
   const [files, setFiles] = useState([])
   const [postState, setPostState] = useState('')
   const categories = useSelector((state) => state?.categories?.categories)

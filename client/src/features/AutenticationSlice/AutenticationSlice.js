@@ -13,9 +13,9 @@ export const loginWithGoogle = createAsyncThunk('auth/loginWithGoogle', async (_
 })
 
 // procesa la respuesta una vez inicia sesion
-export const processGoogleCallback = createAsyncThunk('auth/processGoogleCallback', async (_, thunkAPI) => {
+export const processGoogleCallback = createAsyncThunk('auth/processGoogleCallback', async (code, thunkAPI) => {
   try {
-    const response = await fetch(`${API_URL}/google/callback`, {
+    const response = await fetch(`${API_URL}/google/callback?code=${code}`, {
       method: 'GET'
     })
     if (!response.ok) {
