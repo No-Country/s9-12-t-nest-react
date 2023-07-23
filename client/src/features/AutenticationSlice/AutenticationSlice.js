@@ -30,10 +30,13 @@ export const processGoogleCallback = createAsyncThunk('auth/processGoogleCallbac
 })
 
 // cerrar sesion
-export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+export const logout = createAsyncThunk('auth/logout', async (token, thunkAPI) => {
   try {
     const response = await fetch(`${API_URL}/logout`, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
     if (!response.ok) {
       const error = await response.json()
@@ -85,7 +88,16 @@ const AutenticationSlice = createSlice({
   reducers: {
     storeAccessToken: (state, action) => {
       state.token = action.payload
+    },
+    logoutUser: (state) => {
+      state.user = null
+      state.error = null
+      state.isAuthenticated = false
+      state.isLoggedIn = false
+      state.token = null
+      state.isAdmin = false
     }
+
   },
   extraReducers: (builder) => {
     builder
@@ -96,8 +108,8 @@ const AutenticationSlice = createSlice({
       .addCase(loginWithGoogle.fulfilled, (state, action) => {
         state.loading = false
         state.user = action.payload
-        state.isAuthenticated = true
-        state.isLoggedIn = true
+        // state.isAuthenticated = true
+        // state.isLoggedIn = true
       })
       .addCase(loginWithGoogle.rejected, (state, action) => {
         state.loading = false
@@ -141,7 +153,7 @@ const AutenticationSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false
-        state.user = action.payload
+        state.user = null
         state.isAuthenticated = true
         state.isLoggedIn = true
       })
@@ -152,5 +164,5 @@ const AutenticationSlice = createSlice({
   }
 })
 
-export const { storeAccessToken } = AutenticationSlice.actions
+export const { storeAccessToken, logoutUser } = AutenticationSlice.actions
 export default AutenticationSlice.reducer
