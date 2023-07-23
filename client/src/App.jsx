@@ -43,7 +43,6 @@ function App () {
     const scope = urlParams.get('scope')
     const authuser = urlParams.get('authuser')
     const prompt = urlParams.get('prompt')
-    console.log('prompt', prompt)
 
     token
       ? toast.success(`Bienvenido ${usuario.firstName}`)
