@@ -1,34 +1,36 @@
-*{
-    box-sizing: border-box !important;  
-    margin: 0 ;
-    padding: 0 ;
-    border: 0 ;
-     
+* {
+    box-sizing: border-box !important;
+    margin: 0;
+    padding: 0;
+    border: 0;
+
 
 }
 
-.div-logo2{
+.div-logo2 {
     display: none;
 }
 
-.publicar{
+.publicar {
     color: white !important;
 }
 
 
-.form{
+.form {
     display: none;
 }
 
 
 
-.navbar{
+.navbar {
     margin: 0px !important;
     display: flex;
     align-items: center;
     background-color: rgb(201, 40, 126);
     width: 100vw;
-    overflow-x: hidden !important;
+    /* overflow-x: hidden !important; */
+    overflow-x: visible !important;
+
     justify-content: space-around !important;
     flex-wrap: wrap;
     overflow-y: hidden;
@@ -37,58 +39,58 @@
 
 }
 
-.container{
+.container {
     margin-left: 0;
     padding-left: 0;
     margin-right: 50px;
 }
 
-.logo-container{
+.logo-container {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     /* width: 150px; */
 }
 
-.logo-buscador{
+.logo-buscador {
     display: flex;
     flex-direction: column;
     width: 25vw;
     margin-left: 20px;
 }
 
-.input{
+.input {
     width: 100px !important;
 }
 
-.imagen-perfil{
+.imagen-perfil {
     margin-left: 20px;
 }
 
 
-.logo{
+.logo {
     width: 100px;
     color: white;
 }
 
 
-.perfil{
+.perfil {
     display: flex;
     margin-right: 10px;
 }
 
-.usuarios{
+.usuarios {
     display: none;
     color: white !important;
     text-decoration: none !important;
 
 }
 
-.offcanvas-header{
+.offcanvas-header {
     background-color: rgb(201, 40, 126);
 }
 
-.offcanvas-body{
+.offcanvas-body {
     align-items: center;
     justify-content: space-around;
     display: flex;
@@ -98,7 +100,7 @@
 
 @media (min-width: 768px) {
 
-    .offcanvas-body{
+    .offcanvas-body {
         align-items: center;
         justify-content: space-around;
         display: flex;
@@ -107,35 +109,35 @@
     }
 
 
-    .usuarios{
+    .usuarios {
         display: contents;
         color: white !important;
         text-decoration: none;
 
     }
 
-    .div-logo{
+    .div-logo {
         display: none;
     }
 
-    .div-logo2{
+    .div-logo2 {
         display: contents;
     }
 
-    .form{
+    .form {
         display: contents;
     }
 
-    .input{
+    .input {
         display: none;
     }
 
-    .logo-container{
+    .logo-container {
         margin-left: 150px;
         width: 500px;
     }
 
-    .publicar{
+    .publicar {
         margin-left: 20px;
         color: white !important;
     }
@@ -145,37 +147,37 @@
 
 @media (min-width: 1024px) {
 
-    .navbar{
+    .navbar {
         height: 65px;
         overflow-y: hidden;
 
     }
 
-    .logo-container{
+    .logo-container {
         margin-left: 20px;
         width: 900px;
         justify-content: center !important;
     }
 
-    .logo-buscador{
+    .logo-buscador {
         width: 0;
     }
 
-    .offcanvas-body{
+    .offcanvas-body {
         margin-left: 50px;
     }
 
-    .publicar{
+    .publicar {
         margin-right: 0;
     }
 
 
 
-    .div-logo2{
+    .div-logo2 {
         margin-left: 50px;
     }
 
-    .perfil{
+    .perfil {
         margin-right: 20px;
     }
 

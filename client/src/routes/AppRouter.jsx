@@ -13,6 +13,7 @@ import Ofertar from '../pages/Ofertar'
 import Categorias from '../pages/Categorias/Categorias'
 import LoginUser from '../pages/LoginUser/LoginUser'
 import RegisterUser from '../pages/RegisterUser/RegisterUser'
+import SettingPerfil from '../pages/SettingPerfil/SettingPerfil'
 
 function AppRouter ({ state }) {
   return (
@@ -35,7 +36,8 @@ function AppRouter ({ state }) {
 
         {/* validando y probando guille */}
         <Route path='/login2' element={<LoginUser />} />
-        <Route path='/register2' element={<RegisterUser />} />'
+        <Route path='/register2' element={<RegisterUser />} />
+        <Route path='/setting-perfil' element={<SettingPerfil />} />
         <Route path='*' element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>

@@ -6,7 +6,6 @@ import './index.css'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { processGoogleCallback } from './features/AutenticationSlice/AutenticationSlice'
-import { useNavigate } from 'react-router-dom'
 
 function App () {
   const token = useSelector(state => state?.autenticacion?.token)
@@ -42,27 +41,25 @@ function App () {
     const code = urlParams.get('code')
     const scope = urlParams.get('scope')
     const authuser = urlParams.get('authuser')
+    const prompt = urlParams.get('prompt')
 
-    token
-      ? toast.success(`Bienvenido ${usuario.firstName}`)
-      : (
-          code
-            ? (
-                dispatch(processGoogleCallback({ code, scope, authuser }))
-                  .then(res => {
-                    console.log('res', res)
-                  })
-                  .catch(() => {
-                    console.log('error')
-                  })
-              )
-            : console.log('no hay code')
-
-        )
+    if (token) {
+      toast.success(`Bienvenido ${usuario.firstName}`)
+    } else if (code) {
+      dispatch(processGoogleCallback({ code, scope, authuser, prompt }))
+        .then(res => {
+          console.log('res', res)
+        })
+        .catch(() => {
+          console.log('error')
+        })
+    } else {
+      console.log('no hay token')
+    }
 
     // dispatch(storeAccessToken(code))
     // console.log('code de acceso obtenido correctamente', code)
-  }, [])
+  }, [dispatch, token, usuario])
 
   return (
 
