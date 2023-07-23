@@ -13,9 +13,9 @@ export const loginWithGoogle = createAsyncThunk('auth/loginWithGoogle', async (_
 })
 
 // procesa la respuesta una vez inicia sesion
-export const processGoogleCallback = createAsyncThunk('auth/processGoogleCallback', async ({ code, scope, authuser }, thunkAPI) => {
+export const processGoogleCallback = createAsyncThunk('auth/processGoogleCallback', async ({ code, scope, authuser, prompt }, thunkAPI) => {
   try {
-    const response = await fetch(`${API_URL}/auth/google/callback?code=${code}&scope=${scope}&authuser=${authuser}`, {
+    const response = await fetch(`${API_URL}/auth/google/callback?code=${code}&scope=${scope}&authuser=${authuser}&prompt=${prompt}`, {
       method: 'GET'
     })
     if (!response.ok) {
@@ -114,6 +114,7 @@ const AutenticationSlice = createSlice({
         state.token = action.payload.token
         state.isAuthenticated = true
         state.isLoggedIn = true
+        state.error = null
       })
       .addCase(processGoogleCallback.rejected, (state, action) => {
         state.loading = false

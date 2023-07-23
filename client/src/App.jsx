@@ -42,13 +42,15 @@ function App () {
     const code = urlParams.get('code')
     const scope = urlParams.get('scope')
     const authuser = urlParams.get('authuser')
+    const prompt = urlParams.get('prompt')
+    console.log('prompt', prompt)
 
     token
       ? toast.success(`Bienvenido ${usuario.firstName}`)
       : (
           code
             ? (
-                dispatch(processGoogleCallback({ code, scope, authuser }))
+                dispatch(processGoogleCallback({ code, scope, authuser, prompt }))
                   .then(res => {
                     console.log('res', res)
                   })
