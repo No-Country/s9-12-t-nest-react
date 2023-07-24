@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './settingPerfil.css'
-import { modifyUser } from '../../features/authSlice/authSlice'
+import { getUserById, modifyUser } from '../../features/authSlice/authSlice'
 
 const SettingPerfil = () => {
   const user = useSelector(state => state?.autenticacion?.user)
+  const update = useSelector(state => state?.authUser?.update)
+
   const objetoUser = {
     _id: '64b9bb6d821dd7fe3cb11333',
     email: 'pescadorabioso1992@gmail.com',
@@ -30,8 +32,6 @@ const SettingPerfil = () => {
   const [contact, setContact] = useState('')
   const [address, setAddress] = useState('')
 
-  const [errors, setErrors] = useState({})
-
   // permiten editar indivifualmente
   const [editEmail, setEditEmail] = useState(false)
   const [editPassword, setEditPassword] = useState(false)
@@ -39,6 +39,8 @@ const SettingPerfil = () => {
   const [editLastName, setEditLastName] = useState(false)
   const [editContact, setEditContact] = useState(false)
   const [editAddress, setEditAddress] = useState(false)
+
+  const [errors, setErrors] = useState({})
 
   const dispatch = useDispatch()
   /*
@@ -49,6 +51,24 @@ const SettingPerfil = () => {
   "contact": "string",
   "address": "string"
   */
+
+  useEffect(() => {
+    // dispatch(getUserById(user._id))
+    dispatch(getUserById(objetoUser._id))
+      .then((res) => {
+        console.log('user db ->', res)
+        setEmail(res.payload.email || objetoUser.email)
+        setPassword(res.payload.password || objetoUser.password)
+        setFirstName(res.payload.firstName || objetoUser.firstName)
+        setLastName(res.payload.lastName || objetoUser.lastName)
+        setContact(res.payload.contact || objetoUser.contact)
+        setAddress(res.payload.address || objetoUser.address)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
   const handleChanges = (e) => {
     const { name, value } = e.target
 

@@ -120,7 +120,8 @@ const authSlice = createSlice({
     userById: null,
     isLoading: false,
     error: null,
-    isAdmin: false
+    isAdmin: false,
+    update: false
   },
   reducers: {
     successLogin: (state) => {
@@ -184,6 +185,7 @@ const authSlice = createSlice({
         state.user = action.payload // se supone que es para el usuario loguiado en este caso permitira modificar sus datos
         state.isAuthenticated = true // hay que dejarlo en falso si queremos que al modificar los datos no se loguee de nuevo
         // state.token = action.payload.token //suponiendo que devuelve un token
+        state.update = true
       })
       .addCase(modifyUser.rejected, (state, action) => {
         state.isLoading = false

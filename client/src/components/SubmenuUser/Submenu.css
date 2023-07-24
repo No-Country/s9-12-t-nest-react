@@ -96,6 +96,7 @@
   color: var(--botonCheck);
 }
 
+
 @media (min-width: 576px) {
   .submenu {
     width: 220px;
@@ -121,12 +122,15 @@
   .submenu {
     width: 250px;
     top: 66px;
+    right: -250px;
   }
+
 }
 
 @media (min-width: 1400px) {
   .submenu {
     width: 300px;
     top: 66px;
+    right: -300px;
   }
 }
