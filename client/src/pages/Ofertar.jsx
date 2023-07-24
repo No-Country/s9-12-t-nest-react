@@ -1,34 +1,43 @@
-import React, { useEffect } from 'react'
+/* eslint-disable react/jsx-indent */
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 // import { fetchProductById, getProducts } from '../features/products/fetchProducts'
-import OfertarCards from './OfertarCards'
 import './Ofertar.css'
+import CardProduct from '../components/CardProduct'
+import { getProductById, getProducts } from '../features/productsSlice/productSlice'
 
 const Ofertar = () => {
-  const product = useSelector((state) => state?.products?.productById)
-  const loading = useSelector((state) => state?.products?.loading)
-  const globalProduct = useSelector((state) => state?.products?.products)
+  const product = useSelector((state) => state?.productsDb?.productById)
+  const products = useSelector((state) => state?.productsDb?.products)
   const dispatch = useDispatch()
-
   const { id } = useParams()
 
-  console.log('recibo en ofertar')
+  const [selectedCards, setSelectedCards] = useState([])
 
-  console.log(id)
+  const cardSelect = (id) => {
+    if (selectedCards?.includes(id)) {
+      setSelectedCards(selectedCards?.filter((cardId) => cardId !== id))
+    } else {
+      setSelectedCards([...selectedCards, id])
+    }
+  }
 
   useEffect(() => {
-    // dispatch(fetchProductById(id))
-  }, [dispatch])
+    console.log(selectedCards)
+  }, [selectedCards])
 
-  console.log(globalProduct)
+  useEffect(() => {
+    dispatch(getProductById(id))
+    dispatch(getProducts())
+  }, [dispatch])
 
   return (
     <div>
-      <h3 className='titulo-detalle'>{product.title}</h3>
+      <h3 className='titulo-detalle'>{product?.name}</h3>
       <div className='imagen-descripcion'>
         <div className='contenedor-imagen'>
-          <img src={product.image} alt='' className='imagen-producto' />
+          <img src={product?.images} alt='' className='imagen-producto' />
         </div>
       </div>
 
@@ -43,7 +52,25 @@ const Ofertar = () => {
       </div>
 
       <div className='acomodar'>
-        {/* {globalProduct.map(prod => <div key={prod.id}><OfertarCards prod={prod} /></div>)} */}
+        {products?.map(prod =>
+          (
+          <div key={prod?._id} className='offer-card-container' id='offer-card-container'>
+          <label htmlFor='productCard'>
+          <div
+            onClick={() => cardSelect(prod._id)}
+            id='ProductCard'
+          >
+            <CardProduct props={[prod]} />
+          </div>
+          </label>
+
+          <div className='checkbox-card'>
+            <input type='checkbox' name='cardSelected' id='productCard' />
+          </div>
+
+          </div>
+
+          ))}
       </div>
       <div className='boton'>
         <button className='ofertar' product={product}>Confirmar Oferta</button>
