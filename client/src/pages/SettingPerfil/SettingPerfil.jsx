@@ -6,6 +6,7 @@ import { getUserById, modifyUser } from '../../features/authSlice/authSlice'
 const SettingPerfil = () => {
   const user = useSelector(state => state?.autenticacion?.user)
   const token = useSelector(state => state?.autenticacion?.token)
+  const update = useSelector(state => state?.authUser?.update)
 
   // const objetoUser = {
   //   _id: '64b9bb6d821dd7fe3cb11333',
@@ -25,6 +26,19 @@ const SettingPerfil = () => {
   //   __v: 0
   // }
   // para validar el usuario
+
+  /**
+    createdAt : "2023-07-24T20:59:04.571Z"
+    email: "guillermoneculqueo@gmail.com"
+    firstName: "Guille"
+    isActive: true
+    lastName: "Nec"
+    picture: "https://lh3.googleusercontent.com/a/AAcHTtfN3M1vMsTsRqqNomlzw2vbd
+    roles: ['user']
+    updatedAt: "2023-07-24T20:59:04.571Z"
+    _id: "64bee618668f637569597c51"
+    */
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')
@@ -52,22 +66,24 @@ const SettingPerfil = () => {
   "address": "string"
   */
 
-  // useEffect(() => {
-  //   // dispatch(getUserById(user._id))
-  //   dispatch(getUserById(objetoUser._id))
-  //     .then((res) => {
-  //       console.log('user db ->', res)
-  //       setEmail(res.payload.email || objetoUser.email)
-  //       setPassword(res.payload.password || objetoUser.password)
-  //       setFirstName(res.payload.firstName || objetoUser.firstName)
-  //       setLastName(res.payload.lastName || objetoUser.lastName)
-  //       setContact(res.payload.contact || objetoUser.contact)
-  //       setAddress(res.payload.address || objetoUser.address)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }, [])
+  useEffect(() => {
+    // dispatch(getUserById(user._id))
+    console.log(user._id)
+    console.log(token)
+    dispatch(getUserById({ token, UserId: user._id }))
+      .then((res) => {
+        console.log('user db ->', res)
+        // setEmail(res.payload.email || user.email)
+        // setPassword(res.payload.password || user.password)
+        // setFirstName(res.payload.firstName || user.firstName)
+        // setLastName(res.payload.lastName || user.lastName)
+        // setContact(res.payload.contact || user.contact)
+        // setAddress(res.payload.address || user.address)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   const handleChanges = (e) => {
     const { name, value } = e.target
@@ -168,7 +184,7 @@ const SettingPerfil = () => {
       setErrors(validationErrors)
     } else if (Object.keys(validationErrors).length === 0) {
       console.log(newUser)
-      dispatch(modifyUser(token, user._id, newUser))
+      dispatch(modifyUser({ token, userId: user._id, newUserData: newUser }))
         .then((res) => {
           console.log(res)
         })

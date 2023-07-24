@@ -4,7 +4,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 const API_URL = 'http://localhost:3000/api/v1/products'
 
-export const createProduct = createAsyncThunk('products/create', async (token, product, thunkAPI) => {
+export const createProduct = createAsyncThunk('products/create', async (args, thunkAPI) => {
+  const { token, product } = args
   try {
     const response = await fetch(`${API_URL}`, {
       method: 'POST',
@@ -74,7 +75,8 @@ export const getProductById = createAsyncThunk(
 )
 
 export const modifyProductById = createAsyncThunk('products/modify',
-  async (token, newProduct, productId, thunkAPI) => {
+  async (args, thunkAPI) => {
+    const { token, newProduct, productId } = args
     try {
       const response = await fetch(`${API_URL}/${productId}`, {
         method: 'PATCH',
@@ -101,7 +103,8 @@ export const modifyProductById = createAsyncThunk('products/modify',
   })
 
 export const deleteProductById = createAsyncThunk('products/delete',
-  async (token, productId, thunkAPI) => {
+  async (args, thunkAPI) => {
+    const { token, productId } = args
     try {
       const response = await fetch(`${API_URL}/${productId}`, {
         method: 'DELETE',
