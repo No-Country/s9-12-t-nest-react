@@ -23,7 +23,7 @@ const CategoryTest = () => {
   }, [dispatch])
 
   useEffect(() => {
-    // console.log(categori)
+    console.log(categori)
     if (categori !== '' && categori !== undefined) {
       dispatch(getProductsByCategoryId(categori))
         .then((response) => {

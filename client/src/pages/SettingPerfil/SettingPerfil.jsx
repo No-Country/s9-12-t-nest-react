@@ -1,10 +1,27 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './settingPerfil.css'
+import { modifyUser } from '../../features/authSlice/authSlice'
 
 const SettingPerfil = () => {
   const user = useSelector(state => state?.autenticacion?.user)
-
+  const objetoUser = {
+    _id: '64b9bb6d821dd7fe3cb11333',
+    email: 'pescadorabioso1992@gmail.com',
+    firstName: 'pescado',
+    lastName: 'rabioso',
+    contact: '2944123456',
+    address: 'Argentina,rio negro,san carlos de bariloche, ',
+    isActive: true,
+    roles: [
+      'user'
+    ],
+    products: [],
+    incomingOffers: [],
+    createdAt: '2023-07-20T22:55:41.634Z',
+    updatedAt: '2023-07-20T22:55:41.634Z',
+    __v: 0
+  }
   // para validar el usuario
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -15,6 +32,15 @@ const SettingPerfil = () => {
 
   const [errors, setErrors] = useState({})
 
+  // permiten editar indivifualmente
+  const [editEmail, setEditEmail] = useState(false)
+  const [editPassword, setEditPassword] = useState(false)
+  const [editFirstName, setEditFirstName] = useState(false)
+  const [editLastName, setEditLastName] = useState(false)
+  const [editContact, setEditContact] = useState(false)
+  const [editAddress, setEditAddress] = useState(false)
+
+  const dispatch = useDispatch()
   /*
   "email": "string",
   "password": "stringst",
@@ -53,7 +79,7 @@ const SettingPerfil = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const user = {
+    const newUser = {
       email,
       password,
       firstName,
@@ -121,7 +147,14 @@ const SettingPerfil = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
     } else if (Object.keys(validationErrors).length === 0) {
-      console.log(user)
+      console.log(newUser)
+      dispatch(modifyUser(objetoUser._id, newUser))
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   }
 
@@ -137,63 +170,145 @@ const SettingPerfil = () => {
         </button>
       </section>
 
-      <form action=''>
-        <div className='form-group' style={{ width: '100%' }}>
-          <input
-            type='text'
-            name='firstName'
-            placeholder='Nombre'
-            value={firstName}
-            onChange={handleChanges}
-          />
+      <form className='formModifyPerfil' onSubmit={handleSubmit}>
+        <div className='formGroup'>
+          {
+            !editFirstName
+              ? (
+                <div className='dpFormGen'>
+                  <p name='firstName' value={objetoUser.firstName} className='pFormGen'>{objetoUser.firstName || 'Usuario'}</p>
+                  <button className='editInputPerfil' onClick={() => setEditFirstName(true)}><ion-icon name='pencil-sharp' /></button>
+                </div>
+                )
+              : (
+                <input
+                  className='inputFormGen'
+                  type='text'
+                  name='firstName'
+                  placeholder='Nombre'
+                  value={firstName}
+                  onChange={handleChanges}
+                />
+                )
+          }
+          {errors.firstName && <p style={{ width: '100%', padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '500', fontSize: '1rem', textAlign: 'left' }}>{errors.name}</p>}
         </div>
-        <div className='form-group' style={{ width: '100%' }}>
-          <input
-            type='text'
-            name='email'
-            placeholder='email'
-            value={email}
-            onChange={handleChanges}
-          />
+
+        <div className='formGroup'>
+          {
+            !editEmail
+              ? (
+                <div className='dpFormGen'>
+                  <p name='email' value={objetoUser.email} className='pFormGen'>{objetoUser.email || 'Email'}</p>
+                  <button className='editInputPerfil' onClick={() => setEditEmail(true)}><ion-icon name='pencil-sharp' /></button>
+                </div>
+                )
+              : (
+                <input
+                  className='inputFormGen'
+                  type='text'
+                  name='email'
+                  placeholder='email'
+                  value={email}
+                  onChange={handleChanges}
+                />
+                )
+          }
+          {errors.email && <p style={{ width: '100%', padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '500', fontSize: '1rem', textAlign: 'left' }}>{errors.email}</p>}
         </div>
-        <div className='form-group' style={{ width: '100%' }}>
-          <input
-            type='text'
-            name='password'
-            placeholder='password'
-            value={password}
-            onChange={handleChanges}
-          />
+
+        <div className='formGroup'>
+          {
+            !editPassword
+              ? (
+                <div className='dpFormGen'>
+                  <p name='password' value={objetoUser.password} className='pFormGen'>{objetoUser.password || 'Password'}</p>
+                  <button className='editInputPerfil' onClick={() => setEditPassword(true)}><ion-icon name='pencil-sharp' /></button>
+                </div>
+                )
+              : (
+                <input
+                  className='inputFormGen'
+                  type='text'
+                  name='password'
+                  placeholder='password'
+                  value={password}
+                  onChange={handleChanges}
+                />
+                )
+          }
+          {errors.password && <p style={{ width: '100%', padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '500', fontSize: '1rem', textAlign: 'left' }}>{errors.password}</p>}
         </div>
-        <div className='form-group' style={{ width: '100%' }}>
-          <input
-            type='text'
-            name='lastName'
-            placeholder='lastName'
-            value={lastName}
-            onChange={handleChanges}
-          />
+
+        <div className='formGroup'>
+          {
+            !editLastName
+              ? (
+                <div className='dpFormGen'>
+                  <p name='lastName' value={objetoUser.lastName} className='pFormGen'>{objetoUser.lastName || 'Apellido'}</p>
+                  <button className='editInputPerfil' onClick={() => setEditLastName(true)}><ion-icon name='pencil-sharp' /></button>
+                </div>
+                )
+              : (
+                <input
+                  className='inputFormGen'
+                  type='text'
+                  name='lastName'
+                  placeholder='lastName'
+                  value={lastName}
+                  onChange={handleChanges}
+                />
+                )
+          }
+          {errors.lastName && <p style={{ width: '100%', padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '500', fontSize: '1rem', textAlign: 'left' }}>{errors.lastName}</p>}
         </div>
-        <div className='form-group' style={{ width: '100%' }}>
-          <input
-            type='text'
-            name='contact'
-            placeholder='telefono +5492944123456'
-            value={contact}
-            onChange={handleChanges}
-          />
+
+        <div className='formGroup'>
+          {
+            !editContact
+              ? (
+                <div className='dpFormGen'>
+                  <p name='contact' value={objetoUser.contact} className='pFormGen'>{objetoUser.contact || 'telefono: +54...'} </p>
+                  <button className='editInputPerfil' onClick={() => setEditContact(true)}><ion-icon name='pencil-sharp' /></button>
+                </div>
+                )
+              : (
+                <input
+                  className='inputFormGen'
+                  type='text'
+                  name='contact'
+                  placeholder='telefono +5492944123456'
+                  value={contact}
+                  onChange={handleChanges}
+                />
+                )
+          }
+          {errors.contact && <p style={{ width: '100%', padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '500', fontSize: '1rem', textAlign: 'left' }}>{errors.contact}</p>}
         </div>
-        <div className='form-group' style={{ width: '100%' }}>
-          <input
-            type='text'
-            name='address'
-            placeholder='pais, ciudad, localidad'
-            value={address}
-            onChange={handleChanges}
-          />
+        <div className='formGroup'>
+          {
+            !editAddress
+              ? (
+                <div className='dpFormGen'>
+                  <p name='address' value={objetoUser.address} className='pFormGen'>{objetoUser.address || 'Pais, ciudad, localidad'}</p>
+                  <button className='editInputPerfil' onClick={() => setEditAddress(true)}><ion-icon name='pencil-sharp' /></button>
+                </div>
+                )
+              : (
+                <input
+                  className='inputFormGen'
+                  type='text'
+                  name='address'
+                  placeholder='pais, ciudad, localidad'
+                  value={address}
+                  onChange={handleChanges}
+                />
+                )
+          }
+          {errors.address && <p style={{ width: '100%', padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '500', fontSize: '1rem', textAlign: 'left' }}>{errors.address}</p>}
         </div>
-        <div className='form-group' style={{ width: '100%' }}>
-          <button type='submit' onClick={handleSubmit} className='btn'>Guardar Cambio</button>
+        <div className='ButonGroup'>
+          <button className='boton' type='submit' onClick={handleSubmit}>Guardar Cambio</button>
         </div>
       </form>
     </section>
