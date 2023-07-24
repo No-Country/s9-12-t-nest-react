@@ -2,8 +2,20 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    
+}
 
+.offer-card-container{
+    position: relative;
+}
+
+.checkbox-card{
+    position: absolute;
+    top: 1%;
+    right: 5%;
+}
+
+#productCard:checked + #offer-card-container{
+    box-shadow: 2.4546139240264893px 2.4546139240264893px 7.363841533660889px 0px rgba(86, 152, 244, 0.25);
 }
 
 .controlar-acomodar{
