@@ -31,10 +31,14 @@ export class AuthService {
       return this.registerUser(user);
     }
 
-    return this.generateJwt({
-      sub: userExists.id,
+    const token = this.generateJwt({
+      id: userExists.id,
       email: userExists.email,
     });
+    return {
+      token,
+      user: userExists,
+    };
   }
 
   async registerUser(user: CreateUserDto) {
@@ -48,10 +52,14 @@ export class AuthService {
 
       (await newUser).save();
 
-      return this.generateJwt({
-        sub: (await newUser)._id,
+      const token = this.generateJwt({
+        id: (await newUser)._id,
         email: (await newUser).email,
       });
+      return {
+        token,
+        user: await newUser,
+      };
     } catch {
       throw new InternalServerErrorException();
     }
