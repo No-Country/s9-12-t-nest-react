@@ -65,12 +65,13 @@ export const getUserById = createAsyncThunk('authUser/getUserById', async (UserI
   }
 })
 
-export const modifyUser = createAsyncThunk('authUser/modifyUser', async (userId, newUserData, thunkAPI) => {
+export const modifyUser = createAsyncThunk('authUser/modifyUser', async (token, userId, newUserData, thunkAPI) => {
   try {
     const response = await fetch(`${API_URL}/${userId}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(newUserData)
     })
@@ -85,12 +86,13 @@ export const modifyUser = createAsyncThunk('authUser/modifyUser', async (userId,
   }
 })
 
-export const deleteUser = createAsyncThunk('authUser/deleteUser', async (userId, thunkAPI) => {
+export const deleteUser = createAsyncThunk('authUser/deleteUser', async (token, userId, thunkAPI) => {
   try {
     const response = await fetch(`${API_URL}/${userId}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       }
     })
     if (!response.ok) {
@@ -120,7 +122,8 @@ const authSlice = createSlice({
     userById: null,
     isLoading: false,
     error: null,
-    isAdmin: false
+    isAdmin: false,
+    update: false
   },
   reducers: {
     successLogin: (state) => {
@@ -184,6 +187,7 @@ const authSlice = createSlice({
         state.user = action.payload // se supone que es para el usuario loguiado en este caso permitira modificar sus datos
         state.isAuthenticated = true // hay que dejarlo en falso si queremos que al modificar los datos no se loguee de nuevo
         // state.token = action.payload.token //suponiendo que devuelve un token
+        state.update = true
       })
       .addCase(modifyUser.rejected, (state, action) => {
         state.isLoading = false

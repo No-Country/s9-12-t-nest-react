@@ -1,27 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './settingPerfil.css'
-import { modifyUser } from '../../features/authSlice/authSlice'
+import { getUserById, modifyUser } from '../../features/authSlice/authSlice'
 
 const SettingPerfil = () => {
   const user = useSelector(state => state?.autenticacion?.user)
-  const objetoUser = {
-    _id: '64b9bb6d821dd7fe3cb11333',
-    email: 'pescadorabioso1992@gmail.com',
-    firstName: 'pescado',
-    lastName: 'rabioso',
-    contact: '2944123456',
-    address: 'Argentina,rio negro,san carlos de bariloche, ',
-    isActive: true,
-    roles: [
-      'user'
-    ],
-    products: [],
-    incomingOffers: [],
-    createdAt: '2023-07-20T22:55:41.634Z',
-    updatedAt: '2023-07-20T22:55:41.634Z',
-    __v: 0
-  }
+  const token = useSelector(state => state?.autenticacion?.token)
+
+  // const objetoUser = {
+  //   _id: '64b9bb6d821dd7fe3cb11333',
+  //   email: 'pescadorabioso1992@gmail.com',
+  //   firstName: 'pescado',
+  //   lastName: 'rabioso',
+  //   contact: '2944123456',
+  //   address: 'Argentina,rio negro,san carlos de bariloche, ',
+  //   isActive: true,
+  //   roles: [
+  //     'user'
+  //   ],
+  //   products: [],
+  //   incomingOffers: [],
+  //   createdAt: '2023-07-20T22:55:41.634Z',
+  //   updatedAt: '2023-07-20T22:55:41.634Z',
+  //   __v: 0
+  // }
   // para validar el usuario
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -30,8 +32,6 @@ const SettingPerfil = () => {
   const [contact, setContact] = useState('')
   const [address, setAddress] = useState('')
 
-  const [errors, setErrors] = useState({})
-
   // permiten editar indivifualmente
   const [editEmail, setEditEmail] = useState(false)
   const [editPassword, setEditPassword] = useState(false)
@@ -39,6 +39,8 @@ const SettingPerfil = () => {
   const [editLastName, setEditLastName] = useState(false)
   const [editContact, setEditContact] = useState(false)
   const [editAddress, setEditAddress] = useState(false)
+
+  const [errors, setErrors] = useState({})
 
   const dispatch = useDispatch()
   /*
@@ -49,6 +51,24 @@ const SettingPerfil = () => {
   "contact": "string",
   "address": "string"
   */
+
+  // useEffect(() => {
+  //   // dispatch(getUserById(user._id))
+  //   dispatch(getUserById(objetoUser._id))
+  //     .then((res) => {
+  //       console.log('user db ->', res)
+  //       setEmail(res.payload.email || objetoUser.email)
+  //       setPassword(res.payload.password || objetoUser.password)
+  //       setFirstName(res.payload.firstName || objetoUser.firstName)
+  //       setLastName(res.payload.lastName || objetoUser.lastName)
+  //       setContact(res.payload.contact || objetoUser.contact)
+  //       setAddress(res.payload.address || objetoUser.address)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // }, [])
+
   const handleChanges = (e) => {
     const { name, value } = e.target
 
@@ -148,7 +168,7 @@ const SettingPerfil = () => {
       setErrors(validationErrors)
     } else if (Object.keys(validationErrors).length === 0) {
       console.log(newUser)
-      dispatch(modifyUser(objetoUser._id, newUser))
+      dispatch(modifyUser(token, user._id, newUser))
         .then((res) => {
           console.log(res)
         })
@@ -176,7 +196,7 @@ const SettingPerfil = () => {
             !editFirstName
               ? (
                 <div className='dpFormGen'>
-                  <p name='firstName' value={objetoUser.firstName} className='pFormGen'>{objetoUser.firstName || 'Usuario'}</p>
+                  <p name='firstName' value={user.firstName} className='pFormGen'>{user.firstName || 'Usuario'}</p>
                   <button className='editInputPerfil' onClick={() => setEditFirstName(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
@@ -199,7 +219,7 @@ const SettingPerfil = () => {
             !editEmail
               ? (
                 <div className='dpFormGen'>
-                  <p name='email' value={objetoUser.email} className='pFormGen'>{objetoUser.email || 'Email'}</p>
+                  <p name='email' value={user.email} className='pFormGen'>{user.email || 'Email'}</p>
                   <button className='editInputPerfil' onClick={() => setEditEmail(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
@@ -222,7 +242,7 @@ const SettingPerfil = () => {
             !editPassword
               ? (
                 <div className='dpFormGen'>
-                  <p name='password' value={objetoUser.password} className='pFormGen'>{objetoUser.password || 'Password'}</p>
+                  <p name='password' value={user.password} className='pFormGen'>{user.password || 'Password'}</p>
                   <button className='editInputPerfil' onClick={() => setEditPassword(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
@@ -245,7 +265,7 @@ const SettingPerfil = () => {
             !editLastName
               ? (
                 <div className='dpFormGen'>
-                  <p name='lastName' value={objetoUser.lastName} className='pFormGen'>{objetoUser.lastName || 'Apellido'}</p>
+                  <p name='lastName' value={user.lastName} className='pFormGen'>{user.lastName || 'Apellido'}</p>
                   <button className='editInputPerfil' onClick={() => setEditLastName(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
@@ -268,7 +288,7 @@ const SettingPerfil = () => {
             !editContact
               ? (
                 <div className='dpFormGen'>
-                  <p name='contact' value={objetoUser.contact} className='pFormGen'>{objetoUser.contact || 'telefono: +54...'} </p>
+                  <p name='contact' value={user.contact} className='pFormGen'>{user.contact || 'telefono: +54...'} </p>
                   <button className='editInputPerfil' onClick={() => setEditContact(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
@@ -290,7 +310,7 @@ const SettingPerfil = () => {
             !editAddress
               ? (
                 <div className='dpFormGen'>
-                  <p name='address' value={objetoUser.address} className='pFormGen'>{objetoUser.address || 'Pais, ciudad, localidad'}</p>
+                  <p name='address' value={user.address} className='pFormGen'>{user.address || 'Pais, ciudad, localidad'}</p>
                   <button className='editInputPerfil' onClick={() => setEditAddress(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
