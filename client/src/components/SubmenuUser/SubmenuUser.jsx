@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import './Submenu.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import { logout } from '../../features/authSlice/authSlice'
 const SubmenuUser = () => {
   const token = useSelector(state => state?.autenticacion?.token)
+  const [isActive, setIsActive] = useState(false)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -44,20 +45,24 @@ const SubmenuUser = () => {
     navigate('/setting-perfil')
   }
 
+  const handleActiveSubmenu = () => {
+    setIsActive(!isActive)
+  }
+
   return (
     <>
-      <button className='botonSubmenu'>
+      <button className='botonSubmenu' onClick={handleActiveSubmenu}>
         <ion-icon name='person-outline' />
       </button>
 
-      <section className='submenu'>
+      <section className={`submenu ${isActive ? 'active' : ''}`}>
         <div className='submenuHead'>
           <button className='botonSubmenu2' onClick={handleRedirextPerfil}>
             <ion-icon name='person-outline' />
             <span>Perfil</span>
           </button>
           <button className='botonSubmenu2' onClick={handleRedirexSettingPerfil}>
-            <ion-icon name='hammer-outline' />
+            <ion-icon name='construct-outline' />
             <span>Configuración</span>
           </button>
           <button className='botonSubmenu2'>
