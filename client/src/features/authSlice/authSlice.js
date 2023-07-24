@@ -46,12 +46,15 @@ export const getUsers = createAsyncThunk('authUser/getUsers', async (_, thunkAPI
 })
 
 //  traemos un usuario por su id
-export const getUserById = createAsyncThunk('authUser/getUserById', async (UserId, thunkAPI) => {
+export const getUserById = createAsyncThunk('authUser/getUserById', async (args, thunkAPI) => {
   try {
+    console.log('argumentos -->', args)
+    const { token, UserId } = args
     const response = await fetch(`${API_URL}/${UserId}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       }
     })
     if (!response.ok) {
@@ -65,7 +68,8 @@ export const getUserById = createAsyncThunk('authUser/getUserById', async (UserI
   }
 })
 
-export const modifyUser = createAsyncThunk('authUser/modifyUser', async (token, userId, newUserData, thunkAPI) => {
+export const modifyUser = createAsyncThunk('authUser/modifyUser', async (args, thunkAPI) => {
+  const { token, userId, newUserData } = args
   try {
     const response = await fetch(`${API_URL}/${userId}`, {
       method: 'PUT',
@@ -86,7 +90,8 @@ export const modifyUser = createAsyncThunk('authUser/modifyUser', async (token, 
   }
 })
 
-export const deleteUser = createAsyncThunk('authUser/deleteUser', async (token, userId, thunkAPI) => {
+export const deleteUser = createAsyncThunk('authUser/deleteUser', async (args, thunkAPI) => {
+  const { token, userId } = args
   try {
     const response = await fetch(`${API_URL}/${userId}`, {
       method: 'DELETE',
