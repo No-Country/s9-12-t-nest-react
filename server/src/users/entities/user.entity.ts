@@ -29,6 +29,10 @@ export class User extends Document {
   address: string;
 
   @ApiProperty()
+  @Prop()
+  picture: string;
+
+  @ApiProperty()
   @Prop({ default: true })
   isActive: boolean;
 
