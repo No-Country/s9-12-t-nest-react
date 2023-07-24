@@ -24,12 +24,11 @@ export class AppController {
   @Get('auth/google/callback')
   async googleCallback(@Req() req, @Res() res: Response) {
     const jwt = await this.authService.signIn(req.user);
-    this.jwtToken = { access_token: jwt };
-    res.set('authorization', jwt);
+    this.jwtToken = { access_token: jwt.token };
+    res.set('authorization', jwt.token);
     res.status(200);
     return res.json({
-      user: req.user,
-      token: jwt,
+      ...jwt,
     });
   }
 

@@ -65,12 +65,13 @@ export const getUserById = createAsyncThunk('authUser/getUserById', async (UserI
   }
 })
 
-export const modifyUser = createAsyncThunk('authUser/modifyUser', async (userId, newUserData, thunkAPI) => {
+export const modifyUser = createAsyncThunk('authUser/modifyUser', async (token, userId, newUserData, thunkAPI) => {
   try {
     const response = await fetch(`${API_URL}/${userId}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(newUserData)
     })
@@ -85,12 +86,13 @@ export const modifyUser = createAsyncThunk('authUser/modifyUser', async (userId,
   }
 })
 
-export const deleteUser = createAsyncThunk('authUser/deleteUser', async (userId, thunkAPI) => {
+export const deleteUser = createAsyncThunk('authUser/deleteUser', async (token, userId, thunkAPI) => {
   try {
     const response = await fetch(`${API_URL}/${userId}`, {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       }
     })
     if (!response.ok) {

@@ -27,7 +27,7 @@ const CategoryTest = () => {
     if (categori !== '' && categori !== undefined) {
       dispatch(getProductsByCategoryId(categori))
         .then((response) => {
-          // console.log('productos por categoria', response)
+          console.log('productos por categoria', response)
           if (response.payload.length > 0) {
             toast.success('redirigiendo')
             setTimeout(() => {
