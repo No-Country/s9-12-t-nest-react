@@ -6,6 +6,8 @@ import './index.css'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { processGoogleCallback } from './features/AutenticationSlice/AutenticationSlice'
+import OfertaRecibida from './pages/OfertaRecibida'
+import { Link } from 'react-router-dom'
 
 function App () {
   const token = useSelector(state => state?.autenticacion?.token)
@@ -64,6 +66,8 @@ function App () {
   return (
 
     <div className='probando'>
+
+      {/* <Link to='/oferta-recibida'><OfertaRecibida/></Link> */}
 
       <AppRouter />
       <ToastContainer

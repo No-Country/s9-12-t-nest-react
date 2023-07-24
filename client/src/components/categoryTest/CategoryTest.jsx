@@ -57,7 +57,7 @@ const CategoryTest = () => {
           onChange={handleChange}
         >
 
-          <option value=''>Categorias</option>
+          <option value='' className='form-select'>Categorias</option>
           {
           categories.map((obj) =>
             (

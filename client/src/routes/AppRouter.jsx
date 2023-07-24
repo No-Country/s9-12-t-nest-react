@@ -14,14 +14,16 @@ import Categorias from '../pages/Categorias/Categorias'
 import LoginUser from '../pages/LoginUser/LoginUser'
 import RegisterUser from '../pages/RegisterUser/RegisterUser'
 import SettingPerfil from '../pages/SettingPerfil/SettingPerfil'
+import OfertaRecibida from '../pages/OfertaRecibida'
 
-function AppRouter ({ state }) {
+function AppRouter({ state }) {
   return (
     <BrowserRouter>
       <NavBarBootstrap />
       <Routes>
         <Route path='/login' element={<Login />} />
 
+        <Route path='/oferta-recibida' element={<OfertaRecibida />} />
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Home />} />
         <Route path='/detalle/:id/:owner' element={<Detail />} />

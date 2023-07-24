@@ -37,7 +37,7 @@ function NavBarBootstrap () {
             </div>
 
             <Container className='container'>
-              <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
+              <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className='border-0' />
               <Navbar.Offcanvas
                 id={`offcanvasNavbar-expand-${expand}`}
                 aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
@@ -71,6 +71,7 @@ function NavBarBootstrap () {
                 <Link to='/login'>
                   <div className='perfil'>
                     <img src='/images/account_circle_filled_24px.png' alt='' className='imagen-perfil' />
+                    <p className='usuarios'>Usuario</p>
                     {/* <Link to='/login' className='usuarios'>Usuarios</Link> */}
                     {/* <NavLink to='/' className='item-navbar'><span >Inicio</span></NavLink> */}
                   </div>
