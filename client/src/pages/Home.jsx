@@ -11,12 +11,11 @@ function Home () {
   const products = useSelector((state) => state?.productsDb?.products)
   const loading = useSelector((state) => state?.productsDb?.loading)
   const results = useSelector((state) => state?.productsDb?.searchResults)
-  console.log(products, 'estas son las results')
+  // console.log(products, 'estas son las results')
   const latest = [...products].reverse().slice(0, 12)
   const location = useSelector((state) => state?.location)
   const dispatch = useDispatch()
   const [nearbyProducts, setNearbyProducts] = useState([])
-  console.log(nearbyProducts)
   const [filterKilometers, setFilterKilometers] = useState(10)
 
   const handleKilometersChange = (event) => {
