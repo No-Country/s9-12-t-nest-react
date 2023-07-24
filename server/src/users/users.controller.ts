@@ -8,9 +8,11 @@ import {
   Delete,
   UsePipes,
   ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiOkResponse,
   ApiResponse,
@@ -19,7 +21,9 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
+@ApiBearerAuth()
 @ApiTags('Authentication')
 @Controller('users')
 export class UsersController {
@@ -48,6 +52,7 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @ApiOkResponse({ description: 'User' })
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -63,6 +68,7 @@ export class UsersController {
     status: 200,
     description: 'The record has been successfully updated.',
   })
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(id, updateUserDto);

@@ -32,7 +32,7 @@ export class AuthService {
     }
 
     const token = this.generateJwt({
-      sub: userExists.id,
+      id: userExists.id,
       email: userExists.email,
     });
     return {
@@ -53,7 +53,7 @@ export class AuthService {
       (await newUser).save();
 
       const token = this.generateJwt({
-        sub: (await newUser)._id,
+        id: (await newUser)._id,
         email: (await newUser).email,
       });
       return {
