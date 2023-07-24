@@ -13,6 +13,8 @@
 
 .publicar {
     color: white !important;
+    text-decoration: none !important;
+    font-weight: bold;
 }
 
 
@@ -83,6 +85,7 @@
     display: none;
     color: white !important;
     text-decoration: none !important;
+    font-weight: bold;
 
 }
 
@@ -96,6 +99,19 @@
     display: flex;
     flex-direction: column;
     background-color: rgb(201, 40, 126);
+}
+
+
+.navbar-toggler-icon {   
+    background-image: url(../Navbar/icons8-menú-30.png) !important;     
+}
+
+.navbar-toggler {
+    /* background-color: rgba(#1043A5) */
+    background-color: #1043A5;
+    border: none;
+    border-image: none;
+    position: relative;   
 }
 
 @media (min-width: 768px) {

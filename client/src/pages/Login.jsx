@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import '../pages/styles/UserRegisterLogin.css'
+import './Login.css'
 
 const initialValues = {
   email: '',
@@ -24,7 +24,7 @@ function Login() {
   }
 
   return (
-    <main style={{ textAlign: 'center' }}>
+    <main className='main-login'>
       <img className='logo-img' src='/images/logo-login.svg' alt='Trueka logo image' />
       <p className='slogan'>Encontrá lo que buscás, <br />
         cambialo por lo que ya no necesitás
@@ -38,7 +38,7 @@ function Login() {
             onChange={handleChange}
             className='input-email'
           />
-          <div class='pass-positioning'>
+          <div>
             <label for='password' />
             <input
               id='password'
@@ -46,8 +46,10 @@ function Login() {
               type='password'
               onChange={handleChange}
               className='contraseña'
+              
             />
-            <img id='eye-img' src='/images/visibility.svg' alt='Eye icon to show or hidden password' />
+            
+            
           </div>
           <div className='forgot-pass'>
             <Link to='/login' className='olvide'>Olvidé mi contraseña</Link>
@@ -71,6 +73,8 @@ function Login() {
           </div>
          
           <hr className='hr' />
+          <br/>
+          <br/>
           <div className='login-alternatives'>
             <p className='ingresar-con'>Ingresar con</p>
             <div className='google-facebook'>

@@ -1,0 +1,62 @@
+.controlar-card-recibida{
+    width: 150px;
+    display: flex;
+}
+
+.ubicar{
+    
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    justify-content: space-around;
+    
+   
+    
+   
+}
+
+
+
+
+
+.ubicar-card{
+    width: 150px;
+}
+
+.cards-recibida{
+    display: flex;
+    width: 150px !important;
+    height: 200px !important;
+    margin: 10px;
+   
+}
+
+.controlar-cards-recibida{
+    display: flex;
+    justify-content: center;
+}
+
+.cards-recibida{
+    width: 120px;
+    height: 120px;
+    border: 1px solid black;
+}
+
+.prod-titulo{
+    font-size: 15px !important;
+}
+
+.titulo-h3{
+    font-size: 20px !important;
+    text-align: center;
+    margin: 10px;
+}
+
+.hr{
+    color: #FF4679;
+    border: 2px solid;
+    width: 100vw;
+    margin: 30px 0px;
+
+
+}
