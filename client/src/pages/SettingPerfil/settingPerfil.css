@@ -1,0 +1,48 @@
+.mainPerfil {
+  background-color: aliceblue;
+
+  & h2 {
+    color: #000;
+    text-align: center;
+    font-family: var(--titulo);
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+  }
+
+  & .containEditProfile {
+    position: relative;
+
+    & .edit-profile {
+      width: 197px;
+      height: 197px;
+      border: solid 5px #c9287e;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+
+      & .edit-profile__img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    & .editImage {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      bottom: 0px;
+      right: 0px;
+      overflow: hidden;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      color: var(--textNav);
+      background-color: #c9287e;
+      display: grid;
+      place-content: center;
+    }
+  }
+
+
+}
