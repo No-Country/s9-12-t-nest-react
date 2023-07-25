@@ -110,13 +110,13 @@ export const modifyUser = createAsyncThunk('authUser/modifyUser', async (args, t
       body: JSON.stringify(dataUs)
     })
     if (!response.ok) {
-      const errorData = await response.json()
-      return thunkAPI.rejectWithValue({ message: 'Error modifying user', errorData })
+      const error = await response.json()
+      return thunkAPI.rejectWithValue(error)
     }
     const data = await response.json()
     return data
   } catch (error) {
-    return thunkAPI.rejectWithValue({ message: 'Error modifying user', error })
+    return thunkAPI.rejectWithValue(error)
   }
 })
 
@@ -225,7 +225,7 @@ const authSlice = createSlice({
       })
       .addCase(modifyUser.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload.message
+        state.error = action.payload.message || 'Error modifying user'
       })
       .addCase(deleteUser.pending, (state) => {
         state.isLoading = true

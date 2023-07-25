@@ -160,16 +160,15 @@ const SettingPerfil = () => {
       console.log('data a cargar --> ', dataUs)
       dispatch(modifyUser({ token, userId: user._id, dataUs }))
         .then((res) => {
+          console.log('resp ->', res)
           if (res.payload.statusCode === 404) {
             toast.warning('error al actualizar perfil, intente mas tarde. codigo: ' + res.payload.statusCode)
           } else {
             toast.success('perfil actualizado correctamente')
-            dispatch(getUserById({ token, UserId: user._id }))
-            handleClearUser()
           }
         })
         .catch((err) => {
-          toast.error('error al actualizar perfil, intente mas tarde. codigo: ' + err.response.data.statusCode)
+          toast.error('error al actualizar perfil, intente mas tarde. codigo: ' + err.payload.message)
         })
     }
   }
@@ -356,3 +355,6 @@ const SettingPerfil = () => {
 }
 
 export default SettingPerfil
+
+// dispatch(getUserById({ token, UserId: user._id }))
+// // handleClearUser()
