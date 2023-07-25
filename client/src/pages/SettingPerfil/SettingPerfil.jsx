@@ -165,6 +165,7 @@ const SettingPerfil = () => {
           } else {
             toast.success('perfil actualizado correctamente')
             dispatch(getUserById({ token, UserId: user._id }))
+            handleClearUser()
           }
         })
         .catch((err) => {
