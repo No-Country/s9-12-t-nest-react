@@ -21,9 +21,8 @@ import { stringify } from 'uuid'
 export default function Detail () {
   const product = useSelector((state) => state?.productsDb?.productById)
   const userInfo = useSelector((state) => state.authUser?.userById)
-  // const token = useSelector((state) => state?.autenticacion?.token)
-  // const userLs = JSON.stringify(localStorage.getItem('token'))
   const geoLocation = JSON.parse(localStorage.getItem('geo'))
+  const userID = localStorage.getItem('userId')
   const lat = parseFloat(geoLocation.lat)
   const lon = parseFloat(geoLocation.lon)
   const dispatch = useDispatch()
@@ -96,7 +95,7 @@ export default function Detail () {
             </div>
             {/* <LocationName /> */}
             <div className='boton'>
-              <Link to={`/ofertar/${product?._id}`}><button className='ofertar' product={product}>Ofertar</button></Link>
+              <Link to={`/ofertar/${product?._id}/${userID}`}><button className='ofertar' product={product}>Ofertar</button></Link>
 
             </div>
             <h6 className='ubicacion'>Otras publicaciones de este usuario.</h6>
