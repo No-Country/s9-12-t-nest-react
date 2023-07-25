@@ -16,7 +16,7 @@ import RegisterUser from '../pages/RegisterUser/RegisterUser'
 import SettingPerfil from '../pages/SettingPerfil/SettingPerfil'
 import OfertaRecibida from '../pages/OfertaRecibida'
 
-function AppRouter({ state }) {
+function AppRouter ({ state }) {
   return (
     <BrowserRouter>
       <NavBarBootstrap />
