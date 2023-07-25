@@ -48,7 +48,7 @@ export const getUsers = createAsyncThunk('authUser/getUsers', async (_, thunkAPI
 //  traemos un usuario por su id
 export const getUserById = createAsyncThunk('authUser/getUserById', async (args, thunkAPI) => {
   try {
-    console.log('argumentos -->', args)
+    // console.log('argumentos -->', args)
     const { token, UserId } = args
     const response = await fetch(`${API_URL}/${UserId}`, {
       method: 'GET',
