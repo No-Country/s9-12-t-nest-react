@@ -51,6 +51,10 @@ function App () {
       dispatch(processGoogleCallback({ code, scope, authuser, prompt }))
         .then(res => {
           console.log('res', res)
+          if (res.type === 'auth/processGoogleCallback/fulfilled') {
+            localStorage.setItem('user', res.payload.user)
+            localStorage.setItem('token', res.payload.token)
+          }
         })
         .catch(() => {
           console.log('error')
