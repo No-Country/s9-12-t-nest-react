@@ -89,8 +89,15 @@ const SettingPerfil = () => {
   }, [dispatch, update])
 
   const handleUpdateUser = () => {
-    const dataUs = {}
+    // const dataUs = new FormData()
+    // dataUs.append('email', email)
+    // dataUs.append('password', password)
+    // dataUs.append('firstName', firstName)
+    // dataUs.append('lastName', lastName)
+    // dataUs.append('contact', contact)
+    // dataUs.append('address', address)
 
+    const dataUs = {}
     dataUs.email = email
     dataUs.password = password
     dataUs.firstName = firstName
@@ -158,23 +165,34 @@ const SettingPerfil = () => {
       setErrors(validationErrors)
     } else if (Object.keys(validationErrors).length === 0) {
       console.log('data a cargar --> ', dataUs)
-      dispatch(modifyUser({ token, userId: user._id, dataUs }))
+      dispatch(modifyUser({ token, userId: user._id, newUserData: dataUs }))
         .then((res) => {
           console.log('resp ->', res)
           if (res.payload.statusCode === 404) {
             toast.warning('error al actualizar perfil, intente mas tarde. codigo: ' + res.payload.statusCode)
+            handleClearUser()
+          } else if (res.error.message === 'Rejected') {
+            toast.warning('error al actualizar perfil, intente mas tarde. codigo: ' + res.payload.message)
+            handleClearUser()
           } else {
             toast.success('perfil actualizado correctamente')
+            dispatch(getUserById({ token, UserId: user._id }))
+              .then(() => {
+                handleClearUser()
+              })
           }
         })
         .catch((err) => {
           toast.error('error al actualizar perfil, intente mas tarde. codigo: ' + err.payload.message)
         })
+        // .finally(() => {
+        //   console.log('fin')
+        //   handleClearUser()
+        // })
     }
   }
 
-  const handleClearUser = (e) => {
-    e.preventDefault()
+  const handleClearUser = () => {
     console.log('handleClear ->', user)
     console.log(user2)
     setEmail(user2.email || user.email)
@@ -346,7 +364,7 @@ const SettingPerfil = () => {
         </div>
         <div className='ButonGroup'>
           <button className='boton' onClick={handleUpdateUser}>Guardar Cambio</button>
-          <button className='boton' onClick={(e) => handleClearUser(e)}>Cancelar</button>
+          <button className='boton butonReset' onClick={() => handleClearUser()}><ion-icon name='refresh-sharp' /></button>
         </div>
       </section>
 
