@@ -45,7 +45,10 @@ export class UsersService {
 
   async findOne(id: string) {
     try {
-      const user = await this.userModel.findById(id).select('-password');
+      const user = await this.userModel
+        .findById(id)
+        .select('-password')
+        .populate({ path: 'products' });
       if (!user) {
         throw new Error(`User ${id} not found`);
       }
@@ -68,7 +71,6 @@ export class UsersService {
 
   private handleUserError(error: any): never {
     if (error.code === 11000) {
-      console.log(error);
       throw new BadRequestException(`${error.keyValue['email']} exists`);
     }
     throw new HttpException(error.response, error.status);

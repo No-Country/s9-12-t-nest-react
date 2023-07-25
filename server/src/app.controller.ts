@@ -3,6 +3,9 @@ import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from '@nestjs/passport';
 import { Response } from 'express';
+import { ApiTags } from '@nestjs/swagger';
+
+@ApiTags('Google OAuth 2.0')
 @Controller()
 export class AppController {
   constructor(
@@ -55,7 +58,6 @@ export class AppController {
   @Get('auth/google/callback')
   @UseGuards(AuthGuard('google'))
   async callback(@Req() req, @Res() res) {
-    console.log('done');
     res.json(req.user);
   }
   @Get()
