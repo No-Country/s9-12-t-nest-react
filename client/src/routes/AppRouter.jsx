@@ -15,6 +15,7 @@ import LoginUser from '../pages/LoginUser/LoginUser'
 import RegisterUser from '../pages/RegisterUser/RegisterUser'
 import SettingPerfil from '../pages/SettingPerfil/SettingPerfil'
 import OfertaRecibida from '../pages/OfertaRecibida'
+import OfertaAceptada from '../pages/OfertaAceptada'
 
 function AppRouter ({ state }) {
   return (
@@ -24,6 +25,7 @@ function AppRouter ({ state }) {
         <Route path='/login' element={<Login />} />
 
         <Route path='/oferta-recibida' element={<OfertaRecibida />} />
+        <Route path='/oferta-aceptada' element={<OfertaAceptada />} />
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Home />} />
         <Route path='/detalle/:id/:owner' element={<Detail />} />

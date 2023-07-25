@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import CardMiniPerfil from './CardMiniPerfil/CardMiniPerfil'
 import UserBannerStatistics from './UserBannerStatistics/UserBannerStatistics'
 import ReusableCarrusel from './ReusableCarrusel/ReusableCarrusel'
+import './PerfilUsuarioConsumeAgustinLorenzi.css'
 
 const PerfilUsuario = () => {
   const ubication = useSelector(state => state?.location)
@@ -69,16 +70,19 @@ const PerfilUsuario = () => {
   return (
     <div className='container principalPerfil p-2 d-flex flex-column justify-content-center align-items-center overflow-hidden mt-3 gap-5' style={{ minWidth: '350px', height: 'auto' }}>
 
-      <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ minWidth: '350px', width: '450px', maxWidth: '600px', height: 'auto', border: 'none' }}>
+      <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ minWidth: '350px', width: '340px', maxWidth: '600px', height: 'auto', border: 'none' }}>
+        <div className='borde-estrellas'>
 
-        {/* head perfil */}
-        <CardMiniPerfil usuario={objeto} barrio={barrio} />
+          {/* head perfil */}
+          <CardMiniPerfil usuario={objeto} barrio={barrio} />
 
-        {/* Estrellas valoracion */}
-        <Stars number={calculaRep} />
+          {/* Estrellas valoracion */}
+          <Stars number={calculaRep} />
+
+        </div>
 
         {/* Calificacion Usuario  */}
-        <UserBannerStatistics reputacion={reputacionUSer} />
+        {/* <UserBannerStatistics reputacion={reputacionUSer} /> */}
 
         {/* info perfil */}
         <section>
@@ -88,7 +92,7 @@ const PerfilUsuario = () => {
         </section>
       </div>
 
-      
+
     </div>
   )
 }

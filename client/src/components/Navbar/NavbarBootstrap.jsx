@@ -47,9 +47,7 @@ function NavBarBootstrap () {
                   <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} />
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  <Nav className='justify-content-end  pe-3'>
-                    {/* aca va el boton de categorias */}
-                    {/* <Nav.Link href='#action1'><CategoryTest /></Nav.Link> */}
+                  <Nav className='justify-content-end  pe-3'>                    
                     <CategoryTest />
                   </Nav>
                   <div className='form'>
