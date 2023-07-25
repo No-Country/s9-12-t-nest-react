@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './settingPerfil.css'
 import { getUserById, modifyUser } from '../../features/authSlice/authSlice'
+import { toast } from 'react-toastify'
 
 const SettingPerfil = () => {
   const user = useSelector(state => state?.autenticacion?.user)
   const token = useSelector(state => state?.autenticacion?.token)
+  const user2 = useSelector(state => state?.authUser?.userById)
   const update = useSelector(state => state?.authUser?.update)
 
   // const objetoUser = {
@@ -73,56 +75,28 @@ const SettingPerfil = () => {
     dispatch(getUserById({ token, UserId: user._id }))
       .then((res) => {
         console.log('user db ->', res)
-        // setEmail(res.payload.email || user.email)
-        // setPassword(res.payload.password || user.password)
-        // setFirstName(res.payload.firstName || user.firstName)
-        // setLastName(res.payload.lastName || user.lastName)
-        // setContact(res.payload.contact || user.contact)
-        // setAddress(res.payload.address || user.address)
+        const { email, password, firstName, lastName, contact, address } = res.payload
+        setEmail(email || user.email)
+        setPassword(password || user.password)
+        setFirstName(firstName || user.firstName)
+        setLastName(lastName || user.lastName)
+        setContact(contact || user.contact)
+        setAddress(address || user.address)
       })
       .catch((err) => {
         console.log(err)
       })
-  }, [])
+  }, [dispatch, update])
 
-  const handleChanges = (e) => {
-    const { name, value } = e.target
+  const handleUpdateUser = () => {
+    const dataUs = {}
 
-    switch (name) {
-      case 'email':
-        setEmail(value)
-        break
-      case 'password':
-        setPassword(value)
-        break
-      case 'firstName':
-        setFirstName(value)
-        break
-      case 'lastName':
-        setLastName(value)
-        break
-      case 'contact':
-        setContact(value)
-        break
-      case 'address':
-        setAddress(value)
-        break
-      default:
-        break
-    }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    const newUser = {
-      email,
-      password,
-      firstName,
-      lastName,
-      contact,
-      address
-    }
+    dataUs.email = email
+    dataUs.password = password
+    dataUs.firstName = firstName
+    dataUs.lastName = lastName
+    dataUs.contact = contact
+    dataUs.address = address
 
     setErrors({})
     const validationErrors = {}
@@ -183,20 +157,47 @@ const SettingPerfil = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors)
     } else if (Object.keys(validationErrors).length === 0) {
-      console.log(newUser)
-      dispatch(modifyUser({ token, userId: user._id, newUserData: newUser }))
+      console.log('data a cargar --> ', dataUs)
+      dispatch(modifyUser({ token, userId: user._id, dataUs }))
         .then((res) => {
-          console.log(res)
+          console.log('resp ->', res)
+          if (res.payload.statusCode === 404) {
+            toast.warning('error al actualizar perfil, intente mas tarde. codigo: ' + res.payload.statusCode)
+          } else {
+            toast.success('perfil actualizado correctamente')
+          }
         })
         .catch((err) => {
-          console.log(err)
+          toast.error('error al actualizar perfil, intente mas tarde. codigo: ' + err.payload.message)
         })
     }
+  }
+
+  const handleClearUser = (e) => {
+    e.preventDefault()
+    console.log('handleClear ->', user)
+    console.log(user2)
+    setEmail(user2.email || user.email)
+    setPassword(user2.password || user.password)
+    setFirstName(user2.firstName || user.firstName)
+    setLastName(user2.lastName || user.lastName)
+    setContact(user2.contact || user.contact)
+    setAddress(user2.address || user.address)
+
+    setEditEmail(false)
+    setEditPassword(false)
+    setEditFirstName(false)
+    setEditLastName(false)
+    setEditContact(false)
+    setEditAddress(false)
+
+    setErrors({})
   }
 
   return (
     <section className='container mainPerfil' style={{ maxWidth: '450px', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'center', paddingTop: '3rem', gap: '1rem' }}>
       <h2>Editar Perfil</h2>
+
       <section className='containEditProfile'>
         <section className='edit-profile'>
           <img className='edit-profile__img' src={user?.picture} alt={user?.firstName} />
@@ -206,13 +207,13 @@ const SettingPerfil = () => {
         </button>
       </section>
 
-      <form className='formModifyPerfil' onSubmit={handleSubmit}>
+      <section className='formModifyPerfil'>
         <div className='formGroup'>
           {
             !editFirstName
               ? (
                 <div className='dpFormGen'>
-                  <p name='firstName' value={user.firstName} className='pFormGen'>{user.firstName || 'Usuario'}</p>
+                  <p className='pFormGen'>{user.firstName || 'Usuario'}</p>
                   <button className='editInputPerfil' onClick={() => setEditFirstName(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
@@ -223,7 +224,7 @@ const SettingPerfil = () => {
                   name='firstName'
                   placeholder='Nombre'
                   value={firstName}
-                  onChange={handleChanges}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
                 )
           }
@@ -235,7 +236,7 @@ const SettingPerfil = () => {
             !editEmail
               ? (
                 <div className='dpFormGen'>
-                  <p name='email' value={user.email} className='pFormGen'>{user.email || 'Email'}</p>
+                  <p className='pFormGen'>{user.email || 'Email'}</p>
                   <button className='editInputPerfil' onClick={() => setEditEmail(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
@@ -246,7 +247,7 @@ const SettingPerfil = () => {
                   name='email'
                   placeholder='email'
                   value={email}
-                  onChange={handleChanges}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 )
           }
@@ -258,7 +259,7 @@ const SettingPerfil = () => {
             !editPassword
               ? (
                 <div className='dpFormGen'>
-                  <p name='password' value={user.password} className='pFormGen'>{user.password || 'Password'}</p>
+                  <p className='pFormGen'>{user.password || 'Password'}</p>
                   <button className='editInputPerfil' onClick={() => setEditPassword(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
@@ -269,7 +270,7 @@ const SettingPerfil = () => {
                   name='password'
                   placeholder='password'
                   value={password}
-                  onChange={handleChanges}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 )
           }
@@ -281,7 +282,7 @@ const SettingPerfil = () => {
             !editLastName
               ? (
                 <div className='dpFormGen'>
-                  <p name='lastName' value={user.lastName} className='pFormGen'>{user.lastName || 'Apellido'}</p>
+                  <p className='pFormGen'>{user.lastName || 'Apellido'}</p>
                   <button className='editInputPerfil' onClick={() => setEditLastName(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
@@ -292,7 +293,7 @@ const SettingPerfil = () => {
                   name='lastName'
                   placeholder='lastName'
                   value={lastName}
-                  onChange={handleChanges}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
                 )
           }
@@ -304,7 +305,7 @@ const SettingPerfil = () => {
             !editContact
               ? (
                 <div className='dpFormGen'>
-                  <p name='contact' value={user.contact} className='pFormGen'>{user.contact || 'telefono: +54...'} </p>
+                  <p className='pFormGen'>{user.contact || 'telefono: +54...'} </p>
                   <button className='editInputPerfil' onClick={() => setEditContact(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
@@ -315,7 +316,7 @@ const SettingPerfil = () => {
                   name='contact'
                   placeholder='telefono +5492944123456'
                   value={contact}
-                  onChange={handleChanges}
+                  onChange={(e) => setContact(e.target.value)}
                 />
                 )
           }
@@ -326,7 +327,7 @@ const SettingPerfil = () => {
             !editAddress
               ? (
                 <div className='dpFormGen'>
-                  <p name='address' value={user.address} className='pFormGen'>{user.address || 'Pais, ciudad, localidad'}</p>
+                  <p className='pFormGen'>{user.address || 'Pais, ciudad, localidad'}</p>
                   <button className='editInputPerfil' onClick={() => setEditAddress(true)}><ion-icon name='pencil-sharp' /></button>
                 </div>
                 )
@@ -337,18 +338,23 @@ const SettingPerfil = () => {
                   name='address'
                   placeholder='pais, ciudad, localidad'
                   value={address}
-                  onChange={handleChanges}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
                 )
           }
           {errors.address && <p style={{ width: '100%', padding: '5px', color: 'red', fontFamily: 'var(--titulo)', fontWeight: '500', fontSize: '1rem', textAlign: 'left' }}>{errors.address}</p>}
         </div>
         <div className='ButonGroup'>
-          <button className='boton' type='submit' onClick={handleSubmit}>Guardar Cambio</button>
+          <button className='boton' onClick={handleUpdateUser}>Guardar Cambio</button>
+          <button className='boton' onClick={(e) => handleClearUser(e)}>Cancelar</button>
         </div>
-      </form>
+      </section>
+
     </section>
   )
 }
 
 export default SettingPerfil
+
+// dispatch(getUserById({ token, UserId: user._id }))
+// // handleClearUser()

@@ -68,16 +68,46 @@ export const getUserById = createAsyncThunk('authUser/getUserById', async (args,
   }
 })
 
+// export const modifyUser = createAsyncThunk('authUser/modifyUser', async (args, thunkAPI) => {
+//   console.log('argumentos -->', args)
+//   const { token, userId, newUserData } = args
+//   try {
+//     const formData = new FormData()
+//     formData.append('email', newUserData.email)
+//     formData.append('password', newUserData.password)
+//     formData.append('firstName', newUserData.firstName)
+//     formData.append('lastName', newUserData.lastName)
+//     formData.append('contact', newUserData.contact)
+//     formData.append('address', newUserData.address)
+
+//     const response = await fetch(`${API_URL}/${userId}`, {
+//       method: 'PATCH',
+//       headers: {
+//         Authorization: `bearer ${token}`
+//       },
+//       body: formData
+//     })
+//     if (!response.ok) {
+//       const error = await response.json()
+//       return thunkAPI.rejectWithValue(error)
+//     }
+//     const data = await response.json()
+//     return data
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(error)
+//   }
+// })
+
 export const modifyUser = createAsyncThunk('authUser/modifyUser', async (args, thunkAPI) => {
-  const { token, userId, newUserData } = args
+  const { token, userId, dataUs } = args
   try {
     const response = await fetch(`${API_URL}/${userId}`, {
-      method: 'PUT',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       },
-      body: JSON.stringify(newUserData)
+      body: JSON.stringify(dataUs)
     })
     if (!response.ok) {
       const error = await response.json()
@@ -189,14 +219,13 @@ const authSlice = createSlice({
       })
       .addCase(modifyUser.fulfilled, (state, action) => {
         state.isLoading = false
-        state.user = action.payload // se supone que es para el usuario loguiado en este caso permitira modificar sus datos
-        state.isAuthenticated = true // hay que dejarlo en falso si queremos que al modificar los datos no se loguee de nuevo
-        // state.token = action.payload.token //suponiendo que devuelve un token
+        state.user = action.payload
+        state.isAuthenticated = true
         state.update = true
       })
       .addCase(modifyUser.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload.message
+        state.error = action.payload.message || 'Error modifying user'
       })
       .addCase(deleteUser.pending, (state) => {
         state.isLoading = true
