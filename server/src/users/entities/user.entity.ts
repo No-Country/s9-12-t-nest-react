@@ -41,11 +41,11 @@ export class User extends Document {
   roles: string[];
 
   @ApiProperty()
-  @Prop({ array: true, ref: 'Products' })
+  @Prop({ array: true, ref: 'Product' })
   products: Types.ObjectId[];
 
   @ApiProperty()
-  @Prop({ array: true, ref: 'Offers' })
+  @Prop({ array: true, ref: 'Offer' })
   incomingOffers: Types.ObjectId[];
 }
 
