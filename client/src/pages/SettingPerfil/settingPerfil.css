@@ -115,6 +115,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 10px;
 
       & .boton {
         background-color: #c9287e;
@@ -131,6 +132,12 @@
         display: grid;
         place-content: center;
         transition: all .4s ease-in;
+
+        &.butonReset {
+          width: 46px;
+          padding: 0;
+          font-size: 1.4rem;
+        }
 
         &:hover {
           background-color: #fff;
