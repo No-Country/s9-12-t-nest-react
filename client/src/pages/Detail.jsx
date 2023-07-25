@@ -15,11 +15,14 @@ import Ofertar from './Ofertar'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserById } from '../features/authSlice/authSlice'
 import { getProductById } from '../features/productsSlice/productSlice'
+import { stringify } from 'uuid'
 /* custom Hook Local Storage */
 
 export default function Detail () {
   const product = useSelector((state) => state?.productsDb?.productById)
   const userInfo = useSelector((state) => state.authUser?.userById)
+  // const token = useSelector((state) => state?.autenticacion?.token)
+  // const userLs = JSON.stringify(localStorage.getItem('token'))
   const geoLocation = JSON.parse(localStorage.getItem('geo'))
   const lat = parseFloat(geoLocation.lat)
   const lon = parseFloat(geoLocation.lon)
@@ -27,20 +30,32 @@ export default function Detail () {
   const { id, owner } = useParams()
 
   useEffect(() => {
-    if (product !== false && product._id !== id) {
+    const token = localStorage.getItem('token')
+
+    if (product !== false && product?._id !== id) {
       dispatch({ type: 'products/clearProductById' })
     }
 
-    if (owner !== '64aba27c2415d442b78559c1' && userInfo === null) {
-      dispatch(getUserById(owner))
+    if (userInfo?._id !== owner) {
+      dispatch({ type: 'authUser/clearUserById' })
     }
 
+    if (owner !== '64aba27c2415d442b78559c1' && userInfo === null) {
+      dispatch(getUserById({ token, UserId: owner }))
+        .then((res) => {
+          // console.log('Usuario obtenido:', res)
+        })
+        .catch((err) => {
+          return err
+        })
+    }
     dispatch(getProductById(id))
   }, [])
 
   useEffect(() => {
     if (owner !== '64aba27c2415d442b78559c1' && product !== false) {
-      dispatch(getUserById(owner))
+      const token = localStorage.getItem('token')
+      dispatch(getUserById({ token, UserId: owner }))
     }
   }, [product, dispatch])
 
