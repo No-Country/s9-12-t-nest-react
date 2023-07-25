@@ -8,7 +8,7 @@ const CardMiniPerfil = ({ usuario, barrio }) => {
       <section className='imgName d-flex flex-row justify-content-center align-items-center align-content-center flex-nowrap gap-3 position-relative' style={{ width: '100%', height: '70px' }}>
         {/* img Perfil left */}
         <div className='profile overflow-hidden position-static rounded-circle overflow-hidden' style={{ width: '64.837px', height: '64.837px' }}>
-          <img src={usuario.img} style={{ width: '100%', height: '100%' }} />
+          <img src={usuario.picture} style={{ width: '100%', height: '100%' }} />
         </div>
         {/* info Perfil right  */}
         <section className='titulos position-static d-flex flex-column justify-content-center align-items-start align-content-center flex-nowrap gap-2'>

@@ -15,6 +15,7 @@ import ReusableCarrusel from './ReusableCarrusel/ReusableCarrusel'
 
 const PerfilUser = () => {
   const ubication = useSelector(state => state?.location)
+  const user = useSelector(state => state?.autenticacion?.user)
   const barrio = useSelector(state => state?.barrio?.barrio)
   const productsYouLike = useSelector((state) => state?.productsDb?.likeProducts)
   const [calculaRep, setCalculaRep] = useState('')
@@ -35,23 +36,23 @@ const PerfilUser = () => {
   //   contact: '2944396887',
   //   address: 'argentina, rio negro, ingeniero jcobacci'
   // }
-  const objeto = {
-    _id: '64b9bb6d821dd7fe3cb11333',
-    email: 'pescadorabioso1992@gmail.com',
-    firstName: 'pescado',
-    lastName: 'rabioso',
-    contact: '2944123456',
-    address: 'Argentina,rio negro,san carlos de bariloche, ',
-    isActive: true,
-    roles: [
-      'user'
-    ],
-    products: [],
-    incomingOffers: [],
-    createdAt: '2023-07-20T22:55:41.634Z',
-    updatedAt: '2023-07-20T22:55:41.634Z',
-    __v: 0
-  }
+  // const objeto = {
+  //   _id: '64b9bb6d821dd7fe3cb11333',
+  //   email: 'pescadorabioso1992@gmail.com',
+  //   firstName: 'pescado',
+  //   lastName: 'rabioso',
+  //   contact: '2944123456',
+  //   address: 'Argentina,rio negro,san carlos de bariloche, ',
+  //   isActive: true,
+  //   roles: [
+  //     'user'
+  //   ],
+  //   products: [],
+  //   incomingOffers: [],
+  //   createdAt: '2023-07-20T22:55:41.634Z',
+  //   updatedAt: '2023-07-20T22:55:41.634Z',
+  //   __v: 0
+  // }
 
   const productsDestacados = []
 
@@ -72,7 +73,7 @@ const PerfilUser = () => {
       <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ minWidth: '350px', width: '450px', maxWidth: '600px', height: 'auto', border: 'none' }}>
 
         {/* head perfil */}
-        <CardMiniPerfil usuario={objeto} barrio={barrio} />
+        <CardMiniPerfil usuario={user} barrio={barrio} />
 
         {/* Estrellas valoracion */}
         <Stars number={calculaRep} />
@@ -89,7 +90,7 @@ const PerfilUser = () => {
       </div>
 
       {/* RenderCarrusel con productos del usuario */}
-      <CarruselProductsCard filtroPor={objeto._id} titulo={objeto.firstName} user={objeto} />
+      <CarruselProductsCard filtroPor={user._id} titulo={user.firstName} user={user} />
 
       {/* RenderCarrusel con productos que le gustan al usuario */}
       <ReusableCarrusel titulo='Productos que sigues' productos={productsYouLike} />
