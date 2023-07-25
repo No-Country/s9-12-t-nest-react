@@ -68,9 +68,9 @@ const PerfilUser = () => {
   }, [ubication, dispatch])
 
   return (
-    <div className='container principalPerfil p-2 d-flex flex-column justify-content-center align-items-center overflow-hidden mt-3 gap-5' style={{ minWidth: '350px', height: 'auto' }}>
+    <div className='container principalPerfil p-2 d-flex flex-column justify-content-center align-items-center overflow-hidden mt-3 gap-5'>
 
-      <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ minWidth: '350px', width: '450px', maxWidth: '600px', height: 'auto', border: 'none' }}>
+      <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ border: 'none' }}>
 
         {/* head perfil */}
         <CardMiniPerfil usuario={user} barrio={barrio} />
