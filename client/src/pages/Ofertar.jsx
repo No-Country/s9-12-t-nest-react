@@ -6,30 +6,73 @@ import { useDispatch, useSelector } from 'react-redux'
 import './Ofertar.css'
 import CardProduct from '../components/CardProduct'
 import { getProductById, getProducts } from '../features/productsSlice/productSlice'
+import { getUserById } from '../features/authSlice/authSlice'
 
 const Ofertar = () => {
   const product = useSelector((state) => state?.productsDb?.productById)
+  const userProducts = useSelector((state) => state.authUser?.userById)
   const products = useSelector((state) => state?.productsDb?.products)
   const dispatch = useDispatch()
-  const { id } = useParams()
+  const userIde = localStorage.getItem('userId')
+  const token = localStorage.getItem('token')
 
-  const [selectedCards, setSelectedCards] = useState([])
+  const { id, userID } = useParams()
+
+  const [formState, setFormState] = useState({
+    status: '',
+    offerOwnerId: '',
+    offerTargetItem: '',
+    offeredItems: []
+  })
+
+  const [userProductsList, setUserProductsList] = useState([])
 
   const cardSelect = (id) => {
-    if (selectedCards?.includes(id)) {
-      setSelectedCards(selectedCards?.filter((cardId) => cardId !== id))
+    if (formState.offeredItems?.includes(id)) {
+      setFormState((prevFormState) => ({
+        ...prevFormState,
+        offeredItems: prevFormState.offeredItems.filter((cardId) => cardId !== id)
+      }))
     } else {
-      setSelectedCards([...selectedCards, id])
+      setFormState((prevFormState) => ({
+        ...prevFormState,
+        offeredItems: [...prevFormState.offeredItems, id]
+      }))
+    }
+  }
+
+  const submitHandler = () => {
+    const formData = new FormData()
+    formData.append('status', 'pending')
+    formData.append('offerOwnerId', userID)
+    formData.append('offerTargetItem', id)
+    formState.offeredItems.forEach((item) => {
+      formData.append('offeredItems', item)
+    })
+
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`)
     }
   }
 
   useEffect(() => {
-    console.log(selectedCards)
-  }, [selectedCards])
+    // console.log(formState.offeredItems)
+  }, [formState])
 
   useEffect(() => {
     dispatch(getProductById(id))
     dispatch(getProducts())
+    if (userID !== '64aba27c2415d442b78559c1') {
+      dispatch(getUserById({ token, UserId: userID }))
+        .then((res) => {
+        // console.log('Usuario obtenido:', res)
+        })
+        .catch((err) => {
+          return err
+        })
+    }
+
+    console.log(userProducts)
   }, [dispatch])
 
   return (
@@ -52,20 +95,19 @@ const Ofertar = () => {
       </div>
 
       <div className='acomodar'>
-        {products?.map(prod =>
+        {products?.map((prod, i) =>
           (
           <div key={prod?._id} className='offer-card-container' id='offer-card-container'>
-          <label htmlFor='productCard'>
+          <label htmlFor={`productCard${i}`}>
           <div
             onClick={() => cardSelect(prod._id)}
-            id='ProductCard'
           >
             <CardProduct props={[prod]} />
           </div>
           </label>
 
           <div className='checkbox-card'>
-            <input type='checkbox' name='cardSelected' id='productCard' />
+            <input type='checkbox' name='cardSelected' id={`productCard${i}`} />
           </div>
 
           </div>
@@ -73,7 +115,7 @@ const Ofertar = () => {
           ))}
       </div>
       <div className='boton'>
-        <button className='ofertar' product={product}>Confirmar Oferta</button>
+        <button className='ofertar' product={product} onClick={() => { submitHandler() }}>Confirmar Oferta</button>
 
       </div>
       <div className='publica'>
