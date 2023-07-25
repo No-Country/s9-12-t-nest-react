@@ -31,7 +31,7 @@ function AppRouter ({ state }) {
         <Route path='/detalle/:id/:owner' element={<Detail />} />
         <Route path='/perfil' element={<PerfilUser />} />
         <Route path='/publicacion' element={<Publication />} />
-        <Route path='/ofertar/:id' element={<Ofertar />} />
+        <Route path='/ofertar/:id/:userID' element={<Ofertar />} />
 
         {/* pruebas */}
         <Route path='/cargaProduct' element={<Publication />} />

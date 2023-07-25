@@ -46,21 +46,21 @@ function App () {
     const prompt = urlParams.get('prompt')
 
     if (token) {
-      toast.success(`Bienvenido ${usuario.firstName}`)
-    } else if (code) {
+      // toast.success(`Bienvenido ${usuario.firstName}`)
+    } else if (code !== null && code !== undefined) {
       dispatch(processGoogleCallback({ code, scope, authuser, prompt }))
         .then(res => {
           console.log('res', res)
           if (res.type === 'auth/processGoogleCallback/fulfilled') {
-            localStorage.setItem('user', res.payload.user)
+            localStorage.setItem('userId', res.payload.user._id)
             localStorage.setItem('token', res.payload.token)
           }
         })
         .catch(() => {
-          console.log('error')
+          // console.log('error')
         })
     } else {
-      console.log('no hay token')
+      // console.log('no hay token')
     }
 
     // dispatch(storeAccessToken(code))
