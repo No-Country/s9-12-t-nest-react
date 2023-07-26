@@ -7,7 +7,7 @@ import SettingPerfil from './SettingPerfil/SettingPerfil';
 import CardMiniPerfil from './Perfil/CardMiniPerfil/CardMiniPerfil';
 import Stars from './Perfil/Stars/Stars';
 import UserBannerStatistics from './Perfil/UserBannerStatistics/UserBannerStatistics';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi';
 import Swal from "sweetalert2";
 import OfertaAceptada from './OfertaAceptada';
@@ -22,7 +22,7 @@ const array = [
 ]
 
 const OfertaRecibida = () => {
-    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     function confirmacion() {
 
@@ -38,9 +38,8 @@ const OfertaRecibida = () => {
                 cancelButton: 'custom-button2'
             },
         }).then((result) => {
-            if (result.isConfirmed) {
-                setLoading(false)
-                //navigate("/oferta-aceptada");
+            if (result.isConfirmed) {                
+                navigate("/oferta-aceptada");
             }
         })
 
@@ -52,7 +51,7 @@ const OfertaRecibida = () => {
 
 
         <div >
-            {loading ?
+            
                 <div>
                     <h3 className='titulo-h3'>¡Recibiste una oferta por tu articulo!.</h3>
                     <div className='controlar-cards-recibida'>
@@ -100,7 +99,7 @@ const OfertaRecibida = () => {
 
 
                 </div>
-                : <OfertaAceptada />}
+               
 
         </div>
     )
