@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import './settingPerfil.css'
 import { getUserById, modifyUser } from '../../features/authSlice/authSlice'
 import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
 
 const SettingPerfil = () => {
   const user = useSelector(state => state?.autenticacion?.user)
@@ -368,6 +369,7 @@ const SettingPerfil = () => {
         </div>
       </section>
 
+      <Link to='/calificar' className='linkHome'>SETTINGS</Link>
     </section>
   )
 }
