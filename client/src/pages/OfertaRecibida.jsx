@@ -7,7 +7,7 @@ import SettingPerfil from './SettingPerfil/SettingPerfil';
 import CardMiniPerfil from './Perfil/CardMiniPerfil/CardMiniPerfil';
 import Stars from './Perfil/Stars/Stars';
 import UserBannerStatistics from './Perfil/UserBannerStatistics/UserBannerStatistics';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi';
 import Swal from "sweetalert2";
 import OfertaAceptada from './OfertaAceptada';
@@ -22,13 +22,14 @@ const array = [
 ]
 
 const OfertaRecibida = () => {
-    const [loading, setLoading] = useState(true);
+    //const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     function confirmacion() {
 
 
         Swal.fire({
-            html: '<h4>¿Aceptás la oferta recibida?.</h4> <br/>   <p>Confirmá si aceptás la oferta de trueque que recibiste de tu contraparte. Podés contactarte antes para asegurarte de que la oferta sea válida.</p>     ',
+            html: '<h4>¿Aceptás la oferta recibida?.</h4> <br/>   <p>Confirmá si aceptás la oferta de trueque que recibiste de tu contraparte.<br/> Podés contactarte antes para asegurarte de que la oferta sea válida.</p>',
             showCancelButton: true,
             cancelButtonText: 'Cancel',
             confirmButtonText: 'Aceptar',
@@ -39,8 +40,8 @@ const OfertaRecibida = () => {
             },
         }).then((result) => {
             if (result.isConfirmed) {
-                setLoading(false)
-                //navigate("/oferta-aceptada");
+                //setLoading(false)
+                navigate("/oferta-aceptada");
             }
         })
 
@@ -52,7 +53,7 @@ const OfertaRecibida = () => {
 
 
         <div >
-            {loading ?
+            {/* {loading ? */}
                 <div>
                     <h3 className='titulo-h3'>¡Recibiste una oferta por tu articulo!.</h3>
                     <div className='controlar-cards-recibida'>
@@ -100,7 +101,7 @@ const OfertaRecibida = () => {
 
 
                 </div>
-                : <OfertaAceptada />}
+                {/* : <OfertaAceptada />} */}
 
         </div>
     )
