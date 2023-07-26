@@ -11,37 +11,6 @@ const SettingPerfil = () => {
   const user2 = useSelector(state => state?.authUser?.userById)
   const update = useSelector(state => state?.authUser?.update)
 
-  // const objetoUser = {
-  //   _id: '64b9bb6d821dd7fe3cb11333',
-  //   email: 'pescadorabioso1992@gmail.com',
-  //   firstName: 'pescado',
-  //   lastName: 'rabioso',
-  //   contact: '2944123456',
-  //   address: 'Argentina,rio negro,san carlos de bariloche, ',
-  //   isActive: true,
-  //   roles: [
-  //     'user'
-  //   ],
-  //   products: [],
-  //   incomingOffers: [],
-  //   createdAt: '2023-07-20T22:55:41.634Z',
-  //   updatedAt: '2023-07-20T22:55:41.634Z',
-  //   __v: 0
-  // }
-  // para validar el usuario
-
-  /**
-    createdAt : "2023-07-24T20:59:04.571Z"
-    email: "guillermoneculqueo@gmail.com"
-    firstName: "Guille"
-    isActive: true
-    lastName: "Nec"
-    picture: "https://lh3.googleusercontent.com/a/AAcHTtfN3M1vMsTsRqqNomlzw2vbd
-    roles: ['user']
-    updatedAt: "2023-07-24T20:59:04.571Z"
-    _id: "64bee618668f637569597c51"
-    */
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [firstName, setFirstName] = useState('')

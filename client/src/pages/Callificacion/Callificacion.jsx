@@ -6,25 +6,26 @@ import Stars from '../Perfil/Stars/Stars'
 import UserBannerStatistics from '../Perfil/UserBannerStatistics/UserBannerStatistics'
 import { calcularReputacion } from '../Perfil/calculaReputacion'
 import './calificacion.css'
+import { setValoracionesNegativas, setValoracionesPositivas } from '../../features/reputacionSlice/reputacionSlice'
 
 const Callificacion = () => {
   const ubication = useSelector(state => state?.location)
   const user = useSelector(state => state?.autenticacion?.user)
   const barrio = useSelector(state => state?.barrio?.barrio)
+  const reputacion = useSelector(state => state?.reputacion)
+
   const [calculaRep, setCalculaRep] = useState('')
   const dispatch = useDispatch()
   const lastUbication = useRef(null)
   // console.log('Ubicacion Anterior -->', lastUbication)
   // console.log('Ubicacion Anterior -->', lastUbication)
 
-  const reputacionUSer = { intercambiosExitosos: 15, intercambiosFallidos: 2, totalPublicaciones: 32, valoracionesPositivas: 15, valoracionesNegativas: 2, devoluciones: 1 }
-
   const [calificacion, setCalificacion] = useState(0)
   const [comentario, setComentario] = useState('')
   const [errors, setErrors] = useState({})
 
   useEffect(() => {
-    setCalculaRep(calcularReputacion(reputacionUSer))
+    setCalculaRep(calcularReputacion(reputacion))
   }, [])
 
   useEffect(() => {
@@ -68,7 +69,11 @@ const Callificacion = () => {
       setErrors(validationErrors)
     } else if (Object.keys(validationErrors).length === 0) {
       console.log('calificacion ->', newCalification)
-      // dispatch(calificarUser(user._id, newCalification))
+      if (newCalification.calificacion < 3) {
+        dispatch(setValoracionesNegativas(1))
+      } else if (newCalification.calificacion >= 3) {
+        dispatch(setValoracionesPositivas(1))
+      }
       setErrors({})
     }
   }
@@ -85,7 +90,7 @@ const Callificacion = () => {
         <Stars number={calculaRep} />
 
         {/* Calificacion Usuario  */}
-        <UserBannerStatistics reputacion={reputacionUSer} />
+        <UserBannerStatistics reputacion={reputacion} />
 
       </div>
 
