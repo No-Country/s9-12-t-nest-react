@@ -8,7 +8,7 @@ import CardMiniPerfil from './Perfil/CardMiniPerfil/CardMiniPerfil';
 import Stars from './Perfil/Stars/Stars';
 import UserBannerStatistics from './Perfil/UserBannerStatistics/UserBannerStatistics';
 import { Link, useNavigate} from 'react-router-dom';
-import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi';
+//import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi';
 import Swal from "sweetalert2";
 import OfertaAceptada from './OfertaAceptada';
 import { useState } from 'react';
@@ -82,7 +82,7 @@ const OfertaRecibida = () => {
                         {array.map(prod => <div key={prod.titulo} className='margin'><OfertaRecibidaCards prod={prod} /></div>)}
                     </div>
 
-                    <PerfilUsuario />
+                    {/* <PerfilUsuario /> */}
                     <hr className='hr' />
 
                     <div className='contactar-whatsapp'>
