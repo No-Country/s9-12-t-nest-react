@@ -1,15 +1,12 @@
 import CardMiniPerfil from '../Perfil/CardMiniPerfil/CardMiniPerfil'
 import UserBannerStatistics from '../Perfil/UserBannerStatistics/UserBannerStatistics'
 import Stars from '../Perfil/Stars/Stars'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import './calificacionesRecibidas.css'
 
 const CalificacionesRecibidas = () => {
-  const usuario = useSelector(state => state?.autenticacion?.user)
   const reputacion = useSelector(state => state?.reputacion)
-
-  const dispatch = useDispatch()
 
   const [valoracionPositiva, setValoracionPositiva] = useState(true)
   const [valoracionNegativa, setValoracionNegativa] = useState(false)
@@ -74,13 +71,42 @@ const CalificacionesRecibidas = () => {
         </div>
 
         <section className='ContRenderCalificaciones'>
-          <div className='cardCalificaciones '>
-            <h2 className='cardCalificacionesh2'>descripcion</h2>
-            <div className='contFooterCardCalificaciones'>
-              <p className='cardNameUser'>nombre usuario </p>
-              <p className='cardFecha'>fecha</p>
-            </div>
-          </div>
+          {valoracionPositiva
+            ? (
+                reputacion?.arrayValoracionPositiva?.map((val, index) => (
+                  <div key={index} className='cardCalificaciones '>
+                    <h2 className='cardCalificacionesh2'>{val.comentario}</h2>
+                    <div className='contFooterCardCalificaciones'>
+                      <p className='cardNameUser'>{val.usuario} <span>{'⭐'.repeat(val.calificacion)}</span></p>
+                      <p className='cardFecha'>{val.fecha}</p>
+                    </div>
+                  </div>
+                ))
+              )
+            : valoracionNegativa
+              ? (
+                  reputacion?.arrayValoracionNegativa?.map((val, index) => (
+                    <div key={index} className='cardCalificaciones '>
+                      <h2 className='cardCalificacionesh2'>{val.comentario}</h2>
+                      <div className='contFooterCardCalificaciones'>
+                        <p className='cardNameUser'>{val.usuario} <span>{'⭐'.repeat(val.calificacion)}</span></p>
+                        <p className='cardFecha'>{val.fecha}</p>
+                      </div>
+                    </div>
+                  ))
+                )
+              : (
+                  reputacion?.arrayCancelados?.map((val, index) => (
+                    <div key={index} className='cardCalificaciones '>
+                      <h2 className='cardCalificacionesh2'>{val.comentario}</h2>
+                      <div className='contFooterCardCalificaciones'>
+                        <p className='cardNameUser'>{val.usuario} <span>{'⭐'.repeat(val.calificacion)}</span></p>
+                        <p className='cardFecha'>{val.fecha}</p>
+                      </div>
+                    </div>
+                  ))
+                )}
+
         </section>
       </section>
     </div>
