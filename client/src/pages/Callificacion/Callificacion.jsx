@@ -1,39 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getBarrio } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
 import CardMiniPerfil from '../Perfil/CardMiniPerfil/CardMiniPerfil'
 import Stars from '../Perfil/Stars/Stars'
 import UserBannerStatistics from '../Perfil/UserBannerStatistics/UserBannerStatistics'
-import { calcularReputacion } from '../Perfil/calculaReputacion'
 import './calificacion.css'
 import { setValoracionesNegativas, setValoracionesPositivas } from '../../features/reputacionSlice/reputacionSlice'
 
 const Callificacion = () => {
-  const ubication = useSelector(state => state?.location)
-  const user = useSelector(state => state?.autenticacion?.user)
-  const barrio = useSelector(state => state?.barrio?.barrio)
-  const reputacion = useSelector(state => state?.reputacion)
-
-  const [calculaRep, setCalculaRep] = useState('')
   const dispatch = useDispatch()
-  const lastUbication = useRef(null)
-  // console.log('Ubicacion Anterior -->', lastUbication)
-  // console.log('Ubicacion Anterior -->', lastUbication)
+  const user = useSelector(state => state?.autenticacion?.user)
 
   const [calificacion, setCalificacion] = useState(0)
   const [comentario, setComentario] = useState('')
   const [errors, setErrors] = useState({})
-
-  useEffect(() => {
-    setCalculaRep(calcularReputacion(reputacion))
-  }, [])
-
-  useEffect(() => {
-    if (ubication && ubication !== lastUbication.current) {
-      lastUbication.current = ubication
-      dispatch(getBarrio(ubication))
-    }
-  }, [ubication, dispatch])
 
   const handleStarClick = (val) => {
     setCalificacion(val)
@@ -47,8 +26,11 @@ const Callificacion = () => {
     e.preventDefault()
 
     const newCalification = {
+      punto: 1,
       calificacion,
-      comentario
+      comentario,
+      usuario: user.firstName,
+      fecha: new Date().toLocaleDateString()
     }
 
     const validationErrors = {}
@@ -70,9 +52,9 @@ const Callificacion = () => {
     } else if (Object.keys(validationErrors).length === 0) {
       console.log('calificacion ->', newCalification)
       if (newCalification.calificacion < 3) {
-        dispatch(setValoracionesNegativas(1))
+        dispatch(setValoracionesNegativas(newCalification))
       } else if (newCalification.calificacion >= 3) {
-        dispatch(setValoracionesPositivas(1))
+        dispatch(setValoracionesPositivas(newCalification))
       }
       setErrors({})
     }
@@ -84,13 +66,13 @@ const Callificacion = () => {
       <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ border: 'none' }}>
 
         {/* head perfil */}
-        <CardMiniPerfil usuario={user} barrio={barrio} />
+        <CardMiniPerfil />
 
         {/* Estrellas valoracion */}
-        <Stars number={calculaRep} />
+        <Stars />
 
         {/* Calificacion Usuario  */}
-        <UserBannerStatistics reputacion={reputacion} />
+        <UserBannerStatistics />
 
       </div>
 
