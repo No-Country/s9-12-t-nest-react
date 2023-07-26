@@ -5,13 +5,14 @@ import { Link } from 'react-router-dom'
 import PerfilUser from './Perfil/PerfilUser'
 import SettingPerfil from './SettingPerfil/SettingPerfil'
 import CardMiniPerfil from './Perfil/CardMiniPerfil/CardMiniPerfil'
+import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi'
 
 const OfertaAceptada = () => {
     return (
         <div>
             <h3 className='titulo-h3'>Aceptaste la oferta de:</h3>
             {/* <PerfilUser /> */}
-            <CardMiniPerfil/>
+            <PerfilUsuario/>
             <h5 className='recomendaciones'>Recomendaciones de seguridad de Trueka:</h5>
 
             <div className='controlar-parrafo'>
@@ -36,15 +37,15 @@ const OfertaAceptada = () => {
                 </Link>
 
             </div>
-            <div className='botones'>
-                <button className='ofertar' >Calificar usuario</button>
+            {/* <div className='botones'>
+                <Link to='/calificar'><button className='ofertar' >Calificar usuario</button></Link>
 
             </div>
 
             <div className='botones'>
                 <button className='ofertar2'>Reportar usuario</button>
 
-            </div>
+            </div> */}
         </div>
     )
 }

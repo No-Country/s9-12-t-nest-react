@@ -12,6 +12,7 @@ import { Link, useNavigate} from 'react-router-dom';
 import Swal from "sweetalert2";
 import OfertaAceptada from './OfertaAceptada';
 import { useState } from 'react';
+import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi';
 
 
 const array = [
@@ -74,6 +75,8 @@ const OfertaRecibida = () => {
 
 
                     </div>
+
+                    <PerfilUsuario/>
                     <hr className='hr' />
 
                     <h3 className='titulo-h3'>Te ofrecieron.</h3>
