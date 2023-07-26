@@ -10,7 +10,8 @@ const reputacionSlice = createSlice({
     valoracionesNegativas: 2,
     devoluciones: 1,
     arrayValoracionNegativa: [],
-    arrayValoracionPositiva: []
+    arrayValoracionPositiva: [],
+    arrayCancelados: []
   },
   reducers: {
     setIntercambiosExitosos: (state, action) => {
@@ -32,6 +33,9 @@ const reputacionSlice = createSlice({
     },
     setDevoluciones: (state, action) => {
       state.devoluciones += action.payload
+    },
+    setArrayCancelados: (state, action) => {
+      state.arrayCancelados.push(action.payload)
     }
 
   }
