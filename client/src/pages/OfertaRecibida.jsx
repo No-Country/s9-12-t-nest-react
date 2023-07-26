@@ -8,10 +8,11 @@ import CardMiniPerfil from './Perfil/CardMiniPerfil/CardMiniPerfil';
 import Stars from './Perfil/Stars/Stars';
 import UserBannerStatistics from './Perfil/UserBannerStatistics/UserBannerStatistics';
 import { Link, useNavigate} from 'react-router-dom';
-import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi';
+//import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi';
 import Swal from "sweetalert2";
 import OfertaAceptada from './OfertaAceptada';
 import { useState } from 'react';
+import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi';
 
 
 const array = [
@@ -74,6 +75,8 @@ const OfertaRecibida = () => {
 
 
                     </div>
+
+                    <PerfilUsuario/>
                     <hr className='hr' />
 
                     <h3 className='titulo-h3'>Te ofrecieron.</h3>
@@ -82,7 +85,7 @@ const OfertaRecibida = () => {
                         {array.map(prod => <div key={prod.titulo} className='margin'><OfertaRecibidaCards prod={prod} /></div>)}
                     </div>
 
-                    <PerfilUsuario />
+                    {/* <PerfilUsuario /> */}
                     <hr className='hr' />
 
                     <div className='contactar-whatsapp'>

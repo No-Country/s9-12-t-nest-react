@@ -25,7 +25,6 @@ function AppRouter ({ state }) {
       <NavBarBootstrap />
       <Routes>
         <Route path='/login' element={<Login />} />
-
         <Route path='/oferta-recibida' element={<OfertaRecibida />} />
         <Route path='/oferta-aceptada' element={<OfertaAceptada />} />
         <Route path='/register' element={<Register />} />
@@ -34,7 +33,6 @@ function AppRouter ({ state }) {
         <Route path='/perfil' element={<PerfilUser />} />
         <Route path='/publicacion' element={<Publication />} />
         <Route path='/ofertar/:id/:userID' element={<Ofertar />} />
-
         {/* pruebas */}
         <Route path='/cargaProduct' element={<Publication />} />
         <Route path='/formulario' element={<FormCargaProducts />} />
