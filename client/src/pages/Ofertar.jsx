@@ -43,11 +43,19 @@ const Ofertar = () => {
     }
   }
 
+  const resetForm = () => {
+    setFormState((prevFormState) => ({
+      ...prevFormState,
+      offeredItems: []
+    }))
+  }
+
   const dispatchForm = (form, token) => {
     dispatch(createOffer({ token, offer: form }))
       .then((res) => {
         toast.success('oferta enviada correctamente')
         navigate(`/detalle/${id}/${product?.owner}`)
+        resetForm()
       })
   }
 
