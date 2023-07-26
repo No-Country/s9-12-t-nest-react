@@ -22,13 +22,14 @@ const array = [
 ]
 
 const OfertaRecibida = () => {
+
     const navigate = useNavigate();
 
     function confirmacion() {
 
 
         Swal.fire({
-            html: '<h4>¿Aceptás la oferta recibida?.</h4> <br/>   <p>Confirmá si aceptás la oferta de trueque que recibiste de tu contraparte. Podés contactarte antes para asegurarte de que la oferta sea válida.</p>     ',
+            html: '<h4>¿Aceptás la oferta recibida?.</h4> <br/>   <p>Confirmá si aceptás la oferta de trueque que recibiste de tu contraparte.<br/> Podés contactarte antes para asegurarte de que la oferta sea válida.</p>',
             showCancelButton: true,
             cancelButtonText: 'Cancel',
             confirmButtonText: 'Aceptar',
@@ -38,7 +39,11 @@ const OfertaRecibida = () => {
                 cancelButton: 'custom-button2'
             },
         }).then((result) => {
-            if (result.isConfirmed) {                
+
+            if (result.isConfirmed) {        
+
+           
+
                 navigate("/oferta-aceptada");
             }
         })
@@ -51,7 +56,7 @@ const OfertaRecibida = () => {
 
 
         <div >
-            
+
                 <div>
                     <h3 className='titulo-h3'>¡Recibiste una oferta por tu articulo!.</h3>
                     <div className='controlar-cards-recibida'>
@@ -99,7 +104,7 @@ const OfertaRecibida = () => {
 
 
                 </div>
-               
+
 
         </div>
     )
