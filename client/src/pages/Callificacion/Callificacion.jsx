@@ -5,14 +5,17 @@ import Stars from '../Perfil/Stars/Stars'
 import UserBannerStatistics from '../Perfil/UserBannerStatistics/UserBannerStatistics'
 import './calificacion.css'
 import { setValoracionesNegativas, setValoracionesPositivas } from '../../features/reputacionSlice/reputacionSlice'
+import { useNavigate } from 'react-router-dom'
+import Loading from '../../components/Loading'
 
 const Callificacion = () => {
   const dispatch = useDispatch()
   const user = useSelector(state => state?.autenticacion?.user)
-
+  const navigate = useNavigate()
   const [calificacion, setCalificacion] = useState(0)
   const [comentario, setComentario] = useState('')
   const [errors, setErrors] = useState({})
+  const [canselButton, setCanselButton] = useState(false)
 
   const handleStarClick = (val) => {
     setCalificacion(val)
@@ -51,10 +54,19 @@ const Callificacion = () => {
       setErrors(validationErrors)
     } else if (Object.keys(validationErrors).length === 0) {
       console.log('calificacion ->', newCalification)
+      setCanselButton(true)
       if (newCalification.calificacion < 3) {
         dispatch(setValoracionesNegativas(newCalification))
+        setTimeout(() => {
+          setCanselButton(false)
+          navigate('/perfil/calificacionesRecibidas')
+        }, 3000)
       } else if (newCalification.calificacion >= 3) {
         dispatch(setValoracionesPositivas(newCalification))
+        setTimeout(() => {
+          setCanselButton(false)
+          navigate('/perfil/calificacionesRecibidas')
+        }, 3000)
       }
       setErrors({})
     }
@@ -111,8 +123,8 @@ const Callificacion = () => {
             </section>
 
             <section className='contBotonCalificacion'>
-              <button className='botonCalificacion' type='submit'>
-                Enviar calificación
+              <button className='botonCalificacion' type={canselButton ? 'button' : 'submit'}>
+                {canselButton ? <Loading variant='light' /> : 'Enviar calificación'}
               </button>
             </section>
 
