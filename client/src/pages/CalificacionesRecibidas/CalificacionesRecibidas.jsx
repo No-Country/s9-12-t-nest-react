@@ -30,7 +30,7 @@ const CalificacionesRecibidas = () => {
   }
 
   return (
-    <div className='container principalPerfil p-2 d-flex flex-column justify-content-center align-items-center overflow-hidden mt-3 gap-5'>
+    <div className='container principalPerfil p-2 d-flex flex-column justify-content-center align-items-center overflow-hidden mt-4 pb-5 gap-5'>
 
       <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ border: 'none' }}>
 
