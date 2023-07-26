@@ -1,21 +1,16 @@
 /* eslint-disable multiline-ternary */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Loading from '../components/Loading'
 import MapView from '../components/MapView/MapView'
 import './Detalle.css'
-import Button from 'react-bootstrap/esm/Button'
-import Carousel from '../components/carousel/Carousel'
-import LocationName from '../components/LocationName/LocationName'
 
 // import Estrellas from './Perfil/Estrellas'
 // import PerfilUser from './Perfil/PerfilUser'
-import Ofertar from './Ofertar'
 /* Redux toolkit imports */
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserById } from '../features/authSlice/authSlice'
+import { clearUserById, getUserById } from '../features/authSlice/authSlice'
 import { getProductById } from '../features/productsSlice/productSlice'
-import { stringify } from 'uuid'
 /* custom Hook Local Storage */
 
 export default function Detail () {
@@ -109,7 +104,7 @@ export default function Detail () {
             </div>
 
           </div>
-           </>
+        </>
           ) : <Loading />}
     </>
   )
