@@ -22,7 +22,7 @@ const array = [
 ]
 
 const OfertaRecibida = () => {
-    //const [loading, setLoading] = useState(true);
+
     const navigate = useNavigate();
 
     function confirmacion() {
@@ -39,8 +39,11 @@ const OfertaRecibida = () => {
                 cancelButton: 'custom-button2'
             },
         }).then((result) => {
-            if (result.isConfirmed) {
-                //setLoading(false)
+
+            if (result.isConfirmed) {        
+
+           
+
                 navigate("/oferta-aceptada");
             }
         })
@@ -53,7 +56,7 @@ const OfertaRecibida = () => {
 
 
         <div >
-            {/* {loading ? */}
+
                 <div>
                     <h3 className='titulo-h3'>¡Recibiste una oferta por tu articulo!.</h3>
                     <div className='controlar-cards-recibida'>
@@ -101,7 +104,7 @@ const OfertaRecibida = () => {
 
 
                 </div>
-                {/* : <OfertaAceptada />} */}
+
 
         </div>
     )
