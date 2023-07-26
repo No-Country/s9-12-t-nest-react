@@ -16,6 +16,7 @@ import RegisterUser from '../pages/RegisterUser/RegisterUser'
 import SettingPerfil from '../pages/SettingPerfil/SettingPerfil'
 import OfertaRecibida from '../pages/OfertaRecibida'
 import OfertaAceptada from '../pages/OfertaAceptada'
+import Callificacion from '../pages/Callificacion/Callificacion'
 
 function AppRouter ({ state }) {
   return (
@@ -42,6 +43,7 @@ function AppRouter ({ state }) {
         <Route path='/login2' element={<LoginUser />} />
         <Route path='/register2' element={<RegisterUser />} />
         <Route path='/setting-perfil' element={<SettingPerfil />} />
+        <Route path='/calificar' element={<Callificacion />} />
         <Route path='*' element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>
