@@ -11,6 +11,7 @@ import './Detalle.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearUserById, getUserById } from '../features/authSlice/authSlice'
 import { getProductById } from '../features/productsSlice/productSlice'
+import Comments from '../components/Comments/Comments'
 /* custom Hook Local Storage */
 
 export default function Detail () {
@@ -104,7 +105,9 @@ export default function Detail () {
             </div>
 
           </div>
-        </>
+          <Comments />
+
+           </>
           ) : <Loading />}
     </>
   )
