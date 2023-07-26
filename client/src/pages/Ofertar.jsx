@@ -1,31 +1,33 @@
 /* eslint-disable react/jsx-indent */
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 // import { fetchProductById, getProducts } from '../features/products/fetchProducts'
 import './Ofertar.css'
 import CardProduct from '../components/CardProduct'
 import { getProductById, getProducts } from '../features/productsSlice/productSlice'
-import { getUserById } from '../features/authSlice/authSlice'
+import { clearUserById, getUserById } from '../features/authSlice/authSlice'
+import { toast } from 'react-toastify'
+import { createOffer } from '../features/offers/offerSlice'
 
 const Ofertar = () => {
   const product = useSelector((state) => state?.productsDb?.productById)
-  const userProducts = useSelector((state) => state.authUser?.userById)
-  const products = useSelector((state) => state?.productsDb?.products)
-  const dispatch = useDispatch()
-  const userIde = localStorage.getItem('userId')
+  const userProducts = useSelector((state) => state.authUser?.userById?.products)
+  const userOn = useSelector((state) => state.authUser?.userById)
   const token = localStorage.getItem('token')
 
+  const dispatch = useDispatch()
   const { id, userID } = useParams()
+  const navigate = useNavigate()
 
   const [formState, setFormState] = useState({
-    status: '',
-    offerOwnerId: '',
-    offerTargetItem: '',
+    status: 'pending',
+    offerOwnerId: userID,
+    offerTargetItem: id,
     offeredItems: []
   })
 
-  const [userProductsList, setUserProductsList] = useState([])
+  const [shownToast, setShownToast] = useState(false)
 
   const cardSelect = (id) => {
     if (formState.offeredItems?.includes(id)) {
@@ -41,38 +43,53 @@ const Ofertar = () => {
     }
   }
 
+  const dispatchForm = (form, token) => {
+    dispatch(createOffer({ token, offer: form }))
+      .then((res) => {
+        console.log(res)
+      })
+  }
+
   const submitHandler = () => {
     const formData = new FormData()
-    formData.append('status', 'pending')
-    formData.append('offerOwnerId', userID)
-    formData.append('offerTargetItem', id)
-    formState.offeredItems.forEach((item) => {
-      formData.append('offeredItems', item)
-    })
+    const offeredArray = JSON.stringify(formState.offeredItems)
+    formData.append('status', formState.status)
+    formData.append('offerOwnerId', formState.offerOwnerId)
+    formData.append('offerTargetItem', formState.id)
+    // formState.offeredItems.forEach((item) => {
+    //   formData.append('offeredItems', String(item))
+    // })
+    formData.append('offeredItems', offeredArray)
 
-    for (const [key, value] of formData.entries()) {
-      console.log(`${key}: ${value}`)
+    if (formState.offeredItems.length > 0) {
+      dispatchForm(formState, token)
     }
+
+    // console.log(formState)
+    console.log(offeredArray)
+    // for (const [key, value] of formData.entries()) {
+    //   console.log(`${key}: ${value}`)
+    // }
   }
 
   useEffect(() => {
-    // console.log(formState.offeredItems)
-  }, [formState])
+    if (userID === product?.owner && !shownToast) {
+      toast.error('No podes ofertar a tu propia publicación', { toastId: 'custom-toast', autoClose: 2500 })
+      setShownToast(true)
+      navigate('/')
+      setShownToast(false)
+    }
+    dispatch(clearUserById())
+  }, [])
 
   useEffect(() => {
     dispatch(getProductById(id))
     dispatch(getProducts())
     if (userID !== '64aba27c2415d442b78559c1') {
       dispatch(getUserById({ token, UserId: userID }))
-        .then((res) => {
-        // console.log('Usuario obtenido:', res)
-        })
-        .catch((err) => {
-          return err
-        })
     }
 
-    console.log(userProducts)
+    // console.log(userProducts)
   }, [dispatch])
 
   return (
@@ -94,13 +111,16 @@ const Ofertar = () => {
         <Link><h6>Ver todos.</h6></Link>
       </div>
 
-      <div className='acomodar'>
-        {products?.map((prod, i) =>
+    {userOn?._id === userID
+      ? (
+    <div className='acomodar'>
+        {userProducts?.map((prod, i) =>
           (
           <div key={prod?._id} className='offer-card-container' id='offer-card-container'>
           <label htmlFor={`productCard${i}`}>
           <div
             onClick={() => cardSelect(prod._id)}
+            className='div-card'
           >
             <CardProduct props={[prod]} />
           </div>
@@ -113,7 +133,9 @@ const Ofertar = () => {
           </div>
 
           ))}
-      </div>
+    </div>)
+      : ''}
+
       <div className='boton'>
         <button className='ofertar' product={product} onClick={() => { submitHandler() }}>Confirmar Oferta</button>
 
