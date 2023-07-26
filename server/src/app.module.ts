@@ -20,6 +20,7 @@ import { FirebaseUploadMiddleware } from './middlewares/firebase-upload.middlewa
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { OffersModule } from './offers/offers.module';
 import { CommentsGateway } from './comments/comments.gateway';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { CommentsGateway } from './comments/comments.gateway';
     SubcategoriesModule,
     ProductsModule,
     OffersModule,
+    CommentsModule,
   ],
   controllers: [AppController, LoginController],
   providers: [
