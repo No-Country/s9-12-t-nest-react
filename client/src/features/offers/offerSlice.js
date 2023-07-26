@@ -5,13 +5,15 @@ const API_URL = 'http://localhost:3000/api/v1/offers'
 export const createOffer = createAsyncThunk('offers/create', async (args, thunkAPI) => {
   const { token, offer } = args
   try {
-    console.log(offer)
+    console.log(offer.offeredItems);
     const response = await fetch(`${API_URL}`, {
       method: 'POST',
       headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       },
-      body: offer
+      body: JSON.stringify(offer)
     })
 
     if (!response.ok) {
