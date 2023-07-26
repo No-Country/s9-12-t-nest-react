@@ -5,6 +5,7 @@ const API_URL = 'http://localhost:3000/api/v1/offers'
 export const createOffer = createAsyncThunk('offers/create', async (args, thunkAPI) => {
   const { token, offer } = args
   try {
+    console.log(offer)
     const response = await fetch(`${API_URL}`, {
       method: 'POST',
       headers: {
@@ -15,12 +16,14 @@ export const createOffer = createAsyncThunk('offers/create', async (args, thunkA
 
     if (!response.ok) {
       const error = await response.text()
+      console.log(error)
       return thunkAPI.rejectWithValue(error)
     }
 
     const data = await response.json()
     return data
   } catch (error) {
+    console.log(error)
     return thunkAPI.rejectWithValue(error)
   }
 })
@@ -74,6 +77,7 @@ export const changeOfferStatus = createAsyncThunk('offers/changeOfferStatus', as
     const response = await fetch(`${API_URL}/${id}`, {
       method: 'PATCH',
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       },
       body: status
@@ -92,11 +96,12 @@ export const changeOfferStatus = createAsyncThunk('offers/changeOfferStatus', as
 })
 
 export const deleteOfferById = createAsyncThunk('offers/deleteOfferById', async (args, thunkAPI) => {
-  const { token, id } = args
+  const { id, token } = args
   try {
     const response = await fetch(`${API_URL}/${id}`, {
       method: 'DELETE',
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
       }
     })
