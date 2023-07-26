@@ -46,7 +46,8 @@ const Ofertar = () => {
   const dispatchForm = (form, token) => {
     dispatch(createOffer({ token, offer: form }))
       .then((res) => {
-        console.log(res)
+        toast.success('oferta enviada correctamente')
+        navigate(`/detalle/${id}/${product?.owner}`)
       })
   }
 
@@ -56,20 +57,11 @@ const Ofertar = () => {
     formData.append('status', formState.status)
     formData.append('offerOwnerId', formState.offerOwnerId)
     formData.append('offerTargetItem', formState.id)
-    // formState.offeredItems.forEach((item) => {
-    //   formData.append('offeredItems', String(item))
-    // })
     formData.append('offeredItems', offeredArray)
 
     if (formState.offeredItems.length > 0) {
       dispatchForm(formState, token)
     }
-
-    // console.log(formState)
-    console.log(offeredArray)
-    // for (const [key, value] of formData.entries()) {
-    //   console.log(`${key}: ${value}`)
-    // }
   }
 
   useEffect(() => {
@@ -88,8 +80,6 @@ const Ofertar = () => {
     if (userID !== '64aba27c2415d442b78559c1') {
       dispatch(getUserById({ token, UserId: userID }))
     }
-
-    // console.log(userProducts)
   }, [dispatch])
 
   return (
