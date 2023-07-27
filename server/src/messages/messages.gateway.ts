@@ -17,7 +17,7 @@ export class MessagesGateway {
   @SubscribeMessage('message')
   create(@MessageBody() message: CreateMessageDto) {
     this.messagesService.create(message);
-    this.server.emit('message', message);
+    this.server.emit('message', message.message);
   }
 
   @SubscribeMessage('findAllMessages')
@@ -28,6 +28,11 @@ export class MessagesGateway {
   @SubscribeMessage('findOneMessage')
   findOne(@MessageBody() id: string) {
     return this.messagesService.findOne(id);
+  }
+
+  @SubscribeMessage('findOneMessageBiItemId')
+  findOneByItemId(@MessageBody() id: string) {
+    return this.messagesService.findOneByItemId(id);
   }
 
 }
