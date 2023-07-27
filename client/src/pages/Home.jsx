@@ -76,7 +76,7 @@ function Home () {
     setNearbyProducts([])
   }
 
-  const filteredProducts = nearbyProducts.length > 0 ? nearbyProducts : products
+  const filteredProducts = results.length > 0 ? results : nearbyProducts.length > 0 ? nearbyProducts : products
 
   return (
     <>
