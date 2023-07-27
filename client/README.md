@@ -3,7 +3,7 @@
 ![ScreenShot](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690491883/trueka/logo_pbyiuz.png)
 ## PINGUI WALLET -FRONTEND- 
 
-![ScreenShot](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690491884/trueka/trueka2_yl459u.png)
+![ScreenShot](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690500563/trueka/TRUEKAHOME123_qhnd18.png)
 
 </br>
 
@@ -86,7 +86,7 @@
  <!--aca coloca el deploy  -->
 ## 🚀 Deploying
 
-[![Deploy on Railway](https://railway.app/button.svg)](www.link)
+[![Deploy on Railway](https://railway.app/button.svg)](www.LINKDEPLOY)
 
 </br>
 
@@ -118,7 +118,7 @@
 | <img src="" height=60>| <img src="" height=60>| 
 |:-:|:-:|
 | **Francisco Koglot**| **Martina Chiara**| 
-| <a href="Francisco Koglot BEHANCE"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> <a href="Francisco Koglot lINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="Martina Chiara BEHANCE"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="Martina Chiara LINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | 
+| <a href="Francisco Koglot BEHANCE"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> <a href="Francisco Koglot lINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="Martina Chiara BEHANCE"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> <a href="Martina Chiara LINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | 
 
 
 </br>
