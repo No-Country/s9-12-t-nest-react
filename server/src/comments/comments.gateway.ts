@@ -1,3 +1,4 @@
+/*
 import {
   SubscribeMessage,
   WebSocketGateway,
@@ -19,3 +20,4 @@ export class CommentsGateway {
     this.server.emit('message', createCommentDto.message);
   }
 }
+*/
