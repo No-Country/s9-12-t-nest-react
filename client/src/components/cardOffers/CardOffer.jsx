@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import LocationSVG from '../LocationSVG'
 import LocationSVGMobile from '../LocationSVGMobile'
 import '../cardOffers/cardOffer.css'
