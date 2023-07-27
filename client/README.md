@@ -94,13 +94,13 @@
 
 ### 🥰 vista home filtro por distancia
 ![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690491884/trueka/trueka4_qkumky.png "home filtro distancia")
-### 🥰 Vistaso al Perfil
+### 🥰 vistazo al Perfil
 ![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690493689/trueka/truekaHomeLike_mmvyle.png "perfil")
 
-### 🥰 Vistaso detalle + ubcacion de intercambio 
+### 🥰 vistazo detalle + ubcacion de intercambio 
 ![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690491884/trueka/trueka6_pakxgi.png "detalle")
 
-### 🥰 Vistaso detalle + ubcacion de intercambio 
+### 🥰 vistazo detalle + ubcacion de intercambio 
 ![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690494648/trueka/truejaCalificar_zslgnm.png "calificar")
 </br>
 
