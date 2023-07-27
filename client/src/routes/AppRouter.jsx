@@ -17,6 +17,7 @@ import SettingPerfil from '../pages/SettingPerfil/SettingPerfil'
 import OfertaRecibida from '../pages/OfertaRecibida'
 import OfertaAceptada from '../pages/OfertaAceptada'
 import Callificacion from '../pages/Callificacion/Callificacion'
+import OfertasMain from '../pages/OfertasMain'
 
 function AppRouter ({ state }) {
   return (
@@ -25,7 +26,8 @@ function AppRouter ({ state }) {
       <Routes>
         <Route path='/login' element={<Login />} />
 
-        <Route path='/oferta-recibida' element={<OfertaRecibida />} />
+        <Route path='/ofertas/:id' element={<OfertasMain />} />
+        <Route path='/oferta-recibida/:offerId' element={<OfertaRecibida />} />
         <Route path='/oferta-aceptada' element={<OfertaAceptada />} />
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Home />} />
