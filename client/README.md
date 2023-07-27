@@ -117,7 +117,7 @@
 ## 🎨🌈 Integrante de UX/UI
 | <img src="" height=60>| <img src="" height=60>| 
 |:-:|:-:|
-| **Victoria Salatino**| **Nadia Chayna**| 
+| **Francisco Koglot**| **Martina Chiara**| 
 | <a href="Francisco Koglot BEHANCE"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> <a href="Francisco Koglot lINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="Martina Chiara BEHANCE"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="Martina Chiara LINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | 
 
 
