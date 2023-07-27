@@ -55,4 +55,18 @@ export class MessagesService {
       throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
   }
+
+  async findOneByItemId(id: string) {
+    try {
+      const comment = await this.messageModel
+        .find()
+        .where('targetItemid')
+        .equals(new mongoose.Types.ObjectId(id.toString()))
+        .populate({ path: 'targetItemid' })
+        .exec();
+      return comment;
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
+  }
 }
