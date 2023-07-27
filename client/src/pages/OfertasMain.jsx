@@ -47,6 +47,7 @@ function OfertasMain () {
     if (userID !== '64aba27c2415d442b78559c1') {
       dispatch(getUserById({ token, UserId: userID }))
     }
+    console.log(offerArray)
   }, [])
 
   return (
@@ -54,40 +55,50 @@ function OfertasMain () {
     <>
 
       <div className='alert-offer'>
-        <div className='offer-title'> Se encontraron ofertas en tu perfil. </div>
+        <div className='offer-title'> SECCIÓN OFERTAS </div>
         <div> Trueka es una plataforma de intercambio de objetos donde los usuarios asumen la responsabilidad total por el uso de la aplicación y los intercambios que realicen. Como intermediarios, no nos hacemos responsables de la calidad, seguridad o legalidad de los objetos intercambiados, ni supervisamos las transacciones. Los usuarios deben verificar la identidad y confiabilidad de otros participantes en los intercambios.</div>
         <div className='ok-button' onClick={() => handleButton()}>Ver ofertas</div>
       </div>
 
       <div className='uni-container-offer'>
         {offerArray?.map((producto, i) => (
-          <div className='offer-main-container' key={i}>
+          <div key={i}>
 
-            <div className='offer-container'>
+            {producto?.status === 'pending'
+              ? (
+                <>
+                  <div className='offer-main-container'>
 
-              <div className='user-product-offer'>
-                <div className='offer-title'>
-                  Oferta pendiente de respuesta
-                </div>
-                <div className='user-card-product'>
-                  <CardOffer products={[producto?.offerTargetItem]} />
-                </div>
-              </div>
+                    <div className='offer-container'>
 
-              <div className='offer-products'>
-                <div className='offer-title'>Ofertaron {producto?.offeredItems.length} {producto?.offeredItems.length > 1 ? 'productos' : 'producto'}
-                </div>
-                <div className='offer-cards-products'>
-                  <CardOffer products={producto?.offeredItems} />
-                </div>
-              </div>
+                      <div className='user-product-offer'>
+                        <div className='offer-title'>
+                          Oferta pendiente de respuesta
+                        </div>
+                        <div className='user-card-product'>
+                          <CardOffer products={[producto?.offerTargetItem]} />
 
-              <Link to={`/oferta-recibida/${producto?._id}`} className='go-to-offer'>
-                Ver Oferta
-              </Link>
+                        </div>
+                      </div>
 
-            </div>
+                      <div className='offer-products'>
+                        <div className='offer-title'>Ofertaron {producto?.offeredItems?.length} {producto?.offeredItems?.length > 1 ? 'productos' : 'producto'}
+                        </div>
+                        <div className='offer-cards-products'>
+                          <CardOffer products={producto?.offeredItems} />
+                        </div>
+                      </div>
 
+                      <Link to={`/oferta-recibida/${producto?._id}`} className='go-to-offer'>
+                        Ver Oferta
+                      </Link>
+
+                    </div>
+
+                  </div>
+                </>
+                )
+              : ''}
           </div>
 
         ))}
