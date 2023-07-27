@@ -1,7 +1,7 @@
 ## BIENVENIDOS A:
 
 ![ScreenShot](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690491883/trueka/logo_pbyiuz.png)
-## PINGUI WALLET -FRONTEND- 
+## TRUEKA -FRONTEND- 
 
 ![ScreenShot](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690500563/trueka/TRUEKAHOME123_qhnd18.png)
 
