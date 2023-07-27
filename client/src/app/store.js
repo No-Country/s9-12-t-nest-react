@@ -9,7 +9,6 @@ import autenticacionReducer from '../features/AutenticationSlice/AutenticationSl
 import offerReducer from '../features/offers/offerSlice'
 import reputatacionReducer from '../features/reputacionSlice/reputacionSlice'
 
-
 export const store = configureStore({
   reducer: {
     authUser: authReducer,
@@ -20,7 +19,6 @@ export const store = configureStore({
     autenticacion: autenticacionReducer,
     location: locationReducer,
     offer: offerReducer,
-    reputacion: reputatacionReducer,
-    location: locationReducer
+    reputacion: reputatacionReducer
   }
 })
