@@ -31,9 +31,9 @@ function Home () {
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos((lat1 * Math.PI) / 180) *
-        Math.cos((lat2 * Math.PI) / 180) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2)
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2)
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
     const distance = R * c
     return distance
@@ -80,9 +80,12 @@ function Home () {
 
   return (
     <>
-      <button onClick={handleOpenModal} className='filter-icon icon'>
-        <FaFilter className='filter-icon' />
-      </button>
+      <div className='centrar-filtro'>
+        <button onClick={handleOpenModal} className='filter-icon icon'>
+          <FaFilter className='filter-icon' />
+        </button>
+        <p className='parrafo-distancia'>Filtro por Distancia. </p>
+      </div>
 
       <div className={`modal ${isModalOpen ? 'open' : ''}`}>
         <div className='modal-container'>
@@ -95,8 +98,8 @@ function Home () {
                 name='filterKilometers'
                 value={filterKilometers}
                 min={0}
-                max={50}
-                step={1}
+                max={1000}
+                step={3}
                 onChange={handleKilometersChange}
               />
               <span>{filterKilometers} km</span>

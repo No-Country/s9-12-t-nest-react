@@ -10,6 +10,17 @@
     transform: translate(-50%, -50%);
 }
 
+.centrar-filtro{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.parrafo-distancia{
+  margin: 0px;
+}
+
 /* .controlar-home-container{
     width: 100vw;
     display: flex;
