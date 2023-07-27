@@ -74,8 +74,26 @@ export const login = createAsyncThunk(
   }
 )
 
-const initialState = {
+const DEFAULTSTATE = {
   user: null,
+  loading: false,
+  error: null,
+  token: null,
+  isAuthenticated: false,
+  isLoggedIn: false,
+  isAdmin: false
+}
+
+const user: user[] = (() => {
+  const persisteState = localStorage.getItem('autentication_storage')
+  if (persisteState) {
+    return JSON.parse(persisteState).user
+  }
+  return DEFAULTSTATE.user
+})
+
+const initialState = {
+  user,
   loading: false,
   error: null,
   token: null,
