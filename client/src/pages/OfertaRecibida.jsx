@@ -114,26 +114,27 @@ const OfertaRecibida = () => {
           ))}
         </div>
 
-        {/* <PerfilUsuario usuario={offerProduct?.offerOwnerId} geoInfo={offerProduct?.offeredOtems} /> */}
+        <PerfilUsuario usuario={offerProduct?.offerOwnerId} geoInfo={offerProduct?.offeredOtems} />
 
-        <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ border: 'none', width: '100%', height: 'auto', padding: '10px' }}>
+        {/* <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ border: 'none', width: '100%', height: 'auto', padding: '10px' }}>
 
-          {/* head perfil */}
+          //  head perfil
           <CardMiniPerfil />
 
-          {/* Estrellas valoracion */}
+          //Estrellas valoracion
           <Stars />
 
-          {/* Calificacion Usuario  */}
+          //calificacion Usuario
           <UserBannerStatistics />
 
-          {/* info perfil */}
+          //info perfil
           <section>
             <Link to='/perfil/calificacionesRecibidas' className='fw-semibold pb-0 border-bottom border-danger' style={{ fontSize: '15.256px', color: 'var(--background-nav)', textDecoration: 'none', paddingBottom: '5px' }}>
               Ver mas datos de este usuario
             </Link>
           </section>
         </div>
+        */}
 
         <hr className='hr' />
 
