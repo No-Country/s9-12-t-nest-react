@@ -106,7 +106,7 @@ export default function Detail () {
             </div>
 
           </div>
-          <Comments />
+          <Comments props={product} />
 
            </>
           ) : <Loading />}

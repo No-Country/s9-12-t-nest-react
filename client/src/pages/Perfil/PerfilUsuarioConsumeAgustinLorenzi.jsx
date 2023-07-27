@@ -100,7 +100,6 @@ const PerfilUsuario = () => {
         </section>
       </div>
 
-
     </div>
   )
 }

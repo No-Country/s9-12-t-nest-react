@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import io from 'socket.io-client'
 
-const Comments = () => {
+const Comments = (product) => {
+  const user = useSelector((state) => state?.authUser)
   const [messages, setMessages] = useState([])
   const [newMessage, setNewMessage] = useState({
     message: messages,
-    recipientId: '64beeb0bc42a2683b2bd9995',
-    senderId: '64bed4b3aef427b4e0f39919',
-    targetItemid: '64bf22a84026d0c9d64567bd'
+    recipientId: product.props.owner,
+    senderId: user.userById._id,
+    targetItemid: product.props._id
   })
 
   useEffect(() => {
@@ -25,12 +27,12 @@ const Comments = () => {
   const handleSendMessage = (e) => {
     e.preventDefault()
     const socket = io('http://localhost:8001')
-    socket.emit('message', JSON.stringify(newMessage))
+    socket.emit('message', newMessage)
     setNewMessage({
       message: '',
-      recipientId: '64beeb0bc42a2683b2bd9995',
-      senderId: '64bed4b3aef427b4e0f39919',
-      targetItemid: '64bf22a84026d0c9d64567bd'
+      recipientId: product.props.owner,
+      senderId: user.userById._id,
+      targetItemid: product.props._id
     })
   }
 
