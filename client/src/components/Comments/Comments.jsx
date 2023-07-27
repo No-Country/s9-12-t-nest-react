@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import io from 'socket.io-client'
+import '../../pages/Detalle.css'
 
-const Comments = () => {
+const Comments = (props) => {
   const [messages, setMessages] = useState([])
-  const [newMessage, setNewMessage] = useState('')
+  const [newMessage, setNewMessage] = useState({
+    message: messages,
+    recipientId: props.props.product.owner,
+    senderId: props.props.userID,
+    targetItemid: props.props.product._id
+  })
 
   useEffect(() => {
     const socket = io('http://localhost:8001')
@@ -19,30 +25,35 @@ const Comments = () => {
 
   const handleSendMessage = (e) => {
     e.preventDefault()
-    // Aquí puedes implementar la lógica para identificar si el usuario es dueño del producto o un visitante
-    // Por ejemplo, puedes agregar un campo para que el usuario ingrese su rol antes de enviar el mensaje
-
-    // Envía el mensaje al servidor
     const socket = io('http://localhost:8001')
     socket.emit('message', newMessage)
-    setNewMessage('')
+    setNewMessage({
+      message: '',
+      recipientId: props.props.product.owner,
+      senderId: props.props.userID,
+      targetItemid: props.props.product._id
+    })
   }
 
   return (
-    <div>
+    <div className='comment-contenedor'>
       <h1>Chat de Comentarios</h1>
       <div>
         {messages.map((message, index) => (
-          <div key={index}>{message}</div>
+          <div key={index} className='comment-container'>
+            <div className='comment-text'>{message}</div>
+          </div>
         ))}
       </div>
       <form onSubmit={handleSendMessage}>
         <input
           type='text'
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
+          className='message-input'
+          value={newMessage.message}
+          onChange={(e) =>
+            setNewMessage({ ...newMessage, message: e.target.value })}
         />
-        <button type='submit'>Enviar</button>
+        <button type='submit' className='button-Send'>Enviar</button>
       </form>
     </div>
   )
