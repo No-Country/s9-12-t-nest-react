@@ -65,8 +65,8 @@ const PerfilUsuario = ({ usuario, geoInfo }) => {
           {/* head perfil */}
           {/* <CardMiniPerfil usuario={objeto} barrio={barrio} /> */}
           <div className='foto-usuario'>
-            <span className='circulo'>     <img src='' alt='' />    </span>
-            <p>{usuario?.firstName} {usuario?.lastName}</p>
+            <span className='circulo'>     <img src='/images/foto-mia-redonda.jpg' alt='' className='imagen-usuario'/>    </span>
+            <p className='parrafo-usuario'>{usuario?.firstName} {usuario?.lastName}</p>
 
           </div>
 
