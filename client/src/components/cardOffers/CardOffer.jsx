@@ -6,16 +6,16 @@ import '../cardOffers/cardOffer.css'
 function CardOffer ({ products }) {
   return (
     <>
-      {products.map((product, i) => (
+      {products?.map((product, i) => (
 
         <div className='offer-card-container' key={i}>
           <div className='container-card'>
             <div className='img-container '>
-              <img src={product.images} className='card-img-top' alt='product-image' />
+              <img src={product?.images} className='card-img-top' alt='product-image' />
             </div>
             <div className='card-grid'>
-              <p className='text-card'>{product.name}</p>
-              {product.location && (
+              <p className='text-card'>{product?.name}</p>
+              {product?.location && (
                 <>
                   <div className='location-container'>
                     <div id='desktop-svg'>
@@ -25,7 +25,7 @@ function CardOffer ({ products }) {
                       <LocationSVGMobile />
                     </div>
                     <div className='text-container'>
-                      <p className='ubi-text'>{product.location}</p>
+                      <p className='ubi-text'>{product?.location}</p>
                     </div>
 
                   </div>
