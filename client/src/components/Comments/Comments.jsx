@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import io from 'socket.io-client'
+import '../../pages/Detalle.css'
 
-const Comments = (product) => {
-  const user = useSelector((state) => state?.authUser)
+const Comments = (props) => {
   const [messages, setMessages] = useState([])
   const [newMessage, setNewMessage] = useState({
     message: messages,
-    recipientId: product.props.owner,
-    senderId: user.userById._id,
-    targetItemid: product.props._id
+    recipientId: props.props.product.owner,
+    senderId: props.props.userID,
+    targetItemid: props.props.product._id
   })
 
   useEffect(() => {
@@ -30,28 +29,31 @@ const Comments = (product) => {
     socket.emit('message', newMessage)
     setNewMessage({
       message: '',
-      recipientId: product.props.owner,
-      senderId: user.userById._id,
-      targetItemid: product.props._id
+      recipientId: props.props.product.owner,
+      senderId: props.props.userID,
+      targetItemid: props.props.product._id
     })
   }
 
   return (
-    <div>
+    <div className='comment-contenedor'>
       <h1>Chat de Comentarios</h1>
       <div>
         {messages.map((message, index) => (
-          <div key={index}>{message}</div>
+          <div key={index} className='comment-container'>
+            <div className='comment-text'>{message}</div>
+          </div>
         ))}
       </div>
       <form onSubmit={handleSendMessage}>
         <input
           type='text'
+          className='message-input'
           value={newMessage.message}
           onChange={(e) =>
             setNewMessage({ ...newMessage, message: e.target.value })}
         />
-        <button type='submit'>Enviar</button>
+        <button type='submit' className='button-Send'>Enviar</button>
       </form>
     </div>
   )
