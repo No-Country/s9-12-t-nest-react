@@ -1,7 +1,7 @@
 const persistLocalStorageMiddleware = (store) => (next) => (action) => {
   next(action)
 
-  // Define an array of state slices that you want to persist in local storage
+  // array del estado que queremos mantener en el localstorage
   const stateToPersist = ['autenticacion']
 
   // Extract the slices from the store state
