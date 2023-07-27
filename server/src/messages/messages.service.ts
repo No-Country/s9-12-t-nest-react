@@ -47,8 +47,6 @@ export class MessagesService {
       const comment = await this.messageModel
         .findById(id)
         .populate({ path: 'senderId' })
-        //.populate({ path: 'offerTargetItem', select: '_id name images' })
-        //.populate({ path: 'offeredItems', select: '_id name images location' })
         .exec();
       return comment;
     } catch (error) {
@@ -62,7 +60,11 @@ export class MessagesService {
         .find()
         .where('targetItemid')
         .equals(new mongoose.Types.ObjectId(id.toString()))
-        .populate({ path: 'targetItemid' })
+        .populate({ path: 'targetItemid', select: '_id name images' })
+        .populate({
+          path: 'senderId',
+          select: '_id firstName lastName picture address',
+        })
         .exec();
       return comment;
     } catch (error) {

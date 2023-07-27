@@ -30,7 +30,7 @@ export class MessagesGateway {
     return this.messagesService.findOne(id);
   }
 
-  @SubscribeMessage('findOneMessageBiUserId')
+  @SubscribeMessage('findOneMessageBiItemId')
   findOneByItemId(@MessageBody() id: string) {
     return this.messagesService.findOneByItemId(id);
   }
