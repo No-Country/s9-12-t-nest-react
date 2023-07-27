@@ -1,38 +1,21 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getBarrio } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
 import CardMiniPerfil from '../Perfil/CardMiniPerfil/CardMiniPerfil'
 import Stars from '../Perfil/Stars/Stars'
 import UserBannerStatistics from '../Perfil/UserBannerStatistics/UserBannerStatistics'
-import { calcularReputacion } from '../Perfil/calculaReputacion'
 import './calificacion.css'
+import { setValoracionesNegativas, setValoracionesPositivas } from '../../features/reputacionSlice/reputacionSlice'
+import { useNavigate } from 'react-router-dom'
+import Loading from '../../components/Loading'
 
 const Callificacion = () => {
-  const ubication = useSelector(state => state?.location)
-  const user = useSelector(state => state?.autenticacion?.user)
-  const barrio = useSelector(state => state?.barrio?.barrio)
-  const [calculaRep, setCalculaRep] = useState('')
   const dispatch = useDispatch()
-  const lastUbication = useRef(null)
-  // console.log('Ubicacion Anterior -->', lastUbication)
-  // console.log('Ubicacion Anterior -->', lastUbication)
-
-  const reputacionUSer = { intercambiosExitosos: 15, intercambiosFallidos: 2, totalPublicaciones: 32, valoracionesPositivas: 15, valoracionesNegativas: 2, devoluciones: 1 }
-
+  const user = useSelector(state => state?.autenticacion?.user)
+  const navigate = useNavigate()
   const [calificacion, setCalificacion] = useState(0)
   const [comentario, setComentario] = useState('')
   const [errors, setErrors] = useState({})
-
-  useEffect(() => {
-    setCalculaRep(calcularReputacion(reputacionUSer))
-  }, [])
-
-  useEffect(() => {
-    if (ubication && ubication !== lastUbication.current) {
-      lastUbication.current = ubication
-      dispatch(getBarrio(ubication))
-    }
-  }, [ubication, dispatch])
+  const [canselButton, setCanselButton] = useState(false)
 
   const handleStarClick = (val) => {
     setCalificacion(val)
@@ -46,8 +29,11 @@ const Callificacion = () => {
     e.preventDefault()
 
     const newCalification = {
+      punto: 1,
       calificacion,
-      comentario
+      comentario,
+      usuario: user.firstName,
+      fecha: new Date().toLocaleDateString()
     }
 
     const validationErrors = {}
@@ -68,7 +54,20 @@ const Callificacion = () => {
       setErrors(validationErrors)
     } else if (Object.keys(validationErrors).length === 0) {
       console.log('calificacion ->', newCalification)
-      // dispatch(calificarUser(user._id, newCalification))
+      setCanselButton(true)
+      if (newCalification.calificacion < 3) {
+        dispatch(setValoracionesNegativas(newCalification))
+        setTimeout(() => {
+          setCanselButton(false)
+          navigate('/perfil/calificacionesRecibidas')
+        }, 3000)
+      } else if (newCalification.calificacion >= 3) {
+        dispatch(setValoracionesPositivas(newCalification))
+        setTimeout(() => {
+          setCanselButton(false)
+          navigate('/perfil/calificacionesRecibidas')
+        }, 3000)
+      }
       setErrors({})
     }
   }
@@ -79,13 +78,13 @@ const Callificacion = () => {
       <div className='card d-flex flex-column justify-content-center align-items-center align-content-center flex-nowrap gap-3' style={{ border: 'none' }}>
 
         {/* head perfil */}
-        <CardMiniPerfil usuario={user} barrio={barrio} />
+        <CardMiniPerfil />
 
         {/* Estrellas valoracion */}
-        <Stars number={calculaRep} />
+        <Stars />
 
         {/* Calificacion Usuario  */}
-        <UserBannerStatistics reputacion={reputacionUSer} />
+        <UserBannerStatistics />
 
       </div>
 
@@ -124,8 +123,8 @@ const Callificacion = () => {
             </section>
 
             <section className='contBotonCalificacion'>
-              <button className='botonCalificacion' type='submit'>
-                Enviar calificación
+              <button className='botonCalificacion' type={canselButton ? 'button' : 'submit'}>
+                {canselButton ? <Loading variant='light' /> : 'Enviar calificación'}
               </button>
             </section>
 

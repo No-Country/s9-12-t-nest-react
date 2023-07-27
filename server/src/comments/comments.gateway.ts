@@ -1,13 +1,23 @@
-import { SubscribeMessage, WebSocketGateway, WebSocketServer, MessageBody } from '@nestjs/websockets';
-import { emit } from 'process';
+/*
+import {
+  SubscribeMessage,
+  WebSocketGateway,
+  WebSocketServer,
+  MessageBody,
+} from '@nestjs/websockets';
+import { CommentsService } from './comments.service';
+import { CreateCommentDto } from './dto/create-comment.dto';
 
-@WebSocketGateway(8001, {cors: '*'})
+@WebSocketGateway(8001, { cors: '*' })
 export class CommentsGateway {
+  private readonly commentsService: CommentsService;
   @WebSocketServer()
   server;
   @SubscribeMessage('message')
-  handleMessage(@MessageBody() message: string): void {
-    console.log(message)
-    this.server.emit('message', message)
+  handleMessage(@MessageBody() createCommentDto: CreateCommentDto): void {
+    console.log(createCommentDto);
+    this.commentsService.create(createCommentDto);
+    this.server.emit('message', createCommentDto.message);
   }
 }
+*/

@@ -74,7 +74,15 @@ const PerfilUsuario = () => {
         <div className='borde-estrellas'>
 
           {/* head perfil */}
-          <CardMiniPerfil usuario={objeto} barrio={barrio} />
+          {/* <CardMiniPerfil usuario={objeto} barrio={barrio} /> */}
+          <div className='foto-usuario'>
+            <span className='circulo'>     foto     </span>
+            <p>Pedro Sanchez.</p>
+
+          </div>
+
+          <br />
+          <p>Ubicación</p>
 
           {/* Estrellas valoracion */}
           <Stars number={calculaRep} />
@@ -91,7 +99,6 @@ const PerfilUsuario = () => {
           </Link>
         </section>
       </div>
-
 
     </div>
   )

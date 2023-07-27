@@ -1,7 +1,10 @@
 import React from 'react'
 import './userBanner.css'
+import { useSelector } from 'react-redux'
 // recibe un objeto con los datos de la reputacion del usuario y renderiza un mini banner con los datos
-const UserBannerStatistics = ({ reputacion }) => {
+const UserBannerStatistics = () => {
+  const reputacion = useSelector(state => state?.reputacion)
+
   return (
     <>
       <section className='valoresRep mb-2'>

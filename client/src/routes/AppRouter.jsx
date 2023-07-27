@@ -18,6 +18,8 @@ import OfertaRecibida from '../pages/OfertaRecibida'
 import OfertaAceptada from '../pages/OfertaAceptada'
 import Callificacion from '../pages/Callificacion/Callificacion'
 import OfertasMain from '../pages/OfertasMain'
+import CalificacionesRecibidas from '../pages/CalificacionesRecibidas/CalificacionesRecibidas'
+
 
 function AppRouter ({ state }) {
   return (
@@ -25,7 +27,6 @@ function AppRouter ({ state }) {
       <NavBarBootstrap />
       <Routes>
         <Route path='/login' element={<Login />} />
-
         <Route path='/ofertas/:id' element={<OfertasMain />} />
         <Route path='/oferta-recibida/:offerId' element={<OfertaRecibida />} />
         <Route path='/oferta-aceptada' element={<OfertaAceptada />} />
@@ -35,7 +36,6 @@ function AppRouter ({ state }) {
         <Route path='/perfil' element={<PerfilUser />} />
         <Route path='/publicacion' element={<Publication />} />
         <Route path='/ofertar/:id/:userID' element={<Ofertar />} />
-
         {/* pruebas */}
         <Route path='/cargaProduct' element={<Publication />} />
         <Route path='/formulario' element={<FormCargaProducts />} />
@@ -46,6 +46,7 @@ function AppRouter ({ state }) {
         <Route path='/register2' element={<RegisterUser />} />
         <Route path='/setting-perfil' element={<SettingPerfil />} />
         <Route path='/calificar' element={<Callificacion />} />
+        <Route path='/perfil/calificacionesRecibidas' element={<CalificacionesRecibidas />} />
         <Route path='*' element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>

@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getBarrio } from '../../../features/pruebaBarrioSlice/pruebaBarrioSlice'
 
 // recibe los datos del usuario y el barrio y renderiza una card con ella
-const CardMiniPerfil = ({ usuario, barrio }) => {
+const CardMiniPerfil = () => {
+  const ubication = useSelector(state => state?.location)
+  const usuario = useSelector(state => state?.autenticacion?.user)
+  const barrio = useSelector(state => state?.barrio?.barrio)
+  const lastUbication = useRef(null)
+  // console.log('Ubicacion Anterior -->', lastUbication)
+  // console.log('Ubicacion Anterior -->', lastUbication)
+
+  const dispatch = useDispatch()
+  useEffect(() => {
+    if (ubication && ubication !== lastUbication.current) {
+      lastUbication.current = ubication
+      dispatch(getBarrio(ubication))
+    }
+  }, [ubication, dispatch])
+
   return (
     <>
       {/* head perfil */}

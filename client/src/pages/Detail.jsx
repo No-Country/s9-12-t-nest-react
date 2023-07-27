@@ -11,6 +11,7 @@ import './Detalle.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearUserById, getUserById } from '../features/authSlice/authSlice'
 import { getProductById } from '../features/productsSlice/productSlice'
+import Comments from '../components/Comments/Comments'
 /* custom Hook Local Storage */
 
 export default function Detail () {
@@ -18,6 +19,7 @@ export default function Detail () {
   const userInfo = useSelector((state) => state.authUser?.userById)
   const geoLocation = JSON.parse(localStorage.getItem('geo'))
   const userID = localStorage.getItem('userId')
+  const props = { product, userID }
   const lat = parseFloat(geoLocation.lat)
   const lon = parseFloat(geoLocation.lon)
   const dispatch = useDispatch()
@@ -88,6 +90,7 @@ export default function Detail () {
               <div className='mapa'><MapView longitude={lon} latitude={lat} /></div>
 
             </div>
+            <br />
             {/* <LocationName /> */}
             <div className='boton'>
               <Link to={`/ofertar/${product?._id}/${userID}`}><button className='ofertar' product={product}>Ofertar</button></Link>
@@ -104,6 +107,8 @@ export default function Detail () {
             </div>
 
           </div>
+          <Comments props={props} />
+
         </>
           ) : <Loading />}
     </>
