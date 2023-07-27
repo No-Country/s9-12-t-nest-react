@@ -17,7 +17,7 @@ export class MessagesGateway {
   @SubscribeMessage('message')
   create(@MessageBody() message: CreateMessageDto) {
     this.messagesService.create(message);
-    this.server.emit('message', message);
+    this.server.emit('message', message.message);
   }
 
   @SubscribeMessage('findAllMessages')

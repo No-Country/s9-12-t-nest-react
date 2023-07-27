@@ -11,8 +11,7 @@ export class MessagesService {
     private readonly messageModel: Model<Message>,
   ) {}
   async create(createMessageDto: CreateMessageDto) {
-    const { ...msjData } = createMessageDto;
-
+    const msjData = { ...createMessageDto };
     const mewMessage = await this.messageModel.create({ ...msjData });
 
     (await mewMessage).senderId = new mongoose.Types.ObjectId(
