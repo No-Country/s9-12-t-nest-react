@@ -48,15 +48,15 @@ const OfertaAceptada = () => {
         </Link>
 
       </div>
+      <div className='botones'>
+        <Link to='/calificar'><button className='ofertar'>Calificar usuario</button></Link>
+
+      </div>
+
       {/* <div className='botones'>
-                <Link to='/calificar'><button className='ofertar' >Calificar usuario</button></Link>
+        <button className='ofertar2'>Reportar usuario</button>
 
-            </div>
-
-            <div className='botones'>
-                <button className='ofertar2'>Reportar usuario</button>
-
-            </div> */}
+      </div> */}
     </div>
   )
 }
