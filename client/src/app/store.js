@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import authReducer from '../features/authSlice/authSlice'
 import categoriesReducer from '../features/categoriesSlice/categorySlice'
 import productReducer from '../features/productsSlice/productSlice'
@@ -7,6 +7,7 @@ import subcategoriesReducer from '../features/subCategoriesSlice/subcategoriesSl
 import barrioReducer from '../features/pruebaBarrioSlice/pruebaBarrioSlice'
 import autenticacionReducer from '../features/AutenticationSlice/AutenticationSlice'
 import reputatacionReducer from '../features/reputacionSlice/reputacionSlice'
+import persistLocalStorageMiddleware from './persistLocalStorageMiddleware'
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export const store = configureStore({
     autenticacion: autenticacionReducer,
     reputacion: reputatacionReducer,
     location: locationReducer
-  }
+  },
+  middleware: [...getDefaultMiddleware(), persistLocalStorageMiddleware]
 })
