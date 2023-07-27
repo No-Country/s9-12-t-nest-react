@@ -3,7 +3,12 @@ import io from 'socket.io-client'
 
 const Comments = () => {
   const [messages, setMessages] = useState([])
-  const [newMessage, setNewMessage] = useState('')
+  const [newMessage, setNewMessage] = useState({
+    message: messages,
+    recipientId: '64beeb0bc42a2683b2bd9995',
+    senderId: '64bed4b3aef427b4e0f39919',
+    targetItemid: '64bf22a84026d0c9d64567bd'
+  })
 
   useEffect(() => {
     const socket = io('http://localhost:8001')
@@ -19,13 +24,14 @@ const Comments = () => {
 
   const handleSendMessage = (e) => {
     e.preventDefault()
-    // Aquí puedes implementar la lógica para identificar si el usuario es dueño del producto o un visitante
-    // Por ejemplo, puedes agregar un campo para que el usuario ingrese su rol antes de enviar el mensaje
-
-    // Envía el mensaje al servidor
     const socket = io('http://localhost:8001')
-    socket.emit('message', newMessage)
-    setNewMessage('')
+    socket.emit('message', JSON.stringify(newMessage))
+    setNewMessage({
+      message: '',
+      recipientId: '64beeb0bc42a2683b2bd9995',
+      senderId: '64bed4b3aef427b4e0f39919',
+      targetItemid: '64bf22a84026d0c9d64567bd'
+    })
   }
 
   return (
@@ -39,8 +45,9 @@ const Comments = () => {
       <form onSubmit={handleSendMessage}>
         <input
           type='text'
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
+          value={newMessage.message}
+          onChange={(e) =>
+            setNewMessage({ ...newMessage, message: e.target.value })}
         />
         <button type='submit'>Enviar</button>
       </form>
