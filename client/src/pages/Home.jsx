@@ -8,7 +8,7 @@ import Carousel from '../components/carousel/Carousel'
 import { Link } from 'react-router-dom'
 import { FaCheckCircle, FaTimesCircle, FaFilter } from 'react-icons/fa'
 
-function Home() {
+function Home () {
   const products = useSelector((state) => state?.productsDb?.products)
   const loading = useSelector((state) => state?.productsDb?.loading)
   const results = useSelector((state) => state?.productsDb?.searchResults)
@@ -98,8 +98,8 @@ function Home() {
                 name='filterKilometers'
                 value={filterKilometers}
                 min={0}
-                max={50}
-                step={1}
+                max={1000}
+                step={3}
                 onChange={handleKilometersChange}
               />
               <span>{filterKilometers} km</span>
@@ -123,7 +123,7 @@ function Home() {
           <div className='loading-container'>
             <Loading />
           </div>
-        )
+          )
         : filteredProducts
           ? (
             <div className='controlar-home-container'>
@@ -150,7 +150,7 @@ function Home() {
                 </div>
               </div>
             </div>
-          )
+            )
           : products !== 'none'
             ? (
               <>
@@ -160,16 +160,16 @@ function Home() {
                       <div className='products-container' style={{ gridTemplateColumns }}>
                         <CardProduct className='products-list' props={nearbyProducts} />
                       </div>
-                    )
+                      )
                     : (
                       <div className='home-container carousel-title'>No se encontraron resultados</div>
-                    )}
+                      )}
                 </div>
               </>
-            )
+              )
             : (
               <div className='home-container carousel-title'>No se encontraron resultados</div>
-            )}
+              )}
     </>
   )
 }

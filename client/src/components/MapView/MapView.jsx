@@ -2,12 +2,11 @@ import React from 'react'
 import { GoogleMap, Marker, Circle, InfoWindow } from '@react-google-maps/api'
 
 function MapView ({ longitude, latitude }) {
-  // const location = useSelector(state => state.location)
-
   const mapContainerStyle = {
     width: '100%',
     height: '300px'
   }
+  console.log(longitude, latitude)
 
   const center = {
     lat: latitude,
