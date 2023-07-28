@@ -86,7 +86,7 @@
  <!--aca coloca el deploy  -->
 ## 🚀 Deploying
 
-[![Deploy on Railway](https://railway.app/button.svg)](www.LINKDEPLOY)
+[![Deploy on Railway](https://railway.app/button.svg)](https://trueka-app-front-c6dsm.ondigitalocean.app/)
 
 </br>
 
