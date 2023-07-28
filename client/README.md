@@ -1,54 +1,62 @@
 ## BIENVENIDOS A:
 
-![ScreenShot]()
-## Trueka -FRONTEND- 
+![ScreenShot](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690491883/trueka/logo_pbyiuz.png)
+## TRUEKA -FRONTEND- 
 
-![ScreenShot]()
+![ScreenShot](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690500563/trueka/TRUEKAHOME123_qhnd18.png)
 
 </br>
 
 ## 👨‍💻 Dependencias
-* Node 16.19.0
-* React : 18.2.0:
-* Vite 4.3.2
-* react-redux: 8.0.5
-* @reduxjs/toolkit": 1.9.5
+* Node 18.17.0
+* react: 18.2.0
+* Vite 4.3.9
+* react-google-maps/api: 2.19.0
+* reduxjs/toolkit: 1.9.5
 * react-dom: 18.0.11
 * react-router-dom: 6.11.2.
 * axios: 1.4.0
 * uuid:  9.0.0
-* tailwindcss: 3.3.2
-* @mui/material: 5.13.2
+* bootstrap": "5.3.0
+* react-bootstrap: 2.8.0
+* react-leaflet: 4.2.1
+* react-redux: 8.1.1
+* react-router-dom: 6.14.1
+* react-toastify: 9.1.3
+* socket.io: 4.7.1
+* socket.io-client: 4.7.1
+* sweetalert2: 11.7.20
+* swiper: 10.0.4
+* uuid: 9.0.0
 
 </br>
 
 * iconos
-  * @heroicons/react": 1.0.4,
+  * react-icons": 4.10.1,
   * IonIcons : 7.1.0, directamente en el HTML sin instalarlo.
 
 </br>   
 
 * para normalizar codigo
-  * autoprefixer: 10.4.14
-  * eslint: 8.38.0
-  * eslint-plugin-react-hooks: 4.6.0
-  * eslint-plugin-react-refresh: 0.3.4
   * standard: 17.0.0
-  * postcss": 8.4.23
+
 
 </br>
 
 ## 🚀 Caracteristica
-  * Landing page (pagina de precentacion)
-  * Login/Reegistro
-  * Seccion exclusiva para el usuario.
-  * CRUD de tarjeta de credito.
-  * CRUD de Usuario (a medias, se puede listar y modificar).
-  * Transacciones, se pueden realizar transacciones entre usuarios, (transferir dinero o pagar factura).
-  * Se visualiza el historial de Transacciones.
-  * Canales de Contacto, Denuncias y Reclamos.
-  * Se creo los slice, para poder crear, modificar, listar y eliminar, en todos los casos, aunque no se usaron todos.
-  * CRUD de Presupuestos (no se puede modifica, si elmiminar y añadir uno nuevo)
+* Landing page (página de presentación)
+* Login con Google
+* Sección exclusiva para el usuario.
+* Geolocalización y filtrado por ubicación actual del usuario.
+* Filtro por categorías y buscador.
+* Publicación de productos.
+* Transacciones: se pueden realizar intercambios de productos entre los usuarios.
+* Sección de vista/detalle del producto, desde donde se puede realizar la oferta.
+* Selector de productos a intercambiar (se pueden seleccionar 1+ productos a ofrecer).
+* Chat integrado en las ofertas.
+* Se visualiza el historial de solicitudes de transacciones.
+* Sección de Modificación de los datos del usuario.
+* Calificación del usuario y listado de calificaciones.
 
 </br>
 
@@ -56,71 +64,71 @@
   * Clonamos el repo 
   ```bash
   ╭─pescado at rabioso in ~/
-  ╰─± git clone https://github.com/No-Country/Virtual_Wallet_MERN/tree/develop
+  ╰─± git clone https://github.com/No-Country/s9-12-t-nest-react.git
   ```
   * Accedemos al Cliente:
   ```bash
   ╭─pescado at rabioso in ~/
-  ╰─± cd Virtual_Wallet_MERN/client
+  ╰─± cd ./s9-12-t-nest-react/client 
   ```
   * Instalamos las dependencias necesarias:
   ```bash
-  ╭─pescado at rabioso in ~/Virtual_Wallet_MERN/client
+  ╭─pescado at rabioso in ~//s9-12-t-nest-react/client 
   ╰─± npm install
   ```
   * Iniciamos la Applicación web
   ```bash
-  ╭─pescado at rabioso in ~/Virtual_Wallet_MERN/client
+  ╭─pescado at rabioso in ~/s9-12-t-nest-react/client 
   ╰─± npm run dev
   ```
 
-## 😘 Demo
+
  <!--aca coloca el deploy  -->
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3dd62868-fa71-49f6-84b8-c4bd430ddcf2/deploy-status)](https://app.netlify.com/sites/pinguiwallet/deploys)
+## 🚀 Deploying
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://trueka-app-front-c6dsm.ondigitalocean.app/)
 
 </br>
 
 ## 📷 Capturas de Pantalla
-### 🥰 Vistaso al Home
-![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1686188304/wallet/pwcap1_vcrrot.png "home")
 
-### 🥰 Responsive Home & Presupuesto
-![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1686210075/wallet/cap2_xjncd2.png "home responsive")
+### 🥰 vista home filtro por distancia
+![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690491884/trueka/trueka4_qkumky.png "home filtro distancia")
+### 🥰 vistazo al Perfil
+![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690493689/trueka/truekaHomeLike_mmvyle.png "perfil")
 
-### 🥰 Responsive Perfil & Transaccion
-![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1686210075/wallet/Captur1_l9kkfs.png "home")
+### 🥰 vistazo detalle + ubcacion de intercambio 
+![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690491884/trueka/trueka6_pakxgi.png "detalle")
 
+### 🥰 vistazo detalle + ubcacion de intercambio 
+![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1690494648/trueka/truejaCalificar_zslgnm.png "calificar")
+</br>
+
+## 💻🎨 Integrantes del Front-end
+
+| <img src="https://res.cloudinary.com/dpiwmbsog/image/upload/v1686264426/PERFIL_GENERAL_hbngdm.jpg" height=60>| <img src="https://res.cloudinary.com/do5fnhctm/image/upload/v1690506050/121978726_k3oliw.png" height=60>|<img src="img Matuas" height=60>| <img src="https://res.cloudinary.com/dptyezkoa/image/upload/v1690560237/IMG_20220628_201239_2_nnlcla.jpg" height=60>|
+|:-:|:-:|:-:|:-:|
+| **Guillermo Neculqueo**| **Dylan Navarro**| **Matias Ferrari** | **Agustin Lorenzi**| 
+|<a href="https://github.com/guillenec"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a><a href="https://www.linkedin.com/in/guillermo-agust%C3%ADn-neculqueo-57932b196/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/DylanNavarro97"> <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/dylan-navarro"> <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="github Matias"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/> </a> <a href="linkedin Matias"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="https://github.com/agustinlorenzi"> <img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/agustin-lorenzi-frontend-developer/"> <img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 </br>
 
-## 💻, 🎨 Integrantes del Front-end
-
-| <img src="https://res.cloudinary.com/dpiwmbsog/image/upload/v1686264426/PERFIL_GENERAL_hbngdm.jpg" width=60>| <img src="aca la img" width=60>|
+## 🎨🌈 Integrante de UX/UI
+| <img src="" height=60>| <img src="" height=60>| 
 |:-:|:-:|
-| **Guillermo Neculqueo**| **Fabian Torres**|
-| <a href="https://github.com/guillenec"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/guillermo-agust%C3%ADn-neculqueo-57932b196/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="tu guthub"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="Tu linkedin"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| **Francisco Koglot**| **Martina Chiara**| 
+| <a href="Francisco Koglot BEHANCE"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> <a href="Francisco Koglot lINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="Martina Chiara BEHANCE"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> <a href="Martina Chiara LINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | 
 
 
 </br>
 
 ## 🛠️💾 Integrante del Backend
-| <img src="https://i.ibb.co/8YzGRY1/Cristian-Machuca.jpg" width=60>|
-|:-:|
-| **Cristian** |
-| <a href="https://github.com/cristian1534"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/cristian-machuca-dev/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <img src="https://res.cloudinary.com/dtuzmctzb/image/upload/v1690560123/AAcHTterjnVwpNmcUiV7dEQnZ5Nhej2UiKn_vjdTWSh6AtHMNLk_s288-c-no_nvdnzq.jpg" width=60> | <img src= "https://drive.google.com/file/d/1U2w2orUmz9BLoynTEPG8EwwYfE6AcPAi/view?usp=sharing" width=60> |
+|:-:|:-:|
+| **Juan Manuel Fernández** | **Billy Campagnoli** |
+| <a href="https://github.com/juanmfernandez"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/juan-manuel-fernandez-dev/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |  <a href="https://github.com/Bfix40"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/billy-campagnoli-221621223/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 
-## 🎨🌈 Integrante de UX/UI
-| <img src="https://res.cloudinary.com/dhd78l3go/image/upload/v1686339239/jer_mt6wfd.png" width=60>|
-|:-:|
-| **Jerson** |
-| <a href="https://github.com/JersonAR"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/jerson-aranda-8b0114251/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
-
-## 🧪🔎, Integrante Tester
-| <img src="https://www.dropbox.com/scl/fi/ve3z80p0ma7700045e2vt/Yesid_Linares.png?dl=0&rlkey=5kjngb2kjbsgu5sd5u4jdwil0" width=60>|
-|:-:|
-| **Yesid** |
-| <a href="https://github.com/linaresy"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/linaresy/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 </br>
 
@@ -128,38 +136,41 @@
 
 </br>
 
-## PINGUI WALLET - UI/UX -
+## TRUEKA - UI/UX -
 
 </br>
 
-<a href="https://www.figma.com/file/yXl6Fu70MWBRlmsc6LskMU/PROYECTO-BILLETERA-VIRTUAL?type=design&node-id=85-161&t=y50DCyrvWMXy5fV2-0"><img src="https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white"/></a> <a href="LINK A TU CLOUDINARY"><img src="https://img.shields.io/badge/Cloudinary-%231563FF.svg?&style=for-the-badge&logo=google-cloud&logoColor=white"/></a>  <a href="https://www.behance.net/JersonAR"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> 
+<a href="link figma">
+  <img src="https://img.shields.io/badge/Figma-%23F24E1E.svg?style=for-the-badge&logo=Figma&logoColor=white"/>
+</a> 
+<a href="LINK A TU CLOUDINARY">
+  <img src="https://img.shields.io/badge/Cloudinary-%231563FF.svg?&style=for-the-badge&logo=google-cloud&logoColor=white"/>
+</a>  
+<a href="Link behance">
+  <img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/>
+</a> 
 
 ### 🎨 Arquitectura
-![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1686285587/wallet/PROYECTO_BILLETERA_VIRTUAL_1_wfyrk5.svg "dieño arquitectura")
+![🛸 Vistazo Detalles](Link.img "dieño arquitectura")
 
 ### 🎨 User Story
-![🛸 Vistazo Detalles](https://res.cloudinary.com/dpiwmbsog/image/upload/v1686285587/wallet/PROYECTO_BILLETERA_VIRTUAL_sz5yo9.svg "user story")
+![🛸 Vistazo Detalles](LInk.img "user story")
 
-### <a href="https://www.figma.com/file/4b5wGH4naRF0EoVPpavEt5/Encontrar-pets?node-id=342%3A8385"><img height="18px" src="https://img.icons8.com/color/344/figma--v1.png"/> Mockup</a>
+### <a href="Linkfigma"><img height="18px" src="https://img.icons8.com/color/344/figma--v1.png"/> Mockup</a>
 
 
 </br>
 
 ***
 
-## PINGUI WALLET -BACKEND REST API-
-![ScreenShot](https://i.ibb.co/crXKm66/Screenshot-from-2023-06-07-08-41-56.png)
+## TRUEKA -BACKEND REST API-
+![ScreenShot]()
 
 ## 🚀 Servidor
 
-Esta REST API consta de varios modelos y sus controladores para llevar a cabo la funcionalidad de 
-la Wallet abasteciendo en el servicio al Frontend, persistiendo los datos en un cluster de MongoDB.
-Manteniendo la seguridad mediante JWT para los accesos de usuarios a sus operaciones.
+Esta REST API consta de ....
 
 ## NOTA
-
-- Importante: Esta REST API es soporte al Frontend del siguiente repositorio: 
-  https://github.com/No-Country/Virtual_Wallet_MERN/tree/develop/client
 
 ## 📦 Tecnologias
 
@@ -167,30 +178,12 @@ Para desarrollar el Backend se utilizo lo siguiente con conceptos de DevOps:
 - NodeJS
 - Express
 - MongoDB
-- Mongoose
-- JWT
-- Docker
-- Ansible
-- K8S
-- Prometheus
-- Grafana
-- Github Actions
-- Railway.app
+...
 
 ## Testing
-Se realizaron un conjunto de pruebas manuales funcionales a la plataforma de PinguiWallet. Entre las herramientas usadas están:
-  - API Postman.
-  - Jira.
-  - Selenium IDE.
-  - Browser Stack (Mobile testing).
 
-Link de cargas de pruebas: https://drive.google.com/drive/folders/1suF_9jD0geLas8YVIVp9dOUOGKRueBUw?usp=sharing
 
 ## 🛠️ Installation
-
-PINGUI SERVER REQUIERE [Node.js](https://nodejs.org/) v18+ PARA INICIAR.
-
-Instalar las dependencias y las dependencias de desarrollo antes de correr el servidor.
 
 ```sh
 cd server
@@ -198,46 +191,14 @@ npm i
 npm run dev
 ```
 
-
 ## 📦 Contenedores
-El Backend esta apto para correr en un entorno de produccion o desarrollo.
-En caso de ultiza entorno de produccion puede correr el Deploy con docker compose.
-
-```sh
-cd server
-generar la imagen Docker: docker build...
-generar el contenedor Docker: docker run...
-```
-![ScreenShot](https://i.ibb.co/gVh0Qvp/Screenshot-from-2023-06-07-08-39-38.png)
+![ScreenShot]()
 
 ## Monitorizacion
-
-Se ha anexado al servidor local Prometheus con Grafana para ver el servicio de datos.
-
-![ScreenShot](https://i.ibb.co/wKBdmvn/Screenshot-from-2023-06-06-09-13-38.png)
-
-![ScreenShot](https://i.ibb.co/qFyDv3C/Screenshot-from-2023-06-06-09-16-25.png)
-
-## K8S
-
-El Backend esta adaptado para ser deployado en servidores como AWS, AZURE o GCP mediante
-un cluster en Kubernetes.
-
-![ScreenShot](https://i.ibb.co/4MJvyTr/Screenshot-from-2023-06-06-09-52-11.png)
-![ScreenShot](https://i.ibb.co/tM8wT04/Screenshot-from-2023-06-06-09-55-54.png)
-
-Para el manejo de K8S lo puede realizar con KUBECTL
-![ScreenShot](https://i.ibb.co/YZtnF6L/Screenshot-from-2023-06-06-09-53-54.png)
+![ScreenShot]()
 
 ## 🛠 ️AUTOMATIZACION CI/CD
-
-El CD esta basado en Github Actions y el CI esta anexado a Docker Hub para que Kubernetes 
-obtenga la imagen actualizada de Deploy. Para esto puede utilizar ANSIBLE.
-
-![ScreenShot](https://i.ibb.co/c18cdr0/Screenshot-from-2023-06-06-10-04-19.png)
+![ScreenShot]()
 
 
 ## 🚀 DEPLOY URL
-https://rest-api-wallet-no-country-production.up.railway.app/
-- Importante: agregar " /api " ademas de los declarados en " /routes " para acceder a los datos de la base de datos.
-  Ejemplo: https://rest-api-wallet-no-country-production.up.railway.app/api/user/get-all
