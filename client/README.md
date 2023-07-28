@@ -126,7 +126,7 @@
 | <img src=" Juan Manuel Fernández IMG" width=60> | <img src=" Billy Campagnoli IMG" width=60> |
 |:-:|:-:|
 | **Juan Manuel Fernández** | **Billy Campagnoli** |
-| <a href="Juan Manuel Fernández  GITHUB"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="hJuan Manuel Fernández LINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |  <a href=" Billy Campagnoli GITHUB"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href=" Billy Campagnoli LINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
+| <a href="Juan Manuel Fernández  GITHUB"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="hJuan Manuel Fernández LINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |  <a href="https://github.com/Bfix40"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/billy-campagnoli-221621223/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
 
 
 
