@@ -123,7 +123,7 @@
 </br>
 
 ## 🛠️💾 Integrante del Backend
-| <img src=" Juan Manuel Fernández IMG" width=60> | <img src=" Billy Campagnoli IMG" width=60> |
+| <img src=" Juan Manuel Fernández IMG" width=60> | <img src="https://drive.google.com/file/d/1U2w2orUmz9BLoynTEPG8EwwYfE6AcPAi/view?usp=drive_link" width=60> |
 |:-:|:-:|
 | **Juan Manuel Fernández** | **Billy Campagnoli** |
 | <a href="Juan Manuel Fernández  GITHUB"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="hJuan Manuel Fernández LINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |  <a href="https://github.com/Bfix40"><img src="https://img.shields.io/badge/github-%23121011.svg?&style=for-the-badge&logo=github&logoColor=white"/></a> <a href="https://www.linkedin.com/in/billy-campagnoli-221621223/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> |
