@@ -170,8 +170,6 @@
 
 Esta REST API consta de servidor NestJS con mongoDB y socket.io.
 
-## NOTA
-
 ## 📦 Tecnologias
 
 Para desarrollar el Backend se utilizo lo siguiente con conceptos de DevOps:
@@ -180,9 +178,6 @@ Para desarrollar el Backend se utilizo lo siguiente con conceptos de DevOps:
 - MongoDB
 - socket.io
 ...
-
-## Testing
-
 
 ## 🛠️ Installation
 Localhost:
@@ -260,16 +255,8 @@ sudo certbot renew --dry-run
 sudo service nginx restart
 ```
 
-
 ## 📦 Contenedores
 ![ScreenShot](https://res.cloudinary.com/dtuzmctzb/image/upload/v1690651483/droplet_e9b0ws.png)
-
-## Monitorizacion
-![ScreenShot]()
-
-## 🛠 ️AUTOMATIZACION CI/CD
-![ScreenShot]()
-
 
 ## 🚀 DEPLOY URL
 [![Deploy on DigitalOcean](https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/DigitalOcean_logo.svg/240px-DigitalOcean_logo.svg.png)](https://backendrestfullseleccionado.online/api)
