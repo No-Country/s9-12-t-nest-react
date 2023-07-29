@@ -19,12 +19,14 @@ const ContactoWatsapp = ({ dueñoOfertaId }) => {
   }
 
   return (
-    <button className='buttonWatsapp' onClick={handlePhoneClick}>
-      <img className='logoWatsapp' src='/images/WhatsApp 1.png' alt='logo watsapp' />
-      <span className='spanWatsapp'>
-        Contactar al usuario via WhatsApp.
-      </span>
-    </button>
+    <div className='contieneWatsapp'>
+      <button className='buttonWatsapp' onClick={handlePhoneClick}>
+        <ion-icon name="logo-whatsapp"></ion-icon>      
+        <span className='spanWatsapp'>
+          Contactar al usuario via WhatsApp.
+        </span>
+      </button>
+    </div>
   )
 }
 

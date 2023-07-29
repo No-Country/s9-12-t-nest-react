@@ -11,7 +11,7 @@ const persistLocalStorageMiddleware = (store) => (next) => (action) => {
   }, {})
 
   // Save the extracted state to local storage
-  localStorage.setItem('autentication_storage', JSON.stringify(stateToSave))
+  localStorage.setItem('autenticacion_storage', JSON.stringify(stateToSave))
 }
 
 export default persistLocalStorageMiddleware

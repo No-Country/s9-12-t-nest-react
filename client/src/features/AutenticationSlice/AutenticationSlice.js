@@ -74,7 +74,7 @@ export const login = createAsyncThunk(
   }
 )
 
-const DEFAULTSTATE = {
+const DEFAULT_STATE = {
   user: null,
   loading: false,
   error: null,
@@ -89,7 +89,7 @@ const user = (() => {
   if (persisteState) {
     return JSON.parse(persisteState)
   }
-  return DEFAULTSTATE
+  return DEFAULT_STATE
 })()
 
 const initialState = {
@@ -97,19 +97,15 @@ const initialState = {
 }
 
 const AutenticationSlice = createSlice({
-  name: 'authentication',
+  name: 'autenticacion',
   initialState,
   reducers: {
     storeAccessToken: (state, action) => {
       state.token = action.payload
     },
     logoutUser: (state) => {
-      state.user = null
-      state.error = null
-      state.isAuthenticated = false
-      state.isLoggedIn = false
-      state.token = null
-      state.isAdmin = false
+      state = { ...DEFAULT_STATE }
+      localStorage.removeItem('autentication_storage')
     }
   },
   extraReducers: (builder) => {

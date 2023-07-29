@@ -5,8 +5,13 @@ import { Link, useParams } from 'react-router-dom'
 import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserById } from '../features/authSlice/authSlice'
+import CardOwnerOffer from './Perfil/CardOwnerOffer/CardOwnerOffer'
 
 const OfertaAceptada = () => {
+  const offerProduct = useSelector((state) => state?.offer?.offerById)
+  const ubicacionOferta = offerProduct?.offeredItems[0]?.location
+  const offerOwnerID = offerProduct?.offerOwnerId?._id
+
   const userInfo = useSelector((state) => state?.authUser?.userById)
   const { offerOwnerId } = useParams()
   const token = localStorage.getItem('token')
@@ -20,7 +25,9 @@ const OfertaAceptada = () => {
     <div>
       <h3 className='titulo-h3'>Aceptaste la oferta de: {userInfo?.firstName} {userInfo?.lastName} </h3>
       {/* <PerfilUser /> */}
-      <PerfilUsuario />
+      <CardOwnerOffer dueñoOferta={offerOwnerID} ubicacionOferta={ubicacionOferta} />
+
+      {/* <PerfilUsuario /> */}
       <h5 className='recomendaciones'>Recomendaciones de seguridad de Trueka:</h5>
 
       <div className='controlar-parrafo'>
