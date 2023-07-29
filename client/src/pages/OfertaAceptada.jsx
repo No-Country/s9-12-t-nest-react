@@ -2,25 +2,26 @@ import React, { useEffect } from 'react'
 import './OfertaAceptada.css'
 // import PerfilUser from './Perfil/PerfilUsuarioConsumeAgustinLorenzi'
 import { Link, useParams } from 'react-router-dom'
-import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserById } from '../features/authSlice/authSlice'
+import { getUserOfertanteById } from '../features/authSlice/authSlice'
 import CardOwnerOffer from './Perfil/CardOwnerOffer/CardOwnerOffer'
 import ContactoWatsapp from '../components/ContactoWatsapp/ContactoWatsapp'
 
 const OfertaAceptada = () => {
-  const userInfo = useSelector((state) => state?.authUser?.userById)
-  const { offerOwnerId } = useParams()
+  // const userInfo = useSelector((state) => state?.authUser?.userById)
+  const userOferta = useSelector((state) => state?.authUser?.userOfertanteById)
+
+  const { offerOwnerId, ubicacionOferta } = useParams()
   const token = localStorage.getItem('token')
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getUserById({ token, UserId: offerOwnerId }))
+    dispatch(getUserOfertanteById({ token, UserId: offerOwnerId }))
   }, [])
 
   return (
     <div>
-      <h3 className='titulo-h3'>Aceptaste la oferta de: {userInfo?.firstName} {userInfo?.lastName} </h3>
+      <h3 className='titulo-h3'>Aceptaste la oferta de: {userOferta?.firstName} {userOferta?.lastName} </h3>
       {/* <PerfilUser /> */}
       <CardOwnerOffer dueñoOferta={offerOwnerId} ubicacionOferta={ubicacionOferta} />
 
@@ -42,7 +43,7 @@ const OfertaAceptada = () => {
         </p>
       </div>
 
-      <ContactoWatsapp watsapp={numeroTel || 543944123456} />
+      <ContactoWatsapp watsapp={userOferta.contact || 543944123456} />
 
       <div className='botones'>
         <Link to='/calificar'><button className='ofertar'>Calificar usuario</button></Link>

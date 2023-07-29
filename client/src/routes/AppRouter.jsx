@@ -28,7 +28,7 @@ function AppRouter ({ state }) {
         <Route path='/login' element={<Login />} />
         <Route path='/ofertas/:id' element={<OfertasMain />} />
         <Route path='/oferta-recibida/:offerId' element={<OfertaRecibida />} />
-        <Route path='/oferta-aceptada/:offerOwnerId' element={<OfertaAceptada />} />
+        <Route path='/oferta-aceptada/:offerOwnerId/:ubicacionOferta' element={<OfertaAceptada />} />
         <Route path='/register' element={<Register />} />
         <Route path='/' element={<Home />} />
         <Route path='/detalle/:id/:owner' element={<Detail />} />
