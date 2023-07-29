@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserById } from '../../../../features/authSlice/authSlice'
+import { getUserOfertanteById } from '../../../../features/authSlice/authSlice'
 
 const CardMiniPerfilOfertas = ({ dueñoOfertaId, ubicacionOferta }) => {
-  const usuario = useSelector(state => state?.authUser?.userById)
+  const usuario = useSelector(state => state?.authUser?.userOfertanteById)
   const token = useSelector((state) => state?.autenticacion.token)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getUserById({ token, dueñoOfertaId }))
+    dispatch(getUserOfertanteById({ token, dueñoOfertaId }))
   }, [token, dueñoOfertaId])
 
   return (

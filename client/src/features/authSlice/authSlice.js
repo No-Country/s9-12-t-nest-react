@@ -67,6 +67,28 @@ export const getUserById = createAsyncThunk('authUser/getUserById', async (args,
     return thunkAPI.rejectWithValue(error)
   }
 })
+//  traemos un usuario por su id
+export const getUserOfertanteById = createAsyncThunk('authUser/getUserOfertanteById', async (args, thunkAPI) => {
+  try {
+    // console.log('argumentos -->', args)
+    const { token, UserId } = args
+    const response = await fetch(`${API_URL}/${UserId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    })
+    if (!response.ok) {
+      const error = await response.json()
+      return thunkAPI.rejectWithValue(error)
+    }
+    const data = await response.json()
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error)
+  }
+})
 
 export const modifyUser = createAsyncThunk('authUser/modifyUser', async (args, thunkAPI) => {
   const { token, userId, newUserData } = args
@@ -120,7 +142,7 @@ const authSlice = createSlice({
     user: null, // para el login, se debera guardar los datos deluser
     isAuthenticated: false, // para el login
     token: null, // lo que devuelve el servidor, para el login, se debera guardar los datos deluser, por si trae un token o algo asi
-
+    userOfertanteById: null, // para  el usuario ofertante en cada oferta
     userCreated: [], // para visualizar de momento el create user
     usersList: [],
     userDeleted: false,
@@ -216,6 +238,17 @@ const authSlice = createSlice({
         } else {
           state.error = 'Ocurrión un error al eliminar el usuario.'
         }
+      })
+      .addCase(getUserOfertanteById.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getUserOfertanteById.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.userOfertanteById = action.payload
+      })
+      .addCase(getUserOfertanteById.rejected, (state, action) => {
+        state.isLoading = false
+        state.error = action.payload.message
       })
   }
 })

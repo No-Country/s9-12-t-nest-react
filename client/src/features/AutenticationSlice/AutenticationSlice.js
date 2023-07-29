@@ -84,22 +84,16 @@ const DEFAULTSTATE = {
   isAdmin: false
 }
 
-// const user = (() => {
-//   const persisteState = localStorage.getItem('autentication_storage')
-//   if (persisteState) {
-//     return JSON.parse(persisteState).user
-//   }
-//   return DEFAULTSTATE.user
-// })()
+const user = (() => {
+  const persisteState = localStorage.getItem('autentication_storage')
+  if (persisteState) {
+    return JSON.parse(persisteState)
+  }
+  return DEFAULTSTATE
+})()
 
 const initialState = {
-  user,
-  loading: false,
-  error: null,
-  token: null,
-  isAuthenticated: false,
-  isLoggedIn: false,
-  isAdmin: false
+  user
 }
 
 const AutenticationSlice = createSlice({
