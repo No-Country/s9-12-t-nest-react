@@ -114,10 +114,10 @@
 </br>
 
 ## 🎨🌈 Integrante de UX/UI
-| <img src="" height=60>| <img src="" height=60>| 
+| <img src="https://media.licdn.com/dms/image/D4D03AQEDiu-Pytcvmg/profile-displayphoto-shrink_400_400/0/1687299485522?e=1695859200&v=beta&t=7Tgx5O65RsYKGZIj3Bf5hL7FXR2dviunKBvgC-v7-R4" height=60>| <img src="" height=60>| 
 |:-:|:-:|
 | **Francisco Koglot**| **Martina Chiara**| 
-| <a href="Francisco Koglot BEHANCE"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> <a href="Francisco Koglot lINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="Martina Chiara BEHANCE"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> <a href="Martina Chiara LINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | 
+| <a href="Francisco Koglot BEHANCE"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> <a href="https://www.linkedin.com/in/francisco-koglot-33923414b/"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | <a href="Martina Chiara BEHANCE"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white"/></a> <a href="Martina Chiara LINKEDIN"><img src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> | 
 
 
 </br>
