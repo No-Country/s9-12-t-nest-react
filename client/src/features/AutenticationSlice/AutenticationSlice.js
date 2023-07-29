@@ -84,13 +84,13 @@ const DEFAULTSTATE = {
   isAdmin: false
 }
 
-// const user = (() => {
-//   const persisteState = localStorage.getItem('autentication_storage')
-//   if (persisteState) {
-//     return JSON.parse(persisteState).user
-//   }
-//   return DEFAULTSTATE.user
-// })()
+const user = (() => {
+  const persisteState = localStorage.getItem('autentication_storage')
+  if (persisteState) {
+    return JSON.parse(persisteState).user
+  }
+  return DEFAULTSTATE.user
+})()
 
 const initialState = {
   user,
