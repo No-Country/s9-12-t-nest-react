@@ -6,12 +6,9 @@ import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserById } from '../features/authSlice/authSlice'
 import CardOwnerOffer from './Perfil/CardOwnerOffer/CardOwnerOffer'
+import ContactoWatsapp from '../components/ContactoWatsapp/ContactoWatsapp'
 
 const OfertaAceptada = () => {
-  const offerProduct = useSelector((state) => state?.offer?.offerById)
-  const ubicacionOferta = offerProduct?.offeredItems[0]?.location
-  const offerOwnerID = offerProduct?.offerOwnerId?._id
-
   const userInfo = useSelector((state) => state?.authUser?.userById)
   const { offerOwnerId } = useParams()
   const token = localStorage.getItem('token')
@@ -25,7 +22,7 @@ const OfertaAceptada = () => {
     <div>
       <h3 className='titulo-h3'>Aceptaste la oferta de: {userInfo?.firstName} {userInfo?.lastName} </h3>
       {/* <PerfilUser /> */}
-      <CardOwnerOffer dueñoOferta={offerOwnerID} ubicacionOferta={ubicacionOferta} />
+      <CardOwnerOffer dueñoOferta={offerOwnerId} ubicacionOferta={ubicacionOferta} />
 
       {/* <PerfilUsuario /> */}
       <h5 className='recomendaciones'>Recomendaciones de seguridad de Trueka:</h5>
@@ -45,13 +42,8 @@ const OfertaAceptada = () => {
         </p>
       </div>
 
-      <div className='contactar-whatsapp'>
-        <img src='/images/WhatsApp 1.png' alt='' />
-        <Link to='' className='fw-semibold pb-0 border-bottom border-danger' style={{ fontSize: '15.256px', color: 'var(--background-nav)', textDecoration: 'none', paddingBottom: '5px' }}>
-          Contactar al usuario via WhatsApp.
-        </Link>
+      <ContactoWatsapp watsapp={numeroTel || 543944123456} />
 
-      </div>
       <div className='botones'>
         <Link to='/calificar'><button className='ofertar'>Calificar usuario</button></Link>
 

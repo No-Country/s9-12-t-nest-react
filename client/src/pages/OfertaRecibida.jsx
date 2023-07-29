@@ -51,7 +51,7 @@ const OfertaRecibida = () => {
           }
         })).then((res) => {
           if (res.meta.requestStatus === 'fulfilled') {
-            navigate(`/oferta-aceptada/${offerOwnerID}`)
+            navigate(`/oferta-aceptada/${offerOwnerID}/${ubicacionOferta}`)
           }
         })
           .catch((error) => console.log(error))
