@@ -164,7 +164,7 @@
 ***
 
 ## TRUEKA -BACKEND REST API-
-![ScreenShot](https://asset.cloudinary.com/dtuzmctzb/3b346b849bd537849ede6391031f1d40)
+![ScreenShot](https://res.cloudinary.com/dtuzmctzb/image/upload/v1690650697/apires_09_ctpp4e.png)
 
 ## 🚀 Servidor
 
@@ -262,7 +262,7 @@ sudo service nginx restart
 
 
 ## 📦 Contenedores
-![ScreenShot](https://asset.cloudinary.com/dtuzmctzb/80641d60829effaabc49ebc824fb216e)
+![ScreenShot](https://res.cloudinary.com/dtuzmctzb/image/upload/v1690651483/droplet_e9b0ws.png)
 
 ## Monitorizacion
 ![ScreenShot]()
