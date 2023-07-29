@@ -164,35 +164,105 @@
 ***
 
 ## TRUEKA -BACKEND REST API-
-![ScreenShot]()
+![ScreenShot](https://asset.cloudinary.com/dtuzmctzb/3b346b849bd537849ede6391031f1d40)
 
 ## 🚀 Servidor
 
-Esta REST API consta de ....
+Esta REST API consta de servidor NestJS con mongoDB y socket.io.
 
 ## NOTA
 
 ## 📦 Tecnologias
 
 Para desarrollar el Backend se utilizo lo siguiente con conceptos de DevOps:
-- NodeJS
+- NestJS
 - Express
 - MongoDB
+- socket.io
 ...
 
 ## Testing
 
 
 ## 🛠️ Installation
-
+Localhost:
 ```sh
 cd server
 npm i
-npm run dev
+npm run start:dev
+```
+Cloud: hemos creado una droplet en DigitalOcean, se puede ejecutar con los siguientes comandos:
+```sh
+#clonar repo
+git remote add origin https://github.com/No-Country/s9-12-t-nest-react.git
+cd s9-12-t-nest-react
+cd server
+npm i
+npm run start:dev
+
+#node, nginx y pm2
+sudo apt update
+sudo systemctl status nginx
+sudo systemctl start nginx
+curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt install nginx
+sudo npm install pm2@latest -g
+pm2 start dist/main.js --name trueka
+pm2 startup systemd
+pm2 save
+
+#ssl
+sudo add-apt-repository ppa:certbot/certbot
+cd /etc/nginx/sites-available
+nano /etc/nginx/sites-available/trueka
+server {
+	listen 80;
+	server_name tu_dominio;
+	location / {
+		proxy_pass http://localhost:3000;
+		proxy_http_version 1.1;
+		proxy_set_header Upgrade $http_upgrade;
+		proxy_set_header Connection 'upgrade';
+		proxy_set_header Host $host;
+		proxy_cache_bypass $http_upgrade;
+	}
+}
+ln -s /etc/nginx/sites-available/trueka /etc/nginx/sites-enabled/trueka
+server {
+    listen 3001;
+    server_name tu_dominio;  
+	ssl_certificate /etc/ruta/certificado/dominio/fullchain.pem;
+    ssl_certificate_key /etc/ruta/key/dominio/privkey.pem;
+    location / {
+        proxy_pass http://127.0.0.1:8001;
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection 'upgrade';
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+    }
+}
+
+ln -s /etc/nginx/sites-available/trueka /etc/nginx/sites-enabled/trueka
+ln -s /etc/nginx/sites-available/truekachat /etc/nginx/sites-enabled/truekachat
+sudo ufw allow 8001
+sudo ufw allow 3001
+sudo service nginx restart
+#certs
+sudo apt update
+sudo apt install snapd
+sudo apt-get remove certbot
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+sudo certbot --nginx
+sudo certbot renew --dry-run
+sudo service nginx restart
 ```
 
+
 ## 📦 Contenedores
-![ScreenShot]()
+![ScreenShot](https://asset.cloudinary.com/dtuzmctzb/80641d60829effaabc49ebc824fb216e)
 
 ## Monitorizacion
 ![ScreenShot]()
