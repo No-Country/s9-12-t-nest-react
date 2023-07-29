@@ -272,4 +272,4 @@ sudo service nginx restart
 
 
 ## 🚀 DEPLOY URL
-[![Deploy on DigitalOcean](https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg)](https://backendrestfullseleccionado.online/api)
+[![Deploy on DigitalOcean](https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/DigitalOcean_logo.svg/240px-DigitalOcean_logo.svg.png)](https://backendrestfullseleccionado.online/api)
