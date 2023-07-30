@@ -3,15 +3,19 @@ import './OfertaRecibida.css'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 // import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi';
 import Swal from 'sweetalert2'
-import PerfilUsuario from './Perfil/PerfilUsuarioConsumeAgustinLorenzi'
+import PerfilUsuario from './Perfil/PerfilUsuarioConsumer'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeOfferStatus, getOfferById } from '../features/offers/offerSlice'
 import CardOffer from '../components/cardOffers/CardOffer'
 import { toast } from 'react-toastify'
+import CardOwnerOffer from './Perfil/CardOwnerOffer/CardOwnerOffer'
+import ContactoWatsapp from '../components/ContactoWatsapp/ContactoWatsapp'
 
 const OfertaRecibida = () => {
   const offerProduct = useSelector((state) => state?.offer?.offerById)
+  const ubicacionOferta = offerProduct?.offeredItems[0]?.location
   const offerOwnerID = offerProduct?.offerOwnerId?._id
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { offerId } = useParams()
@@ -111,16 +115,13 @@ const OfertaRecibida = () => {
           ))}
         </div>
 
+        <CardOwnerOffer dueñoOferta={offerOwnerID} ubicacionOferta={ubicacionOferta} />
+
         <PerfilUsuario usuario={offerProduct?.offerOwnerId} geoInfo={offerProduct?.offeredOtems} />
         <hr className='hr' />
 
-        <div className='contactar-whatsapp'>
-          <img src='/images/WhatsApp 1.png' alt='' />
-          <Link to='' className='fw-semibold pb-0 border-bottom border-danger' style={{ fontSize: '15.256px', color: 'var(--background-nav)', textDecoration: 'none', paddingBottom: '5px' }}>
-            Contactar al usuario via WhatsApp.
-          </Link>
+        <ContactoWatsapp watsapp={offerOwnerID} />
 
-        </div>
         <div className='botones'>
           <button className='ofertar' onClick={confirmacion}>Aceptar Oferta</button>
 
