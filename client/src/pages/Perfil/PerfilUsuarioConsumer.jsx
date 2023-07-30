@@ -4,46 +4,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getBarrio } from '../../features/pruebaBarrioSlice/pruebaBarrioSlice'
 import Stars from './Stars/Stars'
 import { Link } from 'react-router-dom'
-import CarruselProductsCard from './CarruselProductsCard/CarruselProductsCard'
-// import RenderCarrusel from './RenderCarrusel'
-
-import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import CardMiniPerfil from './CardMiniPerfil/CardMiniPerfil'
-import UserBannerStatistics from './UserBannerStatistics/UserBannerStatistics'
-import ReusableCarrusel from './ReusableCarrusel/ReusableCarrusel'
-import './PerfilUsuarioConsumeAgustinLorenzi.css'
+import './PerfilUsuarioConsumer.css'
 
 const PerfilUsuario = ({ usuario, geoInfo }) => {
   const ubication = useSelector(state => state?.location)
-  const barrio = useSelector(state => state?.barrio?.barrio)
-  const productsYouLike = useSelector((state) => state?.productsDb?.likeProducts)
   const [calculaRep, setCalculaRep] = useState('')
   const dispatch = useDispatch()
   const lastUbication = useRef(null)
-  const image = localStorage.getItem('userImage')
 
   const reputacionUSer = { intercambiosExitosos: 15, intercambiosFallidos: 2, totalPublicaciones: 32, valoracionesPositivas: 15, valoracionesNegativas: 2, devoluciones: 1 }
-
-  const objeto = {
-    _id: '64b9bb6d821dd7fe3cb11333',
-    email: 'pescadorabioso1992@gmail.com',
-    firstName: 'pescado',
-    lastName: 'rabioso',
-    contact: '2944123456',
-    address: 'Argentina,rio negro,san carlos de bariloche, ',
-    isActive: true,
-    roles: [
-      'user'
-    ],
-    products: [],
-    incomingOffers: [],
-    createdAt: '2023-07-20T22:55:41.634Z',
-    updatedAt: '2023-07-20T22:55:41.634Z',
-    __v: 0
-  }
-
-  const productsDestacados = []
 
   useEffect(() => {
     setCalculaRep(calcularReputacion(reputacionUSer))
