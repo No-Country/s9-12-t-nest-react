@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { useDispatch } from 'react-redux'
+import { getUserById } from '../authSlice/authSlice'
 
 const API_URL = 'http://localhost:3000/api/v1'
 
@@ -84,28 +86,68 @@ const DEFAULT_STATE = {
   isAdmin: false
 }
 
-const user = (() => {
-  const persisteState = localStorage.getItem('autentication_storage')
+// const user = (() => {
+//   const persisteState = localStorage.getItem('autentication_storage')
+//   if (persisteState) {
+//     return JSON.parse(persisteState)
+//   }
+//   return DEFAULT_STATE
+// })()
+
+// const initialState = {
+//   user
+// }
+const token = (() => {
+  const persisteState = localStorage.getItem('token')
   if (persisteState) {
     return JSON.parse(persisteState)
   }
-  return DEFAULT_STATE
+  return null
 })()
 
-const initialState = {
-  user
-}
+const user = (() => {
+  const dispatch = useDispatch()
+  const persisteState = localStorage.getItem('userId')
+  if (persisteState) {
+    dispatch(getUserById(persisteState))
+      .then(res => {
+        if (res.payload.role === 'admin') {
+          return {
+            ...res.payload,
+            isAdmin: true
+          }
+        }
+        return res.payload
+      })
+      .catch(err => {
+        console.log(err)
+        return null
+      })
+  }
+  return null
+})()
 
 const AutenticationSlice = createSlice({
   name: 'autenticacion',
-  initialState,
+  initialState: {
+    user,
+    loading: false,
+    error: null,
+    token,
+    isAuthenticated: !!token,
+    isLoggedIn: !!token,
+    isAdmin: false
+  },
   reducers: {
     storeAccessToken: (state, action) => {
       state.token = action.payload
     },
     logoutUser: (state) => {
       state = { ...DEFAULT_STATE }
-      localStorage.removeItem('autentication_storage')
+      // localStorage.removeItem('autentication_storage')
+      localStorage.removeItem('token')
+      localStorage.removeItem('userId')
+      localStorage.removeItem('userImage')
     }
   },
   extraReducers: (builder) => {
